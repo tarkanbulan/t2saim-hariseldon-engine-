@@ -1,0 +1,274 @@
+{
+  "protocol": "T2SAIM_W3C_PROV_CRYPTOGRAPHIC_PROVENANCE_V1",
+  "canonical_root": "Google Drive / T2SAIM_OS / Hariseldon / Prediction_Project",
+  "creation_timestamp": "2026-08-22T23:54:29.911048",
+  "creator": "Tarkan Bulan (Kaptan Tarco) & James William (DZV)",
+  "epistemic_doctrine": "Veritas Per Se · Anti-Tampering & Anti-Hindsight Guarantee",
+  "total_registered_files": 33,
+  "records": [
+    {
+      "category": "ACTIVE_SPEC_AND_CODE",
+      "file_name": "00_T2SAIM_JULES_MASTER_MIMARI_PLAN_VE_GURLER_AYRILIGI.md",
+      "relative_path": "00_T2SAIM_JULES_MASTER_MIMARI_PLAN_VE_GURLER_AYRILIGI.md",
+      "size_bytes": 11176,
+      "modified_time": "2026-08-22T23:05:39.567032",
+      "sha256_hash": "b20a963f861c1d12818f58ad2905821d28c94905f61336f7427a55aec00bf9d1"
+    },
+    {
+      "category": "ACTIVE_SPEC_AND_CODE",
+      "file_name": "00_T2SAIM_MASTER_OYUN_KURUCU_VE_GURLER_AYRILIGI_MIMARISI.md",
+      "relative_path": "00_T2SAIM_MASTER_OYUN_KURUCU_VE_GURLER_AYRILIGI_MIMARISI.md",
+      "size_bytes": 10691,
+      "modified_time": "2026-08-22T22:52:31.670003",
+      "sha256_hash": "b4d077a5a60f58444e387760b384f9070547a05ddb83ab5ea4871a36c01029e1"
+    },
+    {
+      "category": "ACTIVE_SPEC_AND_CODE",
+      "file_name": "01_TALIMAT_1_TR_PODU_MIMARI_PLANI_VE_JULES_BILETLERI.md",
+      "relative_path": "01_TALIMAT_1_TR_PODU_MIMARI_PLANI_VE_JULES_BILETLERI.md",
+      "size_bytes": 12198,
+      "modified_time": "2026-08-22T23:14:47.996697",
+      "sha256_hash": "412d04e08045907ba21996c5709b019401f254a2547588d30e376e28afaff52b"
+    },
+    {
+      "category": "ACTIVE_SPEC_AND_CODE",
+      "file_name": "README.md",
+      "relative_path": "README.md",
+      "size_bytes": 3689,
+      "modified_time": "2026-08-22T23:08:40.441608",
+      "sha256_hash": "6c53f49764af33764a4bf9be8865c26686db5b2cb61248955cbb75a4a1b6eb32"
+    },
+    {
+      "category": "ACTIVE_SPEC_AND_CODE",
+      "file_name": "SPARK_TALIMAT_1_JULES_KODLAMA_YONERGESI.md",
+      "relative_path": "SPARK_TALIMAT_1_JULES_KODLAMA_YONERGESI.md",
+      "size_bytes": 3900,
+      "modified_time": "2026-08-22T23:54:24.789138",
+      "sha256_hash": "1b8377dd857b1406b3dca16cbec8940b04d8df398498b633dd2b3dbf06317a36"
+    },
+    {
+      "category": "ACTIVE_SPEC_AND_CODE",
+      "file_name": "SPARK_TASK_PROMPT_TALIMAT_1.md",
+      "relative_path": "SPARK_TASK_PROMPT_TALIMAT_1.md",
+      "size_bytes": 2541,
+      "modified_time": "2026-08-22T23:37:54.030124",
+      "sha256_hash": "3054c88efaa9701c23dbd0298a749a4bbeae4c3500fd684f8fc8f595e1c84408"
+    },
+    {
+      "category": "ACTIVE_SPEC_AND_CODE",
+      "file_name": "T2SAIM_KAYIT_VE_ZAMAN_HASH_SERTIFIKASI.md",
+      "relative_path": "T2SAIM_KAYIT_VE_ZAMAN_HASH_SERTIFIKASI.md",
+      "size_bytes": 5854,
+      "modified_time": "2026-08-22T23:08:57.414543",
+      "sha256_hash": "f0b4b04092a53ba9f4796fba9aef6b38814d052642328758fa3041b886670bf0"
+    },
+    {
+      "category": "ACTIVE_SPEC_AND_CODE",
+      "file_name": "t2saim_provenance_verifier.py",
+      "relative_path": "t2saim_provenance_verifier.py",
+      "size_bytes": 2905,
+      "modified_time": "2026-08-22T23:31:51.220668",
+      "sha256_hash": "0ec7e1699ac41597645fd70b75c783fb31ce60be2bfd51286b1c369182b059f1"
+    },
+    {
+      "category": "REAL_DATA_CORPUS",
+      "file_name": "00_HARISELDON_TAM_OTURUM_VE_DOSYALAR.md.docx",
+      "relative_path": "reference_corpus\\00_HARISELDON_TAM_OTURUM_VE_DOSYALAR.md.docx",
+      "size_bytes": 26148,
+      "modified_time": "2026-08-22T09:56:18",
+      "sha256_hash": "9db70ca9a4946c4091414ef8355ac23b96c03f749d6a6a277cbb41faee4a779f"
+    },
+    {
+      "category": "REAL_DATA_CORPUS",
+      "file_name": "01_HARISELDON_SONUCLAR_VE_KARARLAR.md.docx",
+      "relative_path": "reference_corpus\\01_HARISELDON_SONUCLAR_VE_KARARLAR.md.docx",
+      "size_bytes": 12661,
+      "modified_time": "2026-08-22T09:56:30",
+      "sha256_hash": "bbf3a926db041c77cc806859af6a88a83eef15da990c5241a9c3c4577fe91508"
+    },
+    {
+      "category": "REAL_DATA_CORPUS",
+      "file_name": "Günlük Bülten Kapsamı ve Yapısı.md",
+      "relative_path": "reference_corpus\\Günlük Bülten Kapsamı ve Yapısı.md",
+      "size_bytes": 570822,
+      "modified_time": "2026-08-22T21:13:22.254250",
+      "sha256_hash": "cfe9d0d4d3de845860514479ddc4de2bf5cc27483b8e3c14eb2ff790082fa252"
+    },
+    {
+      "category": "REAL_DATA_CORPUS",
+      "file_name": "JULES_HARISELDON_MIMARI_KODLAMA_KILAVUZU.md.docx",
+      "relative_path": "reference_corpus\\JULES_HARISELDON_MIMARI_KODLAMA_KILAVUZU.md.docx",
+      "size_bytes": 17582,
+      "modified_time": "2026-08-22T09:56:44",
+      "sha256_hash": "3d20d9e20130e28cd5770ee901a62682ce99c6fc0fa43858257d8454edfa680f"
+    },
+    {
+      "category": "REAL_DATA_CORPUS",
+      "file_name": "T2SAIM_100Bin_Birim_Nihai_Sentez_ve_Icra_Tablosu.md",
+      "relative_path": "reference_corpus\\T2SAIM_100Bin_Birim_Nihai_Sentez_ve_Icra_Tablosu.md",
+      "size_bytes": 7122,
+      "modified_time": "2026-08-22T21:00:38.660800",
+      "sha256_hash": "6a34be8b1857db6b78d432d9ed14e2571d3b1a60b1447222f27c5339ba04773b"
+    },
+    {
+      "category": "REAL_DATA_CORPUS",
+      "file_name": "T2SAIM_100Bin_Birim_Pusula_Gudumlu_Birlesik_Master_Raporu.md",
+      "relative_path": "reference_corpus\\T2SAIM_100Bin_Birim_Pusula_Gudumlu_Birlesik_Master_Raporu.md",
+      "size_bytes": 9667,
+      "modified_time": "2026-08-22T21:03:21.784134",
+      "sha256_hash": "d05d49b0f962ba68dea5d6943108c757d7639dacdd3ca8533c6786fdfc972907"
+    },
+    {
+      "category": "REAL_DATA_CORPUS",
+      "file_name": "T2SAIM_100K_Son_Red_Team_Zafiyet_ve_Gerceklik_Denetimi.md",
+      "relative_path": "reference_corpus\\T2SAIM_100K_Son_Red_Team_Zafiyet_ve_Gerceklik_Denetimi.md",
+      "size_bytes": 6201,
+      "modified_time": "2026-08-22T21:02:57.810475",
+      "sha256_hash": "a34a2da3e937313441fac45851d5cf062e096d7cfbf7d8a3eb2ca8a49497f39d"
+    },
+    {
+      "category": "REAL_DATA_CORPUS",
+      "file_name": "T2SAIM_30_Yillik_1996_2026_Ulke_Bazli_Bagimsiz_Kriz_ve_Kar_Raporu.md",
+      "relative_path": "reference_corpus\\T2SAIM_30_Yillik_1996_2026_Ulke_Bazli_Bagimsiz_Kriz_ve_Kar_Raporu.md",
+      "size_bytes": 7760,
+      "modified_time": "2026-08-22T21:03:59.628242",
+      "sha256_hash": "3e2b4fe08d15071458b3d31910a87ddffb5f99b1be5fa36efd29228ffccee9f3"
+    },
+    {
+      "category": "REAL_DATA_CORPUS",
+      "file_name": "T2SAIM_5_Piyasa_Ozel_Kripto_Analiz_ve_Icra_Motoru_Raporu.md",
+      "relative_path": "reference_corpus\\T2SAIM_5_Piyasa_Ozel_Kripto_Analiz_ve_Icra_Motoru_Raporu.md",
+      "size_bytes": 8490,
+      "modified_time": "2026-08-22T21:05:07.626768",
+      "sha256_hash": "72b7aa189a986b57ad518fdcc27c0320d79d734e47af06b927024a79e8727d18"
+    },
+    {
+      "category": "REAL_DATA_CORPUS",
+      "file_name": "T2SAIM_5_Piyasa_Red_Team_Optimizasyon_ve_Zafiyet_Raporu.md",
+      "relative_path": "reference_corpus\\T2SAIM_5_Piyasa_Red_Team_Optimizasyon_ve_Zafiyet_Raporu.md",
+      "size_bytes": 7997,
+      "modified_time": "2026-08-22T21:04:33.827170",
+      "sha256_hash": "8cfe36ebe8b703a61ab6f88bb08c6553f9a3a76177febc668c949aeb375e2fed"
+    },
+    {
+      "category": "REAL_DATA_CORPUS",
+      "file_name": "T2SAIM_5_Stratejik_Super_Emtia_ve_5_Piyasa_Entegrasyon_Raporu.md",
+      "relative_path": "reference_corpus\\T2SAIM_5_Stratejik_Super_Emtia_ve_5_Piyasa_Entegrasyon_Raporu.md",
+      "size_bytes": 7684,
+      "modified_time": "2026-08-22T21:02:01.639095",
+      "sha256_hash": "28017e0223ec296a9cc6c9f63b93d347f6e186ce29a0f2952d293d52a19b4edc"
+    },
+    {
+      "category": "REAL_DATA_CORPUS",
+      "file_name": "T2SAIM_5_Super_Emtia_Jules_Master_Spesifikasyonu.md",
+      "relative_path": "reference_corpus\\T2SAIM_5_Super_Emtia_Jules_Master_Spesifikasyonu.md",
+      "size_bytes": 12904,
+      "modified_time": "2026-08-22T21:01:07.092082",
+      "sha256_hash": "20f1cffaf707ae8ce3e198f5e2a024c0a53e0488eeb4dc2947d0fa5da030baeb"
+    },
+    {
+      "category": "REAL_DATA_CORPUS",
+      "file_name": "T2SAIM_Avrupa_Birligi_EU_Master_Kriz_ve_Kar_Maksimizasyonu_Raporu.md",
+      "relative_path": "reference_corpus\\T2SAIM_Avrupa_Birligi_EU_Master_Kriz_ve_Kar_Maksimizasyonu_Raporu.md",
+      "size_bytes": 10558,
+      "modified_time": "2026-08-22T21:07:07.825554",
+      "sha256_hash": "aec541f93399987dc10e25835785cfdd9fc353392211ef8e1d0d0c7d14c4bd06"
+    },
+    {
+      "category": "REAL_DATA_CORPUS",
+      "file_name": "T2SAIM_Buyuk_Birlesik_Master_Whitepaper_ve_Jules_Kulliyati.md",
+      "relative_path": "reference_corpus\\T2SAIM_Buyuk_Birlesik_Master_Whitepaper_ve_Jules_Kulliyati.md",
+      "size_bytes": 20226,
+      "modified_time": "2026-08-22T21:02:27.828019",
+      "sha256_hash": "64721f5305d2f4338f4f71fcd8713e085a4fee28b48981ebcd3a083c5b6d6d50"
+    },
+    {
+      "category": "REAL_DATA_CORPUS",
+      "file_name": "T2SAIM_DUCKDB_LAKEHOUSE_AND_MECHANICAL_AMNESIA_TIME_TRAVEL_SPEC.md.docx",
+      "relative_path": "reference_corpus\\T2SAIM_DUCKDB_LAKEHOUSE_AND_MECHANICAL_AMNESIA_TIME_TRAVEL_SPEC.md.docx",
+      "size_bytes": 22230,
+      "modified_time": "2026-08-22T10:25:24",
+      "sha256_hash": "fa16df9f996805b74d4f369e54af2c546b0bbcce2aa4461dd8f21b3f3e849790"
+    },
+    {
+      "category": "REAL_DATA_CORPUS",
+      "file_name": "T2SAIM_Deneysel_Kantitatif_Bulten_Entegrasyon_ve_ExAnte_ExPost_Raporu.md",
+      "relative_path": "reference_corpus\\T2SAIM_Deneysel_Kantitatif_Bulten_Entegrasyon_ve_ExAnte_ExPost_Raporu.md",
+      "size_bytes": 7019,
+      "modified_time": "2026-08-22T21:00:01.328696",
+      "sha256_hash": "2fee8949f31a9cc39593eccf63f6bd6d59a715af3e166849d7d2edd2bf0fc751"
+    },
+    {
+      "category": "REAL_DATA_CORPUS",
+      "file_name": "T2SAIM_Dusuk_Profilli_Kamuflaj_ve_Maksimum_Meblag_Kapasite_Raporu.md",
+      "relative_path": "reference_corpus\\T2SAIM_Dusuk_Profilli_Kamuflaj_ve_Maksimum_Meblag_Kapasite_Raporu.md",
+      "size_bytes": 7887,
+      "modified_time": "2026-08-22T21:08:55.388790",
+      "sha256_hash": "e9b274ff581ce95e9f6fe440575e67fe53617d58022bed636965ed4443277676"
+    },
+    {
+      "category": "REAL_DATA_CORPUS",
+      "file_name": "T2SAIM_EXPERIMENTAL_QUANT_MODEL_V4_7.py.md",
+      "relative_path": "reference_corpus\\T2SAIM_EXPERIMENTAL_QUANT_MODEL_V4_7.py.md",
+      "size_bytes": 5327,
+      "modified_time": "2026-08-22T20:59:33.268438",
+      "sha256_hash": "de6af5f7b4f60ca22a0408aacf29db2d24610f50a22cc7f7bc22895260d9360e"
+    },
+    {
+      "category": "REAL_DATA_CORPUS",
+      "file_name": "T2SAIM_Emtia_Red_Team_Zafiyet_ve_Gerceklik_Denetimi.md",
+      "relative_path": "reference_corpus\\T2SAIM_Emtia_Red_Team_Zafiyet_ve_Gerceklik_Denetimi.md",
+      "size_bytes": 6606,
+      "modified_time": "2026-08-22T21:01:32.893517",
+      "sha256_hash": "097a22887cd8db96631ac50c5b7b33449207c3e8304d0f44e476c605e02af924"
+    },
+    {
+      "category": "REAL_DATA_CORPUS",
+      "file_name": "T2SAIM_GRAND_UNIFIED_FORENSIC_COMPENDIUM.md",
+      "relative_path": "reference_corpus\\T2SAIM_GRAND_UNIFIED_FORENSIC_COMPENDIUM.md",
+      "size_bytes": 21635,
+      "modified_time": "2026-08-22T20:58:53.208094",
+      "sha256_hash": "19a77e46b011e44e97c6563a6ca90c0048c6f6a7609e20855eaac3ccae157afa"
+    },
+    {
+      "category": "REAL_DATA_CORPUS",
+      "file_name": "T2SAIM_Ingiltere_UK_Master_Kriz_ve_Kar_Maksimizasyonu_Raporu.md",
+      "relative_path": "reference_corpus\\T2SAIM_Ingiltere_UK_Master_Kriz_ve_Kar_Maksimizasyonu_Raporu.md",
+      "size_bytes": 10788,
+      "modified_time": "2026-08-22T21:08:25.793731",
+      "sha256_hash": "2a674ad6297d9bda48c3e140e1c00793a7db1261af393210384734b8b93b1876"
+    },
+    {
+      "category": "REAL_DATA_CORPUS",
+      "file_name": "T2SAIM_Japonya_JP_Master_Kriz_ve_Kar_Maksimizasyonu_Raporu.md",
+      "relative_path": "reference_corpus\\T2SAIM_Japonya_JP_Master_Kriz_ve_Kar_Maksimizasyonu_Raporu.md",
+      "size_bytes": 9840,
+      "modified_time": "2026-08-22T21:05:52.664162",
+      "sha256_hash": "6db1b414951ef9d485295fcba3c8882998ada92d4a593f984dfe0cba3b202d02"
+    },
+    {
+      "category": "REAL_DATA_CORPUS",
+      "file_name": "T2SAIM_Pusula_Gudumlu_1000_USD_Alti_Varlik_ve_Kar_Raporu.md",
+      "relative_path": "reference_corpus\\T2SAIM_Pusula_Gudumlu_1000_USD_Alti_Varlik_ve_Kar_Raporu.md",
+      "size_bytes": 8892,
+      "modified_time": "2026-08-22T21:04:17.032918",
+      "sha256_hash": "90737af14d206e61b7f1417812cf3ee713409beba447dda89f2c0fb8257d86e5"
+    },
+    {
+      "category": "REAL_DATA_CORPUS",
+      "file_name": "T2SAIM_Ruya_Sentezi_Teknik_Entegrasyon_ve_Yazilim_Uygulama_Raporu.md",
+      "relative_path": "reference_corpus\\T2SAIM_Ruya_Sentezi_Teknik_Entegrasyon_ve_Yazilim_Uygulama_Raporu.md",
+      "size_bytes": 9617,
+      "modified_time": "2026-08-22T21:08:40.776955",
+      "sha256_hash": "14bd89a59133772fc1c6cd7c409ff4c421aa6a16ed51f8d0774d8e7f5a8ded51"
+    },
+    {
+      "category": "REAL_DATA_CORPUS",
+      "file_name": "T2SAIM_UK_ve_AB_Uluslararasi_Bulasma_ve_Uye_Ulke_Kriz_Motoru.md",
+      "relative_path": "reference_corpus\\T2SAIM_UK_ve_AB_Uluslararasi_Bulasma_ve_Uye_Ulke_Kriz_Motoru.md",
+      "size_bytes": 6895,
+      "modified_time": "2026-08-22T21:06:52.278988",
+      "sha256_hash": "2bce2c3cbc84de14b76f04c9315f3c3027bab06fd61d698a4bdbef08ddde97c7"
+    }
+  ]
+}
