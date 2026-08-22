@@ -1,10 +1,10 @@
 {
   "protocol": "T2SAIM_W3C_PROV_CRYPTOGRAPHIC_PROVENANCE_V1",
   "canonical_root": "Google Drive / T2SAIM_OS / Hariseldon / Prediction_Project",
-  "creation_timestamp": "2026-08-23T00:17:20.120722",
+  "creation_timestamp": "2026-08-23T02:31:33.176771",
   "creator": "Tarkan Bulan (Kaptan Tarco) & James William (DZV)",
   "epistemic_doctrine": "Veritas Per Se · Anti-Tampering & Anti-Hindsight Guarantee",
-  "total_registered_files": 42,
+  "total_registered_files": 49,
   "records": [
     {
       "category": "SPEC_OR_DATA",
@@ -93,6 +93,54 @@
       "size_bytes": 3765,
       "modified_time": "2026-08-23T00:14:54.516584",
       "sha256_hash": "e4cee3a64b35511b835472e61737b16665ebad395e03212fd5d70db42108925d"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "__init__.py",
+      "relative_path": "modules\\markets\\crypto\\__init__.py",
+      "size_bytes": 31,
+      "modified_time": "2026-08-23T02:29:40.537751",
+      "sha256_hash": "da63891fa1cbc9c7b24ab42e5a39d2f1958aabccb5895d33568fdae18a73f649"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "crypto_crisis_engine.py",
+      "relative_path": "modules\\markets\\crypto\\crypto_crisis_engine.py",
+      "size_bytes": 4860,
+      "modified_time": "2026-08-23T02:29:57.907356",
+      "sha256_hash": "0396a4c4dcfa4704190520c8214579ff86b395bff6354ef7610243625e79fbdb"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "crypto_decomposer.py",
+      "relative_path": "modules\\markets\\crypto\\crypto_decomposer.py",
+      "size_bytes": 6518,
+      "modified_time": "2026-08-23T02:29:47.563139",
+      "sha256_hash": "db3e10b35e491fb5579676c46d3a94040d14eeca36c82e3c5c7a762b64528469"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "crypto_duckdb_manager.py",
+      "relative_path": "modules\\markets\\crypto\\crypto_duckdb_manager.py",
+      "size_bytes": 5947,
+      "modified_time": "2026-08-23T02:29:37.729460",
+      "sha256_hash": "2a3c17fe29445b345ef2ab8fc15b8c5b932a8ccd0ab57851032f58414962d35d"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "crypto_runner.py",
+      "relative_path": "modules\\markets\\crypto\\crypto_runner.py",
+      "size_bytes": 7861,
+      "modified_time": "2026-08-23T02:30:15.363258",
+      "sha256_hash": "cc3ef0c654d7d926e926875a7131b175054022c36782a885331c124c97e3b849"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "tas_gnn_wash_shield.py",
+      "relative_path": "modules\\markets\\crypto\\tas_gnn_wash_shield.py",
+      "size_bytes": 3514,
+      "modified_time": "2026-08-23T02:29:52.466756",
+      "sha256_hash": "965f856254abe705c9b586be068a7cc679dd3b9cf3de5e20302375ffed2d5dd1"
     },
     {
       "category": "PROD_CODE",
@@ -333,6 +381,14 @@
       "size_bytes": 6986,
       "modified_time": "2026-08-23T00:06:00.427969",
       "sha256_hash": "c90e51f56e7f851add0ac765c727b9af322390d0e909a01fbbb0619c610cec12"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "test_crypto_pod.py",
+      "relative_path": "tests\\test_crypto_pod.py",
+      "size_bytes": 4277,
+      "modified_time": "2026-08-23T02:30:57.391545",
+      "sha256_hash": "34be134012b52321d5939383ae65394aceedd380361893abad5cad0de3f5e1ee"
     },
     {
       "category": "PROD_CODE",

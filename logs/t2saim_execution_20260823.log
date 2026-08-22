@@ -17,3 +17,32 @@
 [2026-08-23 00:17:12,168] [WARNING] [takas_fraud_shield.py:81 - audit_bist_equity()]: 🚨 SAHTEKÂRLIK VETOSU [FAKE_SPOOF]: C_TAKAS_EXCEEDED (0.78 >= 0.7) | R_CANCEL_SPOOFING (0.89 >= 0.85)
 [2026-08-23 00:17:12,196] [WARNING] [tr_runner.py:126 - execute_daily_pipeline()]: Tahta elendi: FAKE_SPOOF (C_TAKAS_EXCEEDED (0.78 >= 0.7) | R_CANCEL_SPOOFING (0.89 >= 0.85))
 [2026-08-23 00:17:12,500] [INFO] [tr_crisis_engine.py:120 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [ASELS]: Nominal=1.14%, Reel Net=-2.81%, Süre=245.97ms
+[2026-08-23 02:30:39,458] [INFO] [crypto_decomposer.py:69 - detect_regime()]: Kripto Makro Rejimi: BULL_EXPANSION (Ağırlık: 1.35, BTC/ETH Getiri: 20.42%)
+[2026-08-23 02:30:39,580] [WARNING] [tas_gnn_wash_shield.py:75 - audit_crypto_asset()]: 🚨 KRİPTO VETOSU [SHIT_PUMP]: WASH_TRADING_HIGH (0.55 > 0.4) | SELF_TRADE_EXCEEDED (0.22 > 0.15) | ONCHAIN_GRAPH_CYCLE_DETECTED (Circular Wash-Trading)
+[2026-08-23 02:30:40,498] [INFO] [crypto_crisis_engine.py:104 - run_1m_crypto_mcmc()]: 1M Kripto MCMC [AVAX]: Nominal=1.38%, Reel USD=1.53%, Süre=428.69ms
+[2026-08-23 02:30:42,625] [INFO] [crypto_duckdb_manager.py:122 - init_tables()]: Crypto DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 02:30:43,768] [INFO] [crypto_duckdb_manager.py:140 - insert_crypto_candles()]: 2 adet Kripto mumu DuckDB'ye yazıldı.
+[2026-08-23 02:30:46,801] [WARNING] [takas_fraud_shield.py:81 - audit_bist_equity()]: 🚨 SAHTEKÂRLIK VETOSU [SPOOF_HISSE]: C_TAKAS_EXCEEDED (0.82 >= 0.7) | R_CANCEL_SPOOFING (0.91 >= 0.85) | VPIN_TOXICITY_HIGH (0.55 >= 0.45)
+[2026-08-23 02:30:47,618] [INFO] [tr_crisis_engine.py:120 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [ASELS]: Nominal=1.23%, Reel Net=-2.72%, Süre=268.52ms
+[2026-08-23 02:30:48,416] [INFO] [tr_crisis_engine.py:120 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [THYAO]: Nominal=2.33%, Reel Net=-1.66%, Süre=275.50ms
+[2026-08-23 02:30:49,389] [INFO] [tr_duckdb_manager.py:160 - init_tables()]: DuckDB Lakehouse tabloları başarıyla doğrulandı/kuruldu.
+[2026-08-23 02:30:50,661] [INFO] [tr_duckdb_manager.py:178 - insert_bist_candles()]: 2 adet BIST mumu DuckDB'ye yazıldı.
+[2026-08-23 02:31:07,991] [INFO] [crypto_decomposer.py:69 - detect_regime()]: Kripto Makro Rejimi: BULL_EXPANSION (Ağırlık: 1.35, BTC/ETH Getiri: 20.42%)
+[2026-08-23 02:31:08,001] [WARNING] [tas_gnn_wash_shield.py:75 - audit_crypto_asset()]: 🚨 KRİPTO VETOSU [SHIT_PUMP]: WASH_TRADING_HIGH (0.55 > 0.4) | SELF_TRADE_EXCEEDED (0.22 > 0.15) | ONCHAIN_GRAPH_CYCLE_DETECTED (Circular Wash-Trading)
+[2026-08-23 02:31:08,626] [INFO] [crypto_crisis_engine.py:104 - run_1m_crypto_mcmc()]: 1M Kripto MCMC [AVAX]: Nominal=1.39%, Reel USD=1.53%, Süre=320.48ms
+[2026-08-23 02:31:09,188] [INFO] [crypto_duckdb_manager.py:122 - init_tables()]: Crypto DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 02:31:09,532] [INFO] [crypto_duckdb_manager.py:140 - insert_crypto_candles()]: 2 adet Kripto mumu DuckDB'ye yazıldı.
+[2026-08-23 02:31:10,210] [WARNING] [takas_fraud_shield.py:81 - audit_bist_equity()]: 🚨 SAHTEKÂRLIK VETOSU [SPOOF_HISSE]: C_TAKAS_EXCEEDED (0.82 >= 0.7) | R_CANCEL_SPOOFING (0.91 >= 0.85) | VPIN_TOXICITY_HIGH (0.55 >= 0.45)
+[2026-08-23 02:31:10,818] [INFO] [tr_crisis_engine.py:120 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [ASELS]: Nominal=1.23%, Reel Net=-2.72%, Süre=313.05ms
+[2026-08-23 02:31:11,249] [INFO] [tr_crisis_engine.py:120 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [THYAO]: Nominal=2.33%, Reel Net=-1.66%, Süre=323.04ms
+[2026-08-23 02:31:11,839] [INFO] [tr_duckdb_manager.py:160 - init_tables()]: DuckDB Lakehouse tabloları başarıyla doğrulandı/kuruldu.
+[2026-08-23 02:31:12,266] [INFO] [tr_duckdb_manager.py:178 - insert_bist_candles()]: 2 adet BIST mumu DuckDB'ye yazıldı.
+[2026-08-23 02:31:21,436] [INFO] [crypto_duckdb_manager.py:122 - init_tables()]: Crypto DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 02:31:22,325] [INFO] [crypto_runner.py:77 - execute_daily_pipeline()]: === KRİPTO PODU GÜNLÜK İCRA BORU HATTI BAŞLADI ===
+[2026-08-23 02:31:22,425] [INFO] [crypto_runner.py:39 - seed_initial_demo_crypto_if_empty()]: crypto_market.duckdb boş, temel başlangıç verileri yükleniyor...
+[2026-08-23 02:31:22,924] [INFO] [crypto_duckdb_manager.py:140 - insert_crypto_candles()]: 7 adet Kripto mumu DuckDB'ye yazıldı.
+[2026-08-23 02:31:23,404] [INFO] [crypto_decomposer.py:69 - detect_regime()]: Kripto Makro Rejimi: CHOPPY_ACCUMULATION (Ağırlık: 1.0, BTC/ETH Getiri: 6.75%)
+[2026-08-23 02:31:23,407] [INFO] [crypto_decomposer.py:154 - select_top_asymmetric_cryptos()]: Top Asimetrik Kripto Seçimi Tamamlandı. Lider: SOL (Skor: 66.6466)
+[2026-08-23 02:31:23,520] [WARNING] [tas_gnn_wash_shield.py:75 - audit_crypto_asset()]: 🚨 KRİPTO VETOSU [FAKE_WASH_COIN]: WASH_TRADING_HIGH (0.65 > 0.4)
+[2026-08-23 02:31:23,639] [WARNING] [crypto_runner.py:121 - execute_daily_pipeline()]: Kripto elendi: FAKE_WASH_COIN (WASH_TRADING_HIGH (0.65 > 0.4))
+[2026-08-23 02:31:23,955] [INFO] [crypto_crisis_engine.py:104 - run_1m_crypto_mcmc()]: 1M Kripto MCMC [SOL]: Nominal=1.27%, Reel USD=1.62%, Süre=315.53ms
