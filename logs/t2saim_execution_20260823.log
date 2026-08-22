@@ -1,0 +1,19 @@
+[2026-08-23 00:16:41,448] [WARNING] [takas_fraud_shield.py:81 - audit_bist_equity()]: 🚨 SAHTEKÂRLIK VETOSU [SPOOF_HISSE]: C_TAKAS_EXCEEDED (0.82 >= 0.7) | R_CANCEL_SPOOFING (0.91 >= 0.85) | VPIN_TOXICITY_HIGH (0.55 >= 0.45)
+[2026-08-23 00:16:41,796] [INFO] [tr_crisis_engine.py:120 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [ASELS]: Nominal=1.21%, Reel Net=-2.74%, Süre=307.31ms
+[2026-08-23 00:16:42,097] [INFO] [tr_crisis_engine.py:120 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [THYAO]: Nominal=2.33%, Reel Net=-1.67%, Süre=282.53ms
+[2026-08-23 00:16:42,372] [INFO] [tr_duckdb_manager.py:160 - init_tables()]: DuckDB Lakehouse tabloları başarıyla doğrulandı/kuruldu.
+[2026-08-23 00:16:42,811] [INFO] [tr_duckdb_manager.py:178 - insert_bist_candles()]: 2 adet BIST mumu DuckDB'ye yazıldı.
+[2026-08-23 00:16:56,650] [WARNING] [takas_fraud_shield.py:81 - audit_bist_equity()]: 🚨 SAHTEKÂRLIK VETOSU [SPOOF_HISSE]: C_TAKAS_EXCEEDED (0.82 >= 0.7) | R_CANCEL_SPOOFING (0.91 >= 0.85) | VPIN_TOXICITY_HIGH (0.55 >= 0.45)
+[2026-08-23 00:16:56,932] [INFO] [tr_crisis_engine.py:120 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [ASELS]: Nominal=1.22%, Reel Net=-2.73%, Süre=267.93ms
+[2026-08-23 00:16:57,311] [INFO] [tr_crisis_engine.py:120 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [THYAO]: Nominal=2.33%, Reel Net=-1.67%, Süre=282.14ms
+[2026-08-23 00:16:57,436] [INFO] [tr_duckdb_manager.py:160 - init_tables()]: DuckDB Lakehouse tabloları başarıyla doğrulandı/kuruldu.
+[2026-08-23 00:16:58,673] [INFO] [tr_duckdb_manager.py:178 - insert_bist_candles()]: 2 adet BIST mumu DuckDB'ye yazıldı.
+[2026-08-23 00:17:11,236] [INFO] [tr_duckdb_manager.py:160 - init_tables()]: DuckDB Lakehouse tabloları başarıyla doğrulandı/kuruldu.
+[2026-08-23 00:17:11,302] [INFO] [tr_runner.py:89 - execute_daily_pipeline()]: === TÜRKİYE PODU GÜNLÜK İCRA BORU HATTI BAŞLADI ===
+[2026-08-23 00:17:11,392] [INFO] [tr_runner.py:39 - seed_initial_demo_data_if_empty()]: tr_market.duckdb boş, temel başlangıç verileri yükleniyor...
+[2026-08-23 00:17:11,449] [INFO] [tr_duckdb_manager.py:195 - insert_macro_telemetry()]: TR Makro Telemetrisi mühürlendi: USD/TRY=33.85, CDS=265.0
+[2026-08-23 00:17:11,817] [INFO] [tr_duckdb_manager.py:178 - insert_bist_candles()]: 6 adet BIST mumu DuckDB'ye yazıldı.
+[2026-08-23 00:17:12,058] [INFO] [bist_decomposer.py:160 - select_top_10_alpha()]: Top 10 BIST Alfa Seçimi Tamamlandı. Lider: ASELS (Skor: 0.1048)
+[2026-08-23 00:17:12,168] [WARNING] [takas_fraud_shield.py:81 - audit_bist_equity()]: 🚨 SAHTEKÂRLIK VETOSU [FAKE_SPOOF]: C_TAKAS_EXCEEDED (0.78 >= 0.7) | R_CANCEL_SPOOFING (0.89 >= 0.85)
+[2026-08-23 00:17:12,196] [WARNING] [tr_runner.py:126 - execute_daily_pipeline()]: Tahta elendi: FAKE_SPOOF (C_TAKAS_EXCEEDED (0.78 >= 0.7) | R_CANCEL_SPOOFING (0.89 >= 0.85))
+[2026-08-23 00:17:12,500] [INFO] [tr_crisis_engine.py:120 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [ASELS]: Nominal=1.14%, Reel Net=-2.81%, Süre=245.97ms
