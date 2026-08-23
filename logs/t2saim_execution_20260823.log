@@ -132,3 +132,29 @@
 [2026-08-23 04:50:18,192] [INFO] [tr_crisis_engine.py:138 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [THYAO]: Nominal=2.32%, Reel Net=-1.68%, Süre=249.32ms
 [2026-08-23 04:50:18,635] [INFO] [tr_duckdb_manager.py:160 - init_tables()]: DuckDB Lakehouse tabloları başarıyla doğrulandı/kuruldu.
 [2026-08-23 04:50:18,940] [INFO] [tr_duckdb_manager.py:178 - insert_bist_candles()]: 2 adet BIST mumu DuckDB'ye yazıldı.
+[2026-08-23 04:52:34,012] [WARNING] [contango_roll_shield.py:107 - audit_commodity_curve()]: 🚨 EMTİA VETOSU [NAT_GAS_TRAP]: CONTANGO_ROLL_BLEED_EXCEEDED (-5.00% < -2.00%)
+[2026-08-23 04:52:37,201] [INFO] [commodity_crisis_engine.py:93 - run_1m_commodity_mcmc()]: 1M Emtia MCMC [URANIUM]: Nominal=47.74%, Roll=+9.00%, Reel USD=51.94%, Süre=342.85ms
+[2026-08-23 04:52:39,660] [INFO] [commodity_duckdb_manager.py:78 - _init_tables()]: Commodity DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 04:52:45,676] [INFO] [commodity_duckdb_manager.py:101 - insert_commodity_candles()]: 2 adet Emtia mumu DuckDB'ye yazıldı.
+[2026-08-23 04:52:47,007] [INFO] [crypto_decomposer.py:69 - detect_regime()]: Kripto Makro Rejimi: BULL_EXPANSION (Ağırlık: 1.35, BTC/ETH Getiri: 20.42%)
+[2026-08-23 04:52:47,010] [WARNING] [tas_gnn_wash_shield.py:75 - audit_crypto_asset()]: 🚨 KRİPTO VETOSU [SHIT_PUMP]: WASH_TRADING_HIGH (0.55 > 0.4) | SELF_TRADE_EXCEEDED (0.22 > 0.15) | ONCHAIN_GRAPH_CYCLE_DETECTED (Circular Wash-Trading)
+[2026-08-23 04:52:48,185] [INFO] [crypto_crisis_engine.py:104 - run_1m_crypto_mcmc()]: 1M Kripto MCMC [AVAX]: Nominal=1.38%, Reel USD=1.53%, Süre=317.45ms
+[2026-08-23 04:52:50,656] [INFO] [crypto_duckdb_manager.py:122 - init_tables()]: Crypto DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 04:52:53,728] [INFO] [crypto_duckdb_manager.py:140 - insert_crypto_candles()]: 2 adet Kripto mumu DuckDB'ye yazıldı.
+[2026-08-23 04:53:01,565] [WARNING] [takas_fraud_shield.py:81 - audit_bist_equity()]: 🚨 SAHTEKÂRLIK VETOSU [SPOOF_HISSE]: C_TAKAS_EXCEEDED (0.82 >= 0.7) | R_CANCEL_SPOOFING (0.91 >= 0.85) | VPIN_TOXICITY_HIGH (0.55 >= 0.45)
+[2026-08-23 04:53:01,999] [INFO] [tr_crisis_engine.py:138 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [ASELS]: Nominal=1.23%, Reel Net=-2.73%, Süre=243.94ms
+[2026-08-23 04:53:02,345] [INFO] [tr_crisis_engine.py:138 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [THYAO]: Nominal=2.33%, Reel Net=-1.67%, Süre=280.18ms
+[2026-08-23 04:53:03,055] [INFO] [tr_duckdb_manager.py:160 - init_tables()]: DuckDB Lakehouse tabloları başarıyla doğrulandı/kuruldu.
+[2026-08-23 04:53:03,603] [INFO] [tr_duckdb_manager.py:178 - insert_bist_candles()]: 2 adet BIST mumu DuckDB'ye yazıldı.
+[2026-08-23 04:53:04,193] [WARNING] [vix_volatility_shield.py:74 - audit_us_market()]: 🚨 ABD PİYASASI VETOSU: VIX_ABSOLUTE_CRITICAL (32.00 >= 28.5)
+[2026-08-23 04:53:04,301] [WARNING] [vix_volatility_shield.py:74 - audit_us_market()]: 🚨 ABD PİYASASI VETOSU: VIX_DAILY_SPIKE_EXCEEDED (+40.00% >= +20.0%)
+[2026-08-23 04:53:04,703] [INFO] [us_crisis_engine.py:88 - run_1m_us_mcmc()]: 1M ABD MCMC [VST]: Nominal=3.61%, Reel USD=3.26%, Süre=246.70ms
+[2026-08-23 04:53:05,005] [INFO] [us_duckdb_manager.py:81 - _init_tables()]: US DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 04:53:06,344] [INFO] [us_duckdb_manager.py:105 - insert_us_candles()]: 2 adet ABD mumu DuckDB'ye yazıldı.
+[2026-08-23 04:53:11,968] [INFO] [us_duckdb_manager.py:81 - _init_tables()]: US DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 04:53:35,745] [INFO] [us_duckdb_manager.py:77 - _init_tables()]: US DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 04:53:36,030] [INFO] [us_runner.py:76 - execute_daily_pipeline()]: === ABD PODU GÜNLÜK İCRA BORU HATTI BAŞLADI ===
+[2026-08-23 04:53:36,119] [INFO] [us_runner.py:39 - seed_initial_demo_us_if_empty()]: us_market.duckdb boş, temel başlangıç verileri yükleniyor...
+[2026-08-23 04:53:36,493] [INFO] [us_duckdb_manager.py:104 - insert_us_candles()]: 7 adet ABD mumu DuckDB'ye yazıldı.
+[2026-08-23 04:53:36,539] [INFO] [us_decomposer.py:157 - rank_top_us_alphas()]: Top ABD Alfa Seçimi Tamamlandı. Lider: NVDA (Skor: 71.2807)
+[2026-08-23 04:53:36,756] [INFO] [us_crisis_engine.py:88 - run_1m_us_mcmc()]: 1M ABD MCMC [NVDA]: Nominal=3.57%, Reel USD=3.22%, Süre=218.12ms

@@ -1,10 +1,10 @@
 {
   "protocol": "T2SAIM_W3C_PROV_CRYPTOGRAPHIC_PROVENANCE_V1",
   "canonical_root": "Google Drive / T2SAIM_OS / Hariseldon / Prediction_Project",
-  "creation_timestamp": "2026-08-23T04:50:34.682148",
+  "creation_timestamp": "2026-08-23T04:53:44.260363",
   "creator": "Tarkan Bulan (Kaptan Tarco) & James William (DZV)",
   "epistemic_doctrine": "Veritas Per Se · Anti-Tampering & Anti-Hindsight Guarantee",
-  "total_registered_files": 82,
+  "total_registered_files": 88,
   "records": [
     {
       "category": "SPEC_OR_DATA",
@@ -229,6 +229,46 @@
       "size_bytes": 8059,
       "modified_time": "2026-08-23T00:17:06.769722",
       "sha256_hash": "d2c62b12e6ab8b08cde69fb7f30f3cb6f24c09cee339f326369bba1b2b3d8d96"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "us_crisis_engine.py",
+      "relative_path": "modules\\markets\\us\\us_crisis_engine.py",
+      "size_bytes": 3906,
+      "modified_time": "2026-08-23T04:51:59.882923",
+      "sha256_hash": "dd6dcb218caea46f080f9c75541a1445b89d561b56f7520271eebe23bcbafb28"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "us_decomposer.py",
+      "relative_path": "modules\\markets\\us\\us_decomposer.py",
+      "size_bytes": 5787,
+      "modified_time": "2026-08-23T04:51:48.604247",
+      "sha256_hash": "7e18f8d44688a53549aee75de1a5b3fe1f48cb24da3cd609a7cabded90423d4d"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "us_duckdb_manager.py",
+      "relative_path": "modules\\markets\\us\\us_duckdb_manager.py",
+      "size_bytes": 4227,
+      "modified_time": "2026-08-23T04:53:31.577311",
+      "sha256_hash": "e427bb08db4fb34d3acbebcccfc11398f38939a153a3d4391f8c4e8fbd773204"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "us_runner.py",
+      "relative_path": "modules\\markets\\us\\us_runner.py",
+      "size_bytes": 7816,
+      "modified_time": "2026-08-23T04:52:07.816393",
+      "sha256_hash": "a62f7ebca9d814948d5f6e6463bfa134b9ff6e3b6f699304481da6d133ae98e8"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "vix_volatility_shield.py",
+      "relative_path": "modules\\markets\\us\\vix_volatility_shield.py",
+      "size_bytes": 3025,
+      "modified_time": "2026-08-23T04:51:54.158146",
+      "sha256_hash": "3309c30fad309d9b40172c0befc543b72e3462c2ad04f660bac7efa67f9582fa"
     },
     {
       "category": "SPEC_OR_DATA",
@@ -661,6 +701,14 @@
       "size_bytes": 4854,
       "modified_time": "2026-08-23T00:16:31.090856",
       "sha256_hash": "4deca124737ca286d7dd39aec8726375f5477d256b5e5031cdc3bdda3915b6e8"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "test_us_pod.py",
+      "relative_path": "tests\\test_us_pod.py",
+      "size_bytes": 3996,
+      "modified_time": "2026-08-23T04:52:13.938708",
+      "sha256_hash": "9be79b1c3fee52fec9a1ebb584dda2b2e01bd6eb2930aa91e2fea96130898b3b"
     }
   ]
 }
