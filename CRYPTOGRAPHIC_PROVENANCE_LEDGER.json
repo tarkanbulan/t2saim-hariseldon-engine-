@@ -1,10 +1,10 @@
 {
   "protocol": "T2SAIM_W3C_PROV_CRYPTOGRAPHIC_PROVENANCE_V1",
   "canonical_root": "Google Drive / T2SAIM_OS / Hariseldon / Prediction_Project",
-  "creation_timestamp": "2026-08-23T02:31:33.176771",
+  "creation_timestamp": "2026-08-23T03:45:34.075766",
   "creator": "Tarkan Bulan (Kaptan Tarco) & James William (DZV)",
   "epistemic_doctrine": "Veritas Per Se · Anti-Tampering & Anti-Hindsight Guarantee",
-  "total_registered_files": 49,
+  "total_registered_files": 50,
   "records": [
     {
       "category": "SPEC_OR_DATA",
@@ -37,6 +37,14 @@
       "size_bytes": 12411,
       "modified_time": "2026-08-23T00:05:57.276019",
       "sha256_hash": "ae65eadb8d48042bac92fa342a4809543ef8cae4b04b5a3f602f753b7f89ab77"
+    },
+    {
+      "category": "SPEC_OR_DATA",
+      "file_name": "JULES_T2SAIM_TURKIYE_KRIZ_ERKEN_UYARI_MIMARISI.md",
+      "relative_path": "JULES_T2SAIM_TURKIYE_KRIZ_ERKEN_UYARI_MIMARISI.md",
+      "size_bytes": 17014,
+      "modified_time": "2026-08-23T03:44:47.836566",
+      "sha256_hash": "7d3b8fa77c3c2a725babb2311ffe7fe461f8619861855032c51835ea1f8f4237"
     },
     {
       "category": "SPEC_OR_DATA",
@@ -162,9 +170,9 @@
       "category": "PROD_CODE",
       "file_name": "tr_crisis_engine.py",
       "relative_path": "modules\\markets\\tr\\tr_crisis_engine.py",
-      "size_bytes": 5395,
-      "modified_time": "2026-08-23T00:16:15.691913",
-      "sha256_hash": "ad5cd58fa355d5b1caf338f7c4c94c4132bc5532ca29d71cc25b2a8cac6b96f4"
+      "size_bytes": 6059,
+      "modified_time": "2026-08-23T03:44:58.814348",
+      "sha256_hash": "55fbf5915f38aa3ab5cbeeb955752dfb3c226f7816fc3e885afc9ac1bdc668e9"
     },
     {
       "category": "PROD_CODE",

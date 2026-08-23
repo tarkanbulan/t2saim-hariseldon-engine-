@@ -46,3 +46,13 @@
 [2026-08-23 02:31:23,520] [WARNING] [tas_gnn_wash_shield.py:75 - audit_crypto_asset()]: 🚨 KRİPTO VETOSU [FAKE_WASH_COIN]: WASH_TRADING_HIGH (0.65 > 0.4)
 [2026-08-23 02:31:23,639] [WARNING] [crypto_runner.py:121 - execute_daily_pipeline()]: Kripto elendi: FAKE_WASH_COIN (WASH_TRADING_HIGH (0.65 > 0.4))
 [2026-08-23 02:31:23,955] [INFO] [crypto_crisis_engine.py:104 - run_1m_crypto_mcmc()]: 1M Kripto MCMC [SOL]: Nominal=1.27%, Reel USD=1.62%, Süre=315.53ms
+[2026-08-23 03:45:16,143] [INFO] [crypto_decomposer.py:69 - detect_regime()]: Kripto Makro Rejimi: BULL_EXPANSION (Ağırlık: 1.35, BTC/ETH Getiri: 20.42%)
+[2026-08-23 03:45:16,281] [WARNING] [tas_gnn_wash_shield.py:75 - audit_crypto_asset()]: 🚨 KRİPTO VETOSU [SHIT_PUMP]: WASH_TRADING_HIGH (0.55 > 0.4) | SELF_TRADE_EXCEEDED (0.22 > 0.15) | ONCHAIN_GRAPH_CYCLE_DETECTED (Circular Wash-Trading)
+[2026-08-23 03:45:17,413] [INFO] [crypto_crisis_engine.py:104 - run_1m_crypto_mcmc()]: 1M Kripto MCMC [AVAX]: Nominal=1.44%, Reel USD=1.59%, Süre=311.82ms
+[2026-08-23 03:45:17,602] [INFO] [crypto_duckdb_manager.py:122 - init_tables()]: Crypto DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 03:45:17,849] [INFO] [crypto_duckdb_manager.py:140 - insert_crypto_candles()]: 2 adet Kripto mumu DuckDB'ye yazıldı.
+[2026-08-23 03:45:18,137] [WARNING] [takas_fraud_shield.py:81 - audit_bist_equity()]: 🚨 SAHTEKÂRLIK VETOSU [SPOOF_HISSE]: C_TAKAS_EXCEEDED (0.82 >= 0.7) | R_CANCEL_SPOOFING (0.91 >= 0.85) | VPIN_TOXICITY_HIGH (0.55 >= 0.45)
+[2026-08-23 03:45:18,418] [INFO] [tr_crisis_engine.py:138 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [ASELS]: Nominal=1.22%, Reel Net=-2.73%, Süre=260.04ms
+[2026-08-23 03:45:18,715] [INFO] [tr_crisis_engine.py:138 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [THYAO]: Nominal=2.33%, Reel Net=-1.67%, Süre=248.51ms
+[2026-08-23 03:45:18,844] [INFO] [tr_duckdb_manager.py:160 - init_tables()]: DuckDB Lakehouse tabloları başarıyla doğrulandı/kuruldu.
+[2026-08-23 03:45:19,028] [INFO] [tr_duckdb_manager.py:178 - insert_bist_candles()]: 2 adet BIST mumu DuckDB'ye yazıldı.

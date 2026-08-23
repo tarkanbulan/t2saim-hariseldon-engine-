@@ -54,6 +54,24 @@ class TRCrisisEngine:
         psi = ((a_load * (1.0 + kur_soku)) / (max(0.05, pfc_control) + epsilon)) * s_decay
         return float(np.clip(psi, 0.0, 1.0))
 
+    def compute_uci_5d(
+        self,
+        phi_macro: float = 0.65,
+        phi_bank: float = 0.70,
+        phi_neuro: float = 0.84,
+        phi_gullini: float = 0.72,
+        phi_acemoglu: float = 0.71,
+        weights: list = [0.25, 0.20, 0.20, 0.20, 0.15]
+    ) -> float:
+        """
+        T2SAIM Birleşik Kriz İndeksi (Unified Crisis Index - UCI v5.0):
+        UCI(t) = 1.0 - exp(-1.45 * sum(w_i * Phi_i))
+        """
+        phis = [phi_macro, phi_bank, phi_neuro, phi_gullini, phi_acemoglu]
+        weighted_sum = sum(w * p for w, p in zip(weights, phis))
+        uci = 1.0 - np.exp(-1.45 * weighted_sum)
+        return float(np.clip(uci, 0.0, 1.0))
+
     def run_1m_vectorized_mcmc(
         self,
         symbol: str,
