@@ -158,3 +158,79 @@
 [2026-08-23 04:53:36,493] [INFO] [us_duckdb_manager.py:104 - insert_us_candles()]: 7 adet ABD mumu DuckDB'ye yazıldı.
 [2026-08-23 04:53:36,539] [INFO] [us_decomposer.py:157 - rank_top_us_alphas()]: Top ABD Alfa Seçimi Tamamlandı. Lider: NVDA (Skor: 71.2807)
 [2026-08-23 04:53:36,756] [INFO] [us_crisis_engine.py:88 - run_1m_us_mcmc()]: 1M ABD MCMC [NVDA]: Nominal=3.57%, Reel USD=3.22%, Süre=218.12ms
+[2026-08-23 05:13:34,612] [WARNING] [contango_roll_shield.py:107 - audit_commodity_curve()]: 🚨 EMTİA VETOSU [NAT_GAS_TRAP]: CONTANGO_ROLL_BLEED_EXCEEDED (-5.00% < -2.00%)
+[2026-08-23 05:13:36,878] [INFO] [commodity_crisis_engine.py:93 - run_1m_commodity_mcmc()]: 1M Emtia MCMC [URANIUM]: Nominal=47.65%, Roll=+9.00%, Reel USD=51.85%, Süre=290.76ms
+[2026-08-23 05:13:37,708] [INFO] [commodity_duckdb_manager.py:78 - _init_tables()]: Commodity DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 05:13:40,383] [INFO] [commodity_duckdb_manager.py:101 - insert_commodity_candles()]: 2 adet Emtia mumu DuckDB'ye yazıldı.
+[2026-08-23 05:13:41,321] [INFO] [crypto_decomposer.py:69 - detect_regime()]: Kripto Makro Rejimi: BULL_EXPANSION (Ağırlık: 1.35, BTC/ETH Getiri: 20.42%)
+[2026-08-23 05:13:41,324] [WARNING] [tas_gnn_wash_shield.py:75 - audit_crypto_asset()]: 🚨 KRİPTO VETOSU [SHIT_PUMP]: WASH_TRADING_HIGH (0.55 > 0.4) | SELF_TRADE_EXCEEDED (0.22 > 0.15) | ONCHAIN_GRAPH_CYCLE_DETECTED (Circular Wash-Trading)
+[2026-08-23 05:13:41,806] [INFO] [crypto_crisis_engine.py:104 - run_1m_crypto_mcmc()]: 1M Kripto MCMC [AVAX]: Nominal=1.40%, Reel USD=1.55%, Süre=333.22ms
+[2026-08-23 05:13:42,412] [INFO] [crypto_duckdb_manager.py:122 - init_tables()]: Crypto DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 05:13:43,186] [INFO] [crypto_duckdb_manager.py:140 - insert_crypto_candles()]: 2 adet Kripto mumu DuckDB'ye yazıldı.
+[2026-08-23 05:13:46,192] [WARNING] [takas_fraud_shield.py:81 - audit_bist_equity()]: 🚨 SAHTEKÂRLIK VETOSU [SPOOF_HISSE]: C_TAKAS_EXCEEDED (0.82 >= 0.7) | R_CANCEL_SPOOFING (0.91 >= 0.85) | VPIN_TOXICITY_HIGH (0.55 >= 0.45)
+[2026-08-23 05:13:46,608] [INFO] [tr_crisis_engine.py:138 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [ASELS]: Nominal=1.22%, Reel Net=-2.74%, Süre=281.30ms
+[2026-08-23 05:13:46,973] [INFO] [tr_crisis_engine.py:138 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [THYAO]: Nominal=2.33%, Reel Net=-1.67%, Süre=299.23ms
+[2026-08-23 05:13:47,118] [INFO] [tr_duckdb_manager.py:160 - init_tables()]: DuckDB Lakehouse tabloları başarıyla doğrulandı/kuruldu.
+[2026-08-23 05:13:47,244] [INFO] [tr_duckdb_manager.py:178 - insert_bist_candles()]: 2 adet BIST mumu DuckDB'ye yazıldı.
+[2026-08-23 05:13:47,506] [WARNING] [vix_volatility_shield.py:74 - audit_us_market()]: 🚨 ABD PİYASASI VETOSU: VIX_ABSOLUTE_CRITICAL (32.00 >= 28.5)
+[2026-08-23 05:13:47,538] [WARNING] [vix_volatility_shield.py:74 - audit_us_market()]: 🚨 ABD PİYASASI VETOSU: VIX_DAILY_SPIKE_EXCEEDED (+40.00% >= +20.0%)
+[2026-08-23 05:13:47,849] [INFO] [us_crisis_engine.py:88 - run_1m_us_mcmc()]: 1M ABD MCMC [VST]: Nominal=3.59%, Reel USD=3.24%, Süre=281.31ms
+[2026-08-23 05:13:48,091] [INFO] [us_duckdb_manager.py:77 - _init_tables()]: US DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 05:13:48,392] [INFO] [us_duckdb_manager.py:104 - insert_us_candles()]: 2 adet ABD mumu DuckDB'ye yazıldı.
+[2026-08-23 05:14:05,567] [WARNING] [contango_roll_shield.py:107 - audit_commodity_curve()]: 🚨 EMTİA VETOSU [NAT_GAS_TRAP]: CONTANGO_ROLL_BLEED_EXCEEDED (-5.00% < -2.00%)
+[2026-08-23 05:14:05,877] [INFO] [commodity_crisis_engine.py:93 - run_1m_commodity_mcmc()]: 1M Emtia MCMC [URANIUM]: Nominal=47.62%, Roll=+9.00%, Reel USD=51.82%, Süre=259.88ms
+[2026-08-23 05:14:06,157] [INFO] [commodity_duckdb_manager.py:78 - _init_tables()]: Commodity DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 05:14:06,942] [INFO] [commodity_duckdb_manager.py:101 - insert_commodity_candles()]: 2 adet Emtia mumu DuckDB'ye yazıldı.
+[2026-08-23 05:14:07,649] [INFO] [crypto_decomposer.py:69 - detect_regime()]: Kripto Makro Rejimi: BULL_EXPANSION (Ağırlık: 1.35, BTC/ETH Getiri: 20.42%)
+[2026-08-23 05:14:07,651] [WARNING] [tas_gnn_wash_shield.py:75 - audit_crypto_asset()]: 🚨 KRİPTO VETOSU [SHIT_PUMP]: WASH_TRADING_HIGH (0.55 > 0.4) | SELF_TRADE_EXCEEDED (0.22 > 0.15) | ONCHAIN_GRAPH_CYCLE_DETECTED (Circular Wash-Trading)
+[2026-08-23 05:14:08,025] [INFO] [crypto_crisis_engine.py:104 - run_1m_crypto_mcmc()]: 1M Kripto MCMC [AVAX]: Nominal=1.39%, Reel USD=1.53%, Süre=244.46ms
+[2026-08-23 05:14:08,369] [INFO] [crypto_duckdb_manager.py:122 - init_tables()]: Crypto DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 05:14:08,702] [INFO] [crypto_duckdb_manager.py:140 - insert_crypto_candles()]: 2 adet Kripto mumu DuckDB'ye yazıldı.
+[2026-08-23 05:14:10,293] [WARNING] [takas_fraud_shield.py:81 - audit_bist_equity()]: 🚨 SAHTEKÂRLIK VETOSU [SPOOF_HISSE]: C_TAKAS_EXCEEDED (0.82 >= 0.7) | R_CANCEL_SPOOFING (0.91 >= 0.85) | VPIN_TOXICITY_HIGH (0.55 >= 0.45)
+[2026-08-23 05:14:10,681] [INFO] [tr_crisis_engine.py:138 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [ASELS]: Nominal=1.22%, Reel Net=-2.74%, Süre=245.79ms
+[2026-08-23 05:14:11,191] [INFO] [tr_crisis_engine.py:138 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [THYAO]: Nominal=2.32%, Reel Net=-1.68%, Süre=244.80ms
+[2026-08-23 05:14:11,715] [INFO] [tr_duckdb_manager.py:160 - init_tables()]: DuckDB Lakehouse tabloları başarıyla doğrulandı/kuruldu.
+[2026-08-23 05:14:12,082] [INFO] [tr_duckdb_manager.py:178 - insert_bist_candles()]: 2 adet BIST mumu DuckDB'ye yazıldı.
+[2026-08-23 05:14:12,952] [WARNING] [vix_volatility_shield.py:74 - audit_us_market()]: 🚨 ABD PİYASASI VETOSU: VIX_ABSOLUTE_CRITICAL (32.00 >= 28.5)
+[2026-08-23 05:14:13,077] [WARNING] [vix_volatility_shield.py:74 - audit_us_market()]: 🚨 ABD PİYASASI VETOSU: VIX_DAILY_SPIKE_EXCEEDED (+40.00% >= +20.0%)
+[2026-08-23 05:14:13,409] [INFO] [us_crisis_engine.py:88 - run_1m_us_mcmc()]: 1M ABD MCMC [VST]: Nominal=3.60%, Reel USD=3.25%, Süre=264.28ms
+[2026-08-23 05:14:13,555] [INFO] [us_duckdb_manager.py:77 - _init_tables()]: US DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 05:14:13,767] [INFO] [us_duckdb_manager.py:104 - insert_us_candles()]: 2 adet ABD mumu DuckDB'ye yazıldı.
+[2026-08-23 05:14:32,977] [WARNING] [contango_roll_shield.py:107 - audit_commodity_curve()]: 🚨 EMTİA VETOSU [NAT_GAS_TRAP]: CONTANGO_ROLL_BLEED_EXCEEDED (-5.00% < -2.00%)
+[2026-08-23 05:14:33,371] [INFO] [commodity_crisis_engine.py:93 - run_1m_commodity_mcmc()]: 1M Emtia MCMC [URANIUM]: Nominal=47.67%, Roll=+9.00%, Reel USD=51.87%, Süre=288.91ms
+[2026-08-23 05:14:33,658] [INFO] [commodity_duckdb_manager.py:78 - _init_tables()]: Commodity DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 05:14:34,827] [INFO] [commodity_duckdb_manager.py:101 - insert_commodity_candles()]: 2 adet Emtia mumu DuckDB'ye yazıldı.
+[2026-08-23 05:14:35,580] [INFO] [crypto_decomposer.py:69 - detect_regime()]: Kripto Makro Rejimi: BULL_EXPANSION (Ağırlık: 1.35, BTC/ETH Getiri: 20.42%)
+[2026-08-23 05:14:35,582] [WARNING] [tas_gnn_wash_shield.py:75 - audit_crypto_asset()]: 🚨 KRİPTO VETOSU [SHIT_PUMP]: WASH_TRADING_HIGH (0.55 > 0.4) | SELF_TRADE_EXCEEDED (0.22 > 0.15) | ONCHAIN_GRAPH_CYCLE_DETECTED (Circular Wash-Trading)
+[2026-08-23 05:14:36,071] [INFO] [crypto_crisis_engine.py:104 - run_1m_crypto_mcmc()]: 1M Kripto MCMC [AVAX]: Nominal=1.38%, Reel USD=1.52%, Süre=268.42ms
+[2026-08-23 05:14:36,667] [INFO] [crypto_duckdb_manager.py:122 - init_tables()]: Crypto DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 05:14:37,247] [INFO] [crypto_duckdb_manager.py:140 - insert_crypto_candles()]: 2 adet Kripto mumu DuckDB'ye yazıldı.
+[2026-08-23 05:14:41,024] [WARNING] [takas_fraud_shield.py:81 - audit_bist_equity()]: 🚨 SAHTEKÂRLIK VETOSU [SPOOF_HISSE]: C_TAKAS_EXCEEDED (0.82 >= 0.7) | R_CANCEL_SPOOFING (0.91 >= 0.85) | VPIN_TOXICITY_HIGH (0.55 >= 0.45)
+[2026-08-23 05:14:41,381] [INFO] [tr_crisis_engine.py:138 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [ASELS]: Nominal=1.21%, Reel Net=-2.75%, Süre=326.95ms
+[2026-08-23 05:14:41,798] [INFO] [tr_crisis_engine.py:138 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [THYAO]: Nominal=2.33%, Reel Net=-1.66%, Süre=350.13ms
+[2026-08-23 05:14:42,092] [INFO] [tr_duckdb_manager.py:160 - init_tables()]: DuckDB Lakehouse tabloları başarıyla doğrulandı/kuruldu.
+[2026-08-23 05:14:42,707] [INFO] [tr_duckdb_manager.py:178 - insert_bist_candles()]: 2 adet BIST mumu DuckDB'ye yazıldı.
+[2026-08-23 05:14:43,321] [WARNING] [vix_volatility_shield.py:74 - audit_us_market()]: 🚨 ABD PİYASASI VETOSU: VIX_ABSOLUTE_CRITICAL (32.00 >= 28.5)
+[2026-08-23 05:14:43,522] [WARNING] [vix_volatility_shield.py:74 - audit_us_market()]: 🚨 ABD PİYASASI VETOSU: VIX_DAILY_SPIKE_EXCEEDED (+40.00% >= +20.0%)
+[2026-08-23 05:14:43,836] [INFO] [us_crisis_engine.py:88 - run_1m_us_mcmc()]: 1M ABD MCMC [VST]: Nominal=3.60%, Reel USD=3.26%, Süre=291.91ms
+[2026-08-23 05:14:44,814] [INFO] [us_duckdb_manager.py:77 - _init_tables()]: US DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 05:14:45,228] [INFO] [us_duckdb_manager.py:104 - insert_us_candles()]: 2 adet ABD mumu DuckDB'ye yazıldı.
+[2026-08-23 05:15:12,188] [WARNING] [contango_roll_shield.py:107 - audit_commodity_curve()]: 🚨 EMTİA VETOSU [NAT_GAS_TRAP]: CONTANGO_ROLL_BLEED_EXCEEDED (-5.00% < -2.00%)
+[2026-08-23 05:15:12,478] [INFO] [commodity_crisis_engine.py:93 - run_1m_commodity_mcmc()]: 1M Emtia MCMC [URANIUM]: Nominal=47.66%, Roll=+9.00%, Reel USD=51.86%, Süre=262.71ms
+[2026-08-23 05:15:12,616] [INFO] [commodity_duckdb_manager.py:78 - _init_tables()]: Commodity DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 05:15:12,965] [INFO] [commodity_duckdb_manager.py:101 - insert_commodity_candles()]: 2 adet Emtia mumu DuckDB'ye yazıldı.
+[2026-08-23 05:15:13,716] [INFO] [crypto_decomposer.py:69 - detect_regime()]: Kripto Makro Rejimi: BULL_EXPANSION (Ağırlık: 1.35, BTC/ETH Getiri: 20.42%)
+[2026-08-23 05:15:13,719] [WARNING] [tas_gnn_wash_shield.py:75 - audit_crypto_asset()]: 🚨 KRİPTO VETOSU [SHIT_PUMP]: WASH_TRADING_HIGH (0.55 > 0.4) | SELF_TRADE_EXCEEDED (0.22 > 0.15) | ONCHAIN_GRAPH_CYCLE_DETECTED (Circular Wash-Trading)
+[2026-08-23 05:15:14,098] [INFO] [crypto_crisis_engine.py:104 - run_1m_crypto_mcmc()]: 1M Kripto MCMC [AVAX]: Nominal=1.43%, Reel USD=1.58%, Süre=281.60ms
+[2026-08-23 05:15:14,292] [INFO] [crypto_duckdb_manager.py:122 - init_tables()]: Crypto DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 05:15:14,463] [INFO] [crypto_duckdb_manager.py:140 - insert_crypto_candles()]: 2 adet Kripto mumu DuckDB'ye yazıldı.
+[2026-08-23 05:15:15,829] [WARNING] [takas_fraud_shield.py:81 - audit_bist_equity()]: 🚨 SAHTEKÂRLIK VETOSU [SPOOF_HISSE]: C_TAKAS_EXCEEDED (0.82 >= 0.7) | R_CANCEL_SPOOFING (0.91 >= 0.85) | VPIN_TOXICITY_HIGH (0.55 >= 0.45)
+[2026-08-23 05:15:16,144] [INFO] [tr_crisis_engine.py:138 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [ASELS]: Nominal=1.22%, Reel Net=-2.74%, Süre=284.59ms
+[2026-08-23 05:15:16,476] [INFO] [tr_crisis_engine.py:138 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [THYAO]: Nominal=2.34%, Reel Net=-1.66%, Süre=310.07ms
+[2026-08-23 05:15:16,636] [INFO] [tr_duckdb_manager.py:160 - init_tables()]: DuckDB Lakehouse tabloları başarıyla doğrulandı/kuruldu.
+[2026-08-23 05:15:16,770] [INFO] [tr_duckdb_manager.py:178 - insert_bist_candles()]: 2 adet BIST mumu DuckDB'ye yazıldı.
+[2026-08-23 05:15:17,021] [WARNING] [vix_volatility_shield.py:74 - audit_us_market()]: 🚨 ABD PİYASASI VETOSU: VIX_ABSOLUTE_CRITICAL (32.00 >= 28.5)
+[2026-08-23 05:15:17,047] [WARNING] [vix_volatility_shield.py:74 - audit_us_market()]: 🚨 ABD PİYASASI VETOSU: VIX_DAILY_SPIKE_EXCEEDED (+40.00% >= +20.0%)
+[2026-08-23 05:15:17,339] [INFO] [us_crisis_engine.py:88 - run_1m_us_mcmc()]: 1M ABD MCMC [VST]: Nominal=3.58%, Reel USD=3.24%, Süre=282.48ms
+[2026-08-23 05:15:17,424] [INFO] [us_duckdb_manager.py:77 - _init_tables()]: US DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 05:15:17,682] [INFO] [us_duckdb_manager.py:104 - insert_us_candles()]: 2 adet ABD mumu DuckDB'ye yazıldı.

@@ -1,10 +1,10 @@
 {
   "protocol": "T2SAIM_W3C_PROV_CRYPTOGRAPHIC_PROVENANCE_V1",
   "canonical_root": "Google Drive / T2SAIM_OS / Hariseldon / Prediction_Project",
-  "creation_timestamp": "2026-08-23T04:53:44.260363",
+  "creation_timestamp": "2026-08-23T05:15:27.442601",
   "creator": "Tarkan Bulan (Kaptan Tarco) & James William (DZV)",
   "epistemic_doctrine": "Veritas Per Se · Anti-Tampering & Anti-Hindsight Guarantee",
-  "total_registered_files": 88,
+  "total_registered_files": 89,
   "records": [
     {
       "category": "SPEC_OR_DATA",
@@ -653,6 +653,14 @@
       "size_bytes": 5215,
       "modified_time": "2026-08-23T04:47:32.395252",
       "sha256_hash": "093f1bf6a7e9aac703310e74459a08633ca676ec478d076a55bfc1cf860b3631"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "test_amigdala_databank.py",
+      "relative_path": "tests\\test_amigdala_databank.py",
+      "size_bytes": 2511,
+      "modified_time": "2026-08-23T05:13:20.121448",
+      "sha256_hash": "53e2ff9e63a4cbf2e75508ae914fd1a9a3811e4e77ae174fa52e010616872ab2"
     },
     {
       "category": "PROD_CODE",
