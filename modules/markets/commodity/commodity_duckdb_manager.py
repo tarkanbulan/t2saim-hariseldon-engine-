@@ -43,12 +43,9 @@ class CommodityDuckDBManager:
             
         self._init_tables()
 
-    def get_connection(self) -> duckdb.DuckDBPyConnection:
-        return duckdb.connect(self.db_path)
-
     def _init_tables(self):
-        with self.get_connection() as conn:
-            # 1. Emtia Mumları ve Vadeli Eğrisi Tablosu
+        conn = duckdb.connect(self.db_path)
+        try:
             conn.execute("""
                 CREATE TABLE IF NOT EXISTS commodity_candles (
                     timestamp TIMESTAMP NOT NULL,
@@ -63,7 +60,6 @@ class CommodityDuckDBManager:
                 );
             """)
 
-            # 2. Emtia Süper Döngü ve Kriz Sinyalleri Tablosu
             conn.execute("""
                 CREATE TABLE IF NOT EXISTS commodity_super_cycle_signals (
                     timestamp TIMESTAMP NOT NULL,
@@ -76,6 +72,8 @@ class CommodityDuckDBManager:
                 );
             """)
             logger.info("Commodity DuckDB Lakehouse tabloları başarıyla hazırlandı.")
+        finally:
+            conn.close()
 
     def insert_commodity_candles(self, records: List[CommodityCandleRecord]):
         if not records:
@@ -93,12 +91,15 @@ class CommodityDuckDBManager:
             )
             for r in records
         ]
-        with self.get_connection() as conn:
+        conn = duckdb.connect(self.db_path)
+        try:
             conn.executemany("""
                 INSERT OR REPLACE INTO commodity_candles 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?);
             """, data)
-        logger.info(f"{len(records)} adet Emtia mumu DuckDB'ye yazıldı.")
+            logger.info(f"{len(records)} adet Emtia mumu DuckDB'ye yazıldı.")
+        finally:
+            conn.close()
 
     def get_causal_commodity_window(
         self,
@@ -106,21 +107,20 @@ class CommodityDuckDBManager:
         target_date: datetime,
         lookback_days: int = 60
     ) -> pd.DataFrame:
-        """
-        Anti-Hindsight (Sıfır Gelecek Sızıntısı) Kuralı:
-        Yalnızca target_date anına kadar olan emtia verisini çeker.
-        """
         query = """
             SELECT * FROM commodity_candles
             WHERE symbol = ? AND timestamp <= ?
             ORDER BY timestamp DESC
             LIMIT ?;
         """
-        with self.get_connection() as conn:
+        conn = duckdb.connect(self.db_path)
+        try:
             df = conn.execute(query, [symbol, target_date, lookback_days]).df()
-        if not df.empty:
-            df = df.sort_values(by="timestamp").reset_index(drop=True)
-        return df
+            if not df.empty:
+                df = df.sort_values(by="timestamp").reset_index(drop=True)
+            return df
+        finally:
+            conn.close()
 
 if __name__ == "__main__":
     mgr = CommodityDuckDBManager()

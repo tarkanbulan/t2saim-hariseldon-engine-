@@ -234,3 +234,83 @@
 [2026-08-23 05:15:17,339] [INFO] [us_crisis_engine.py:88 - run_1m_us_mcmc()]: 1M ABD MCMC [VST]: Nominal=3.58%, Reel USD=3.24%, Süre=282.48ms
 [2026-08-23 05:15:17,424] [INFO] [us_duckdb_manager.py:77 - _init_tables()]: US DuckDB Lakehouse tabloları başarıyla hazırlandı.
 [2026-08-23 05:15:17,682] [INFO] [us_duckdb_manager.py:104 - insert_us_candles()]: 2 adet ABD mumu DuckDB'ye yazıldı.
+[2026-08-23 05:53:52,258] [WARNING] [contango_roll_shield.py:107 - audit_commodity_curve()]: 🚨 EMTİA VETOSU [NAT_GAS_TRAP]: CONTANGO_ROLL_BLEED_EXCEEDED (-5.00% < -2.00%)
+[2026-08-23 05:53:54,767] [INFO] [commodity_crisis_engine.py:93 - run_1m_commodity_mcmc()]: 1M Emtia MCMC [URANIUM]: Nominal=47.80%, Roll=+9.00%, Reel USD=52.00%, Süre=268.49ms
+[2026-08-23 05:53:56,752] [INFO] [commodity_duckdb_manager.py:78 - _init_tables()]: Commodity DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 05:54:01,968] [INFO] [commodity_duckdb_manager.py:101 - insert_commodity_candles()]: 2 adet Emtia mumu DuckDB'ye yazıldı.
+[2026-08-23 05:54:03,468] [INFO] [crypto_decomposer.py:69 - detect_regime()]: Kripto Makro Rejimi: BULL_EXPANSION (Ağırlık: 1.35, BTC/ETH Getiri: 20.42%)
+[2026-08-23 05:54:03,471] [WARNING] [tas_gnn_wash_shield.py:75 - audit_crypto_asset()]: 🚨 KRİPTO VETOSU [SHIT_PUMP]: WASH_TRADING_HIGH (0.55 > 0.4) | SELF_TRADE_EXCEEDED (0.22 > 0.15) | ONCHAIN_GRAPH_CYCLE_DETECTED (Circular Wash-Trading)
+[2026-08-23 05:54:04,612] [INFO] [crypto_crisis_engine.py:104 - run_1m_crypto_mcmc()]: 1M Kripto MCMC [AVAX]: Nominal=1.39%, Reel USD=1.54%, Süre=256.76ms
+[2026-08-23 05:54:08,907] [INFO] [crypto_duckdb_manager.py:122 - init_tables()]: Crypto DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 05:54:14,261] [INFO] [crypto_duckdb_manager.py:140 - insert_crypto_candles()]: 2 adet Kripto mumu DuckDB'ye yazıldı.
+[2026-08-23 05:54:20,984] [INFO] [tr_duckdb_manager.py:160 - init_tables()]: DuckDB Lakehouse tabloları başarıyla doğrulandı/kuruldu.
+[2026-08-23 05:54:22,060] [INFO] [us_duckdb_manager.py:77 - _init_tables()]: US DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 05:54:22,325] [INFO] [dual_tr_us_orchestrator.py:58 - execute_dual_pipeline()]: ================================================================================
+[2026-08-23 05:54:22,326] [INFO] [dual_tr_us_orchestrator.py:59 - execute_dual_pipeline()]: 🛰️ T2SAIM & HARI SELDON: TR - ABD ÇİFT KUTUPLU GÜNLÜK İCRA BAŞLADI
+[2026-08-23 05:54:22,326] [INFO] [dual_tr_us_orchestrator.py:60 - execute_dual_pipeline()]: ================================================================================
+[2026-08-23 05:54:22,327] [INFO] [tr_runner.py:89 - execute_daily_pipeline()]: === TÜRKİYE PODU GÜNLÜK İCRA BORU HATTI BAŞLADI ===
+[2026-08-23 05:54:22,820] [INFO] [bist_decomposer.py:160 - select_top_10_alpha()]: Top 10 BIST Alfa Seçimi Tamamlandı. Lider: ASELS (Skor: 0.1048)
+[2026-08-23 05:54:23,461] [WARNING] [takas_fraud_shield.py:81 - audit_bist_equity()]: 🚨 SAHTEKÂRLIK VETOSU [FAKE_SPOOF]: C_TAKAS_EXCEEDED (0.78 >= 0.7) | R_CANCEL_SPOOFING (0.89 >= 0.85)
+[2026-08-23 05:54:24,055] [WARNING] [tr_runner.py:126 - execute_daily_pipeline()]: Tahta elendi: FAKE_SPOOF (C_TAKAS_EXCEEDED (0.78 >= 0.7) | R_CANCEL_SPOOFING (0.89 >= 0.85))
+[2026-08-23 05:54:24,453] [INFO] [tr_crisis_engine.py:138 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [ASELS]: Nominal=1.14%, Reel Net=-2.81%, Süre=346.50ms
+[2026-08-23 05:54:26,121] [INFO] [us_runner.py:76 - execute_daily_pipeline()]: === ABD PODU GÜNLÜK İCRA BORU HATTI BAŞLADI ===
+[2026-08-23 05:54:26,406] [INFO] [us_decomposer.py:157 - rank_top_us_alphas()]: Top ABD Alfa Seçimi Tamamlandı. Lider: CEG (Skor: 75.4691)
+[2026-08-23 05:54:26,685] [INFO] [us_crisis_engine.py:88 - run_1m_us_mcmc()]: 1M ABD MCMC [CEG]: Nominal=3.58%, Reel USD=3.23%, Süre=278.93ms
+[2026-08-23 05:54:29,123] [INFO] [tr_duckdb_manager.py:160 - init_tables()]: DuckDB Lakehouse tabloları başarıyla doğrulandı/kuruldu.
+[2026-08-23 05:54:29,336] [INFO] [us_duckdb_manager.py:77 - _init_tables()]: US DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 05:54:42,559] [WARNING] [takas_fraud_shield.py:81 - audit_bist_equity()]: 🚨 SAHTEKÂRLIK VETOSU [SPOOF_HISSE]: C_TAKAS_EXCEEDED (0.82 >= 0.7) | R_CANCEL_SPOOFING (0.91 >= 0.85) | VPIN_TOXICITY_HIGH (0.55 >= 0.45)
+[2026-08-23 05:54:43,548] [INFO] [tr_crisis_engine.py:138 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [ASELS]: Nominal=1.22%, Reel Net=-2.73%, Süre=300.60ms
+[2026-08-23 05:54:44,227] [INFO] [tr_crisis_engine.py:138 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [THYAO]: Nominal=2.34%, Reel Net=-1.66%, Süre=299.51ms
+[2026-08-23 05:54:46,576] [INFO] [tr_duckdb_manager.py:160 - init_tables()]: DuckDB Lakehouse tabloları başarıyla doğrulandı/kuruldu.
+[2026-08-23 05:54:48,766] [INFO] [tr_duckdb_manager.py:178 - insert_bist_candles()]: 2 adet BIST mumu DuckDB'ye yazıldı.
+[2026-08-23 05:54:50,934] [WARNING] [vix_volatility_shield.py:74 - audit_us_market()]: 🚨 ABD PİYASASI VETOSU: VIX_ABSOLUTE_CRITICAL (32.00 >= 28.5)
+[2026-08-23 05:54:51,319] [WARNING] [vix_volatility_shield.py:74 - audit_us_market()]: 🚨 ABD PİYASASI VETOSU: VIX_DAILY_SPIKE_EXCEEDED (+40.00% >= +20.0%)
+[2026-08-23 05:54:52,394] [INFO] [us_crisis_engine.py:88 - run_1m_us_mcmc()]: 1M ABD MCMC [VST]: Nominal=3.58%, Reel USD=3.23%, Süre=263.05ms
+[2026-08-23 05:54:53,275] [INFO] [us_duckdb_manager.py:77 - _init_tables()]: US DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 05:54:54,825] [INFO] [us_duckdb_manager.py:104 - insert_us_candles()]: 2 adet ABD mumu DuckDB'ye yazıldı.
+[2026-08-23 05:55:08,404] [INFO] [tr_duckdb_manager.py:160 - init_tables()]: DuckDB Lakehouse tabloları başarıyla doğrulandı/kuruldu.
+[2026-08-23 05:55:08,526] [INFO] [us_duckdb_manager.py:77 - _init_tables()]: US DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 05:55:08,665] [INFO] [dual_tr_us_orchestrator.py:58 - execute_dual_pipeline()]: ================================================================================
+[2026-08-23 05:55:08,665] [INFO] [dual_tr_us_orchestrator.py:59 - execute_dual_pipeline()]: 🛰️ T2SAIM & HARI SELDON: TR - ABD ÇİFT KUTUPLU GÜNLÜK İCRA BAŞLADI
+[2026-08-23 05:55:08,666] [INFO] [dual_tr_us_orchestrator.py:60 - execute_dual_pipeline()]: ================================================================================
+[2026-08-23 05:55:08,667] [INFO] [tr_runner.py:89 - execute_daily_pipeline()]: === TÜRKİYE PODU GÜNLÜK İCRA BORU HATTI BAŞLADI ===
+[2026-08-23 05:55:08,926] [INFO] [bist_decomposer.py:160 - select_top_10_alpha()]: Top 10 BIST Alfa Seçimi Tamamlandı. Lider: ASELS (Skor: 0.1048)
+[2026-08-23 05:55:10,239] [WARNING] [takas_fraud_shield.py:81 - audit_bist_equity()]: 🚨 SAHTEKÂRLIK VETOSU [FAKE_SPOOF]: C_TAKAS_EXCEEDED (0.78 >= 0.7) | R_CANCEL_SPOOFING (0.89 >= 0.85)
+[2026-08-23 05:55:11,087] [WARNING] [tr_runner.py:126 - execute_daily_pipeline()]: Tahta elendi: FAKE_SPOOF (C_TAKAS_EXCEEDED (0.78 >= 0.7) | R_CANCEL_SPOOFING (0.89 >= 0.85))
+[2026-08-23 05:55:11,434] [INFO] [tr_crisis_engine.py:138 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [ASELS]: Nominal=1.15%, Reel Net=-2.80%, Süre=259.59ms
+[2026-08-23 05:55:12,031] [INFO] [us_runner.py:76 - execute_daily_pipeline()]: === ABD PODU GÜNLÜK İCRA BORU HATTI BAŞLADI ===
+[2026-08-23 05:55:12,202] [INFO] [us_decomposer.py:157 - rank_top_us_alphas()]: Top ABD Alfa Seçimi Tamamlandı. Lider: LLY (Skor: 72.3703)
+[2026-08-23 05:55:12,460] [INFO] [us_crisis_engine.py:88 - run_1m_us_mcmc()]: 1M ABD MCMC [LLY]: Nominal=3.59%, Reel USD=3.24%, Süre=257.45ms
+[2026-08-23 05:55:23,823] [WARNING] [contango_roll_shield.py:107 - audit_commodity_curve()]: 🚨 EMTİA VETOSU [NAT_GAS_TRAP]: CONTANGO_ROLL_BLEED_EXCEEDED (-5.00% < -2.00%)
+[2026-08-23 05:56:45,443] [WARNING] [contango_roll_shield.py:107 - audit_commodity_curve()]: 🚨 EMTİA VETOSU [NAT_GAS_TRAP]: CONTANGO_ROLL_BLEED_EXCEEDED (-5.00% < -2.00%)
+[2026-08-23 05:56:45,773] [INFO] [commodity_crisis_engine.py:93 - run_1m_commodity_mcmc()]: 1M Emtia MCMC [URANIUM]: Nominal=47.67%, Roll=+9.00%, Reel USD=51.87%, Süre=295.63ms
+[2026-08-23 05:56:46,019] [INFO] [commodity_duckdb_manager.py:74 - _init_tables()]: Commodity DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 05:56:46,551] [INFO] [commodity_duckdb_manager.py:100 - insert_commodity_candles()]: 2 adet Emtia mumu DuckDB'ye yazıldı.
+[2026-08-23 05:56:47,908] [INFO] [crypto_decomposer.py:69 - detect_regime()]: Kripto Makro Rejimi: BULL_EXPANSION (Ağırlık: 1.35, BTC/ETH Getiri: 20.42%)
+[2026-08-23 05:56:47,912] [WARNING] [tas_gnn_wash_shield.py:75 - audit_crypto_asset()]: 🚨 KRİPTO VETOSU [SHIT_PUMP]: WASH_TRADING_HIGH (0.55 > 0.4) | SELF_TRADE_EXCEEDED (0.22 > 0.15) | ONCHAIN_GRAPH_CYCLE_DETECTED (Circular Wash-Trading)
+[2026-08-23 05:56:48,297] [INFO] [crypto_crisis_engine.py:104 - run_1m_crypto_mcmc()]: 1M Kripto MCMC [AVAX]: Nominal=1.40%, Reel USD=1.54%, Süre=265.00ms
+[2026-08-23 05:56:49,051] [INFO] [crypto_duckdb_manager.py:122 - init_tables()]: Crypto DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 05:56:50,041] [INFO] [crypto_duckdb_manager.py:140 - insert_crypto_candles()]: 2 adet Kripto mumu DuckDB'ye yazıldı.
+[2026-08-23 05:56:51,265] [INFO] [tr_duckdb_manager.py:160 - init_tables()]: DuckDB Lakehouse tabloları başarıyla doğrulandı/kuruldu.
+[2026-08-23 05:56:51,325] [INFO] [us_duckdb_manager.py:77 - _init_tables()]: US DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 05:56:51,387] [INFO] [dual_tr_us_orchestrator.py:58 - execute_dual_pipeline()]: ================================================================================
+[2026-08-23 05:56:51,387] [INFO] [dual_tr_us_orchestrator.py:59 - execute_dual_pipeline()]: 🛰️ T2SAIM & HARI SELDON: TR - ABD ÇİFT KUTUPLU GÜNLÜK İCRA BAŞLADI
+[2026-08-23 05:56:51,388] [INFO] [dual_tr_us_orchestrator.py:60 - execute_dual_pipeline()]: ================================================================================
+[2026-08-23 05:56:51,388] [INFO] [tr_runner.py:89 - execute_daily_pipeline()]: === TÜRKİYE PODU GÜNLÜK İCRA BORU HATTI BAŞLADI ===
+[2026-08-23 05:56:51,489] [INFO] [bist_decomposer.py:160 - select_top_10_alpha()]: Top 10 BIST Alfa Seçimi Tamamlandı. Lider: ASELS (Skor: 0.1048)
+[2026-08-23 05:56:51,794] [WARNING] [takas_fraud_shield.py:81 - audit_bist_equity()]: 🚨 SAHTEKÂRLIK VETOSU [FAKE_SPOOF]: C_TAKAS_EXCEEDED (0.78 >= 0.7) | R_CANCEL_SPOOFING (0.89 >= 0.85)
+[2026-08-23 05:56:51,951] [WARNING] [tr_runner.py:126 - execute_daily_pipeline()]: Tahta elendi: FAKE_SPOOF (C_TAKAS_EXCEEDED (0.78 >= 0.7) | R_CANCEL_SPOOFING (0.89 >= 0.85))
+[2026-08-23 05:56:52,277] [INFO] [tr_crisis_engine.py:138 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [ASELS]: Nominal=1.13%, Reel Net=-2.82%, Süre=263.62ms
+[2026-08-23 05:56:52,583] [INFO] [us_runner.py:76 - execute_daily_pipeline()]: === ABD PODU GÜNLÜK İCRA BORU HATTI BAŞLADI ===
+[2026-08-23 05:56:52,625] [INFO] [us_decomposer.py:157 - rank_top_us_alphas()]: Top ABD Alfa Seçimi Tamamlandı. Lider: NVDA (Skor: 81.6133)
+[2026-08-23 05:56:52,859] [INFO] [us_crisis_engine.py:88 - run_1m_us_mcmc()]: 1M ABD MCMC [NVDA]: Nominal=3.62%, Reel USD=3.28%, Süre=233.85ms
+[2026-08-23 05:56:55,766] [WARNING] [takas_fraud_shield.py:81 - audit_bist_equity()]: 🚨 SAHTEKÂRLIK VETOSU [SPOOF_HISSE]: C_TAKAS_EXCEEDED (0.82 >= 0.7) | R_CANCEL_SPOOFING (0.91 >= 0.85) | VPIN_TOXICITY_HIGH (0.55 >= 0.45)
+[2026-08-23 05:56:56,136] [INFO] [tr_crisis_engine.py:138 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [ASELS]: Nominal=1.31%, Reel Net=-2.64%, Süre=248.05ms
+[2026-08-23 05:56:56,480] [INFO] [tr_crisis_engine.py:138 - run_1m_vectorized_mcmc()]: 1M MCMC Tamamlandı [THYAO]: Nominal=2.32%, Reel Net=-1.67%, Süre=264.78ms
+[2026-08-23 05:56:57,475] [INFO] [tr_duckdb_manager.py:160 - init_tables()]: DuckDB Lakehouse tabloları başarıyla doğrulandı/kuruldu.
+[2026-08-23 05:56:57,921] [INFO] [tr_duckdb_manager.py:178 - insert_bist_candles()]: 2 adet BIST mumu DuckDB'ye yazıldı.
+[2026-08-23 05:56:58,548] [WARNING] [vix_volatility_shield.py:74 - audit_us_market()]: 🚨 ABD PİYASASI VETOSU: VIX_ABSOLUTE_CRITICAL (32.00 >= 28.5)
+[2026-08-23 05:56:58,711] [WARNING] [vix_volatility_shield.py:74 - audit_us_market()]: 🚨 ABD PİYASASI VETOSU: VIX_DAILY_SPIKE_EXCEEDED (+40.00% >= +20.0%)
+[2026-08-23 05:56:59,109] [INFO] [us_crisis_engine.py:88 - run_1m_us_mcmc()]: 1M ABD MCMC [VST]: Nominal=3.60%, Reel USD=3.25%, Süre=287.32ms
+[2026-08-23 05:56:59,416] [INFO] [us_duckdb_manager.py:77 - _init_tables()]: US DuckDB Lakehouse tabloları başarıyla hazırlandı.
+[2026-08-23 05:57:00,115] [INFO] [us_duckdb_manager.py:104 - insert_us_candles()]: 2 adet ABD mumu DuckDB'ye yazıldı.

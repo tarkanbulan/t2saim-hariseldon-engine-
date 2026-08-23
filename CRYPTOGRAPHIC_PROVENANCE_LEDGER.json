@@ -1,10 +1,11 @@
 {
   "protocol": "T2SAIM_W3C_PROV_CRYPTOGRAPHIC_PROVENANCE_V1",
   "canonical_root": "Google Drive / T2SAIM_OS / Hariseldon / Prediction_Project",
-  "creation_timestamp": "2026-08-23T05:15:27.442601",
+  "creation_timestamp": "2026-08-23T05:57:14.235638",
   "creator": "Tarkan Bulan (Kaptan Tarco) & James William (DZV)",
   "epistemic_doctrine": "Veritas Per Se · Anti-Tampering & Anti-Hindsight Guarantee",
-  "total_registered_files": 89,
+  "focus_mode": "TR_US_EXCLUSIVE_DUAL_CORE",
+  "total_registered_files": 92,
   "records": [
     {
       "category": "SPEC_OR_DATA",
@@ -122,9 +123,9 @@
       "category": "PROD_CODE",
       "file_name": "commodity_duckdb_manager.py",
       "relative_path": "modules\\markets\\commodity\\commodity_duckdb_manager.py",
-      "size_bytes": 4838,
-      "modified_time": "2026-08-23T04:44:02.005630",
-      "sha256_hash": "901f60ca70554715ff994d6887700a8ed07acf73b72a45405907060533866343"
+      "size_bytes": 4633,
+      "modified_time": "2026-08-23T05:56:31.282072",
+      "sha256_hash": "f25a3cd73c0cf8a00cc62a601dd36069d2267ce3ad98f9459190824d8562c3e2"
     },
     {
       "category": "PROD_CODE",
@@ -269,6 +270,22 @@
       "size_bytes": 3025,
       "modified_time": "2026-08-23T04:51:54.158146",
       "sha256_hash": "3309c30fad309d9b40172c0befc543b72e3462c2ad04f660bac7efa67f9582fa"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "__init__.py",
+      "relative_path": "modules\\orchestration\\__init__.py",
+      "size_bytes": 38,
+      "modified_time": "2026-08-23T05:53:18.495323",
+      "sha256_hash": "048d2f3d97c00028f8bdb6c83af3321e9520478c950763548db2f3bedc04daba"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "dual_tr_us_orchestrator.py",
+      "relative_path": "modules\\orchestration\\dual_tr_us_orchestrator.py",
+      "size_bytes": 7211,
+      "modified_time": "2026-08-23T05:53:14.674640",
+      "sha256_hash": "3ce9a995e8bc957426cd753b6aacd4853b38fa5b1cfc6aec20ee155be428eee8"
     },
     {
       "category": "SPEC_OR_DATA",
@@ -685,6 +702,14 @@
       "size_bytes": 4277,
       "modified_time": "2026-08-23T02:30:57.391545",
       "sha256_hash": "34be134012b52321d5939383ae65394aceedd380361893abad5cad0de3f5e1ee"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "test_dual_tr_us_orchestrator.py",
+      "relative_path": "tests\\test_dual_tr_us_orchestrator.py",
+      "size_bytes": 1408,
+      "modified_time": "2026-08-23T05:55:00.930685",
+      "sha256_hash": "6b5d8adfc8abb4209cac9867f85e1c74aaf8d5cd5b4e30346f379bddb1ffdb14"
     },
     {
       "category": "PROD_CODE",
