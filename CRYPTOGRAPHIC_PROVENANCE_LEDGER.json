@@ -1,10 +1,10 @@
 {
   "protocol": "T2SAIM_W3C_PROV_CRYPTOGRAPHIC_PROVENANCE_V1",
   "canonical_root": "Google Drive / T2SAIM_OS / Hariseldon / Prediction_Project",
-  "creation_timestamp": "2026-08-23T04:44:39.745408",
+  "creation_timestamp": "2026-08-23T04:50:34.682148",
   "creator": "Tarkan Bulan (Kaptan Tarco) & James William (DZV)",
   "epistemic_doctrine": "Veritas Per Se · Anti-Tampering & Anti-Hindsight Guarantee",
-  "total_registered_files": 56,
+  "total_registered_files": 82,
   "records": [
     {
       "category": "SPEC_OR_DATA",
@@ -106,9 +106,9 @@
       "category": "PROD_CODE",
       "file_name": "commodity_crisis_engine.py",
       "relative_path": "modules\\markets\\commodity\\commodity_crisis_engine.py",
-      "size_bytes": 4335,
-      "modified_time": "2026-08-23T04:43:10.177543",
-      "sha256_hash": "d7719310fb0529bdb6d7cbe1764cdb460f27c9bf24a0430da372e67fa100078e"
+      "size_bytes": 4409,
+      "modified_time": "2026-08-23T04:49:52.024767",
+      "sha256_hash": "4ca1c637f40655dbf9331581298c0e07366156d261a3dbdcba96f37486bc81cb"
     },
     {
       "category": "PROD_CODE",
@@ -432,6 +432,198 @@
     },
     {
       "category": "PROD_CODE",
+      "file_name": "__init__.py",
+      "relative_path": "t2saim_crisis_engine\\__init__.py",
+      "size_bytes": 32,
+      "modified_time": "2026-08-23T04:48:32.738393",
+      "sha256_hash": "b06a7952dcf0d738ec6e2c3206a631b61a48babf6e4d62457de7a7b3c46593c2"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "main.py",
+      "relative_path": "t2saim_crisis_engine\\main.py",
+      "size_bytes": 3433,
+      "modified_time": "2026-08-23T04:47:57.003996",
+      "sha256_hash": "126f464fe7ce69ceb12f9e67afc82290d299aedba8844e5e0bf2521cdd20667e"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "__init__.py",
+      "relative_path": "t2saim_crisis_engine\\analyzers\\__init__.py",
+      "size_bytes": 32,
+      "modified_time": "2026-08-23T04:48:34.757372",
+      "sha256_hash": "b06a7952dcf0d738ec6e2c3206a631b61a48babf6e4d62457de7a7b3c46593c2"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "acemoglu_decay.py",
+      "relative_path": "t2saim_crisis_engine\\analyzers\\acemoglu_decay.py",
+      "size_bytes": 1619,
+      "modified_time": "2026-08-23T04:47:22.069255",
+      "sha256_hash": "0350f4fcdb457ff0895fc6cd3b321364587f26907bada64a4d050f373226388e"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "banking_liquidity.py",
+      "relative_path": "t2saim_crisis_engine\\analyzers\\banking_liquidity.py",
+      "size_bytes": 1365,
+      "modified_time": "2026-08-23T04:47:09.466488",
+      "sha256_hash": "3f40cbd42ca08af3c169c69314a3fea1f0c827b62378e16e0e397cefdde50a1a"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "gullini_protocol.py",
+      "relative_path": "t2saim_crisis_engine\\analyzers\\gullini_protocol.py",
+      "size_bytes": 1552,
+      "modified_time": "2026-08-23T04:47:17.871943",
+      "sha256_hash": "25df1ee460ccc12923a4188c9415ed4cb5c68ec305e9a63e3405003b73eda584"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "macro_minsky.py",
+      "relative_path": "t2saim_crisis_engine\\analyzers\\macro_minsky.py",
+      "size_bytes": 1405,
+      "modified_time": "2026-08-23T04:47:05.858030",
+      "sha256_hash": "348df37e514c6edd302db2b8c4c2dbada0895ef62c6909a522e94cf3af043e19"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "neuro_amigdala.py",
+      "relative_path": "t2saim_crisis_engine\\analyzers\\neuro_amigdala.py",
+      "size_bytes": 1735,
+      "modified_time": "2026-08-23T04:47:13.534004",
+      "sha256_hash": "820c5806f2e47a0eb6f833d6ab41d40a9104adbe0b67656fbd6e42123f178265"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "shap_explainer.py",
+      "relative_path": "t2saim_crisis_engine\\analyzers\\shap_explainer.py",
+      "size_bytes": 1221,
+      "modified_time": "2026-08-23T04:47:25.777671",
+      "sha256_hash": "dc383a8b74bdac3a9f4e30c879e6d2f232c9531517790b515413f3cf03b3b82f"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "__init__.py",
+      "relative_path": "t2saim_crisis_engine\\config\\__init__.py",
+      "size_bytes": 32,
+      "modified_time": "2026-08-23T04:48:33.003178",
+      "sha256_hash": "b06a7952dcf0d738ec6e2c3206a631b61a48babf6e4d62457de7a7b3c46593c2"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "settings.py",
+      "relative_path": "t2saim_crisis_engine\\config\\settings.py",
+      "size_bytes": 1126,
+      "modified_time": "2026-08-23T04:49:59.379967",
+      "sha256_hash": "fadd9063b2b7730186adc63a97448227688558ad6d93bc27328ed725be25683d"
+    },
+    {
+      "category": "SPEC_OR_DATA",
+      "file_name": "thresholds.yaml",
+      "relative_path": "t2saim_crisis_engine\\config\\thresholds.yaml",
+      "size_bytes": 1926,
+      "modified_time": "2026-08-23T04:46:40.356983",
+      "sha256_hash": "8912aeba05c8d03655aedc42d38a3ec4d9ae5d4cc6c457e593bb224781d7e1b8"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "__init__.py",
+      "relative_path": "t2saim_crisis_engine\\core\\__init__.py",
+      "size_bytes": 32,
+      "modified_time": "2026-08-23T04:48:34.690858",
+      "sha256_hash": "b06a7952dcf0d738ec6e2c3206a631b61a48babf6e4d62457de7a7b3c46593c2"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "adwin_drift.py",
+      "relative_path": "t2saim_crisis_engine\\core\\adwin_drift.py",
+      "size_bytes": 1580,
+      "modified_time": "2026-08-23T04:46:57.421422",
+      "sha256_hash": "1f3ae9692c6023eb1284c5d9b56fa82be05d7cac4ea104ee097f8f1221c10e3e"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "amnesia.py",
+      "relative_path": "t2saim_crisis_engine\\core\\amnesia.py",
+      "size_bytes": 1991,
+      "modified_time": "2026-08-23T04:49:13.449152",
+      "sha256_hash": "78110e2fd2514a51a99c9c2e0449f368fbf93e95b1075b8a169e82942a7de609"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "schemas.py",
+      "relative_path": "t2saim_crisis_engine\\core\\schemas.py",
+      "size_bytes": 3722,
+      "modified_time": "2026-08-23T04:46:49.131887",
+      "sha256_hash": "ba4944aed66cc55b749ba3edbeef97793057b9ebbab48d43919a1a34fef4068a"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "venn_abers.py",
+      "relative_path": "t2saim_crisis_engine\\core\\venn_abers.py",
+      "size_bytes": 1851,
+      "modified_time": "2026-08-23T04:49:55.894852",
+      "sha256_hash": "06794793afa343679114ab7f53c1f5f061b5a025d0e3f2263ac79d248062e4fc"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "__init__.py",
+      "relative_path": "t2saim_crisis_engine\\database\\__init__.py",
+      "size_bytes": 32,
+      "modified_time": "2026-08-23T04:48:34.839379",
+      "sha256_hash": "b06a7952dcf0d738ec6e2c3206a631b61a48babf6e4d62457de7a7b3c46593c2"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "duckdb_store.py",
+      "relative_path": "t2saim_crisis_engine\\database\\duckdb_store.py",
+      "size_bytes": 2519,
+      "modified_time": "2026-08-23T04:47:47.880806",
+      "sha256_hash": "e9bce4b29d283ed2b5776be2da3106e33257047bf4185e2648d3472dbeb1683a"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "sqlite_telemetry.py",
+      "relative_path": "t2saim_crisis_engine\\database\\sqlite_telemetry.py",
+      "size_bytes": 2015,
+      "modified_time": "2026-08-23T04:49:17.232892",
+      "sha256_hash": "a796d859a36cfd2020c53fc447585e2b4b06b6c91ed6869c0951281b47204792"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "__init__.py",
+      "relative_path": "t2saim_crisis_engine\\engine\\__init__.py",
+      "size_bytes": 32,
+      "modified_time": "2026-08-23T04:48:34.797117",
+      "sha256_hash": "b06a7952dcf0d738ec6e2c3206a631b61a48babf6e4d62457de7a7b3c46593c2"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "execution_router.py",
+      "relative_path": "t2saim_crisis_engine\\engine\\execution_router.py",
+      "size_bytes": 2003,
+      "modified_time": "2026-08-23T04:47:43.724354",
+      "sha256_hash": "164a951dbdb099ec0e0c09586914fd0e8388f3911e44a51d6ff97698c70de731"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "sensor.py",
+      "relative_path": "t2saim_crisis_engine\\engine\\sensor.py",
+      "size_bytes": 5215,
+      "modified_time": "2026-08-23T04:47:32.395252",
+      "sha256_hash": "093f1bf6a7e9aac703310e74459a08633ca676ec478d076a55bfc1cf860b3631"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "test_amnesia_leakage.py",
+      "relative_path": "tests\\test_amnesia_leakage.py",
+      "size_bytes": 1916,
+      "modified_time": "2026-08-23T04:49:25.748243",
+      "sha256_hash": "9686a12919d4d1136abfaf2f2e923efb23ddde5ce9f1344272cf0a8b9485c75b"
+    },
+    {
+      "category": "PROD_CODE",
       "file_name": "test_commodity_pod.py",
       "relative_path": "tests\\test_commodity_pod.py",
       "size_bytes": 4514,
@@ -445,6 +637,22 @@
       "size_bytes": 4277,
       "modified_time": "2026-08-23T02:30:57.391545",
       "sha256_hash": "34be134012b52321d5939383ae65394aceedd380361893abad5cad0de3f5e1ee"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "test_false_alarm_rate.py",
+      "relative_path": "tests\\test_false_alarm_rate.py",
+      "size_bytes": 3176,
+      "modified_time": "2026-08-23T04:48:41.586384",
+      "sha256_hash": "84c4a08616842cae67ca409491eb4b73fd5d50efcd1e7b33d774d38d9d756ce9"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "test_sensor_integration.py",
+      "relative_path": "tests\\test_sensor_integration.py",
+      "size_bytes": 2620,
+      "modified_time": "2026-08-23T04:49:29.536170",
+      "sha256_hash": "1b297514a607f58cdecd7b5deddd1b9ca29aee2db6fcde635dc3982f3671d982"
     },
     {
       "category": "PROD_CODE",

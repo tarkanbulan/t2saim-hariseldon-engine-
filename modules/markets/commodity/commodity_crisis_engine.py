@@ -67,8 +67,8 @@ class CommodityCrisisEngine:
         poisson_jumps = np.random.poisson(lam=self.jump_intensity * dt, size=n_simulations)
         jump_sizes = np.random.normal(loc=0.08, scale=0.15, size=n_simulations) * poisson_jumps
 
-        # Toplam Getiri Simülasyonu
-        simulated_log_returns = diffusion + jump_sizes
+        # Toplam Getiri Simülasyonu (Fiziksel Eşikler: [-1.5, 2.0] log return sınırı)
+        simulated_log_returns = np.clip(diffusion + jump_sizes, -1.5, 2.0)
         simulated_prices = current_spot_price * np.exp(simulated_log_returns)
 
         # 3. Yüzdelik Dilimler
