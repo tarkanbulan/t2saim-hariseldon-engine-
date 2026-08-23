@@ -1,10 +1,10 @@
 {
   "protocol": "T2SAIM_W3C_PROV_CRYPTOGRAPHIC_PROVENANCE_V1",
   "canonical_root": "Google Drive / T2SAIM_OS / Hariseldon / Prediction_Project",
-  "creation_timestamp": "2026-08-23T03:45:34.075766",
+  "creation_timestamp": "2026-08-23T04:44:39.745408",
   "creator": "Tarkan Bulan (Kaptan Tarco) & James William (DZV)",
   "epistemic_doctrine": "Veritas Per Se · Anti-Tampering & Anti-Hindsight Guarantee",
-  "total_registered_files": 50,
+  "total_registered_files": 56,
   "records": [
     {
       "category": "SPEC_OR_DATA",
@@ -101,6 +101,46 @@
       "size_bytes": 3765,
       "modified_time": "2026-08-23T00:14:54.516584",
       "sha256_hash": "e4cee3a64b35511b835472e61737b16665ebad395e03212fd5d70db42108925d"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "commodity_crisis_engine.py",
+      "relative_path": "modules\\markets\\commodity\\commodity_crisis_engine.py",
+      "size_bytes": 4335,
+      "modified_time": "2026-08-23T04:43:10.177543",
+      "sha256_hash": "d7719310fb0529bdb6d7cbe1764cdb460f27c9bf24a0430da372e67fa100078e"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "commodity_decomposer.py",
+      "relative_path": "modules\\markets\\commodity\\commodity_decomposer.py",
+      "size_bytes": 6086,
+      "modified_time": "2026-08-23T04:42:55.728065",
+      "sha256_hash": "1eda064c7c4ff2b041770b51490e38b28656d813a3c313e5e6603a61cde9d2a2"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "commodity_duckdb_manager.py",
+      "relative_path": "modules\\markets\\commodity\\commodity_duckdb_manager.py",
+      "size_bytes": 4838,
+      "modified_time": "2026-08-23T04:44:02.005630",
+      "sha256_hash": "901f60ca70554715ff994d6887700a8ed07acf73b72a45405907060533866343"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "commodity_runner.py",
+      "relative_path": "modules\\markets\\commodity\\commodity_runner.py",
+      "size_bytes": 8881,
+      "modified_time": "2026-08-23T04:43:19.027555",
+      "sha256_hash": "21d1069effda1d92df1bcafe8b23f9120e5cf598e4c4274a0c33cc17716f35f1"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "contango_roll_shield.py",
+      "relative_path": "modules\\markets\\commodity\\contango_roll_shield.py",
+      "size_bytes": 4757,
+      "modified_time": "2026-08-23T04:43:59.062707",
+      "sha256_hash": "8d08275477656db0cee04dc61e99899144eb3757980305348f234ec79f8d15f0"
     },
     {
       "category": "PROD_CODE",
@@ -389,6 +429,14 @@
       "size_bytes": 6986,
       "modified_time": "2026-08-23T00:06:00.427969",
       "sha256_hash": "c90e51f56e7f851add0ac765c727b9af322390d0e909a01fbbb0619c610cec12"
+    },
+    {
+      "category": "PROD_CODE",
+      "file_name": "test_commodity_pod.py",
+      "relative_path": "tests\\test_commodity_pod.py",
+      "size_bytes": 4514,
+      "modified_time": "2026-08-23T04:43:25.389077",
+      "sha256_hash": "009f13a14fc83320ac79387e4b373b2f973e91afc584a479bf7651fe8a35137e"
     },
     {
       "category": "PROD_CODE",
