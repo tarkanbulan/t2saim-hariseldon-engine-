@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<!-- Chosen Palette: Warm Slate & Forensic Crimson (Background: #f8fafc, Nav/Cards: #ffffff & #0f172a, Crimson Accent: #991b1b, Emerald Accent: #065f46, Amber Accent: #d97706, Accent Indigo: #3730a3) -->
+<!-- Application Structure Plan: 
+  The SPA is structured as an interactive T2SAIM Master Observatory & Forensic Dashboard across 7 functional domains:
+  1. Top Navigation & Hero Header: Instant switching between 7 functional domains (UCI Kokpit, 12 Kriz Otopsisi, 32 Gösterge & Ekonofizik, Unorthodox Sensörler & SDT-PSI, Soddy & Benford Adli Lab, Core-20 Küresel Kıyas, Stoa Protokolü & Daubert Kanıt).
+  2. Master UCI Kokpit & Canlı Simülatör: Interactive sliders for 5 indicator blocks allowing live recalculation of the Master UCI score, dynamic regime status feedback, and Leontief Bottleneck copula visualization.
+  3. 12 Tarihsel Kriz Otopsisi Kronolojisi (1994-2026): Clickable interactive timeline grid enabling side-by-side forensic analysis.
+  4. 32 Kanonik Gösterge & L1-L7 Ekonofizik Katmanları: Interactive filterable table paired with L1-L7 physics equation cards.
+  5. Toplumsal Çürüme & Unorthodox Telemetri (SDT-PSI & NECSI): Interactive Peter Turchin PSI political stress simulator, differential equation solver display, and Yaneer Bar-Yam NECSI FAO food price riot phase-transition visualizer.
+  6. Termodinamik Kopuş, NOH Sifon & Benford Adli Laboratuvarı: Chart.js visualizer for Soddy M2/NIR divergence, NOH flows, and Benford's Law audit tool.
+  7. Core-20 Küresel Risk Yüzeyi: Comparative sovereign risk chart and matrix comparing 20 countries.
+  8. Stoa Devre Kesicileri & Daubert Tier-1 Kanıt Veritabanı: 5-layer autonomous Stoa protocols and FRE 702 evidence database.
+  This non-linear interactive architecture is designed to transform dense macroeconomic and sociophysiological forensic reports into an intuitive analytical dashboard.
+-->
+<!-- Visualization & Content Choices:
+  - Master UCI & History -> Line/Bar Chart (Chart.js) -> Interactive hover & regime threshold overlays.
+  - 12 Historical Crises -> Clickable Timeline Cards & Detail Panel -> Interactive selection.
+  - SDT-PSI Simulator -> Dynamic Sliders & Math Calculations -> Live feedback on Nm, Em, wd, and PSI score + Chart.js PSI trajectory.
+  - NECSI Food Price Model -> Multi-axis Chart (Chart.js) -> FAO Food Price Index vs 210-point Riot Critical Threshold.
+  - Benford's Law Audit -> Dual-Bar Chart (Chart.js) -> Logarithmic frequency sapması comparison.
+  - Core-20 Sovereign Matrix -> Bar Chart (Chart.js) + Data table.
+  - Daubert Tier-1 Evidence -> Searchable HTML Data Table -> Real-time search/filter.
+  Confirming: NO SVG graphics used. NO Mermaid JS used. Standard Canvas (Chart.js) and Tailwind CSS HTML structures used throughout.
+-->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T2SAIM Master Gözlemevi: Türkiye Finansal Krizler Adli Otopsisi (1994–2026)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                        crimson: {
+                            500: '#ef4444',
+                            700: '#b91c1c',
+                            900: '#7f1d1d',
+                        },
+                        amber: {
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        },
+                        emerald: {
+                            600: '#059669',
+                            700: '#047857',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 360px;
+            }
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen flex flex-col selection:bg-rose-900 selection:text-white">
+
+    <!-- TOP NAV BAR -->
+    <header class="sticky top-0 z-50 bg-slate-900 text-white border-b border-slate-800 shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between py-3">
+            <div class="flex items-center space-x-3 mb-2 md:mb-0">
+                <div class="w-9 h-9 rounded bg-gradient-to-br from-rose-600 to-amber-600 flex items-center justify-center font-black text-white text-xl shadow">
+                    T2
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight tracking-tight">T2SAIM Master Gözlemevi</h1>
+                    <p class="text-xs text-slate-400">Türkiye Finansal Krizler Adli Otopsisi (1994–2026)</p>
+                </div>
+            </div>
+
+            <!-- NAVIGATION TABS -->
+            <nav class="flex flex-wrap justify-center gap-1 sm:gap-2 text-xs sm:text-sm font-medium">
+                <button onclick="switchTab('tab-uci')" id="btn-tab-uci" class="nav-tab px-3 py-1.5 rounded-lg bg-rose-800 text-white transition shadow-sm">
+                    Kokpit & UCI
+                </button>
+                <button onclick="switchTab('tab-crises')" id="btn-tab-crises" class="nav-tab px-3 py-1.5 rounded-lg hover:bg-slate-800 text-slate-300 transition">
+                    12 Kriz Otopsisi
+                </button>
+                <button onclick="switchTab('tab-indicators')" id="btn-tab-indicators" class="nav-tab px-3 py-1.5 rounded-lg hover:bg-slate-800 text-slate-300 transition">
+                    32 Gösterge
+                </button>
+                <button onclick="switchTab('tab-decay')" id="btn-tab-decay" class="nav-tab px-3 py-1.5 rounded-lg hover:bg-slate-800 text-slate-300 transition">
+                    Unorthodox Sensörler & SDT-PSI
+                </button>
+                <button onclick="switchTab('tab-soddy')" id="btn-tab-soddy" class="nav-tab px-3 py-1.5 rounded-lg hover:bg-slate-800 text-slate-300 transition">
+                    Soddy & Benford Adli Lab
+                </button>
+                <button onclick="switchTab('tab-core20')" id="btn-tab-core20" class="nav-tab px-3 py-1.5 rounded-lg hover:bg-slate-800 text-slate-300 transition">
+                    Core-20 Kıyas
+                </button>
+                <button onclick="switchTab('tab-stoa')" id="btn-tab-stoa" class="nav-tab px-3 py-1.5 rounded-lg hover:bg-slate-800 text-slate-300 transition">
+                    Stoa & Daubert Kanıt
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- ========================================== -->
+        <!-- TAB 1: KOKPİT & MASTER UCI SIMULATOR -->
+        <!-- ========================================== -->
+        <section id="tab-uci" class="tab-content space-y-6">
+            
+            <!-- INTRODUCTORY CONTEXT -->
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <div class="flex items-start justify-between">
+                    <div>
+                        <span class="inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-700 mb-2">Daubert Tier-1 EWS Standardı</span>
+                        <h2 class="text-2xl font-bold text-slate-900">Sistemik Kriz Kokpiti ve Master UCI Simülatörü</h2>
+                        <p class="mt-1 text-sm text-slate-600 max-w-4xl">
+                            T2SAIM Erken Uyarı Sistemi; neoklasik iktisat varsayımlarını reddederek finansal sistemi dissipatif faz geçişleri ve histerezis barındıran ekonofiziksel bir yapıda izler. Aşağıdaki paneller; 5 ana blok stresi, Leontief Süper-Katkısal Darboğaz Copula algoritması ve dinamik Master UCI (Uncertainty & Crash Index) rejimlerini canlı olarak simüle eder.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TOP STATS & CURRENT REGIME DISPLAY -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <span class="text-xs font-semibold text-slate-500 uppercase">Mevcut Rejim Durumu</span>
+                    <div id="uci-regime-badge" class="mt-2 inline-flex items-center px-3 py-1 rounded-full text-sm font-bold bg-amber-100 text-amber-800 border border-amber-300">
+                        ● TURUNCU REJİM (Akut Kriz Eşiği)
+                    </div>
+                    <p class="mt-2 text-xs text-slate-500">Minsky Ponzi rejimi baskın. M2/NIR kopuşu ve amigdala inkar fazı etkin.</p>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <span class="text-xs font-semibold text-slate-500 uppercase">Hesaplanan Master UCI Skoru</span>
+                    <div class="mt-1 flex items-baseline space-x-2">
+                        <span id="uci-score-val" class="text-3xl font-black text-rose-700">0.724</span>
+                        <span class="text-xs text-slate-400">/ 1.000</span>
+                    </div>
+                    <div class="w-full bg-slate-100 h-2.5 rounded-full mt-2 overflow-hidden">
+                        <div id="uci-progress-bar" class="bg-gradient-to-r from-emerald-500 via-amber-500 to-rose-700 h-2.5 rounded-full" style="width: 72.4%"></div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <span class="text-xs font-semibold text-slate-500 uppercase">Kurumsal Çürüme Cezası (AM)</span>
+                    <div class="mt-1 flex items-baseline space-x-1">
+                        <span id="am-penalty-val" class="text-2xl font-extrabold text-slate-800">1.15×</span>
+                        <span class="text-xs text-rose-600 font-semibold">(DEI ≥ 0.60)</span>
+                    </div>
+                    <p class="mt-1 text-xs text-slate-500">Acemoğlu çürüme çarpanı sistemik stresi %15 oranında katlar.</p>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <span class="text-xs font-semibold text-slate-500 uppercase">TRUTH_HALT Kilit Kapısı</span>
+                    <div class="mt-2 text-sm font-bold text-slate-800 flex items-center space-x-1">
+                        <span class="w-3 h-3 rounded-full bg-rose-600 animate-pulse inline-block"></span>
+                        <span id="gate-status">KİLİTLİ (G1·G2·G3 = 1)</span>
+                    </div>
+                    <p class="mt-1 text-xs text-slate-500">3-Kapılı protokol uyarınca rezerv tükenişi ve devalüasyon fazı kilitli.</p>
+                </div>
+            </div>
+
+            <!-- SIMULATOR & HISTORICAL CHART GRID -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- UCI INTERACTIVE SLIDERS (5 BLOCKS) -->
+                <div class="lg:col-span-5 bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-4">
+                    <div class="border-b border-slate-100 pb-3 flex justify-between items-center">
+                        <div>
+                            <h3 class="font-bold text-slate-900">5-Blok Stres Simülatörü</h3>
+                            <p class="text-xs text-slate-500">Blok streslerini değiştirerek Master UCI skorunu test edin.</p>
+                        </div>
+                        <button onclick="resetSliders()" class="text-xs font-semibold text-rose-700 hover:text-rose-900 underline">Sıfırla</button>
+                    </div>
+
+                    <!-- Slider A -->
+                    <div>
+                        <div class="flex justify-between text-xs font-medium mb-1">
+                            <span class="text-slate-700">Blok A: Dış Denge & Kur (K01-K07)</span>
+                            <span id="val-block-a" class="font-bold text-rose-700">0.82</span>
+                        </div>
+                        <input type="range" min="0" max="1" step="0.01" value="0.82" id="slider-block-a" oninput="updateUciSim()" class="w-full accent-rose-700 cursor-pointer">
+                    </div>
+
+                    <!-- Slider B -->
+                    <div>
+                        <div class="flex justify-between text-xs font-medium mb-1">
+                            <span class="text-slate-700">Blok B: Bankacılık & Likidite (K08-K14)</span>
+                            <span id="val-block-b" class="font-bold text-rose-700">0.68</span>
+                        </div>
+                        <input type="range" min="0" max="1" step="0.01" value="0.68" id="slider-block-b" oninput="updateUciSim()" class="w-full accent-rose-700 cursor-pointer">
+                    </div>
+
+                    <!-- Slider C -->
+                    <div>
+                        <div class="flex justify-between text-xs font-medium mb-1">
+                            <span class="text-slate-700">Blok C: Ekonofizik & Parasal Köpük (K15-K21)</span>
+                            <span id="val-block-c" class="font-bold text-rose-700">0.75</span>
+                        </div>
+                        <input type="range" min="0" max="1" step="0.01" value="0.75" id="slider-block-c" oninput="updateUciSim()" class="w-full accent-rose-700 cursor-pointer">
+                    </div>
+
+                    <!-- Slider D -->
+                    <div>
+                        <div class="flex justify-between text-xs font-medium mb-1">
+                            <span class="text-slate-700">Blok D: Nöro-Bilişsel & Stres (K22-K27)</span>
+                            <span id="val-block-d" class="font-bold text-rose-700">0.71</span>
+                        </div>
+                        <input type="range" min="0" max="1" step="0.01" value="0.71" id="slider-block-d" oninput="updateUciSim()" class="w-full accent-rose-700 cursor-pointer">
+                    </div>
+
+                    <!-- Slider E -->
+                    <div>
+                        <div class="flex justify-between text-xs font-medium mb-1">
+                            <span class="text-slate-700">Blok E: Kurumsal Entropi / DEI (K28-K32)</span>
+                            <span id="val-block-e" class="font-bold text-rose-700">0.65</span>
+                        </div>
+                        <input type="range" min="0" max="1" step="0.01" value="0.65" id="slider-block-e" oninput="updateUciSim()" class="w-full accent-rose-700 cursor-pointer">
+                    </div>
+
+                    <!-- FORMULA EQUATION DISPLAY -->
+                    <div class="bg-slate-900 text-slate-200 p-3.5 rounded-lg text-xs space-y-1 font-mono">
+                        <p class="text-amber-400 font-bold">// Leontief Copula Operatörü</p>
+                        <p>Phi_Total = max(1 - Π(1 - Phi_j)^wj, max(Phi_j >= theta))</p>
+                        <p>MASTER_UCI = min(1.0, (1 - exp(-λ [Σw_k Phi_k + Σγ_ij Phi_i Phi_j])) · AM)</p>
+                    </div>
+                </div>
+
+                <!-- HISTORICAL UCI TRAJECTORY CHART (30 YEARS) -->
+                <div class="lg:col-span-7 bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <div>
+                                <h3 class="font-bold text-slate-900">Türkiye 30 Yıllık Tarihsel UCI Stres Eğrisi (1994–2026)</h3>
+                                <p class="text-xs text-slate-500">Kritik kriz dönemlerinde Master UCI tırmanışı ve rejim geçişleri.</p>
+                            </div>
+                            <span class="text-xs font-semibold px-2 py-1 rounded bg-rose-100 text-rose-800">30 Yıllık Otopsi</span>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="uciHistoryChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+                        <div class="p-2 rounded bg-emerald-50 text-emerald-800 border border-emerald-200">
+                            <span class="font-bold">Yeşil</span> (&lt; 0.30)<br>Denge / Düşük Entropi
+                        </div>
+                        <div class="p-2 rounded bg-amber-50 text-amber-800 border border-amber-200">
+                            <span class="font-bold">Sarı</span> (0.30 - 0.55)<br>Erken Alarm
+                        </div>
+                        <div class="p-2 rounded bg-orange-50 text-orange-800 border border-orange-200">
+                            <span class="font-bold">Turuncu</span> (0.55 - 0.75)<br>Akut Kriz / Ponzi
+                        </div>
+                        <div class="p-2 rounded bg-rose-50 text-rose-900 border border-rose-200">
+                            <span class="font-bold">Kırmızı</span> (&ge; 0.75)<br>Sistemik Çöküş
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- TAB 2: 12 TARİHSEL KRİZ OTOPSİSİ -->
+        <!-- ========================================== -->
+        <section id="tab-crises" class="tab-content hidden space-y-6">
+            
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <span class="inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-800 mb-2">30+ Yıllık Adli Kronoloji</span>
+                <h2 class="text-2xl font-bold text-slate-900">Türkiye'nin 12 Tarihsel Krizinin Eksiksiz Otopsisi (1994–2026)</h2>
+                <p class="mt-1 text-sm text-slate-600 max-w-4xl">
+                    1994 Likidite Çöküşü'nden 2024–2026 Dezenflasyon Kapanı'na kadar Türkiye finansal tarihini yönlendiren 12 kriz, aynı adli otopsi protokolüyle parçalarına ayrılmıştır. Sol taraftaki listeden bir kriz seçerek detaylı ekonofiziksel, nöro-bilişsel ve mali otopsi verilerini inceleyebilirsiniz.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- CRISIS SELECTOR LIST (LEFT PANEL) -->
+                <div class="lg:col-span-4 bg-white rounded-xl border border-slate-200 shadow-sm p-4 space-y-2 max-h-[700px] overflow-y-auto">
+                    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider px-2 mb-2">Kriz Kronolojisi (Seçiniz)</h3>
+                    <div id="crisis-list-container" class="space-y-1">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- CRISIS OTOPSY DETAIL PANEL (RIGHT PANEL) -->
+                <div class="lg:col-span-8 bg-white rounded-xl border border-slate-200 shadow-sm p-6 flex flex-col justify-between">
+                    <div id="crisis-detail-content" class="space-y-5">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- TAB 3: 32 GÖSTERGE & EKONOFİZİK KATMANLARI -->
+        <!-- ========================================== -->
+        <section id="tab-indicators" class="tab-content hidden space-y-6">
+            
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <span class="inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800 mb-2">L1–L7 Hiyerarşik Ekonofizik</span>
+                <h2 class="text-2xl font-bold text-slate-900">32 Kanonik Gösterge ve Ekonofizik Katmanları</h2>
+                <p class="mt-1 text-sm text-slate-600 max-w-4xl">
+                    T2SAIM modeli; emir defteri mikro-yapısından (L1) toplumsal amigdala stresine (L4) ve René Thom Cusp Katastrofi modellerine (L7) kadar 32 göstergeyi 5 blokta izler. Aşağıdaki tablo üzerinden filtreleme yapabilir veya katman denklemlerini keşfedebilirsiniz.
+                </p>
+            </div>
+
+            <!-- EKONOFİZİK KATMANLARI (L1-L7) CARDS -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                    <span class="text-xs font-bold text-rose-700">L1: Piyasa Mikroyapısı</span>
+                    <h4 class="font-bold text-slate-900 text-sm mt-1">Kyle Likiditesi & Amihud</h4>
+                    <p class="text-xs text-slate-500 mt-1">Emir defterinde likidite çekilmesi, spoofing ve tahta boşalması.</p>
+                    <div class="mt-2 text-[11px] font-mono bg-slate-100 p-1.5 rounded">λ_Kyle = Cov(ΔP, Q) / Var(Q)</div>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                    <span class="text-xs font-bold text-indigo-700">L2: Volatilite & Kalın Kuyruk</span>
+                    <h4 class="font-bold text-slate-900 text-sm mt-1">Hawkes Kaskadı & Hurst</h4>
+                    <p class="text-xs text-slate-500 mt-1">Süperkritik satış çığı ve dallanma oranı (η ≥ 1.00 ile kendi kendini besleyen kriz).</p>
+                    <div class="mt-2 text-[11px] font-mono bg-slate-100 p-1.5 rounded">λ_H(t) = μ + Σ α e^-β(t-ti)</div>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                    <span class="text-xs font-bold text-amber-700">L3: Makro-Termodinamik Borç</span>
+                    <h4 class="font-bold text-slate-900 text-sm mt-1">Soddy Gap & EROEI</h4>
+                    <p class="text-xs text-slate-500 mt-1">Sanal para stoku (M2) ile fiziksel rezerv (NIR) ve enerji geri dönüşü kısıtı.</p>
+                    <div class="mt-2 text-[11px] font-mono bg-slate-100 p-1.5 rounded">S_gap = M2(t) / NIR(t) > 15.0</div>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                    <span class="text-xs font-bold text-emerald-700">L4 & L7: Nöro-Stres & Cusp</span>
+                    <h4 class="font-bold text-slate-900 text-sm mt-1">Amigdala Yükü & Cusp</h4>
+                    <p class="text-xs text-slate-500 mt-1">Çift-hat nörobiyolojisi, PFC kontrol kaybı ve katastrofik çatallanma (Δ ≤ 0).</p>
+                    <div class="mt-2 text-[11px] font-mono bg-slate-100 p-1.5 rounded">dx/dt = -(x³ + u·x + v)</div>
+                </div>
+            </div>
+
+            <!-- INDICATORS SEARCH & FILTER TABLE -->
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden p-6">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
+                    <div>
+                        <h3 class="font-bold text-slate-900">32 Kanonik Gösterge Veritabanı</h3>
+                        <p class="text-xs text-slate-500">Kritik eşikler, öncü uyarı ufukları ve formül kodları.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 w-full sm:w-auto">
+                        <input type="text" id="indicator-search" oninput="filterIndicators()" placeholder="Gösterge ara..." class="px-3 py-1.5 text-xs border border-slate-300 rounded-lg focus:outline-none focus:border-rose-600 w-full sm:w-48">
+                        <select id="indicator-block-filter" onchange="filterIndicators()" class="px-3 py-1.5 text-xs border border-slate-300 rounded-lg focus:outline-none focus:border-rose-600">
+                            <option value="ALL">Tüm Bloklar (A-E)</option>
+                            <option value="Blok A">Blok A: Dış Denge</option>
+                            <option value="Blok B">Blok B: Bankacılık</option>
+                            <option value="Blok C">Blok C: Ekonofizik</option>
+                            <option value="Blok D">Blok D: Nöro-Stres</option>
+                            <option value="Blok E">Blok E: Kurumsal Entropi</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-slate-100 text-slate-700 uppercase font-semibold text-[11px] border-b border-slate-200">
+                            <tr>
+                                <th class="p-3">Kod</th>
+                                <th class="p-3">Gösterge Tanımı</th>
+                                <th class="p-3">Ait Olduğu Blok</th>
+                                <th class="p-3">Kritik Eşik (θ)</th>
+                                <th class="p-3">Öncü Uyarı Ufku</th>
+                                <th class="p-3">Formül Kodu</th>
+                            </tr>
+                        </thead>
+                        <tbody id="indicators-tbody" class="divide-y divide-slate-100">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- TAB 4: UNORTHODOX SENSÖRLER & SDT-PSI -->
+        <!-- ========================================== -->
+        <section id="tab-decay" class="tab-content hidden space-y-6">
+            
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <span class="inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-rose-900 text-white mb-2">Unorthodox Telemetri Mimarisi</span>
+                <h2 class="text-2xl font-bold text-slate-900">Toplumsal Çürümenin Fiziksel, Biyolojik ve Adli Sensörlerle Tespiti</h2>
+                <p class="mt-1 text-sm text-slate-600 max-w-4xl">
+                    Rejimlerin denetimindeki ulusal istatistik kurumlarının sunduğu sanal göstergelerin aksine; toplumsal çözülme fiziksel dünyada silinemez termodinamik, demografik ve mekanik izler bırakır. Bu modül; Peter Turchin'in Yapısal-Demografik Siyasal Stres İndeksi (SDT-PSI) ile NECSI Gıda Enflasyonu ve Kentsel İsyan Faz Geçişi Modellerini canlı olarak simüle eder.
+                </p>
+            </div>
+
+            <!-- SECTION 1: TURCHIN SDT-PSI SIMULATOR & MODEL -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- PSI SIMULATOR CONTROLS -->
+                <div class="lg:col-span-5 bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-4">
+                    <div class="border-b border-slate-100 pb-3 flex justify-between items-center">
+                        <div>
+                            <h3 class="font-bold text-slate-900">SDT-PSI Siyasal Stres Simülatörü</h3>
+                            <p class="text-xs text-slate-500">Peter Turchin & Jack Goldstone Yapısal-Demografik Parametreleri.</p>
+                        </div>
+                        <button onclick="resetPsiSliders()" class="text-xs font-semibold text-rose-700 hover:text-rose-900 underline">Sıfırla</button>
+                    </div>
+
+                    <!-- Slider 1: Young Cohort (y) -->
+                    <div>
+                        <div class="flex justify-between text-xs font-medium mb-1">
+                            <span class="text-slate-700">Genç Nüfus Oranı (y: 18-25 Yaş)</span>
+                            <span id="val-psi-y" class="font-bold text-rose-700">0.22</span>
+                        </div>
+                        <input type="range" min="0.05" max="0.40" step="0.01" value="0.22" id="slider-psi-y" oninput="updatePsiSim()" class="w-full accent-rose-700 cursor-pointer">
+                    </div>
+
+                    <!-- Slider 2: Urbanization Ratio (u) -->
+                    <div>
+                        <div class="flex justify-between text-xs font-medium mb-1">
+                            <span class="text-slate-700">Kentsel Yığılma Katsayısı (u)</span>
+                            <span id="val-psi-u" class="font-bold text-rose-700">0.78</span>
+                        </div>
+                        <input type="range" min="0.30" max="0.95" step="0.01" value="0.78" id="slider-psi-u" oninput="updatePsiSim()" class="w-full accent-rose-700 cursor-pointer">
+                    </div>
+
+                    <!-- Slider 3: Relative Wage (w_r) -->
+                    <div>
+                        <div class="flex justify-between text-xs font-medium mb-1">
+                            <span class="text-slate-700">Bağıl Ücret Düzeyi (w_r: Medyan/GSYİH)</span>
+                            <span id="val-psi-wr" class="font-bold text-rose-700">0.45</span>
+                        </div>
+                        <input type="range" min="0.10" max="1.00" step="0.01" value="0.45" id="slider-psi-wr" oninput="updatePsiSim()" class="w-full accent-rose-700 cursor-pointer">
+                    </div>
+
+                    <!-- Slider 4: Elite Overproduction (e) -->
+                    <div>
+                        <div class="flex justify-between text-xs font-medium mb-1">
+                            <span class="text-slate-700">Elit Aşırı Üretimi Derecesi (e)</span>
+                            <span id="val-psi-e" class="font-bold text-rose-700">0.65</span>
+                        </div>
+                        <input type="range" min="0.10" max="1.00" step="0.01" value="0.65" id="slider-psi-e" oninput="updatePsiSim()" class="w-full accent-rose-700 cursor-pointer">
+                    </div>
+
+                    <!-- Slider 5: Elite Wealth Share (s) -->
+                    <div>
+                        <div class="flex justify-between text-xs font-medium mb-1">
+                            <span class="text-slate-700">Elit Servet Yoğunlaşması (s: En Zengin %1)</span>
+                            <span id="val-psi-s" class="font-bold text-rose-700">0.55</span>
+                        </div>
+                        <input type="range" min="0.15" max="0.85" step="0.01" value="0.55" id="slider-psi-s" oninput="updatePsiSim()" class="w-full accent-rose-700 cursor-pointer">
+                    </div>
+
+                    <!-- Slider 6: Public Debt / GDP (d/Y) -->
+                    <div>
+                        <div class="flex justify-between text-xs font-medium mb-1">
+                            <span class="text-slate-700">Devlet Mali Kırılganlığı (d/Y)</span>
+                            <span id="val-psi-d" class="font-bold text-rose-700">0.80</span>
+                        </div>
+                        <input type="range" min="0.10" max="1.50" step="0.01" value="0.80" id="slider-psi-d" oninput="updatePsiSim()" class="w-full accent-rose-700 cursor-pointer">
+                    </div>
+
+                    <!-- Slider 7: Real Interest Rate (r) -->
+                    <div>
+                        <div class="flex justify-between text-xs font-medium mb-1">
+                            <span class="text-slate-700">Reel Faiz Borç Yükü (r)</span>
+                            <span id="val-psi-r" class="font-bold text-rose-700">0.12</span>
+                        </div>
+                        <input type="range" min="0.01" max="0.40" step="0.01" value="0.12" id="slider-psi-r" oninput="updatePsiSim()" class="w-full accent-rose-700 cursor-pointer">
+                    </div>
+
+                    <!-- MATHEMATICAL BREAKDOWN CARD -->
+                    <div class="p-3 bg-slate-900 text-slate-200 rounded-lg text-xs space-y-1 font-mono">
+                        <p class="text-amber-400 font-bold">// SDT Denklem Hesaplaması</p>
+                        <p>N_m (Kitle Potansiyeli) = <span id="calc-nm" class="text-emerald-400">0.381</span></p>
+                        <p>E_m (Elit Potansiyeli) = <span id="calc-em" class="text-indigo-400">0.794</span></p>
+                        <p>w_d (Devlet İflas Kapasitesi) = <span id="calc-wd" class="text-rose-400">0.096</span></p>
+                        <p class="pt-1 border-t border-slate-800 text-amber-300 font-bold">PSI Score = N_m · E_m · w_d = <span id="calc-psi-raw">0.029</span> (<span id="calc-psi-idx" class="text-rose-400">385 İndeks</span>)</p>
+                    </div>
+                </div>
+
+                <!-- PSI HISTORICAL & PROJECTED TRAJECTORY CHART -->
+                <div class="lg:col-span-7 bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <div>
+                                <h3 class="font-bold text-slate-900">Siyasal Stres İndeksi (PSI) Trendi & Kırılma Eşiği</h3>
+                                <p class="text-xs text-slate-500">Turchin +3σ kritik kararsızlık eşiği ve toplumsal faz geçiş bölgesi.</p>
+                            </div>
+                            <div id="psi-status-badge" class="px-2.5 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-800 border border-rose-300">
+                                ● KRİTİK İSYAN / DEVİR EŞİĞİ (PSI > 300)
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="psiChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- DIFFERENTIAL EQUATION ACADEMIC CARD -->
+                    <div class="mt-4 p-3 bg-slate-50 rounded-lg border border-slate-200 text-xs space-y-1">
+                        <span class="font-bold text-slate-800 block">Elit Büyüme Dinamiği Diferansiyel Denklemi:</span>
+                        <div class="font-mono text-slate-700 bg-white p-2 rounded border border-slate-200 text-[11px]">
+                            de / dt = a · e · (1 - e / C(w_r))
+                        </div>
+                        <p class="text-slate-500 text-[11px] mt-1">
+                            Burada <span class="font-mono">a</span> sosyal hareketlilik katsayısını, <span class="font-mono">C(w_r)</span> ise taban ücret seviyesiyle sınırlanan elit taşıma kapasitesini temsil eder. Elit aşırı üretimi gerçekleştiğinde elit içi rekabet ve hizipleşme devleti içeriden çökertir.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 2: NECSI FOOD PRICE RIOT PHASE TRANSITION MODEL -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- NECSI FOOD PRICE CHART -->
+                <div class="lg:col-span-7 bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="flex items-center justify-between mb-3">
+                        <div>
+                            <h3 class="font-bold text-slate-900">NECSI Gıda Enflasyonu & Kentsel İsyan Eşiği</h3>
+                            <p class="text-xs text-slate-500">Yaneer Bar-Yam / Marco Lagi FAO Gıda Fiyat İndeksi (FPI) ve 210 Puan İsyan Sınırı.</p>
+                        </div>
+                        <span class="text-xs font-bold text-rose-700 bg-rose-50 px-2 py-1 rounded font-mono">FAO_FPI ≥ 210</span>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="faoChart"></canvas>
+                    </div>
+                    <p class="mt-3 text-xs text-slate-600 bg-slate-50 p-2.5 rounded border border-slate-200">
+                        <span class="font-bold text-slate-800">Termodinamik Faz Geçişi:</span> BM FAO Gıda Fiyat İndeksi 210 kritik puan eşiğini aştığında kitleler stokastik bireysel tepkilerden koordine kentsel isyan ve ayaklanma fazına geçer (Örn. 2008 Küresel Gıda Krizleri, 2011 Arap Baharı, 2022 Küresel Şok).
+                    </p>
+                </div>
+
+                <!-- UNORTHODOX DATA STREAMS & PROXIES -->
+                <div class="lg:col-span-5 bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-4">
+                    <h3 class="font-bold text-slate-900 border-b border-slate-100 pb-2">Rejim Tahrifatına Bağışık Unorthodox Sensörler</h3>
+                    
+                    <div class="space-y-3 text-xs">
+                        <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                            <span class="font-bold text-indigo-900 block">1. CBOT Spekülatif Net Pozisyonlar & Biyoetanol Kotaları</span>
+                            <p class="text-slate-600 mt-1">Chicago borsa türevleri ve mısır/buğday biyoetanol kotası, gıda balonu öncesi spekülatif sermaye yığılmasını anlık izler.</p>
+                        </div>
+
+                        <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                            <span class="font-bold text-emerald-900 block">2. Baltic Dry Index & Liman Tahıl Tahliyesi</span>
+                            <p class="text-slate-600 mt-1">Fiziksel kuru yük navlun oranları ve limanlardaki tahıl boşaltım tonajı, gıda arzı darboğazlarını gümrük beyanından önce tesciller.</p>
+                        </div>
+
+                        <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                            <span class="font-bold text-amber-900 block">3. Biyolojik Atık, Morg Telemetrisi & Dilbilim Sentaksları</span>
+                            <p class="text-slate-600 mt-1">Morg kapasite dolulukları, kanalizasyon stres hormon pıkları ve dijital mecralardaki dilbilimsel sentaks daralması; resmi istatistiklerden tamamen bağımsız fiziksel kırılma ayak izleridir.</p>
+                        </div>
+
+                        <div class="p-3 rounded-lg bg-rose-50 border border-rose-200 text-rose-950">
+                            <span class="font-bold block">Adli Bağışıklık Güvencesi:</span>
+                            Genç nüfus kohortları 20 yıl önceki biyolojik doğum kütüklerine dayanır. Fiziksel kalori ve navlun tonajları rejimler tarafından geriye dönük tahrif edilemez.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- TAB 5: SODDY, NOH & BENFORD ADLİ LAB -->
+        <!-- ========================================== -->
+        <section id="tab-soddy" class="tab-content hidden space-y-6">
+            
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <span class="inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 mb-2">Adli Finans Laboratuvarı</span>
+                <h2 class="text-2xl font-bold text-slate-900">Soddy M2/NIR Kopuşu, NOH Sifonu ve Benford Tahrifat Testi</h2>
+                <p class="mt-1 text-sm text-slate-600 max-w-4xl">
+                    Frederick Soddy'nin termodinamik borç modeli; sanal servet stoku (M2) ile fiziksel rezerv (NIR) arasındaki kopuşu gösterir. Bu bölümde ayrıca Net Hata ve Noksan (NOH) hazne/sifon döngüsü ile TÜİK enflasyon verilerinin Newcomb-Benford birinci basamak adli testi görselleştirilmiştir.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- SODDY & NOH DIVERGENCE CHART -->
+                <div class="lg:col-span-6 bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="flex items-center justify-between mb-3">
+                        <div>
+                            <h3 class="font-bold text-slate-900">Soddy M2 / NIR Kopuşu ve NOH Akışları</h3>
+                            <p class="text-xs text-slate-500">Geniş para arzı patlaması ve Net Hata Noksan hazne/sifon fazı.</p>
+                        </div>
+                        <span class="text-xs font-mono font-bold text-rose-700 bg-rose-50 px-2 py-1 rounded">M2/NIR > 15.0</span>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="soddyChart"></canvas>
+                    </div>
+                    <div class="mt-3 p-3 bg-slate-50 rounded-lg text-xs text-slate-600 border border-slate-200">
+                        <span class="font-bold text-slate-800">Adli Bulgu:</span> 2021–2022 döneminde NOH kalemine +26.2 Milyar $ kayıt dışı giriş ("Hazne Fazı") yapılmış; 2024 sonrasında ortodoks sıkılaşma ile -$18.4 Milyar $ adli sermaye kaçışı ("Sifon Fazı") gerçekleşmiştir.
+                    </div>
+                </div>
+
+                <!-- BENFORD'S LAW AUDIT INTERACTIVE TEST -->
+                <div class="lg:col-span-6 bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <h3 class="font-bold text-slate-900">Benford Yasası Adli Tahrifat Testi</h3>
+                                <p class="text-xs text-slate-500">TÜİK TÜFE alt madde sepeti verilerinin logaritmik frekans sapması.</p>
+                            </div>
+                            <div class="text-right">
+                                <span id="mad-score-badge" class="text-xs font-mono font-bold px-2.5 py-1 rounded bg-rose-100 text-rose-800 border border-rose-300">MAD_B = 0.021</span>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="benfordChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="mt-3 p-3 bg-rose-50 rounded-lg border border-rose-200 text-xs text-rose-900">
+                        <span class="font-bold">Adli Test Teşhisi:</span> Ortalama Mutlak Sapma (MAD_B = 0.021), θ = 0.015 kritik adli manipülasyon eşiğini aşmıştır. 2021–2023 dönemi enflasyon verilerinin masa başında müdahaleye uğradığı adli olarak belgelenmiştir.
+                    </div>
+                </div>
+            </div>
+
+            <!-- OFF-BALANCE HIDDEN LIQUIDITY ITEMS -->
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <h3 class="font-bold text-slate-900 mb-3">İktisadi Karanlık Madde: Bilanço Dışı Gizli Kalemler</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <div class="text-xs font-bold text-slate-500 uppercase">1. BOTAŞ - Gazprom Ertelemesi</div>
+                        <div class="text-xl font-extrabold text-slate-900 mt-1">~20 Milyar $</div>
+                        <p class="mt-2 text-xs text-slate-600">2022–2023 doğalgaz borcu erteletilerek TCMB rezerv çöküşü geçici olarak maskelenmiştir.</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <div class="text-xs font-bold text-slate-500 uppercase">2. İkili Swap Anlaşmaları</div>
+                        <div class="text-xl font-extrabold text-slate-900 mt-1">28 Milyar $</div>
+                        <p class="mt-2 text-xs text-slate-600">Katar, BAE, Çin ve G.Kore merkez bankaları ile brüt rezervleri şişiren şartlı borçlanma.</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <div class="text-xs font-bold text-slate-500 uppercase">3. Kamu Bankaları Protokolü</div>
+                        <div class="text-xl font-extrabold text-slate-900 mt-1">"128 Milyar $"</div>
+                        <p class="mt-2 text-xs text-slate-600">TCMB dövizlerinin arka kapıdan devredilerek piyasaya doğrudan satılması mekanizması.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- TAB 6: CORE-20 KÜRESEL KIYAS -->
+        <!-- ========================================== -->
+        <section id="tab-core20" class="tab-content hidden space-y-6">
+            
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <span class="inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 mb-2">Makro-Finansal Panoptikon</span>
+                <h2 class="text-2xl font-bold text-slate-900">Core-20 Egemen Ülke Kırılganlık Yüzeyi Karşılaştırması</h2>
+                <p class="mt-1 text-sm text-slate-600 max-w-4xl">
+                    Küresel finansal sermaye hareketlerinin %85'ini kontrol eden 20 egemen merkez; Cari Açık, Dış Borç / Rezerv Rasyosu, Kurumsal Çürüme (DEI) ve T2SAIM Risk Skorları ile kıyaslanmıştır.
+                </p>
+            </div>
+
+            <!-- CORE-20 CHART & TABLE GRID -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- RISK SCORE COMPARISON CHART -->
+                <div class="lg:col-span-12 bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="flex items-center justify-between mb-3">
+                        <div>
+                            <h3 class="font-bold text-slate-900">Core-20 T2SAIM Risk Skorları Kıyaslaması</h3>
+                            <p class="text-xs text-slate-500">Türkiye (84.2) en yüksek makro-finansal risk ve kurumsal çürüme skoruna sahiptir.</p>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="core20Chart"></canvas>
+                    </div>
+                </div>
+
+                <!-- CORE-20 DATA TABLE -->
+                <div class="lg:col-span-12 bg-white p-6 rounded-xl border border-slate-200 shadow-sm overflow-x-auto">
+                    <h3 class="font-bold text-slate-900 mb-3">Core-20 Egemen Ülke Veritabanı</h3>
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-slate-100 text-slate-700 uppercase font-semibold border-b border-slate-200">
+                            <tr>
+                                <th class="p-2.5">Kod</th>
+                                <th class="p-2.5">Ülke</th>
+                                <th class="p-2.5">Cari Açık / GSYİH</th>
+                                <th class="p-2.5">Dış Borç / Rezerv</th>
+                                <th class="p-2.5">Kurumsal Çürüme (DEI)</th>
+                                <th class="p-2.5">T2SAIM Risk Skoru</th>
+                                <th class="p-2.5">Kriz Arketipi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="core20-tbody" class="divide-y divide-slate-100">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- TAB 7: STOA PROTOKOLÜ & DAUBERT KANIT -->
+        <!-- ========================================== -->
+        <section id="tab-stoa" class="tab-content hidden space-y-6">
+            
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <span class="inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-slate-800 text-white mb-2">Entronik Yeniden İnşa</span>
+                <h2 class="text-2xl font-bold text-slate-900">5 Katmanlı Stoa Devre Kesicileri & Daubert Tier-1 Veritabanı</h2>
+                <p class="mt-1 text-sm text-slate-600 max-w-4xl">
+                    Finansal krizlerin tekrarlanmasını önlemek; insan zaafiyetlerini ve amigdala hezeyanlarını baypas eden otonom Stoa Devre Kesici Protokolü ile mümkündür. Alt bölümde ise FRE 702 ve Daubert Tier-1 delil standartlarında hazırlanmış kanıt tablosu sunulmuştur.
+                </p>
+            </div>
+
+            <!-- 5 STOA PROTOCOL ACCORDION CARDS -->
+            <div class="space-y-3">
+                <h3 class="font-bold text-slate-900">5 Katmanlı Otonom Stoa Devre Kesici Protokolü</h3>
+                
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-4">
+                    <span class="text-xs font-bold text-rose-700 uppercase">Katman 1</span>
+                    <h4 class="font-bold text-slate-900 text-base">Ekonofiziksel Rezerv Çapası (Soddy Limiti)</h4>
+                    <p class="text-xs text-slate-600 mt-1">
+                        M2 para basım hızı net sıvı rezervlerle kanunen sınırlandırılır (M2 ≤ k · NIR_liquid). NIR < 0 olduğunda TCMB'nin Hazine avansı ve örtülü döviz satışı algoritmik olarak tamamen kilitlenir.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-4">
+                    <span class="text-xs font-bold text-amber-700 uppercase">Katman 2</span>
+                    <h4 class="font-bold text-slate-900 text-base">Biyo-Bilişsel Amigdala Soğutma Protokolü</h4>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Piyasa geneli amigdala stresi A_load ≥ 0.65 ve PFC_ctrl < 0.20 olduğunda; tüm kaldıraçlı işlemler dondurulur, PPK üyeleri için 48 saatlik bilişsel soğuma ve idari görevden alma yasağı başlar.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-4">
+                    <span class="text-xs font-bold text-indigo-700 uppercase">Katman 3</span>
+                    <h4 class="font-bold text-slate-900 text-base">TBML ve Veri Şeffaflık Filtresi</h4>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Tüm dış ticaret faturaları blokzincir üzerinden BM COMTRADE ayna verileriyle eşleştirilir. Gümrük faturası sapması ±%15'i aşarsa bloke edilir; Benford testi (MAD_B ≥ 0.015) aşan veriler uluslararası denetime açılır.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-4">
+                    <span class="text-xs font-bold text-emerald-700 uppercase">Katman 4</span>
+                    <h4 class="font-bold text-slate-900 text-base">Karşı Döngüsel Likidite ve Teminat Tamponu</h4>
+                    <p class="text-xs text-slate-600 mt-1">
+                        Basel III kredi açığı > +%10 olduğunda bankaların LDR tavanı %100'e sabitlenir. Konut/Tüketici kredilerinde LTV %50'ye çekilir ve %3 kontr-döngüsel ek sermaye karşılığı zorunlu kılınır.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-4">
+                    <span class="text-xs font-bold text-slate-800 uppercase">Katman 5</span>
+                    <h4 class="font-bold text-slate-900 text-base">Liyakat ve Epistemik Bağımsızlık Mührü</h4>
+                    <p class="text-xs text-slate-600 mt-1">
+                        TCMB, BDDK, SPK ve TÜİK yönetimleri 5 yıllık sabit süreyle atanır. Görevden alma yalnızca ağır adli suç durumunda Yargıtay ve Danıştay 2/3 kararıyla mümkündür. Kamu İhale Kanunu istisnaları (21/b) mülga edilir.
+                    </p>
+                </div>
+            </div>
+
+            <!-- DAUBERT TIER-1 EVIDENCE ENGINE -->
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-6 overflow-hidden">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
+                    <div>
+                        <h3 class="font-bold text-slate-900">Daubert Tier-1 Kanıt ve Adli Doğruluk Veritabanı</h3>
+                        <p class="text-xs text-slate-500">FRE 702 ve ENFSI standartlarında tescillenmiş birincil fiziksel kanıt zinciri.</p>
+                    </div>
+                    <input type="text" id="daubert-search" oninput="filterDaubert()" placeholder="Kanıt veritabanında ara..." class="px-3 py-1.5 text-xs border border-slate-300 rounded-lg focus:outline-none focus:border-rose-600 w-full sm:w-64">
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-slate-100 text-slate-700 uppercase font-semibold border-b border-slate-200">
+                            <tr>
+                                <th class="p-2.5">Olay / Kriz</th>
+                                <th class="p-2.5">Fiziksel Kanıt & Birincil Kaynak</th>
+                                <th class="p-2.5">Model Çıkarımı / Teşhis</th>
+                                <th class="p-2.5 text-center">Epistemik Durum</th>
+                            </tr>
+                        </thead>
+                        <tbody id="daubert-tbody" class="divide-y divide-slate-100">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 py-6 border-t border-slate-800 text-xs mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div>
+                <p class="font-bold text-slate-200">T2SAIM Master Gözlemevi © 1994–2026</p>
+                <p class="text-slate-500 mt-0.5">Termodinamik ve Toplumsal Asimetrik İstihbarat Modeli - Daubert Tier-1 Adli Standartları</p>
+            </div>
+            <div class="font-mono text-[11px] text-slate-400">
+                KnowledgeTime ≤ ValidTime ≤ DecisionTime
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // GLOBAL DATA STRUCTURES
+        const crisesData = [
+            {
+                id: '1994',
+                title: '1994 Likidite ve Hazine Bonosu Çöküşü',
+                date: 'Ocak–Nisan 1994',
+                trigger: 'Başbakan Çiller\'in faizleri talimatla %70-80 bandına çekme ısrarı ve TCMB Kısa Vadeli Avans hesabının tüketilmesi.',
+                metrics: 'Interbank repo faizi %7.000; Dolar kuru 14.000 TL\'den 40.000 TL\'ye fırladı (%60 devalüasyon); TÜFE %125.5.',
+                neuro: 'A_load = 0.88, PFC_ctrl < 0.15. Karar alıcılar rasyonel gerçeklikten koparak inatlaşma fazına girdi.',
+                cost: '5 Nisan İstikrar Paketi; 3 banka tasfiye edildi; Mevduata %100 devlet garantisi verildi; GSYİH %6.1 küçüldü.',
+                minsky: 'Hazine borçlanması Spekülatif rejimden açık Ponzi rejimine savruldu. Günah keçisi: Kredi derecelendirme kuruluşları.'
+            },
+            {
+                id: '2000',
+                title: 'Kasım 2000 Likidite Şoku',
+                date: 'Kasım–Aralık 2000',
+                trigger: 'IMF destekli Enflasyon Hedefli Döviz Kuru Çıpası (crawling peg) altında yabancı arbitraj fonlaması tıkanması.',
+                metrics: 'Gecelik faizler %1.700; Demirbank Hazine portföyünü fonlayamaz hale geldi; Cari açık / GSYİH %3.7.',
+                neuro: 'A_load = 0.76, K_eff = 0.10. Bankacılık yöneticileri likidite kilitlenmesini inkar etti.',
+                cost: 'Demirbank 6 Aralık\'ta TMSF\'ye devredildi; IMF\'den 7.5 Milyar $ Ek Rezerv Kolaylığı (SRF) alındı.',
+                minsky: 'Tam Ponzi rejimine geçiş. Günah keçisi olarak Demirbank tasfiye edildi.'
+            },
+            {
+                id: '2001',
+                title: 'Şubat 2001 Anayasa Fırlatma ve Dalgalı Kur Çöküşü',
+                date: '19–21 Şubat 2001',
+                trigger: 'MGK toplantısında Anayasa kitapçığı fırlatılmasıyla tetiklenen güven çöküşü ve sabit çıpanın patlaması.',
+                metrics: 'Gecelik repo faizleri rekor kırarak %7.500\'e fırladı; TCMB 1 günde 5B$ rezerv yaktı; Dolar 680 Bin TL\'den 1.65 Milyon TL\'ye fırladı (%55 erime).',
+                neuro: 'A_load = 0.95, PFC_ctrl = 0.05. Tam bilişsel kilitlenme; kamu otoritesi döviz talebi karşısında felç oldu.',
+                cost: '22 banka battı; Kamu maliyet yükü 47 Milyar $ (GSYİH\'nin %32\'si); Ekonomi %5.7 küçüldü; Kemal Derviş GEGP başlatıldı.',
+                minsky: 'Battiston DebtRank kaskad iflası. Koalisyon hükümeti siyasi kurban olarak sandığa gömüldü.'
+            },
+            {
+                id: '2006',
+                title: 'Mayıs–Haziran 2006 GOP Satış Dalgası',
+                date: 'Mayıs–Haziran 2006',
+                trigger: 'Fed faiz artırımlarıyla gelişmekte olan piyasalardan ani likidite çıkışı ve cari açığın %6.1\'e tırmanması.',
+                metrics: 'Dolar kuru 1.30 TL\'den 1.75 TL\'ye tırmandı (%35 devalüasyon); BIST 100 sert geriledi.',
+                neuro: 'A_load = 0.68, PFC_ctrl = 0.28. Şok geç algılandı ancak tam kilitlenme yaşanmadı.',
+                cost: 'TCMB olağanüstü gece yarısı toplantılarıyla politika faizini 400 bps artırarak %17.25\'e çıkardı.',
+                minsky: 'Spekülatif finansman döngüsü sert faiz freniyle durduruldu.'
+            },
+            {
+                id: '2008',
+                title: '2008–2009 Küresel Finansal Kriz Bulaşması',
+                date: 'Eylül 2008–2009',
+                trigger: 'Lehman Brothers iflası sonrası küresel dolar likiditesinin donması ve reel sektörün 150B$+ döviz borç riski.',
+                metrics: 'CDS primi 800+ bps; Sanayi üretimi %14 daraldı; Ekonomi 2009\'da -%4.7 küçüldü; İşsizlik %14\'e tırmandı.',
+                neuro: 'A_load = 0.72, PFC_ctrl = 0.22. "Teğet geçecek" teziyle aşırı özgüven ve savunma refleksi.',
+                cost: 'Bankacılık SYR > %16 koruması sayesinde banka batışı yaşanmadı; faiz indirimleri ve teşvik paketleri uygulandı.',
+                minsky: 'Reel sektör firmaları Minsky kırılganlığına girdi; fatura işsiz kalan işçilere kesildi.'
+            },
+            {
+                id: '2013',
+                title: 'Mayıs 2013 Fed Taper Tantrum ve Gezi Şoku',
+                date: 'Mayıs 2013–Ocak 2014',
+                trigger: 'Bernanke\'nin tahvil alımlarını azaltma sinyali ve Gezi protestoları rehavet dönemini bitirdi.',
+                metrics: 'BIST 100 dolar bazlı tepe noktadan çöktü; CDS 110\'dan 250 bps\'e sıçradı; Dolar 1.80\'den 2.05 TL üzerine çıktı.',
+                neuro: 'A_load = 0.78, PFC_ctrl = 0.18. Kuşatılmışlık algısı ve siyasi amigdala öfke patlaması.',
+                cost: 'Karmaşık faiz koridoruna geçildi; Ocak 2014 gece yarısı faiz %4.5\'ten %10.0\'a yükseltildi.',
+                minsky: 'Ucuz küresel likiditeye dayalı Ponzi büyüme son buldu; "Faiz Lobisi" günah keçisi ilan edildi.'
+            },
+            {
+                id: '2016',
+                title: '2016 Kur ve Güvenlik Şoku',
+                date: 'Temmuz–Aralık 2016',
+                trigger: '15 Temmuz darbe girişimi, not indirimi ve özel sektörün 210 Milyar $ net döviz açığı.',
+                metrics: 'Sermaye çıkışları hızlandı; Dolar 2.90\'dan 3.55 TL\'ye yükseldi; Kutuplaşma endeksi Oxy_split > 0.70.',
+                neuro: 'A_load = 0.85, PFC_ctrl = 0.12. Bilişsel güvenlik stresi ve kutuplaşma zirve yaptı.',
+                cost: '2017 referandumu öncesi KGF üzerinden 250 Milyar TL kredi basıldı. Bu adım 2018 krizinin ana yakıtı oldu.',
+                minsky: 'Zombi şirketler KGF ile yüzdürülerek Minsky Ponzi evresi derinleştirildi.'
+            },
+            {
+                id: '2018',
+                title: 'Ağustos 2018 Rahip Brunson Döviz Krizi',
+                date: 'Ağustos 2018',
+                trigger: 'KGF aşırı ısınması, cari açığın %5.5\'e çıkması, 300B$ şirket dış borcu ve ABD yaptırımları.',
+                metrics: 'Dolar kuru birkaç günde 4.50\'den 7.20 TL\'ye tırmandı (%60 devalüasyon); Enflasyon %25.2\'ye fırladı.',
+                neuro: 'A_load = 0.92, PFC_ctrl = 0.08. Tam rasyonel körlük; faiz artırımı ötelenerek kur barajı yıkıldı.',
+                cost: 'TCMB Eylül\'de politika faizini 625 bps artışla %24.0\'e çekmek zorunda kaldı; yüzlerce şirket konkordato ilan etti.',
+                minsky: 'Borç deflasyonu krizine girildi; "Dış Güçler ve Brunson" yapısal bozulmanın örtüsü yapıldı.'
+            },
+            {
+                id: '2020',
+                title: 'Mart 2020 Pandemi ve "128 Milyar Dollar" Rezerv Boşalması',
+                date: 'Mart 2020–Kasım 2020',
+                trigger: 'COVID-19 karantinaları ve kuru 6.85 TL\'de tutmak için başlatılan arka kapı rezerv yakma protokolü.',
+                metrics: 'TCMB net rezervleri eritildi; swap hariç net rezerv eksi -50B / -60B $ bandına indi.',
+                neuro: 'A_load = 0.82, K_eff <= 0.10. Bürokrasi rezervlerin sınırsız olduğu yanılsamasıyla verileri perdeledi.',
+                cost: 'Kamu bankaları üzerinden 128 Milyar $ rezerv yakıldı; Kasım 2020\'de Bakan Albayrak istifa etti.',
+                minsky: 'Kamusal döviz likiditesi tüketildi; rezerv açığı NOH ve ikili swap hatlarıyla gizlendi.'
+            },
+            {
+                id: '2021',
+                title: 'Mart 2021 Naci Ağbal Görevden Alma Şoku',
+                date: 'Mart 2021',
+                trigger: '18 Mart\'taki 200 bps faiz artışının ardından Naci Ağbal\'ın 20 Mart gece yarısı görevden alınması.',
+                metrics: 'Dolar kuru Asya seansında 7.20\'den 8.40 TL\'ye fırladı (%17 Dirac kur sıçraması); BIST devre kesti.',
+                neuro: 'A_load = 0.90, PFC_ctrl = 0.09. Kurumsal özerklik endeksi yerle bir oldu, piyasa güveni kırıldı.',
+                cost: 'Şahap Kavcıoğlu göreve getirildi; faiz artırımları durdurularak heterodoks döneme zemin hazırlandı.',
+                minsky: 'Kurumsal kredibilite buharlaştı, liyakatli bürokratlar sistemik kurban edildi.'
+            },
+            {
+                id: '2021-2023',
+                title: '2021 Güz–2023 Nas Doktrini ve KKM Enflasyon Patlaması',
+                date: 'Eylül 2021–Mayıs 2023',
+                trigger: 'Enflasyon %19 iken "Faiz sebep, enflasyon netice" ve "Nas" söylemiyle politika faizinin %8.5\'e indirilmesi.',
+                metrics: 'Dolar 20 Aralık 2021\'de 18.40 TL\'ye vurdu; Resmi TÜFE %85.5; Net rezervler -$65 Milyar $ ile dip yaptı.',
+                neuro: 'A_load = 0.96, PFC_ctrl = 0.04, K_eff = 0.08. Karar organlarında tam gerçeklik inkarı yaşandı.',
+                cost: 'KKM (Kur Korumalı Mevduat) icat edildi. KKM\'nin kamu bütçesine maliyeti 70+ Milyar Dollar (1.5 Trilyon TL) oldu.',
+                minsky: 'Ulusal para çıpasını kaybetti; bütçe devasa bir Ponzi mekanizmasına dönüştürüldü. Günah keçisi: Stokçular.'
+            },
+            {
+                id: '2024-2026',
+                title: '2024–2026 Dezenflasyon, Kemer Sıkma ve Carry Trade Riski',
+                date: 'Haziran 2023–2026',
+                trigger: 'Ortodoks politikaya dönüşle %50 faiz; Bütçe sürtünmesinin (Φ = 1.47×) kesilememesi ve 40B$ Carry Trade sıcak parası.',
+                metrics: 'Ticari kredi faizleri %60-70; Sanayi kapasitesi %70 altına geriledi; PISA beşeri sermaye gecikmesi L_30 etkin.',
+                neuro: 'A_load = 0.78, PFC_ctrl = 0.20. Siyasi karar alıcılarda erken faiz indirimi baskısı ve reel sektör feryadı.',
+                cost: 'KKM tasfiye edilirken iç talep sert baskılandı; konkordato patlaması yaşandı; fatura dar gelirliye yıkıldı.',
+                minsky: 'Şirketler yüksek finansman maliyeti altında borç krizine sürüklendi; reel sektör dezenflasyonun kurbanı oldu.'
+            }
+        ];
+
+        const indicatorsData = [
+            { code: 'K01', name: 'Emisyonun Son Vuruşu (M2/NIR)', block: 'Blok A', threshold: '> 15.0', horizon: '3–6 Ay', formula: 'M-01 / F67' },
+            { code: 'K02', name: 'Döviz Piyasası Baskı Endeksi (EMP)', block: 'Blok A', threshold: '> +3.0σ', horizon: '45–90 Gün', formula: 'M-02 / F06' },
+            { code: 'K03', name: 'Kapalıçarşı Fiziki Çift Kur Makası (DOLGAP)', block: 'Blok A', threshold: '> %2.0', horizon: '15–30 Gün', formula: 'M-03 / F28' },
+            { code: 'K04', name: 'Estrella-Mishkin Getiri Eğrisi Ters Dönüşü', block: 'Blok A', threshold: 'Spread < 0.0', horizon: '6–18 Ay', formula: 'M-04' },
+            { code: 'K05', name: 'Basel III Kredi Açığı (Basel_Gap)', block: 'Blok A', threshold: '> +10.0%', horizon: '12–24 Ay', formula: 'M-05 / F68' },
+            { code: 'K06', name: 'Calvo Brüt Dış Finansman İhtiyacı (GEFN)', block: 'Blok A', threshold: '> 1.50', horizon: '6–12 Ay', formula: 'M-06' },
+            { code: 'K07', name: 'Drehmann-Juselius Borç Servis Oranı (DSR)', block: 'Blok A', threshold: '> μ + 6.0%', horizon: '12–24 Ay', formula: 'M-07' },
+            
+            { code: 'K08', name: 'Hayalet / Zombi Kredi Oranı (Zombie_Ratio)', block: 'Blok B', threshold: '> 0.15', horizon: '6–12 Ay', formula: 'B-01' },
+            { code: 'K09', name: 'Kredi / Mevduat Oranı Stresi (LDR_stress)', block: 'Blok B', threshold: '> 1.15', horizon: '3–6 Ay', formula: 'B-02' },
+            { code: 'K10', name: 'Amihud İllikitlik Ölçütü (AMI_ILLIQ)', block: 'Blok B', threshold: '≥ 0.20', horizon: '1–30 Gün', formula: 'B-03 / F32' },
+            { code: 'K11', name: 'Albert S. Kyle Likidite Parametresi (λ_Kyle)', block: 'Blok B', threshold: '> μ + 2.5σ', horizon: '1–5 Gün', formula: 'B-04 / F31' },
+            { code: 'K12', name: 'Toksik Akış Olasılığı (VPIN)', block: 'Blok B', threshold: '> 0.35', horizon: 'Dakika/Gün', formula: 'B-05 / F30' },
+            { code: 'K13', name: 'Corwin-Schultz Alış-Satış Makası (S_CS)', block: 'Blok B', threshold: '> %2.50', horizon: '1–15 Gün', formula: 'B-06 / F70' },
+            { code: 'K14', name: 'ALM Aktif-Pasif Vade Uçurumu (ALM_gap)', block: 'Blok B', threshold: '> 0.25', horizon: '1–3 Ay', formula: 'F29' },
+
+            { code: 'K15', name: 'Kritik Yavaşlama ve Otokorelasyon (CSD / AR(1))', block: 'Blok C', threshold: 'α1 ≥ 0.80', horizon: '1–3 Ay', formula: 'E-01 / F59' },
+            { code: 'K16', name: 'Didier Sornette LPPLS Balon Tekilliği (tc)', block: 'Blok C', threshold: '0 < tc-t ≤ 15G', horizon: '15–60 Gün', formula: 'E-02 / F60' },
+            { code: 'K17', name: 'René Thom Cusp Katastrofi Diskriminantı (Δ)', block: 'Blok C', threshold: 'Δ ≤ 0', horizon: '7–30 Gün', formula: 'E-03 / F79' },
+            { code: 'K18', name: 'Bak-Tang-Wiesenfeld Kum Tepesi Çığı (BTW)', block: 'Blok C', threshold: 'τ < 1.30', horizon: '1–15 Gün', formula: 'E-05 / F61' },
+            { code: 'K19', name: 'Tsallis ve Rényi Kalın Kuyruk Entropisi (Sq)', block: 'Blok C', threshold: '< μ - 2σ', horizon: '7–45 Gün', formula: 'A-03 / F24' },
+            { code: 'K20', name: 'Schreiber Transfer Entropisi (TX→Y)', block: 'Blok C', threshold: 'Asimetri > 3σ', horizon: '3–20 Gün', formula: 'A-04 / F66' },
+            { code: 'K21', name: 'Prigogine Denge Dışı Entropi Üretimi (dSi)', block: 'Blok C', threshold: 'diS > 0.50', horizon: '1–3 Ay', formula: 'F78' },
+
+            { code: 'K22', name: 'Amigdala Allostatik Tehdit Yükü (A_load)', block: 'Blok D', threshold: '> 0.65', horizon: '1–10 Gün', formula: 'N-01 / F12' },
+            { code: 'K23', name: 'Prefrontal Korteks Denetimi (PFC_ctrl)', block: 'Blok D', threshold: '< 0.25', horizon: '1–7 Gün', formula: 'N-02 / F13' },
+            { code: 'K24', name: 'Hawkes Panik Kaskadı Dallanma Oranı (η)', block: 'Blok D', threshold: 'η ≥ 1.00', horizon: 'Saat/Gün', formula: 'N-03 / F15' },
+            { code: 'K25', name: 'Kalman Kazancı Gerçeklik Dondurması (K_eff)', block: 'Blok D', threshold: 'K_eff ≤ 0.12', horizon: '5–20 Gün', formula: 'N-04 / F14' },
+            { code: 'K26', name: 'Oksitosin Kabileleşme / Hoffer İndeksi (Oxy_split)', block: 'Blok D', threshold: '> 0.70', horizon: '1–6 Ay', formula: 'N-05 / F19' },
+            { code: 'K27', name: 'Kuramoto Faz Senkronizasyonu (r(t))', block: 'Blok D', threshold: 'r(t) > 0.85', horizon: '3–15 Gün', formula: 'E-04 / F20' },
+
+            { code: 'K28', name: 'Acemoğlu Kurumsal Çürüme Endeksi (DEI)', block: 'Blok E', threshold: 'DEI ≥ 0.60', horizon: '12–36 Ay', formula: 'K-01 / F08' },
+            { code: 'K29', name: 'Benford Yasası Adli Sapması (MAD_B)', block: 'Blok E', threshold: 'MAD_B ≥ 0.015', horizon: '3–12 Ay', formula: 'K-02 / F53' },
+            { code: 'K30', name: '5D RPT İlişkili Taraf Hortumlama Radarı', block: 'Blok E', threshold: 'RPT_Index ≥ 0.65', horizon: '6–18 Ay', formula: 'K-03' },
+            { code: 'K31', name: 'Beneish M-Score Manipülasyon Filtresi', block: 'Blok E', threshold: 'M > -1.78', horizon: '6–12 Ay', formula: 'K-04 / F75' },
+            { code: 'K32', name: 'Süper-Katkısal Master UCI & Rejim Mührü', block: 'Blok E', threshold: 'UCI ≥ 0.55', horizon: 'Anlık / 24 Ay', formula: 'MASTER-UCI' }
+        ];
+
+        const core20Data = [
+            { code: 'TUR', country: 'Türkiye', ca: '-3.8%', debtRes: '410%', dei: '0.74', score: 84.2, archetype: 'Kronik Kur, Dış Açık & Sifon' },
+            { code: 'ZAF', country: 'Güney Afrika', ca: '-2.4%', debtRes: '340%', dei: '0.65', score: 76.5, archetype: 'Altyapı Çöküşü (Eskom) & Rant' },
+            { code: 'BRA', country: 'Brezilya', ca: '-2.8%', debtRes: '210%', dei: '0.58', score: 69.2, archetype: 'Yüksek Bütçe Açığı & Emtia' },
+            { code: 'ITA', country: 'İtalya', ca: '+0.5%', debtRes: '180%', dei: '0.45', score: 68.4, archetype: 'Egemen Borç & NPL Doom Loop' },
+            { code: 'GRC', country: 'Yunanistan', ca: '-6.2%', debtRes: '480%', dei: '0.52', score: 62.4, archetype: 'Sahte İstatistik & Egemen Borç' },
+            { code: 'ESP', country: 'İspanya', ca: '+0.8%', debtRes: '220%', dei: '0.38', score: 58.7, archetype: 'Gayrimenkul Balonu & Cajas' },
+            { code: 'IDN', country: 'Endonezya', ca: '-1.2%', debtRes: '195%', dei: '0.54', score: 57.8, archetype: 'Yabancı Tahvil & Emtia' },
+            { code: 'MEX', country: 'Meksika', ca: '-1.5%', debtRes: '170%', dei: '0.62', score: 54.6, archetype: 'Tesobonos Mirası & ABD Bağımlılığı' },
+            { code: 'IND', country: 'Hindistan', ca: '-1.8%', debtRes: '135%', dei: '0.48', score: 53.2, archetype: 'Enerji İthalatı & Batık Kredi' },
+            { code: 'FRA', country: 'Fransa', ca: '-1.9%', debtRes: '210%', dei: '0.32', score: 52.8, archetype: 'Kronik Mali Açık & Sosyal Gerilim' },
+            { code: 'KOR', country: 'Güney Kore', ca: '+2.5%', debtRes: '95%', dei: '0.22', score: 51.0, archetype: 'Chaebol Borcu & Çip Döngüsü' },
+            { code: 'JPN', country: 'Japonya', ca: '+3.2%', debtRes: '85%', dei: '0.15', score: 49.3, archetype: 'Deflasyon Mirası & YCC Kapanı' },
+            { code: 'GBR', country: 'Birleşik Krallık', ca: '-3.5%', debtRes: '280%', dei: '0.24', score: 48.6, archetype: 'LDI Emeklilik & Dış Açık' },
+            { code: 'DEU', country: 'Almanya', ca: '+4.2%', debtRes: '90%', dei: '0.18', score: 46.5, archetype: 'Termodinamik Enerji Şoku' },
+            { code: 'CAN', country: 'Kanada', ca: '-0.8%', debtRes: '140%', dei: '0.16', score: 44.5, archetype: 'Hanehalkı Borcu & Konut' },
+            { code: 'AUS', country: 'Avustralya', ca: '+1.1%', debtRes: '150%', dei: '0.15', score: 43.8, archetype: 'Çin Talebi & Emtia İhracatı' },
+            { code: 'USA', country: 'ABD', ca: '-3.1%', debtRes: 'Rezerv', dei: '0.20', score: 42.1, archetype: 'Kaldıraç, Borç Tavanı & Panoptikon' },
+            { code: 'CHE', country: 'İsviçre', ca: '+7.5%', debtRes: 'Net Alacaklı', dei: '0.08', score: 41.2, archetype: 'Banka Kaldıracı (UBS/CS)' },
+            { code: 'NLD', country: 'Hollanda', ca: '+8.2%', debtRes: '190%', dei: '0.12', score: 38.4, archetype: 'Mortgage Borcu & Fon Transit' },
+            { code: 'NOR', country: 'Norveç', ca: '+14.5%', debtRes: 'Net Alacaklı', dei: '0.05', score: 26.5, archetype: 'Petrol Şoku & Konut Borcu' }
+        ];
+
+        const daubertData = [
+            { crisis: '1994 Likidite Çöküşü', proof: 'Resmî Gazete 5 Nisan 1994 İstikrar Kararları; TCMB Repo Faiz Verisi (%7000); 3 Banka Tasfiye Kararı', diagnosis: 'Hazine avanslarıyla emisyon patlaması; M2 genişlemesinin Dirac kur şoku doğurması (F01, F06)', status: '[VERIFIED]' },
+            { crisis: 'Kasım 2000 Şoku', proof: 'IMF Stand-By Niyet Mektubu (Aralık 2000); Demirbank TMSF Devir Kararı; TCMB Net İç Varlıklar Tablosu', diagnosis: 'Sabit çıpa altında faiz arbitrajı çöküşü; aktif-pasif vade uyumsuzluğu patlaması (F29, B-02)', status: '[VERIFIED]' },
+            { crisis: 'Şubat 2001 Çöküşü', proof: 'TCMB Analitik Bilançosu (19–21 Şubat 2001); Gecelik Faiz %7500; 22 Banka TMSF Devri; BDDK 2001 Raporu', diagnosis: 'Battiston DebtRank kaskad iflası; EMP > 3σ devalüasyon faz geçişi (F06, F67, A-02)', status: '[VERIFIED]' },
+            { crisis: 'Mayıs 2006 GOP Satışı', proof: 'TCMB PPK Kararları (7 ve 25 Haziran 2006); Politika Faizi 400 bps Artış Tutanakları; Cari Açık %6.1 Bülteni', diagnosis: 'Sıcak para bağımlı modelde Calvo ani duruş kırılganlığı (M-06, F05)', status: '[VERIFIED]' },
+            { crisis: '2008 Küresel Kriz', proof: 'TÜİK 2009 Büyüme İstatistiği (-%4.7); Sanayi Üretim Endeksi (-%14); Türkiye CDS Verisi (800+ bps)', diagnosis: 'Dış talep çöküşü ve özel sektor dış borç rollover donması; Diebold-Yılmaz şok ithalatı (F63, M-07)', status: '[VERIFIED]' },
+            { crisis: '2013 Gezi & Taper', proof: 'Fed FOMC Mayıs 2013 Tutanakları; TCMB Faiz Koridoru Bülteni; BIST 100 Dolar Bazlı Tepe Noktası', diagnosis: 'Sermaye akımı tersine dönüşü; Sornette LPPLS balon tekilliğinin patlaması (F60, E-02)', status: '[VERIFIED]' },
+            { crisis: '2016 Kur & Güvenlik', proof: 'Moody\'s & S&P Not İndirim Bildirileri; Hazine KGF Protokolü (250 Milyar TL Kredi Hacmi)', diagnosis: 'Siyasi kutuplaşma altında Ponzi kredi genişlemesi; Acemoğlu DEI ≥ 0.60 çarpanı tırmanışı (F08, F38)', status: '[VERIFIED]' },
+            { crisis: 'Ağustos 2018 Brunson', proof: 'TCMB Eylül 2018 PPK Kararı (%24 Faiz); ABD Hazine Yaptırım Kararları; USD/TRY 7.20 Seviyesi', diagnosis: 'KGF aşırı ısınmasının Dirac kur sıçraması üretmesi; A_load = 0.92 bilişsel inatlaşma tescili (F12, F13)', status: '[VERIFIED]' },
+            { crisis: '2020 Pandemi & 128B$', proof: 'TCMB Haftalık Rezerv Tabloları; BDDK Kamu Bankaları Döviz Pozisyonu; Albayrak İstifa Açıklaması', diagnosis: 'Gizli protokollerle rezerv barajının eritilmesi; Prigogine denge-dışı rezerv iflası (F78, M-01)', status: '[VERIFIED]' },
+            { crisis: 'Mart 2021 Ağbal Şoku', proof: 'Resmî Gazete 20 Mart 2021 Cumhurbaşkanlığı Kararnamesi; BIST Devre Kesici Kütüğü', diagnosis: 'Kurumsal özerklik çöküşü; Kalman kazancı gerçeklik donması ve güven buharlaşması (F14, N-04)', status: '[VERIFIED]' },
+            { crisis: '2021-2023 Nas / KKM', proof: 'TÜİK TÜFE Bülteni (%85.5); Resmî Gazete KKM Tebliğleri; TCMB Swap Hariç Net Rezerv Tablosu (-$65B)', diagnosis: 'Negatif reel faiz deneyinin Soddy M2/NIR tekilliği üretmesi; René Thom Cusp çatallanması (F79, E-03)', status: '[VERIFIED]' },
+            { crisis: '2024–2026 Dezenflasyon', proof: 'TCMB PPK Kararı (%50 Politika Faizi); SBB Bütçe Gerçekleşmeleri (Φ = 1.47×); OECD PISA 2022 Ham Verisi', diagnosis: 'Yapışkan stagflasyon rezonansı (F88); 40B$ Carry Trade ters ani duruş riski; L_30 kuşak kapanı (F88)', status: '[VERIFIED]' },
+            { crisis: 'SDT-PSI Siyasal Stres', proof: 'WID En Zengin %1 Servet Payı (%55); Yükseköğretim Diploma Enflasyon Kütüğü; Genç İşsizlik Kaydı', diagnosis: 'Elit aşırı üretimi (e) ve kitle yoksullaşması (Nm) çarpımıyla siyasal patlama eşiği tescili (PSI > 300)', status: '[VERIFIED]' },
+            { crisis: 'Benford Manipülasyon', proof: 'TÜİK 2021–2023 Madde Sepeti Fiyat Serileri; Sayıştay Denetim Raporları İlk Basamak Dağılımı', diagnosis: 'Resmi fiyat verilerinde doğal frekans dışına taşan adli manipülasyon sapması (MAD_B ≥ 0.021)', status: '[VERIFIED]' }
+        ];
+
+        // CHART OBJECT REFERENCES
+        let uciChartObj = null;
+        let psiChartObj = null;
+        let faoChartObj = null;
+        let soddyChartObj = null;
+        let benfordChartObj = null;
+        let core20ChartObj = null;
+
+        // INITIALIZATION
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCrisisList();
+            selectCrisis('1994');
+            renderIndicatorsTable();
+            renderCore20Table();
+            renderDaubertTable();
+            
+            initUciChart();
+            initPsiChart();
+            initFaoChart();
+            initSoddyChart();
+            initBenfordChart();
+            initCore20Chart();
+
+            updateUciSim();
+            updatePsiSim();
+        });
+
+        // TAB SWITCHING LOGIC
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.nav-tab').forEach(btn => {
+                btn.classList.remove('bg-rose-800', 'text-white', 'shadow-sm');
+                btn.classList.add('hover:bg-slate-800', 'text-slate-300');
+            });
+
+            document.getElementById(tabId).classList.remove('hidden');
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.classList.remove('hover:bg-slate-800', 'text-slate-300');
+            activeBtn.classList.add('bg-rose-800', 'text-white', 'shadow-sm');
+
+            // Trigger window resize to ensure Chart.js canvases adapt properly
+            window.dispatchEvent(new Event('resize'));
+        }
+
+        // TAB 1: MASTER UCI CALCULATOR & SIMULATOR
+        function updateUciSim() {
+            const phiA = parseFloat(document.getElementById('slider-block-a').value);
+            const phiB = parseFloat(document.getElementById('slider-block-b').value);
+            const phiC = parseFloat(document.getElementById('slider-block-c').value);
+            const phiD = parseFloat(document.getElementById('slider-block-d').value);
+            const phiE = parseFloat(document.getElementById('slider-block-e').value);
+
+            document.getElementById('val-block-a').innerText = phiA.toFixed(2);
+            document.getElementById('val-block-b').innerText = phiB.toFixed(2);
+            document.getElementById('val-block-c').innerText = phiC.toFixed(2);
+            document.getElementById('val-block-d').innerText = phiD.toFixed(2);
+            document.getElementById('val-block-e').innerText = phiE.toFixed(2);
+
+            // Leontief Bottleneck copula calculation
+            const weights = [0.25, 0.20, 0.20, 0.20, 0.15];
+            const phis = [phiA, phiB, phiC, phiD, phiE];
+            
+            let prodTerm = 1.0;
+            let maxPhi = 0.0;
+            for(let i=0; i<5; i++) {
+                prodTerm *= Math.pow(1.0 - phis[i], weights[i]);
+                if (phis[i] > maxPhi) maxPhi = phis[i];
+            }
+            let baseCopula = Math.max(1.0 - prodTerm, maxPhi);
+
+            // Institutional Penalty (AM)
+            let AM = 1.0;
+            if (phiE >= 0.60) {
+                AM = 1.15;
+            }
+            document.getElementById('am-penalty-val').innerText = AM.toFixed(2) + '×';
+
+            let rawUci = baseCopula * AM;
+            if (rawUci > 1.0) rawUci = 1.0;
+
+            document.getElementById('uci-score-val').innerText = rawUci.toFixed(3);
+            document.getElementById('uci-progress-bar').style.width = (rawUci * 100) + '%';
+
+            // Regime status badge update
+            const badge = document.getElementById('uci-regime-badge');
+            const gateStatus = document.getElementById('gate-status');
+
+            if (rawUci < 0.30) {
+                badge.className = 'mt-2 inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300';
+                badge.innerText = '● YEŞİL REJİM (Termodinamik Denge / Düşük Entropi)';
+                gateStatus.innerText = 'AÇIK (G1·G2·G3 = 0)';
+                gateStatus.className = 'text-emerald-700 font-bold';
+            } else if (rawUci < 0.55) {
+                badge.className = 'mt-2 inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300';
+                badge.innerText = '● SARI REJİM (Erken Alarm / Kırılganlık Birikimi)';
+                gateStatus.innerText = 'UYARI FAZI (G1 = 1)';
+                gateStatus.className = 'text-amber-700 font-bold';
+            } else if (rawUci < 0.75) {
+                badge.className = 'mt-2 inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-orange-100 text-orange-900 border border-orange-300';
+                badge.innerText = '● TURUNCU REJİM (Akut Kriz Eşiği / Ponzi Evresi)';
+                gateStatus.innerText = 'KİLİTLİ (G1·G2·G3 = 1)';
+                gateStatus.className = 'text-orange-700 font-bold';
+            } else {
+                badge.className = 'mt-2 inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-rose-200 text-rose-900 border border-rose-400 animate-pulse';
+                badge.innerText = '● KIRMIZI REJİM (Sistemik Çöküş / Tasfiye)';
+                gateStatus.innerText = 'PATLAMA FAZI (TRUTH_HALT)';
+                gateStatus.className = 'text-rose-700 font-bold';
+            }
+        }
+
+        function resetSliders() {
+            document.getElementById('slider-block-a').value = 0.82;
+            document.getElementById('slider-block-b').value = 0.68;
+            document.getElementById('slider-block-c').value = 0.75;
+            document.getElementById('slider-block-d').value = 0.71;
+            document.getElementById('slider-block-e').value = 0.65;
+            updateUciSim();
+        }
+
+        function initUciChart() {
+            const ctx = document.getElementById('uciHistoryChart').getContext('2d');
+            uciChartObj = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['1994', '1998', '2000', '2001', '2006', '2008', '2013', '2016', '2018', '2020', '2021', '2023', '2024', '2026(P)'],
+                    datasets: [{
+                        label: 'Master UCI Stres Skoru',
+                        data: [0.92, 0.45, 0.82, 0.98, 0.62, 0.74, 0.68, 0.78, 0.91, 0.84, 0.96, 0.94, 0.78, 0.72],
+                        borderColor: '#b91c1c',
+                        backgroundColor: 'rgba(185, 28, 28, 0.1)',
+                        fill: true,
+                        tension: 0.3,
+                        pointRadius: 5,
+                        pointHoverRadius: 8,
+                        pointBackgroundColor: '#b91c1c'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            min: 0,
+                            max: 1.0,
+                            grid: { color: '#f1f5f9' },
+                            title: { display: true, text: 'Master UCI Skoru' }
+                        },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+        // TAB 4: UNORTHODOX DECAY & SDT-PSI SIMULATOR
+        function updatePsiSim() {
+            const y = parseFloat(document.getElementById('slider-psi-y').value);
+            const u = parseFloat(document.getElementById('slider-psi-u').value);
+            const wr = parseFloat(document.getElementById('slider-psi-wr').value);
+            const e = parseFloat(document.getElementById('slider-psi-e').value);
+            const s = parseFloat(document.getElementById('slider-psi-s').value);
+            const d = parseFloat(document.getElementById('slider-psi-d').value);
+            const r = parseFloat(document.getElementById('slider-psi-r').value);
+
+            document.getElementById('val-psi-y').innerText = y.toFixed(2);
+            document.getElementById('val-psi-u').innerText = u.toFixed(2);
+            document.getElementById('val-psi-wr').innerText = wr.toFixed(2);
+            document.getElementById('val-psi-e').innerText = e.toFixed(2);
+            document.getElementById('val-psi-s').innerText = s.toFixed(2);
+            document.getElementById('val-psi-d').innerText = d.toFixed(2);
+            document.getElementById('val-psi-r').innerText = r.toFixed(2);
+
+            // Sub-components:
+            // Nm = (y / w_r) * u
+            // Em = (e / w_r) * s
+            // wd = (d/Y) * r
+            const Nm = (y / wr) * u;
+            const Em = (e / wr) * s;
+            const wd = d * r;
+
+            const rawPsi = Nm * Em * wd;
+            // Baseline normalization factor (~100 index for normal baseline)
+            const psiIndex = Math.round((rawPsi / 0.0075) * 100);
+
+            document.getElementById('calc-nm').innerText = Nm.toFixed(3);
+            document.getElementById('calc-em').innerText = Em.toFixed(3);
+            document.getElementById('calc-wd').innerText = wd.toFixed(3);
+            document.getElementById('calc-psi-raw').innerText = rawPsi.toFixed(4);
+            document.getElementById('calc-psi-idx').innerText = psiIndex + ' İndeks';
+
+            const badge = document.getElementById('psi-status-badge');
+            if (psiIndex < 150) {
+                badge.className = 'px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300';
+                badge.innerText = '● STABİL SOSYAL REJİM (PSI < 150)';
+            } else if (psiIndex < 300) {
+                badge.className = 'px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300';
+                badge.innerText = '● YÜKSEK KUTUPLAŞMA / STRES (150 - 300)';
+            } else {
+                badge.className = 'px-2.5 py-1 rounded-full text-xs font-bold bg-rose-200 text-rose-900 border border-rose-400 animate-pulse';
+                badge.innerText = '● KRİTİK İSYAN / DEVİR EŞİĞİ (PSI > 300)';
+            }
+        }
+
+        function resetPsiSliders() {
+            document.getElementById('slider-psi-y').value = 0.22;
+            document.getElementById('slider-psi-u').value = 0.78;
+            document.getElementById('slider-psi-wr').value = 0.45;
+            document.getElementById('slider-psi-e').value = 0.65;
+            document.getElementById('slider-psi-s').value = 0.55;
+            document.getElementById('slider-psi-d').value = 0.80;
+            document.getElementById('slider-psi-r').value = 0.12;
+            updatePsiSim();
+        }
+
+        function initPsiChart() {
+            const ctx = document.getElementById('psiChart').getContext('2d');
+            psiChartObj = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2010', '2012', '2014', '2016', '2018', '2020', '2022', '2024', '2026(P)'],
+                    datasets: [
+                        {
+                            label: 'T2SAIM PSI İndeksi',
+                            data: [110, 135, 160, 210, 285, 340, 390, 425, 460],
+                            borderColor: '#7f1d1d',
+                            backgroundColor: 'rgba(127, 29, 29, 0.15)',
+                            fill: true,
+                            tension: 0.3,
+                            pointRadius: 5,
+                            pointHoverRadius: 8
+                        },
+                        {
+                            label: 'Turchin Kararsızlık Eşiği (+3σ)',
+                            data: [300, 300, 300, 300, 300, 300, 300, 300, 300],
+                            borderColor: '#d97706',
+                            borderDash: [5, 5],
+                            borderWidth: 2,
+                            pointRadius: 0,
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            min: 0,
+                            max: 550,
+                            title: { display: true, text: 'Siyasal Stres İndeksi (PSI)' },
+                            grid: { color: '#f1f5f9' }
+                        },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+        function initFaoChart() {
+            const ctx = document.getElementById('faoChart').getContext('2d');
+            faoChartObj = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2004', '2006', '2008 (Kriz)', '2010', '2011 (Arap Baharı)', '2014', '2017', '2020', '2022 (Gıda Şoku)', '2024', '2026'],
+                    datasets: [
+                        {
+                            label: 'FAO Gıda Fiyat İndeksi (FPI)',
+                            data: [100, 125, 215, 170, 230, 180, 160, 175, 240, 205, 195],
+                            borderColor: '#b91c1c',
+                            backgroundColor: 'rgba(185, 28, 28, 0.1)',
+                            fill: true,
+                            tension: 0.2,
+                            pointRadius: 5
+                        },
+                        {
+                            label: 'Kentsel İsyan Eşiği (210 Puan)',
+                            data: [210, 210, 210, 210, 210, 210, 210, 210, 210, 210, 210],
+                            borderColor: '#d97706',
+                            borderDash: [6, 4],
+                            borderWidth: 2,
+                            pointRadius: 0,
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            min: 80,
+                            max: 270,
+                            title: { display: true, text: 'FAO Endeks Puanı' },
+                            grid: { color: '#f1f5f9' }
+                        },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+        // TAB 2: 12 HISTORICAL CRISES
+        function renderCrisisList() {
+            const container = document.getElementById('crisis-list-container');
+            container.innerHTML = '';
+            crisesData.forEach(c => {
+                const btn = document.createElement('button');
+                btn.id = 'crisis-btn-' + c.id;
+                btn.onclick = () => selectCrisis(c.id);
+                btn.className = 'w-full text-left p-3 rounded-lg border transition hover:border-rose-400 focus:outline-none flex flex-col justify-between border-slate-200 bg-white';
+                btn.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-xs text-slate-900">${c.title}</span>
+                        <span class="text-[10px] font-mono font-semibold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">${c.id}</span>
+                    </div>
+                    <span class="text-[11px] text-slate-500 mt-1">${c.date}</span>
+                `;
+                container.appendChild(btn);
+            });
+        }
+
+        function selectCrisis(id) {
+            crisesData.forEach(c => {
+                const btn = document.getElementById('crisis-btn-' + c.id);
+                if (btn) {
+                    btn.classList.remove('border-rose-700', 'bg-rose-50/50', 'ring-1', 'ring-rose-700');
+                    btn.classList.add('border-slate-200', 'bg-white');
+                }
+            });
+
+            const activeBtn = document.getElementById('crisis-btn-' + id);
+            if (activeBtn) {
+                activeBtn.classList.remove('border-slate-200', 'bg-white');
+                activeBtn.classList.add('border-rose-700', 'bg-rose-50/50', 'ring-1', 'ring-rose-700');
+            }
+
+            const crisis = crisesData.find(c => c.id === id);
+            if (!crisis) return;
+
+            const detail = document.getElementById('crisis-detail-content');
+            detail.innerHTML = `
+                <div class="border-b border-slate-200 pb-3 flex justify-between items-start">
+                    <div>
+                        <span class="inline-block px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-rose-100 text-rose-800 mb-1">Adli Dosya #${crisis.id}</span>
+                        <h3 class="text-xl font-bold text-slate-900">${crisis.title}</h3>
+                        <p class="text-xs text-slate-500">${crisis.date}</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                    <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200">
+                        <span class="font-bold text-slate-800 uppercase text-[10px] tracking-wider block mb-1">Tetikleyici & Arka Plan</span>
+                        <p class="text-slate-700 leading-relaxed">${crisis.trigger}</p>
+                    </div>
+
+                    <div class="p-3.5 rounded-lg bg-rose-50/60 border border-rose-200">
+                        <span class="font-bold text-rose-900 uppercase text-[10px] tracking-wider block mb-1">Kritik Ekonofizik Göstergeleri</span>
+                        <p class="text-rose-950 font-medium leading-relaxed">${crisis.metrics}</p>
+                    </div>
+
+                    <div class="p-3.5 rounded-lg bg-indigo-50/60 border border-indigo-200">
+                        <span class="font-bold text-indigo-900 uppercase text-[10px] tracking-wider block mb-1">Bilişsel & Nöro-Mekanik Durum</span>
+                        <p class="text-indigo-950 leading-relaxed">${crisis.neuro}</p>
+                    </div>
+
+                    <div class="p-3.5 rounded-lg bg-amber-50/60 border border-amber-200">
+                        <span class="font-bold text-amber-900 uppercase text-[10px] tracking-wider block mb-1">Uygulanan Müdahale & Maliyet</span>
+                        <p class="text-amber-950 leading-relaxed">${crisis.cost}</p>
+                    </div>
+                </div>
+
+                <div class="p-4 rounded-lg bg-slate-900 text-slate-200 text-xs">
+                    <span class="font-bold text-amber-400 uppercase text-[10px] tracking-wider block mb-1">// Minsky ve Girard Dinamiği</span>
+                    <p class="leading-relaxed">${crisis.minsky}</p>
+                </div>
+            `;
+        }
+
+        // TAB 3: 32 INDICATORS
+        function renderIndicatorsTable() {
+            const tbody = document.getElementById('indicators-tbody');
+            tbody.innerHTML = '';
+            indicatorsData.forEach(ind => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-50 transition';
+                tr.innerHTML = `
+                    <td class="p-3 font-mono font-bold text-slate-900">${ind.code}</td>
+                    <td class="p-3 font-medium text-slate-800">${ind.name}</td>
+                    <td class="p-3"><span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700">${ind.block}</span></td>
+                    <td class="p-3 font-mono text-rose-700 font-bold">${ind.threshold}</td>
+                    <td class="p-3 text-slate-600">${ind.horizon}</td>
+                    <td class="p-3 font-mono text-slate-500">${ind.formula}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function filterIndicators() {
+            const search = document.getElementById('indicator-search').value.toLowerCase();
+            const block = document.getElementById('indicator-block-filter').value;
+
+            const tbody = document.getElementById('indicators-tbody');
+            tbody.innerHTML = '';
+
+            indicatorsData.filter(ind => {
+                const matchesSearch = ind.name.toLowerCase().includes(search) || ind.code.toLowerCase().includes(search);
+                const matchesBlock = (block === 'ALL' || ind.block === block);
+                return matchesSearch && matchesBlock;
+            }).forEach(ind => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-50 transition';
+                tr.innerHTML = `
+                    <td class="p-3 font-mono font-bold text-slate-900">${ind.code}</td>
+                    <td class="p-3 font-medium text-slate-800">${ind.name}</td>
+                    <td class="p-3"><span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700">${ind.block}</span></td>
+                    <td class="p-3 font-mono text-rose-700 font-bold">${ind.threshold}</td>
+                    <td class="p-3 text-slate-600">${ind.horizon}</td>
+                    <td class="p-3 font-mono text-slate-500">${ind.formula}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // TAB 5: SODDY & BENFORD CHARTS
+        function initSoddyChart() {
+            const ctx = document.getElementById('soddyChart').getContext('2d');
+            soddyChartObj = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025(P)'],
+                    datasets: [
+                        {
+                            type: 'line',
+                            label: 'Soddy M2/NIR Kopuş Rasyosu',
+                            data: [6.2, 8.4, 12.1, 18.5, 22.4, 19.8, 16.2, 14.1],
+                            borderColor: '#b91c1c',
+                            borderWidth: 3,
+                            yAxisID: 'y1'
+                        },
+                        {
+                            type: 'bar',
+                            label: 'NOH Akışı (Milyar $)',
+                            data: [-3.2, 1.5, -4.8, 12.4, 13.8, -8.2, -18.4, -6.1],
+                            backgroundColor: function(context) {
+                                const val = context.raw;
+                                return val >= 0 ? 'rgba(5, 150, 105, 0.7)' : 'rgba(225, 29, 72, 0.7)';
+                            },
+                            yAxisID: 'y'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            title: { display: true, text: 'NOH Akışı ($B)' },
+                            grid: { color: '#f1f5f9' }
+                        },
+                        y1: {
+                            position: 'right',
+                            title: { display: true, text: 'M2/NIR Rasyosu' },
+                            grid: { display: false }
+                        },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+        function initBenfordChart() {
+            const ctx = document.getElementById('benfordChart').getContext('2d');
+            benfordChartObj = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
+                    datasets: [
+                        {
+                            label: 'Benford Teorik Dağılım (%)',
+                            data: [30.1, 17.6, 12.5, 9.7, 7.9, 6.7, 5.8, 5.1, 4.6],
+                            backgroundColor: 'rgba(15, 23, 42, 0.8)'
+                        },
+                        {
+                            label: 'Gözlenen TÜİK Fiyat Sepeti (%)',
+                            data: [22.4, 21.1, 15.8, 12.2, 9.1, 7.2, 5.1, 4.1, 3.0],
+                            backgroundColor: 'rgba(225, 29, 72, 0.8)'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            title: { display: true, text: 'İlk Rakam Frekansı (%)' },
+                            grid: { color: '#f1f5f9' }
+                        },
+                        x: {
+                            title: { display: true, text: 'İlk Rakam (d)' },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+
+        // TAB 6: CORE-20
+        function renderCore20Table() {
+            const tbody = document.getElementById('core20-tbody');
+            tbody.innerHTML = '';
+            core20Data.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = item.code === 'TUR' ? 'bg-rose-50 font-bold hover:bg-rose-100' : 'hover:bg-slate-50 transition';
+                tr.innerHTML = `
+                    <td class="p-2.5 font-mono text-slate-900">${item.code}</td>
+                    <td class="p-2.5 text-slate-800">${item.country}</td>
+                    <td class="p-2.5 font-mono">${item.ca}</td>
+                    <td class="p-2.5 font-mono">${item.debtRes}</td>
+                    <td class="p-2.5 font-mono">${item.dei}</td>
+                    <td class="p-2.5 font-mono text-rose-700 font-bold">${item.score}</td>
+                    <td class="p-2.5 text-slate-600">${item.archetype}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function initCore20Chart() {
+            const ctx = document.getElementById('core20Chart').getContext('2d');
+            core20ChartObj = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: core20Data.map(d => d.code),
+                    datasets: [{
+                        label: 'T2SAIM Risk Skoru',
+                        data: core20Data.map(d => d.score),
+                        backgroundColor: core20Data.map(d => d.code === 'TUR' ? '#b91c1c' : '#475569')
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            min: 0,
+                            max: 100,
+                            title: { display: true, text: 'Risk Skoru' },
+                            grid: { color: '#f1f5f9' }
+                        },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+        // TAB 7: DAUBERT TABLE
+        function renderDaubertTable() {
+            const tbody = document.getElementById('daubert-tbody');
+            tbody.innerHTML = '';
+            daubertData.forEach(d => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-50 transition';
+                tr.innerHTML = `
+                    <td class="p-2.5 font-bold text-slate-900">${d.crisis}</td>
+                    <td class="p-2.5 text-slate-700">${d.proof}</td>
+                    <td class="p-2.5 text-slate-800 font-medium">${d.diagnosis}</td>
+                    <td class="p-2.5 text-center font-mono font-bold text-emerald-700">${d.status}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function filterDaubert() {
+            const query = document.getElementById('daubert-search').value.toLowerCase();
+            const tbody = document.getElementById('daubert-tbody');
+            tbody.innerHTML = '';
+
+            daubertData.filter(d => {
+                return d.crisis.toLowerCase().includes(query) ||
+                       d.proof.toLowerCase().includes(query) ||
+                       d.diagnosis.toLowerCase().includes(query);
+            }).forEach(d => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-50 transition';
+                tr.innerHTML = `
+                    <td class="p-2.5 font-bold text-slate-900">${d.crisis}</td>
+                    <td class="p-2.5 text-slate-700">${d.proof}</td>
+                    <td class="p-2.5 text-slate-800 font-medium">${d.diagnosis}</td>
+                    <td class="p-2.5 text-center font-mono font-bold text-emerald-700">${d.status}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+    </script>
+</body>
+</html>

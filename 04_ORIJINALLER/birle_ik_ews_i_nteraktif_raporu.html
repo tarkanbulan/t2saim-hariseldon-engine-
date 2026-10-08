@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Büyük Birleşik EWS & Termodinamik Eko-Fizik Raporu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 360px;
+            }
+        }
+    </style>
+</head>
+<!-- Chosen Palette: Warm Neutrals & Tactical Accents (Stone, Amber, Crimson, Emerald) -->
+<!-- Application Structure Plan: Section 1: Executive Dashboard & Live EWS Monitor. Section 2: Thermodynamic Eco-Physics & 5 Theoretical Pillars. Section 3: Global EROEI & Soddy Virtual Wealth Scissors. Section 4: Human Hinterland 20-Country Resilience Matrix. Section 5: Turkey Macroeconomic Forensic Autopsy (1994-2026). Section 6: Bio-Cognitive Endocrine Pendulum & Scapegoating. Section 7: Cognitive Capital & 30-Year Scenario Projections. Section 8: Stoa Circuit Breaker & Strategic Policy Matrix. Designed for deep interactive exploration, contextual learning, and real-time stress testing. -->
+<!-- Visualization & Content Choices: Chart.js Canvas line/bar combo plots for timeline and multi-variable comparisons; Custom Tailwind interactive matrix for 20-country hinterland data; Dynamic interactive JavaScript simulators for EROEI net energy cliff, Soddy scissors gap, and Stoa Circuit Breaker level triggers. All visual elements built using styled Tailwind HTML/CSS and HTML Canvas. NO SVG, NO Mermaid JS. -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+<body class="bg-stone-100 text-stone-900 font-sans antialiased selection:bg-amber-200 selection:text-stone-900 min-h-screen flex flex-col">
+
+    <header class="bg-stone-900 text-stone-100 border-b border-amber-600/30 sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <span class="text-amber-500 font-black text-xl tracking-wider">T2SAIM</span>
+                <span class="text-stone-400 text-sm hidden sm:inline">|</span>
+                <h1 class="text-base sm:text-lg font-bold tracking-tight text-stone-100">Büyük Birleşik Erken Uyarı Sistemi (EWS)</h1>
+            </div>
+            <div class="flex items-center space-x-2">
+                <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-emerald-950 text-emerald-400 border border-emerald-700/50 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Sistem Durumu: L5 (Yönetilen Denge)
+                </span>
+            </div>
+        </div>
+
+        <nav class="bg-stone-800 text-stone-300 text-xs sm:text-sm overflow-x-auto border-t border-stone-700/50">
+            <div class="max-w-7xl mx-auto flex space-x-1 px-2 py-1 whitespace-nowrap min-w-max">
+                <button onclick="switchTab('dashboard')" id="btn-dashboard" class="tab-btn px-3 py-2 rounded-md font-medium transition-colors bg-amber-600 text-white">📊 Gösterge Paneli</button>
+                <button onclick="switchTab('thermodynamics')" id="btn-thermodynamics" class="tab-btn px-3 py-2 rounded-md font-medium transition-colors hover:bg-stone-700">⚡ Termodinamik & Teori</button>
+                <button onclick="switchTab('eroei')" id="btn-eroei" class="tab-btn px-3 py-2 rounded-md font-medium transition-colors hover:bg-stone-700">🛢️ EROEI & Soddy Makası</button>
+                <button onclick="switchTab('hinterland')" id="btn-hinterland" class="tab-btn px-3 py-2 rounded-md font-medium transition-colors hover:bg-stone-700">🌍 İnsan İnterlandı Matrisi</button>
+                <button onclick="switchTab('turkey')" id="btn-turkey" class="tab-btn px-3 py-2 rounded-md font-medium transition-colors hover:bg-stone-700">🇹🇷 Türkiye Otopsisi</button>
+                <button onclick="switchTab('biocognitive')" id="btn-biocognitive" class="tab-btn px-3 py-2 rounded-md font-medium transition-colors hover:bg-stone-700">🧠 Biyo-Kognitif & Endokrin</button>
+                <button onclick="switchTab('cognitive')" id="btn-cognitive" class="tab-btn px-3 py-2 rounded-md font-medium transition-colors hover:bg-stone-700">🎓 Kognitif Sermaye & 2055</button>
+                <button onclick="switchTab('policy')" id="btn-policy" class="tab-btn px-3 py-2 rounded-md font-medium transition-colors hover:bg-stone-700">🛡️ Stoa Protokolü & Politika</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <section id="tab-dashboard" class="tab-content space-y-6">
+            <div class="bg-stone-900 text-stone-100 p-6 rounded-2xl border border-stone-800 shadow-xl">
+                <h2 class="text-xl sm:text-2xl font-bold text-amber-400 mb-2">Stratejik Erken Uyarı ve Termodinamik Kontrol Paneli</h2>
+                <p class="text-stone-300 text-sm sm:text-base leading-relaxed">
+                    Bu platform, geleneksel soyut parasal göstergelerin ötesine geçerek makroekonomik krizleri **termodinamik eko-fizik kısıtları**, **Soddy sanal servet makası**, **İnsan İnterlandı direnci** ve **biyo-kognitif endokrin döngüleri** üzerinden adli bir yaklaşımla teşhis etmektedir. Aşağıdaki canlı göstergeler ve 7-kademeli kriz kademelenmesi, sistemsel kırılganlıkları anlık olarak simüle etmenizi sağlar.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-xs font-semibold text-stone-500 uppercase tracking-wider">Küresel Petrol/Gaz EROEI</div>
+                    <div class="text-3xl font-extrabold text-amber-600 my-1">8 : 1</div>
+                    <div class="text-xs text-stone-600">Net Enerji Uçurumu Eşiği (<span class="text-rose-600 font-bold">&le; 10:1</span>)</div>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-xs font-semibold text-stone-500 uppercase tracking-wider">Küresel Toplam Borç / GSYİH</div>
+                    <div class="text-3xl font-extrabold text-stone-800 my-1">$315T / $105T</div>
+                    <div class="text-xs text-stone-600">1970'ten bu yana <span class="text-rose-600 font-bold">39.3x</span> Borç Patlaması</div>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-xs font-semibold text-stone-500 uppercase tracking-wider">Soddy Makası (Türkiye M2/NIR)</div>
+                    <div class="text-3xl font-extrabold text-emerald-600 my-1">8.76x</div>
+                    <div class="text-xs text-stone-600">2023-06 Zirvesi: <span class="text-rose-600 font-bold">921.05x</span> (Normlaşma Fazı)</div>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-xs font-semibold text-stone-500 uppercase tracking-wider">30-Günlük Kur Volatilitesi</div>
+                    <div class="text-3xl font-extrabold text-indigo-600 my-1">%1.32 - %2.78</div>
+                    <div class="text-xs text-stone-600">Geçici Sakinlik / <span class="text-amber-600 font-bold">Testosteron Öforisi Riski</span></div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="lg:col-span-2 bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
+                    <h3 class="text-lg font-bold text-stone-800 mb-4 flex items-center gap-2">
+                        <span>🚥</span> Büyük Birleşik 7-Kademeli Erken Uyarı Düzeyi
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="p-3 rounded-lg bg-stone-50 border border-stone-200 flex items-start gap-3">
+                            <span class="px-2 py-0.5 bg-stone-200 text-stone-700 text-xs font-bold rounded">L1</span>
+                            <div>
+                                <div class="text-xs font-bold text-stone-800">Dışsal Şok / Yer Değiştirme</div>
+                                <div class="text-xs text-stone-600">Brent Petrol > $100 veya DXY Sıçraması (İzleme Modu)</div>
+                            </div>
+                        </div>
+                        <div class="p-3 rounded-lg bg-stone-50 border border-stone-200 flex items-start gap-3">
+                            <span class="px-2 py-0.5 bg-amber-100 text-amber-800 text-xs font-bold rounded">L2</span>
+                            <div>
+                                <div class="text-xs font-bold text-stone-800">Kredi ve Para Genişlemesi</div>
+                                <div class="text-xs text-stone-600">Kredi Büyümesi > %40, M2/GSYİH Hızlı Artışı</div>
+                            </div>
+                        </div>
+                        <div class="p-3 rounded-lg bg-stone-50 border border-stone-200 flex items-start gap-3">
+                            <span class="px-2 py-0.5 bg-amber-200 text-amber-900 text-xs font-bold rounded">L3</span>
+                            <div>
+                                <div class="text-xs font-bold text-stone-800">Öfori ve Biyo-Kognitif Körlük</div>
+                                <div class="text-xs text-stone-600">Kur Volatilitesi < %10 (Sahte İstikrar / Testosteron Yüksek)</div>
+                            </div>
+                        </div>
+                        <div class="p-3 rounded-lg bg-stone-50 border border-stone-200 flex items-start gap-3">
+                            <span class="px-2 py-0.5 bg-orange-200 text-orange-900 text-xs font-bold rounded">L4</span>
+                            <div>
+                                <div class="text-xs font-bold text-stone-800">Kritik Eşik / Soddy Makası Alarmları</div>
+                                <div class="text-xs text-stone-600">M2/NIR > 20x, Negatif Toplam Faktör Verimliliği</div>
+                            </div>
+                        </div>
+                        <div class="p-3 rounded-lg bg-emerald-100 border-2 border-emerald-500 flex items-start gap-3 ring-2 ring-emerald-200">
+                            <span class="px-2 py-0.5 bg-emerald-600 text-white text-xs font-bold rounded">L5</span>
+                            <div>
+                                <div class="text-xs font-bold text-emerald-950">Sıkılaşma ve Likidite Sıkışması (Mevcut Durum)</div>
+                                <div class="text-xs text-emerald-800">TCMB Rezerv Tahkimi, Parasal Sıkılaşma, Kısa Vadeli Borç / Rezerv Düzeltmesi</div>
+                            </div>
+                        </div>
+                        <div class="p-3 rounded-lg bg-stone-50 border border-stone-200 flex items-start gap-3 opacity-60">
+                            <span class="px-2 py-0.5 bg-rose-200 text-rose-900 text-xs font-bold rounded">L6</span>
+                            <div>
+                                <div class="text-xs font-bold text-stone-800">Panik ve Kortizol Kilidi</div>
+                                <div class="text-xs text-stone-600">30-Günlük Oynaklık > %60, Amigdala Kilitlenmesi, CDS > 600 bp</div>
+                            </div>
+                        </div>
+                        <div class="p-3 rounded-lg bg-stone-50 border border-stone-200 flex items-start gap-3 opacity-60">
+                            <span class="px-2 py-0.5 bg-rose-900 text-white text-xs font-bold rounded">L7</span>
+                            <div>
+                                <div class="text-xs font-bold text-stone-800">Revülsiyon ve Asabiyye Çöküşü</div>
+                                <div class="text-xs text-stone-600">Moral Stres > 50, WGI Asabiyye < -0.4, Tainter Katastrof Eşiği</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-stone-900 text-stone-100 p-6 rounded-xl border border-stone-800 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-lg font-bold text-amber-400 mb-3 flex items-center gap-2">
+                            <span>🕹️</span> Canlı EWS Kriz Simülatörü
+                        </h3>
+                        <p class="text-xs text-stone-400 mb-4 leading-relaxed">
+                            Makroekonomik değişkenleri değiştirerek sistemin hangi kriz fazına geçtiğini ve Stoa Devre Kesici protokollerinin nasıl tetiklendiğini gözlemleyin.
+                        </p>
+
+                        <div class="space-y-4 text-xs">
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span>Soddy Makası (M2 / NIR)</span>
+                                    <span id="sim-soddy-val" class="font-bold text-amber-400">12x</span>
+                                </div>
+                                <input type="range" id="sim-soddy" min="1" max="100" value="12" class="w-full accent-amber-500" oninput="updateEWSSimulator()">
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span>30-Günlük Kur Volatilitesi (%)</span>
+                                    <span id="sim-vol-val" class="font-bold text-amber-400">%15</span>
+                                </div>
+                                <input type="range" id="sim-vol" min="1" max="150" value="15" class="w-full accent-amber-500" oninput="updateEWSSimulator()">
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span>Scott Moral Stres Skoru</span>
+                                    <span id="sim-moral-val" class="font-bold text-amber-400">25</span>
+                                </div>
+                                <input type="range" id="sim-moral" min="0" max="60" value="25" class="w-full accent-amber-500" oninput="updateEWSSimulator()">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="sim-output" class="mt-6 p-4 rounded-lg bg-stone-800 border border-stone-700 text-center">
+                        <div class="text-xs text-stone-400 uppercase tracking-wider mb-1">Teşhis Edilen Faz</div>
+                        <div id="sim-status-title" class="text-lg font-extrabold text-emerald-400 my-1">L5: Güvenli Denge Modu</div>
+                        <div id="sim-status-desc" class="text-xs text-stone-300">Sistem parametreleri yönetilebilir sınırlar dahilindedir. Stoa devre kesici pasif.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab-thermodynamics" class="tab-content space-y-6 hidden">
+            <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
+                <h2 class="text-xl sm:text-2xl font-bold text-stone-800 mb-3">Termodinamik Eko-Fizik İlkeleri ve Teorik Sütunlar</h2>
+                <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
+                    Neoklasik iktisat kuramı, ekonomiyi dışsal bir fiziksel enerji girdisine ihtiyaç duymayan ve çevreye entropik atık bırakmayan bir sürekli hareket makinesi (*perpetuum mobile*) şeklinde tasavvur eder. Oysa adli eko-fizik, iktisadi süreçlerin evrenin mutlak ve çiğnenemez termodinamik yasaları içerisinde yer alan açık sistemler olduğunu kanıtlamaktadır. Aşağıda bu çerçevenin kurucu fizikçileri ve toplumsal direnç dinamiklerini açıklayan beş disiplinlerarası sütun sunulmuştur.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-stone-900 text-stone-100 p-5 rounded-xl border border-stone-800 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="text-xs text-amber-400 font-semibold uppercase tracking-wider">Sanal Servet & Faiz</div>
+                        <h3 class="text-lg font-bold text-white mt-1 mb-2">Frederick Soddy</h3>
+                        <p class="text-xs text-stone-300 leading-relaxed">
+                            Kısmi rezerv bankacılığıyla üretilen parasal alacaklar bileşik faizle üstel büyürken ($S(t) = S_0 \cdot e^{rt}$), reel fiziksel servet Termodinamiğin İkinci Yasası gereği aşınır ve çürür.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-stone-800 text-xs font-mono text-amber-500">
+                        Sanal Servet Makası
+                    </div>
+                </div>
+
+                <div class="bg-stone-900 text-stone-100 p-5 rounded-xl border border-stone-800 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="text-xs text-amber-400 font-semibold uppercase tracking-wider">Entropi Kanunu</div>
+                        <h3 class="text-lg font-bold text-white mt-1 mb-2">N. Georgescu-Roegen</h3>
+                        <p class="text-xs text-stone-300 leading-relaxed">
+                            İktisadi süreç dairesel bir devridaim değildir. Çevreden alınan düşük entropili enerji, geri döndürülemez biçimde yüksek entropili atık ısı ve kirliliğe dönüştürülür.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-stone-800 text-xs font-mono text-amber-500">
+                        Tek Yönlü Entropik Akış
+                    </div>
+                </div>
+
+                <div class="bg-stone-900 text-stone-100 p-5 rounded-xl border border-stone-800 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="text-xs text-amber-400 font-semibold uppercase tracking-wider">Net Enerji & Emerji</div>
+                        <h3 class="text-lg font-bold text-white mt-1 mb-2">Howard T. Odum</h3>
+                        <p class="text-xs text-stone-300 leading-relaxed">
+                            Medeniyetin gelişmişliğini brüt enerji değil, enerjiyi elde etmek için harcanan miktar düşüldükten sonra topluma kalan Net Enerji ve gömülü enerji (Emerji) belirler.
+                        </div>
+                    <div class="mt-4 pt-3 border-t border-stone-800 text-xs font-mono text-amber-500">
+                        Net Enerji & Emerji
+                    </div>
+                </div>
+
+                <div class="bg-stone-900 text-stone-100 p-5 rounded-xl border border-stone-800 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="text-xs text-amber-400 font-semibold uppercase tracking-wider">Karmaşıklık Çöküşü</div>
+                        <h3 class="text-lg font-bold text-white mt-1 mb-2">Joseph Tainter</h3>
+                        <p class="text-xs text-stone-300 leading-relaxed">
+                            Toplumlar krizleri çözmek için kurumsal karmaşıklığı artırır. Ancak karmaşıklığın marjinal verimi zamanla çöker ($MR < MC$) ve sistem kaskat şeklinde dağılır.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-stone-800 text-xs font-mono text-amber-500">
+                        Marjinal Verim Çöküşü
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
+                <h3 class="text-lg font-bold text-stone-800 mb-4">Beş Disiplinlerarası Kuramsal Sütun Matrisi</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs sm:text-sm">
+                        <thead class="bg-stone-100 text-stone-700 font-bold border-b border-stone-200">
+                            <tr>
+                                <th class="p-3">Düşünür</th>
+                                <th class="p-3">Temel Teorik Çerçeve</th>
+                                <th class="p-3">İktisadi & EWS Karşılığı</th>
+                                <th class="p-3">Adli Teşhis ve Sistemik Yansıma</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-stone-200 text-stone-600">
+                            <tr class="hover:bg-stone-50">
+                                <td class="p-3 font-bold text-stone-900">Karl Polanyi</td>
+                                <td class="p-3">Piyasaların Toplumsal Dokudan Kopması (*Disembeddedness*)</td>
+                                <td class="p-3 font-mono text-amber-700">MSC > MSB Dengesizliği</td>
+                                <td class="p-3">Piyasaların sosyal koruma ağlarından kopması, emeğin Marjinal Ürün Hasılatı (MRP) altında ücretlendirilmesine ve kayıt dışılığa yol açar.</td>
+                            </tr>
+                            <tr class="hover:bg-stone-50">
+                                <td class="p-3 font-bold text-stone-900">René Girard</td>
+                                <td class="p-3">Mimetik Arzu ve Kurban Mekanizması</td>
+                                <td class="p-3 font-mono text-amber-700">Taklitçi Köpükler & Günah Keçisi</td>
+                                <td class="p-3">Rasyonel fayda yerine başkalarını taklit etme spekülatif balonlar yaratır; kriz anında suç stokçulara ve aracılara yüklenir.</td>
+                            </tr>
+                            <tr class="hover:bg-stone-50">
+                                <td class="p-3 font-bold text-stone-900">Eric Hoffer</td>
+                                <td class="p-3">Kesin İnançlılar ve Kitle Fanatizmi</td>
+                                <td class="p-3 font-mono text-amber-700">Esnekliğin Çöküşü (Ed → 0)</td>
+                                <td class="p-3">İktisadi çöküş yaşayan bireyler rasyonel kararlardan uzaklaşır, fiyat duyarlılığını yitirir ve fanatik saadet zincirlerine sığınır.</td>
+                            </tr>
+                            <tr class="hover:bg-stone-50">
+                                <td class="p-3 font-bold text-stone-900">Joseph Tainter</td>
+                                <td class="p-3">Kurumsal Karmaşıklık ve Katastrof</td>
+                                <td class="p-3 font-mono text-amber-700">Azalan Marjinal Verimler (MR < MC)</td>
+                                <td class="p-3">Bürokratik katmanlaşmanın marjinal getirisi negatife düşer; sistem aşırı yönetim maliyeti altında çöker.</td>
+                            </tr>
+                            <tr class="hover:bg-stone-50">
+                                <td class="p-3 font-bold text-stone-900">İbn Haldun</td>
+                                <td class="p-3">Asabiyye ve Hanedan Döngüsü</td>
+                                <td class="p-3 font-mono text-amber-700">Haldun-Laffer Etkisi & PPF Çöküşü</td>
+                                <td class="p-3">Toplumsal dayanışmanın ve adalet inancının zayıflaması üretici güdüyü yok eder; aşırı vergilendirme devleti mali iflasa sürükler.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab-eroei" class="tab-content space-y-6 hidden">
+            <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
+                <h2 class="text-xl sm:text-2xl font-bold text-stone-800 mb-3">Küresel EROEI Erimesi ve Soddy Sanal Servet Makası</h2>
+                <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
+                    Üretim fonksiyonunda net enerji, sisteme can veren birincil fiziksel sürükleyicidir. Yüksek yoğunluklu konvansiyonel hidrokarbonların tükenmesiyle Enerji İadesi Yatırım Getirisi (EROEI) gerilemektedir. Oran 10:1 seviyesinin altına indiğinde medeniyet dikey bir **Net Enerji Uçurumu** ile karşılaşır. Buna karşılık itibari para düzeninde parasal alacaklar katlanarak büyümekte, fiziksel taban ile finansal kuleler arasında **Soddy Sanal Servet Makası** açılmaktadır.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-base font-bold text-stone-800 mb-2">Küresel EROEI vs Toplam Borç ve GSYİH (1970 - 2025)</h3>
+                        <p class="text-xs text-stone-500 mb-4">EROEI oranındaki düşüş ile borç balonunun eksponansiyel patlaması arasındaki ters yönlü ilişki.</p>
+                        <div class="chart-container">
+                            <canvas id="chartEROEI"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-stone-900 text-stone-100 p-6 rounded-xl border border-stone-800 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-lg font-bold text-amber-400 mb-3 flex items-center gap-2">
+                            <span>🧪</span> Net Enerji Uçurumu Simülatörü
+                        </h3>
+                        <p class="text-xs text-stone-300 mb-4 leading-relaxed">
+                            EROEI değerini kaydırarak enerjiyi çıkarma sürecinin öz-tüketimini ve topluma kalan net kullanılabilir enerji payını gözlemleyin.
+                        </p>
+
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span>EROEI Seviyesi ($E_{del} / E_{inv}$)</span>
+                                    <span id="eroei-val" class="font-bold text-amber-400">8 : 1</span>
+                                </div>
+                                <input type="range" id="eroei-slider" min="1.5" max="50" step="0.5" value="8" class="w-full accent-amber-500" oninput="updateEROEISimulator()">
+                            </div>
+
+                            <div class="p-4 rounded-lg bg-stone-800 border border-stone-700 space-y-3">
+                                <div>
+                                    <div class="flex justify-between text-xs text-stone-400 mb-1">
+                                        <span>Topluma Aktarılan Net Enerji Payı</span>
+                                        <span id="net-energy-pct" class="font-bold text-emerald-400">%87.5</span>
+                                    </div>
+                                    <div class="w-full bg-stone-700 rounded-full h-3 overflow-hidden">
+                                        <div id="net-energy-bar" class="bg-emerald-500 h-3 rounded-full" style="width: 87.5%"></div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between text-xs text-stone-400 mb-1">
+                                        <span>Üretim Öz-Tüketim İskontosu</span>
+                                        <span id="waste-energy-pct" class="font-bold text-rose-400">%12.5</span>
+                                    </div>
+                                    <div class="w-full bg-stone-700 rounded-full h-3 overflow-hidden">
+                                        <div id="waste-energy-bar" class="bg-rose-500 h-3 rounded-full" style="width: 12.5%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="eroei-warning" class="mt-4 p-3 rounded bg-amber-950/80 border border-amber-700/50 text-xs text-amber-200">
+                        ⚠️ **Net Enerji Uçurumu:** EROEI &le; 10:1 seviyesine indiğinde marjinal maliyetler dikey sıçrama yapar; karmaşık altyapıların sürdürülmesi imkânsızlaşır.
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
+                <h3 class="text-lg font-bold text-stone-800 mb-4">Tarihsel Makro-Termodinamik Sistem Durumu (1970-2025)</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs sm:text-sm">
+                        <thead class="bg-stone-100 text-stone-700 font-bold border-b border-stone-200">
+                            <tr>
+                                <th class="p-3">Yıl</th>
+                                <th class="p-3">Küresel Birincil Enerji ($EJ$)</th>
+                                <th class="p-3">Petrol/Gaz EROEI</th>
+                                <th class="p-3">Toplam Borç ($T)</th>
+                                <th class="p-3">Küresel GSYİH ($T)</th>
+                                <th class="p-3">Sistem Teşhisi ve Durum</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-stone-200 text-stone-600">
+                            <tr class="hover:bg-stone-50">
+                                <td class="p-3 font-bold text-stone-900">1970</td>
+                                <td class="p-3">210.0 EJ</td>
+                                <td class="p-3 font-bold text-emerald-600">35 : 1</td>
+                                <td class="p-3">$8.0 T</td>
+                                <td class="p-3">$3.4 T</td>
+                                <td class="p-3">Yüksek marjinal verim, güçlü fiziksel taban, düşük sermaye sürtünmesi.</td>
+                            </tr>
+                            <tr class="hover:bg-stone-50">
+                                <td class="p-3 font-bold text-stone-900">1990</td>
+                                <td class="p-3">350.0 EJ</td>
+                                <td class="p-3 font-bold text-emerald-700">22 : 1</td>
+                                <td class="p-3">$35.0 T</td>
+                                <td class="p-3">$22.6 T</td>
+                                <td class="p-3">Konvansiyonel sahalarda olgunlaşma, finansallaşmanın hızlanması.</td>
+                            </tr>
+                            <tr class="hover:bg-stone-50">
+                                <td class="p-3 font-bold text-stone-900">2010</td>
+                                <td class="p-3">500.0 EJ</td>
+                                <td class="p-3 font-bold text-amber-600">14 : 1</td>
+                                <td class="p-3">$198.0 T</td>
+                                <td class="p-3">$66.1 T</td>
+                                <td class="p-3">Sanal servetin fiziki tabanı aşması, ultraderin ve kayaç gazına geçiş.</td>
+                            </tr>
+                            <tr class="bg-rose-50/50 hover:bg-rose-50 font-medium">
+                                <td class="p-3 font-extrabold text-rose-900">2025</td>
+                                <td class="p-3 font-bold text-stone-900">610.0 EJ</td>
+                                <td class="p-3 font-extrabold text-rose-600">8 : 1</td>
+                                <td class="p-3 font-extrabold text-rose-700">$315.0 T</td>
+                                <td class="p-3 text-stone-900">$105.0 T</td>
+                                <td class="p-3 text-rose-900 font-bold">39.3x Borç Patlaması, Net Enerji Uçurumu ve kronik enflasyonist erime.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab-hinterland" class="tab-content space-y-6 hidden">
+            <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
+                <h2 class="text-xl sm:text-2xl font-bold text-stone-800 mb-3">Küresel İnsan İnterlandı ve 20 Ülke Çapraz Risk Matrisi</h2>
+                <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
+                    T2SAIM modeli, ulusal direnç kapasitesini soyut GSYİH rakamlarıyla değil, sistemik şok anlarında toplumun dağılmasını engelleyen **İnsan İnterlandı** ile ölçer. İnsan İnterlandı; Hukukun Üstünlüğü, Yolsuzluk Kontrolü, Moral Ekonomi tabanı ve İbn Haldun'cu Asabiyye ağlarının bütünüdür. Aşağıda Dünya Bankası WGI verileriyle hesaplanan 20 ülkelik direnç matrisi yer almaktadır.
+                </p>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-2">
+                <button onclick="filterHinterland('all')" class="hint-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-stone-800 text-white">Tümü</button>
+                <button onclick="filterHinterland('q1')" class="hint-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">Kadran I: Kale Ülkeler (+17 / +21)</button>
+                <button onclick="filterHinterland('q2')" class="hint-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-sky-100 text-sky-800 border border-sky-300">Kadran II: Sanayi & Enerji Bağımlıları (+13 / +16)</button>
+                <button onclick="filterHinterland('q3')" class="hint-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300">Kadran III: Emtia & Enformel Ağlar (-0.5 / +0.8)</button>
+                <button onclick="filterHinterland('q4')" class="hint-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-rose-100 text-rose-800 border border-rose-300">Kadran IV: Yüksek Kırılganlık (-1.6 / -7.6)</button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="lg:col-span-2 bg-white p-6 rounded-xl border border-stone-200 shadow-sm overflow-x-auto">
+                    <table class="w-full text-left text-xs sm:text-sm">
+                        <thead class="bg-stone-100 text-stone-700 font-bold border-b border-stone-200">
+                            <tr>
+                                <th class="p-2.5">ISO3</th>
+                                <th class="p-2.5">Ülke</th>
+                                <th class="p-2.5">Hukuk Üstünlüğü</th>
+                                <th class="p-2.5">Yolsuzluk Kontrolü</th>
+                                <th class="p-2.5">Hükümet Etkinliği</th>
+                                <th class="p-2.5">Gini</th>
+                                <th class="p-2.5">İnterland Skoru</th>
+                            </tr>
+                        </thead>
+                        <tbody id="hinterland-table-body" class="divide-y divide-stone-200">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-base font-bold text-stone-800 mb-2">20 Ülke Direnç Skor Dağılımı</h3>
+                        <p class="text-xs text-stone-500 mb-4">Pozitif kurumsal tamponlardan derin negatif kırılganlık bölgesine geçiş.</p>
+                        <div class="chart-container">
+                            <canvas id="chartHinterland"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-5 rounded-xl bg-amber-50 border border-amber-200 text-stone-800 text-xs sm:text-sm leading-relaxed space-y-2">
+                <span class="font-bold text-amber-900 block text-base">🔍 Özel Adli Teşhis: Türkiye'nin Özgün Enformel Tamponu</span>
+                <p>
+                    Türkiye, resmi WGI yönetişim skorlarındaki belirgin negatifliğe (<span class="font-bold text-rose-700">-4.72</span>) rağmen, geleneksel aile içi dayanışma transferleri, esnaf ağları ve kayıt dışı ekonominin sunduğu yüksek esneklik sayesinde Latin Amerika tipi kaotik toplumsal çözülmelerden ayrışan özgün bir geleneksel tampon sergilemektedir.
+                </p>
+            </div>
+        </section>
+
+        <section id="tab-turkey" class="tab-content space-y-6 hidden">
+            <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
+                <h2 class="text-xl sm:text-2xl font-bold text-stone-800 mb-3">Türkiye Makroekonomik Kriz Otopsisi (1994-2026)</h2>
+                <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
+                    1994-2026 dönemini kapsayan adli otopsi, negatif reel faiz deneylerinin, parasal genişlemenin ve kurumsal erozyonun finansal göstergeler üzerindeki tahribatını belgelemektedir. 2023 yılı ortasında TCMB net uluslararası rezervlerinin derin negatife çekilmesiyle Soddy makası tarihsel rekor kriz seviyesine (**921.05x**) fırlamış, uygulanan parasal sıkılaşma ile bu oran **8.76x** seviyesine çekilmiştir.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
+                    <h3 class="text-base font-bold text-stone-800 mb-2">Tarihsel Kriz Dönemleri ve Gösterge Zirveleri</h3>
+                    <p class="text-xs text-stone-500 mb-4">TÜFE Enflasyonu, Kur Oynaklığı ve Hoffer Hayal Kırıklığı Endeksi ($HFI$).</p>
+                    <div class="chart-container">
+                        <canvas id="chartTurkeyAutopsy"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-base font-bold text-stone-800 mb-3">Scott Moral Ekonomi Stres Seyri (2015-2025)</h3>
+                        <div class="space-y-3 text-xs">
+                            <div class="p-3 rounded-lg bg-stone-50 border border-stone-200">
+                                <div class="flex justify-between font-bold text-stone-800 mb-1">
+                                    <span>2015: Korunaklı Geçim Tabanı</span>
+                                    <span class="text-emerald-600 font-mono">Stres: 4.60</span>
+                                </div>
+                                <div class="text-stone-600">TÜFE: %7.67 | REER: 128.52 (Düşük toplumsal stres)</div>
+                            </div>
+                            <div class="p-3 rounded-lg bg-stone-50 border border-stone-200">
+                                <div class="flex justify-between font-bold text-stone-800 mb-1">
+                                    <span>2018: Kur Şoku Başlangıcı</span>
+                                    <span class="text-amber-600 font-mono">Stres: 10.34</span>
+                                </div>
+                                <div class="text-stone-600">TÜFE: %16.33 | REER: 90.01 (Alım gücü aşınması)</div>
+                            </div>
+                            <div class="p-3 rounded-lg bg-rose-50 border border-rose-200">
+                                <div class="flex justify-between font-bold text-rose-950 mb-1">
+                                    <span>2022: Tam Moral Ekonomi Kırılması</span>
+                                    <span class="text-rose-700 font-extrabold font-mono">Stres Zirve: 51.33</span>
+                                </div>
+                                <div class="text-rose-900">TÜFE: %72.31 | REER: 76.29 (Geçim tabanı delindi, tavan fiyat kıtlıkları)</div>
+                            </div>
+                            <div class="p-3 rounded-lg bg-emerald-50 border border-emerald-200">
+                                <div class="flex justify-between font-bold text-emerald-950 mb-1">
+                                    <span>2025-2026: Normalleşme Eşiği</span>
+                                    <span class="text-emerald-700 font-bold font-mono">Stres: 0.41 - 1.42</span>
+                                </div>
+                                <div class="text-emerald-900">Parasal sıkılaşma ve rezerv toparlanması ile geçici dengeleme.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
+                <h3 class="text-lg font-bold text-stone-800 mb-4">Dünya Bankası Türkiye WGI Kurumsal Erozyon Cetveli (2012-2023)</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs sm:text-sm">
+                        <thead class="bg-stone-100 text-stone-700 font-bold border-b border-stone-200">
+                            <tr>
+                                <th class="p-3">Gözlem Yılı</th>
+                                <th class="p-3">Hukukun Üstünlüğü</th>
+                                <th class="p-3">Yolsuzluk Kontrolü</th>
+                                <th class="p-3">Hükümet Etkinliği</th>
+                                <th class="p-3">Gini Gelir Dağılımı</th>
+                                <th class="p-3">Resmî İşsizlik (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-stone-200 text-stone-600">
+                            <tr class="hover:bg-stone-50">
+                                <td class="p-3 font-bold text-stone-900">2012</td>
+                                <td class="p-3 text-emerald-600 font-bold">-0.77</td>
+                                <td class="p-3 text-emerald-600 font-bold">+3.39</td>
+                                <td class="p-3 text-emerald-600 font-bold">+9.08</td>
+                                <td class="p-3">40.2</td>
+                                <td class="p-3">%9.2</td>
+                            </tr>
+                            <tr class="hover:bg-stone-50">
+                                <td class="p-3 font-bold text-stone-900">2018</td>
+                                <td class="p-3 text-amber-600 font-bold">-8.14</td>
+                                <td class="p-3 text-amber-600 font-bold">-7.30</td>
+                                <td class="p-3 text-amber-600 font-bold">-1.31</td>
+                                <td class="p-3">42.4</td>
+                                <td class="p-3">%11.0</td>
+                            </tr>
+                            <tr class="hover:bg-stone-50">
+                                <td class="p-3 font-bold text-stone-900">2022</td>
+                                <td class="p-3 text-rose-600 font-bold">-8.26</td>
+                                <td class="p-3 text-rose-600 font-bold">-8.42</td>
+                                <td class="p-3 text-rose-600 font-bold">-3.59</td>
+                                <td class="p-3">44.5</td>
+                                <td class="p-3">%10.5</td>
+                            </tr>
+                            <tr class="bg-stone-50 hover:bg-stone-100">
+                                <td class="p-3 font-bold text-stone-900">2023</td>
+                                <td class="p-3 text-rose-700 font-bold">-5.63</td>
+                                <td class="p-3 text-rose-700 font-bold">-5.53</td>
+                                <td class="p-3 text-rose-700 font-bold">-2.73</td>
+                                <td class="p-3">43.7</td>
+                                <td class="p-3">%9.4</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab-biocognitive" class="tab-content space-y-6 hidden">
+            <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
+                <h2 class="text-xl sm:text-2xl font-bold text-stone-800 mb-3">Biyo-Kognitif Endokrin Sarkaç ve Amigdala Kilitlenmesi</h2>
+                <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
+                    Piyasa hareketleri yalnızca matematiksel beklentilerle değil, aktörlerin endokrin hormon döngüleriyle yönlenir. Düşük oynaklık dönemlerinde yükselen **testosteron** risk körlüğü ve aşırı kaldıraç yaratırken; kriz anında patlayan **kortizol** prefrontal korteksi felç ederek **amigdala kilitlenmesine** yol açar. Bu durumda kitleler rasyonel fiyatlama mekanizmasından koparak mimetik kaçışa ve günah keçisi avına sığınır.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
+                    <h3 class="text-base font-bold text-stone-800 mb-2">30-Günlük Kur Volatilitesi ve Endokrin Fazlar (2001-2026)</h3>
+                    <p class="text-xs text-stone-500 mb-4">Kortizol Şoku (Volatilitat > %60) ve Testosteron Öforisi (Volatilitat < %10) bölgeleri.</p>
+                    <div class="chart-container">
+                        <canvas id="chartBiocognitive"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-stone-900 text-stone-100 p-6 rounded-xl border border-stone-800 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-lg font-bold text-amber-400 mb-3 flex items-center gap-2">
+                            <span>🧮</span> Hoffer Hayal Kırıklığı Endeksi ($HFI$) Hesaplayıcı
+                        </h3>
+                        <p class="text-xs text-stone-300 mb-4 leading-relaxed">
+                            Formül: $HFI = (\text{TÜFE \%} \times 0.45) + (\text{Borç/Rezerv Stresi} \times 0.35) + (\text{Bilişsel Körelme} \times 20)$
+                        </p>
+
+                        <div class="space-y-4 text-xs">
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span>TÜFE Enflasyonu (%)</span>
+                                    <span id="hfi-cpi-val" class="font-bold text-amber-400">%40</span>
+                                </div>
+                                <input type="range" id="hfi-cpi" min="0" max="120" value="40" class="w-full accent-amber-500" oninput="calculateHFI()">
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span>Dış Borç / Rezerv Stres Endeksi</span>
+                                    <span id="hfi-stress-val" class="font-bold text-amber-400">30</span>
+                                </div>
+                                <input type="range" id="hfi-stress" min="0" max="100" value="30" class="w-full accent-amber-500" oninput="calculateHFI()">
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span>Bilişsel Körelme Katsayısı (0 - 2)</span>
+                                    <span id="hfi-cog-val" class="font-bold text-amber-400">0.8</span>
+                                </div>
+                                <input type="range" id="hfi-cog" min="0" max="2" step="0.1" value="0.8" class="w-full accent-amber-500" oninput="calculateHFI()">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 p-4 rounded-lg bg-stone-800 border border-stone-700 text-center">
+                        <div class="text-xs text-stone-400 uppercase tracking-wider mb-1">Hesaplanan HFI Skoru</div>
+                        <div id="hfi-result" class="text-3xl font-extrabold text-amber-400 my-1">44.5</div>
+                        <div id="hfi-prognosis" class="text-xs text-stone-300">
+                            🔥 Yüksek Kitle Fanatizmi Riski! Talebin fiyat esnekliği çöküyor ($E_d \to 0$).
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
+                <h3 class="text-lg font-bold text-stone-800 mb-3">Girard'cı Mimetik Kurban ve Günah Keçisi Dinamiği</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                    <div class="p-4 rounded-lg bg-stone-50 border border-stone-200">
+                        <span class="font-bold text-stone-900 block text-sm mb-1">1. Mimetik Köpük Evresi</span>
+                        Bireyler rasyonel ihtiyaçlar yerine başkalarının tüketimini taklit eder. Yapay talep sıçramaları varlık balonlarını büyütür.
+                    </div>
+                    <div class="p-4 rounded-lg bg-stone-50 border border-stone-200">
+                        <span class="font-bold text-stone-900 block text-sm mb-1">2. Amigdala Kilidi & Şok</span>
+                        Kur veya likidite krizi kortizol patlaması yaratır. Prefrontal korteks devre dışı kalır; panik varlık alımları başlar.
+                    </div>
+                    <div class="p-4 rounded-lg bg-rose-50 border border-rose-200 text-rose-950">
+                        <span class="font-bold text-rose-900 block text-sm mb-1">3. Sistemik Günah Keçisi</span>
+                        Parasal genişlemenin sorumluluğunu gizlemek amacıyla stokçular, aracılar ve perakendeciler hedef gösterilerek kitle öfkesi kurban edilir.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab-cognitive" class="tab-content space-y-6 hidden">
+            <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
+                <h2 class="text-xl sm:text-2xl font-bold text-stone-800 mb-3">Kognitif Sermaye Tabanı ve 30 Yıllık Kuşak Projeksiyonları</h2>
+                <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
+                    Sürdürülebilir teknolojik gelişme bir toplumun kognitif sermayesiyle mümkündür. Türkiye'de 2026 yılı bütçe tahsislerinde Diyanet İşleri Başkanlığı bütçesi **$3.90 Milyar** seviyesindeyken; TÜBİTAK, Sanayi Bakanlığı doğrudan destekleri ve BAP projelerinin toplamı **$2.65 Milyar** düzeyinde kalmış (**1.47x Bütçe Sürtünmesi**) ve OECD PISA sonuçlarında üst seviye kritik akıl oranı **%1.8 - %4.4** bandına hapsolmuştur.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
+                    <h3 class="text-base font-bold text-stone-800 mb-2">2026-2055 Üçlü Senaryo Projeksiyon Kıyaslaması</h3>
+                    <p class="text-xs text-stone-500 mb-4">Statüko, Sokratik Bilim Reformu ve Kognitif Gerileme senaryolarının 30 yıllık çıktıları.</p>
+                    <div class="chart-container">
+                        <canvas id="chartCognitiveScenario"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-base font-bold text-stone-800 mb-3">30 Yıllık Gecikme Yasası Simülasyon Cetveli</h3>
+                        <div class="space-y-3 text-xs">
+                            <div class="p-3 rounded-lg bg-stone-50 border border-stone-200">
+                                <div class="font-bold text-stone-900 mb-1">A. Statüko (Dogmatik Atalet)</div>
+                                <div class="text-stone-600">PISA L5-6: %4.5 | Bütçe Oranı: 0.68x | 2055 WIPO Patent: ~3,100 | Yüksek Tek. İhracat: %4.2</div>
+                                <div class="mt-1 text-stone-500 italic">Sonuç: Fason montaj sanayi, orta gelir ve orta zekâ tuzağında kalış.</div>
+                            </div>
+                            <div class="p-3 rounded-lg bg-emerald-50 border border-emerald-200">
+                                <div class="font-bold text-emerald-950 mb-1">B. Sokratik Bilim Reformu (Hedeflenen)</div>
+                                <div class="text-emerald-900">PISA L5-6: %12.0 | Bütçe Oranı: 3.50x | 2055 WIPO Patent: ~11,500 | Yüksek Tek. İhracat: %14.8</div>
+                                <div class="mt-1 text-emerald-800 font-semibold">Sonuç: Katma değerli çip ve yazılım ihracatı, tersine beyin göçü.</div>
+                            </div>
+                            <div class="p-3 rounded-lg bg-rose-50 border border-rose-200">
+                                <div class="font-bold text-rose-950 mb-1">C. Kognitif Gerileme (Risk)</div>
+                                <div class="text-rose-900">PISA L5-6: %2.0 | Bütçe Oranı: 0.40x | 2055 WIPO Patent: ~1,400 | Yüksek Tek. İhracat: %1.9</div>
+                                <div class="mt-1 text-rose-800 italic">Sonuç: Beşeri sermayenin tasfiyesi, tam teknolojik dışa bağımlılık.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab-policy" class="tab-content space-y-6 hidden">
+            <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
+                <h2 class="text-xl sm:text-2xl font-bold text-stone-800 mb-3">Stoa Devre Kesici Protokolü ve Stratejik Politika Tavsiyeleri</h2>
+                <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
+                    Sistemik kırılganlıkları gidermek için kurala dayalı bir kurumsal reform mimarisi zorunludur. Aşağıda beş temel boyutta kurgulanan stratejik politika önerileri ve Stoa Devre Kesici yürütücü kuralları yer almaktadır.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm">
+                    <div class="text-xs font-bold text-amber-600 uppercase mb-1">1. Makro-Finansal Mimarisi</div>
+                    <h3 class="text-sm font-bold text-stone-900 mb-2">Soddy Makası Tavan Kuralı</h3>
+                    <p class="text-xs text-stone-600 leading-relaxed mb-3">
+                        M2 para arzının Net Uluslararası Rezervlere oranı ($M2/NIR$) anayasal olarak azami **10x** seviyesiyle sınırlandırılmalıdır. 15x seviyesinde zorunlu karşılıklar otomatik artmalıdır.
+                    </p>
+                    <span class="inline-block px-2 py-1 bg-stone-100 text-stone-700 text-xs font-mono rounded">Anayasal Parasal Kural</span>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm">
+                    <div class="text-xs font-bold text-amber-600 uppercase mb-1">2. Eko-Fiziksel Planlama</div>
+                    <h3 class="text-sm font-bold text-stone-900 mb-2">Emerji Muhasebesi & Pigou Vergileri</h3>
+                    <p class="text-xs text-stone-600 leading-relaxed mb-3">
+                        Ulusal hesaplara Net Enerji Bilanço Cetvelleri entegre edilmeli; yenilenemeyen kaynak tüketiminin termodinamik amortismanı Pigou vergileriyle fiyatlara yansıtılmalıdır.
+                    </p>
+                    <span class="inline-block px-2 py-1 bg-stone-100 text-stone-700 text-xs font-mono rounded">Entropik Amortisman</span>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm">
+                    <div class="text-xs font-bold text-amber-600 uppercase mb-1">3. Kurumsal Restorasyon</div>
+                    <h3 class="text-sm font-bold text-stone-900 mb-2">WGI Yargı & Moral Güvence</h3>
+                    <p class="text-xs text-stone-600 leading-relaxed mb-3">
+                        Fiyat tavanı gibi kıtlık üreten müdahaleler tamamen kaldırılmalı; alt gelir gruplarının asgari geçim tabanı doğrudan, şeffaf nakdi gelir transferleriyle korunmalıdır.
+                    </p>
+                    <span class="inline-block px-2 py-1 bg-stone-100 text-stone-700 text-xs font-mono rounded">Doğrudan Gelir Transferi</span>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm">
+                    <div class="text-xs font-bold text-amber-600 uppercase mb-1">4. Kognitif Sermaye</div>
+                    <h3 class="text-sm font-bold text-stone-900 mb-2">3:1 Bütçe Dengesi Kuralı</h3>
+                    <p class="text-xs text-stone-600 leading-relaxed mb-3">
+                        Ar-Ge ve bilimsel araştırma harcamalarının dogmatik kurumlara ayrılan bütçeye oranı en az **3:1** seviyesine çıkarılmalı; PISA L5-6 hedefi %12 yapılmalıdır.
+                    </p>
+                    <span class="inline-block px-2 py-1 bg-stone-100 text-stone-700 text-xs font-mono rounded">Sokratik Eğitim Reformu</span>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm">
+                    <div class="text-xs font-bold text-amber-600 uppercase mb-1">5. Biyo-Kognitif Risk</div>
+                    <h3 class="text-sm font-bold text-stone-900 mb-2">Karşı-Döngüsel Testosteron Tamponu</h3>
+                    <p class="text-xs text-stone-600 leading-relaxed mb-3">
+                        Kur volatilitesinin %3'ün altına indiği yapay istikrar dönemlerinde piyasa yapıcıların testosteron öforisine karşı dinamik sermaye tamponları zorunlu tutulmalıdır.
+                    </p>
+                    <span class="inline-block px-2 py-1 bg-stone-100 text-stone-700 text-xs font-mono rounded">Öfori Önleyici Tampon</span>
+                </div>
+
+                <div class="bg-stone-900 text-stone-100 p-5 rounded-xl border border-stone-800 shadow-sm">
+                    <div class="text-xs font-bold text-amber-400 uppercase mb-1">Stoa Protokolü Otomasyonu</div>
+                    <h3 class="text-sm font-bold text-white mb-2">Otomatik Devre Kesici</h3>
+                    <p class="text-xs text-stone-300 leading-relaxed mb-3">
+                        $M2/NIR > 20x$ veya Kur Volatilitesi $> \%60$ durumunda sistem otomatik olarak likiditeyi kilitler, kaldıraçları kapatır ve soğutma protokolü uygular.
+                    </p>
+                    <span class="inline-block px-2 py-1 bg-amber-900 text-amber-200 text-xs font-mono rounded border border-amber-700">Canlı Devre Kesici</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-stone-900 text-stone-400 text-xs border-t border-stone-800 py-6 mt-10">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
+            <p class="font-semibold text-stone-300">Büyük Birleşik Erken Uyarı Sistemi (T2SAIM EWS) Rapor Modülü</p>
+            <p class="text-stone-500">Termodinamik Eko-Fizik, Soddy Sanal Servet Makası, İnsan İnterlandı ve Biyo-Kognitif Finans Çerçevesi.</p>
+        </div>
+    </footer>
+
+    <script>
+        const hinterlandData = [
+            { iso: 'CHE', name: 'İsviçre', law: 19.38, corr: 22.24, eff: 23.48, gini: 33.1, score: 21.61, q: 'q1' },
+            { iso: 'AUS', name: 'Avustralya', law: 16.76, corr: 19.59, eff: 17.49, gini: 34.3, score: 17.97, q: 'q1' },
+            { iso: 'CAN', name: 'Kanada', law: 16.20, corr: 18.39, eff: 16.68, gini: 33.3, score: 17.11, q: 'q1' },
+            { iso: 'JPN', name: 'Japonya', law: 16.89, corr: 15.35, eff: 17.94, gini: 32.9, score: 16.67, q: 'q2' },
+            { iso: 'DEU', name: 'Almanya', law: 17.06, corr: 18.31, eff: 13.04, gini: 31.7, score: 16.29, q: 'q2' },
+            { iso: 'GBR', name: 'İngiltere', law: 15.38, corr: 16.29, eff: 12.77, gini: 35.1, score: 14.92, q: 'q2' },
+            { iso: 'USA', name: 'ABD', law: 14.60, corr: 12.36, eff: 13.39, gini: 41.5, score: 13.45, q: 'q2' },
+            { iso: 'KOR', name: 'Güney Kore', law: 13.73, corr: 9.83, eff: 15.45, gini: 31.4, score: 12.88, q: 'q2' },
+            { iso: 'FRA', name: 'Fransa', law: 12.99, corr: 13.03, eff: 12.59, gini: 32.4, score: 12.88, q: 'q2' },
+            { iso: 'ESP', name: 'İspanya', law: 9.05, corr: 6.92, eff: 8.27, gini: 34.7, score: 8.07, q: 'q2' },
+            { iso: 'ITA', name: 'İtalya', law: 4.29, corr: 6.05, eff: 6.72, gini: 35.2, score: 5.64, q: 'q2' },
+            { iso: 'GRC', name: 'Yunanistan', law: 2.34, corr: 1.08, eff: 1.63, gini: 32.9, score: 1.69, q: 'q4' },
+            { iso: 'IND', name: 'Hindistan', law: 2.07, corr: -4.03, eff: 5.23, gini: 35.7, score: 0.88, q: 'q3' },
+            { iso: 'IDN', name: 'Endonezya', law: -1.69, corr: -5.36, eff: 6.38, gini: 37.9, score: -0.55, q: 'q3' },
+            { iso: 'ZAF', name: 'Güney Afrika', law: 0.95, corr: -3.13, eff: -2.83, gini: 63.0, score: -1.61, q: 'q4' },
+            { iso: 'TUR', name: 'Türkiye', law: -5.63, corr: -5.53, eff: -2.73, gini: 43.8, score: -4.72, q: 'q4' },
+            { iso: 'BRA', name: 'Brezilya', law: -3.40, corr: -5.54, eff: -6.01, gini: 52.9, score: -4.93, q: 'q3' },
+            { iso: 'MEX', name: 'Meksika', law: -8.87, corr: -11.23, eff: -2.18, gini: 45.4, score: -7.69, q: 'q4' }
+        ];
+
+        let initializedCharts = {};
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('bg-amber-600', 'text-white');
+                el.classList.add('hover:bg-stone-700', 'text-stone-300');
+            });
+
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.classList.add('bg-amber-600', 'text-white');
+            activeBtn.classList.remove('hover:bg-stone-700', 'text-stone-300');
+
+            setTimeout(() => {
+                initTabCharts(tabId);
+            }, 50);
+        }
+
+        function renderHinterlandTable(filter = 'all') {
+            const tbody = document.getElementById('hinterland-table-body');
+            tbody.innerHTML = '';
+            
+            const filtered = hinterlandData.filter(item => filter === 'all' || item.q === filter);
+
+            filtered.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-stone-50 font-mono text-xs';
+                
+                let scoreColor = 'text-emerald-600 font-bold';
+                if (item.score < 0) scoreColor = 'text-rose-600 font-bold';
+                else if (item.score < 10) scoreColor = 'text-amber-600 font-bold';
+
+                tr.innerHTML = `
+                    <td class="p-2.5 font-bold text-stone-900">${item.iso}</td>
+                    <td class="p-2.5 font-sans font-medium text-stone-800">${item.name}</td>
+                    <td class="p-2.5">${item.law > 0 ? '+' : ''}${item.law.toFixed(2)}</td>
+                    <td class="p-2.5">${item.corr > 0 ? '+' : ''}${item.corr.toFixed(2)}</td>
+                    <td class="p-2.5">${item.eff > 0 ? '+' : ''}${item.eff.toFixed(2)}</td>
+                    <td class="p-2.5 font-sans">${item.gini}</td>
+                    <td class="p-2.5 ${scoreColor}">${item.score > 0 ? '+' : ''}${item.score.toFixed(2)}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function filterHinterland(filter) {
+            renderHinterlandTable(filter);
+            document.querySelectorAll('.hint-filter-btn').forEach(btn => {
+                btn.classList.remove('bg-stone-800', 'text-white');
+                btn.classList.add('bg-stone-100', 'text-stone-700');
+            });
+            event.target.classList.add('bg-stone-800', 'text-white');
+            event.target.classList.remove('bg-stone-100', 'text-stone-700');
+        }
+
+        function updateEWSSimulator() {
+            const soddy = parseFloat(document.getElementById('sim-soddy').value);
+            const vol = parseFloat(document.getElementById('sim-vol').value);
+            const moral = parseFloat(document.getElementById('sim-moral').value);
+
+            document.getElementById('sim-soddy-val').innerText = soddy + 'x';
+            document.getElementById('sim-vol-val').innerText = '%' + vol;
+            document.getElementById('sim-moral-val').innerText = moral;
+
+            const title = document.getElementById('sim-status-title');
+            const desc = document.getElementById('sim-status-desc');
+
+            if (moral > 45 || soddy > 80) {
+                title.innerText = 'L7: Revülsiyon ve Asabiyye Çöküşü';
+                title.className = 'text-lg font-extrabold text-rose-500 my-1 animate-pulse';
+                desc.innerText = '⚠️ Katastrof Eşiği! Moral stres ve borç makası toplumsal sözleşmeyi deldi. Sosyal transfer ve acil rezerv protokolü tetiklendi.';
+            } else if (vol > 60) {
+                title.innerText = 'L6: Panik ve Kortizol Kilidi';
+                title.className = 'text-lg font-extrabold text-rose-400 my-1';
+                desc.innerText = '🚨 Amigdala Kilitlenmesi! Kur oynaklığı %60 eşiğini aştı. Stoa Devre Kesici devreye girerek kaldıraçları kilitledi.';
+            } else if (soddy > 20) {
+                title.innerText = 'L4: Kritik Eşik / Soddy Makası Alarmları';
+                title.className = 'text-lg font-extrabold text-amber-400 my-1';
+                desc.innerText = '⚡ Sanal Servet Makası ($M2/NIR > 20x$) aşırı gerilimde. Otomatik para arzı kısıtlaması uygulanıyor.';
+            } else if (vol < 10) {
+                title.innerText = 'L3: Öfori ve Biyo-Kognitif Körlük';
+                title.className = 'text-lg font-extrabold text-sky-400 my-1';
+                desc.innerText = '📈 Yapay Sakinlik / Risk Körlüğü! Düşük oynaklık aktörlerde testosteron öforisi yaratıyor. Karşı-döngüsel sermaye tamponu gerekli.';
+            } else {
+                title.innerText = 'L5: Güvenli Denge Modu';
+                title.className = 'text-lg font-extrabold text-emerald-400 my-1';
+                desc.innerText = '✅ Yönetilebilir Faz. Parasal disiplin ve rezerv birikimi ile denge korunuyor.';
+            }
+        }
+
+        function updateEROEISimulator() {
+            const eroei = parseFloat(document.getElementById('eroei-slider').value);
+            document.getElementById('eroei-val').innerText = eroei.toFixed(1) + ' : 1';
+
+            const netPct = (1 - (1 / eroei)) * 100;
+            const wastePct = (1 / eroei) * 100;
+
+            document.getElementById('net-energy-pct').innerText = '%' + netPct.toFixed(1);
+            document.getElementById('waste-energy-pct').innerText = '%' + wastePct.toFixed(1);
+
+            document.getElementById('net-energy-bar').style.width = netPct + '%';
+            document.getElementById('waste-energy-bar').style.width = wastePct + '%';
+
+            const warn = document.getElementById('eroei-warning');
+            if (eroei <= 10) {
+                warn.className = 'mt-4 p-3 rounded bg-rose-950 border border-rose-700 text-xs text-rose-200 animate-pulse';
+                warn.innerHTML = '🔥 <strong>ACİL ALARM: Net Enerji Uçurumu Bölgesi!</strong> Enerjinin %10+ kadarı yalnızca çıkarma işlemine harcanıyor. Medeniyet altyapısı çökmek üzere.';
+            } else {
+                warn.className = 'mt-4 p-3 rounded bg-amber-950/80 border border-amber-700/50 text-xs text-amber-200';
+                warn.innerHTML = '⚠️ <strong>Net Enerji Uçurumu:</strong> EROEI &le; 10:1 seviyesine indiğinde marjinal maliyetler dikey sıçrama yapar; karmaşık altyapıların sürdürülmesi imkânsızlaşır.';
+            }
+        }
+
+        function calculateHFI() {
+            const cpi = parseFloat(document.getElementById('hfi-cpi').value);
+            const stress = parseFloat(document.getElementById('hfi-stress').value);
+            const cog = parseFloat(document.getElementById('hfi-cog').value);
+
+            document.getElementById('hfi-cpi-val').innerText = '%' + cpi;
+            document.getElementById('hfi-stress-val').innerText = stress;
+            document.getElementById('hfi-cog-val').innerText = cog;
+
+            const hfi = (cpi * 0.45) + (stress * 0.35) + (cog * 20);
+            document.getElementById('hfi-result').innerText = hfi.toFixed(1);
+
+            const prog = document.getElementById('hfi-prognosis');
+            if (hfi > 40) {
+                prog.innerText = '🔥 Yüksek Kitle Fanatizmi Riski! Rasyonel fiyat duyarlılığı tamamen sıfırlandı (Ed → 0). Spekülatif saadet zinciri ve panik kaçış aktif.';
+                prog.className = 'text-xs text-rose-400 font-bold';
+            } else if (hfi > 25) {
+                prog.innerText = '⚠️ Orta Derece İktisadi Yabancılaşma. Hanehalklarında alım gücü kaybı endişesi ve mimetik korunma davranışı yüksek.';
+                prog.className = 'text-xs text-amber-300';
+            } else {
+                prog.innerText = '✅ Düşük Hoffer Stresi. Bireyler rasyonel fiyatlama ve fayda optimizasyonuna devam ediyor.';
+                prog.className = 'text-xs text-emerald-300';
+            }
+        }
+
+        function initTabCharts(tabId) {
+            if (tabId === 'eroei' && !initializedCharts['eroei']) {
+                const ctx = document.getElementById('chartEROEI').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['1970', '1990', '2010', '2025'],
+                        datasets: [
+                            {
+                                label: 'Küresel EROEI (Oran)',
+                                data: [35, 22, 14, 8],
+                                borderColor: '#d97706',
+                                backgroundColor: 'rgba(217, 119, 6, 0.1)',
+                                borderWidth: 3,
+                                yAxisID: 'y'
+                            },
+                            {
+                                label: 'Küresel Borç ($ Trilyon)',
+                                data: [8, 35, 198, 315],
+                                borderColor: '#dc2626',
+                                borderDash: [5, 5],
+                                borderWidth: 2,
+                                yAxisID: 'y1'
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: { type: 'linear', position: 'left', title: { display: true, text: 'EROEI' } },
+                            y1: { type: 'linear', position: 'right', title: { display: true, text: 'Borç ($T)' }, grid: { drawOnChartArea: false } }
+                        }
+                    }
+                });
+                initializedCharts['eroei'] = true;
+            }
+
+            if (tabId === 'hinterland' && !initializedCharts['hinterland']) {
+                const ctx = document.getElementById('chartHinterland').getContext('2d');
+                const sorted = [...hinterlandData].sort((a,b) => b.score - a.score);
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: sorted.map(d => d.iso),
+                        datasets: [{
+                            label: 'İnsan İnterlandı Direnç Skoru',
+                            data: sorted.map(d => d.score),
+                            backgroundColor: sorted.map(d => d.score >= 10 ? '#059669' : (d.score >= 0 ? '#d97706' : '#dc2626'))
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        indexAxis: 'y',
+                        plugins: { legend: { display: false } }
+                    }
+                });
+                initializedCharts['hinterland'] = true;
+            }
+
+            if (tabId === 'turkey' && !initializedCharts['turkey']) {
+                const ctx = document.getElementById('chartTurkeyAutopsy').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['1994', '2001', '2018', '2021-22', '2023-06', '2025-26'],
+                        datasets: [
+                            {
+                                label: 'TÜFE Enflasyonu (%)',
+                                data: [105.2, 54.4, 16.3, 72.3, 38.2, 41.8],
+                                backgroundColor: 'rgba(220, 38, 38, 0.7)'
+                            },
+                            {
+                                label: 'Zirve Kur Volatilitesi (%)',
+                                data: [0, 133.5, 66.8, 97.7, 45.2, 18.4],
+                                backgroundColor: 'rgba(217, 119, 6, 0.7)'
+                            },
+                            {
+                                label: 'Hoffer Index (HFI)',
+                                data: [63.6, 40.7, 22.6, 47.7, 52.1, 28.4],
+                                backgroundColor: 'rgba(79, 70, 229, 0.7)'
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: { y: { beginAtZero: true } }
+                    }
+                });
+                initializedCharts['turkey'] = true;
+            }
+
+            if (tabId === 'biocognitive' && !initializedCharts['biocognitive']) {
+                const ctx = document.getElementById('chartBiocognitive').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['2001', '2008', '2013', '2018', '2021', '2022', '2023', '2024', '2025-26'],
+                        datasets: [{
+                            label: '30-Günlük Zirve Kur Oynaklığı (%)',
+                            data: [133.53, 54.75, 15.60, 66.77, 97.69, 97.63, 28.83, 5.95, 11.26],
+                            borderColor: '#e11d48',
+                            backgroundColor: 'rgba(225, 29, 72, 0.1)',
+                            fill: true,
+                            tension: 0.3,
+                            borderWidth: 3
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: { y: { title: { display: true, text: 'Volatilitat (%)' } } }
+                    }
+                });
+                initializedCharts['biocognitive'] = true;
+            }
+
+            if (tabId === 'cognitive' && !initializedCharts['cognitive']) {
+                const ctx = document.getElementById('chartCognitiveScenario').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['PISA Seviye 5-6 (%)', 'Bütçe Oranı (x10)', '2055 PCT Patent (x1000)', 'Yüksek Tek. İhracat (%)'],
+                        datasets: [
+                            {
+                                label: 'Senaryo A: Statüko',
+                                data: [4.5, 6.8, 3.1, 4.2],
+                                backgroundColor: '#6b7280'
+                            },
+                            {
+                                label: 'Senaryo B: Sokratik Reform',
+                                data: [12.0, 35.0, 11.5, 14.8],
+                                backgroundColor: '#059669'
+                            },
+                            {
+                                label: 'Senaryo C: Gerileme',
+                                data: [2.0, 4.0, 1.4, 1.9],
+                                backgroundColor: '#dc2626'
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: { y: { beginAtZero: true } }
+                    }
+                });
+                initializedCharts['cognitive'] = true;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderHinterlandTable();
+            updateEWSSimulator();
+            updateEROEISimulator();
+            calculateHFI();
+        });
+    </script>
+</body>
+</html>

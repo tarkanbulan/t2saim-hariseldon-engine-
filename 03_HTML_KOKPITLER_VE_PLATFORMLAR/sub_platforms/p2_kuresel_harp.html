@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Küresel Finansal Harp (1996–2026) Adli İstihbarat ve Strateji Portalı</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        slateDark: '#0f172a',
+                        accentAmber: '#d97706',
+                        accentRed: '#dc2626',
+                        accentBlue: '#2563eb',
+                        accentIndigo: '#4f46e5'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 360px;
+            }
+        }
+        .math-box {
+            background-color: #1e293b;
+            color: #f8fafc;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+
+    <!-- Chosen Palette: Warm Tactical Slate & Forensic Amber -->
+    <!-- Application Structure Plan: 
+         - Top Bar: Header with quick stats & section anchors.
+         - Intro Section: Contextual explanation of the 30-Year Forensic Audit.
+         - Section 1: Interactive Mathematical & Cognitive Models with live Kyle's Lambda & Glosten-Milgrom Simulator.
+         - Section 2: 30-Year Chronological Timeline (1996–2026) with interactive phase filters.
+         - Section 3: Core-20 Risk Matrix featuring dynamic risk score visualization (Chart.js) and search/filter table.
+         - Section 4: 5 Deep Case Studies (TR, BR/ZA, IND, DE/EU, JP) with tabbed drill-down navigation.
+         - Section 5: 5-Layer Defensive Shield & Circuit Breakers (Stoa, PLB, Cyber/VIGINUM, Alt Settlement, Anti-Lawfare).
+         - Section 6: Daubert Tier-1 Evidence Table with real-time text filter.
+    -->
+    <!-- Visualization & Content Choices:
+         - Market Microstructure Simulator: Dynamic Chart.js line plot linked to sliders for Informed Trader Ratio (Pi) and Noise Variance (Sigma_u) to show real-time Bid-Ask Spread widening & Liquidity Evaporation.
+         - Core-20 Risk Chart: Dynamic Chart.js horizontal bar chart displaying Risk Scores across countries, filtered by Risk Regime (Kriz/Sessiz/Sakin).
+         - Case Studies & Timeline: Interactive HTML/CSS tabs & pill filters with JS DOM updates for high readability without external heavy libraries.
+         - NO SVG used (Unicode icons & CSS styled badges used). NO Mermaid JS used.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <!-- NAVIGATION HEADER -->
+    <header class="sticky top-0 z-50 bg-slate-900 text-white shadow-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center h-auto md:h-16 py-3 md:py-0">
+            <div class="flex items-center space-x-3 mb-2 md:mb-0">
+                <span class="text-xl">⚖️</span>
+                <div>
+                    <h1 class="text-lg font-bold tracking-tight text-amber-400">T2SAIM ADLİ İSTİHBARAT PORTALI</h1>
+                    <p class="text-xs text-slate-400">Bilişsel ve Asimetrik Finansal Harp Raporu (1996–2026)</p>
+                </div>
+            </div>
+            <nav class="flex flex-wrap justify-center space-x-1 sm:space-x-3 text-xs md:text-sm font-medium text-slate-300">
+                <a href="#teori" class="px-2 py-1 hover:text-amber-400 transition">Teori & Simülatör</a>
+                <a href="#zaman-cizelgesi" class="px-2 py-1 hover:text-amber-400 transition">30 Yıllık Akış</a>
+                <a href="#core20" class="px-2 py-1 hover:text-amber-400 transition">Core-20 Matrisi</a>
+                <a href="#vakalar" class="px-2 py-1 hover:text-amber-400 transition">Vaka Otopsileri</a>
+                <a href="#savunma" class="px-2 py-1 hover:text-amber-400 transition">Savunma Kalkanı</a>
+                <a href="#kanitlar" class="px-2 py-1 hover:text-amber-400 transition">Daubert Kanıtları</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO / METRICS BANNER -->
+    <section class="bg-slate-900 text-white border-b border-slate-800 py-10 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="lg:flex lg:items-center lg:justify-between">
+                <div class="max-w-3xl">
+                    <div class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20 mb-4">
+                        🔍 Daubert Kanıt Standardı (Tier-1) Onaylı Adli Rapor
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-4">
+                        30 Yıllık Bilişsel ve Asimetrik Finansal Harp Otopsisi
+                    </h2>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        Bu platform; 1996–2026 yılları arasında küresel piyasalarda uygulanan asimetrik finansal harp operasyonlarını, HFT algoritmalarını, yargısal kuşatmaları (Lawfare) ve bilişsel dezenformasyon mekanizmalarını adli ve interaktif bir çerçevede analiz etmektedir.
+                    </p>
+                </div>
+                <!-- Quick Key Metrics -->
+                <div class="mt-8 lg:mt-0 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-4">
+                    <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 text-center">
+                        <div class="text-2xl font-bold text-amber-400">30 Yıl</div>
+                        <div class="text-xs text-slate-400">İncelenen Dönem (1996-2026)</div>
+                    </div>
+                    <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 text-center">
+                        <div class="text-2xl font-bold text-blue-400">20 Ülke</div>
+                        <div class="text-xs text-slate-400">Core-20 Kırılganlık Matrisi</div>
+                    </div>
+                    <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 text-center">
+                        <div class="text-2xl font-bold text-red-400">5 Derin Vaka</div>
+                        <div class="text-xs text-slate-400">Küresel Otopsi Dosyası</div>
+                    </div>
+                    <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 text-center">
+                        <div class="text-2xl font-bold text-emerald-400">5 Katman</div>
+                        <div class="text-xs text-slate-400">Çok Kutuplu Savunma Doktrini</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+
+        <!-- SECTION 1: TEORİK VE MATEMATİKSEL ÇERÇEVE & SİMÜLATÖR -->
+        <section id="teori" class="scroll-mt-20">
+            <div class="border-l-4 border-amber-500 pl-4 mb-6">
+                <h3 class="text-2xl font-bold text-slate-900">1. Teorik & Matematiksel Çerçeve ve İnteraktif Piyasa Simülatörü</h3>
+                <p class="text-slate-600 text-sm mt-1">
+                    Bu bölümde, bilişsel operasyonların piyasa mikroyapısında (Limit Order Book) nasıl likidite buharlaşmasına ve fiyat çöküşlerine yol açtığı matematiksel denklemler ve canlı bir simülatörle gösterilmektedir.
+                </p>
+            </div>
+
+            <!-- Equations & Explanations Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <!-- Theory Cards -->
+                <div class="space-y-4">
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-bold text-slate-900">1.1 Lefebvre Refleksif Kontrol & Amigdala Stres Endeksi</h4>
+                            <span class="text-xs font-semibold px-2 py-1 bg-amber-100 text-amber-800 rounded">Bilişsel Vektör</span>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-3">
+                            Sahte öncüller enjekte edilerek hedefin kendi rasyonel kararıymış gibi görünen ancak manipülatöre hizmet eden tepkiler üretmesidir. Sosyal ağlar üzerinden pompalanan dezenformasyon ile Amigdala Stres Skoru ($A_{\text{LOAD}}$) yükseltilir ve Prefrontal Korteks karar felcine uğratılır.
+                        </p>
+                        <div class="math-box p-3 rounded text-xs">
+                            $$I_{\text{target}} \to R_{\text{induced}} \quad | \quad Q_{\text{outflow}}(t) = \int_0^t \psi \cdot \exp(\gamma \cdot \Theta_{\text{medya}}(u)) du$$
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-bold text-slate-900">1.2 Glosten-Milgrom & Kyle's Lambda ($\lambda$)</h4>
+                            <span class="text-xs font-semibold px-2 py-1 bg-blue-100 text-blue-800 rounded">Mikroyapı Vektörü</span>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-3">
+                            Piyasa yapıcılar, bilgi asimetrisi veya dezenformasyon algıladıklarında kendilerini korumak için alış-satış ($S_{\text{bid-ask}}$) makasını genişletir. Likidite çekildiğinde Piyasa Etki Katsayısı (Kyle's Lambda - $\lambda$) yükselir ve küçük satışlar dahi "Flash Crash" yaratır.
+                        </p>
+                        <div class="math-box p-3 rounded text-xs">
+                            $$S_{\text{bid-ask}}(t) = 2 \cdot (\Pi_t \cdot (\mu_{\text{info}} - \mu_0)) + \zeta_t \quad | \quad \lambda = \frac{\sigma_v}{2\sigma_u}$$
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Market Microstructure Simulator -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="font-bold text-slate-900 flex items-center gap-2">
+                                <span>⚡</span> Likidite Buharlaşması & Kotasyon Simülatörü
+                            </h4>
+                            <span class="text-xs bg-slate-100 text-slate-700 px-2 py-1 rounded">Canlı Model</span>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-4">
+                            Sürgüleri değiştirerek manipülatif dezenformasyon oranının ($\Pi_t$) ve gürültülü işlem belirsizliğinin ($\sigma_u$) alış-satış makası ($S_{\text{bid-ask}}$) ile Kyle's Lambda ($\lambda$) üzerindeki etkisini gözlemleyin.
+                        </p>
+
+                        <!-- Controls -->
+                        <div class="space-y-3 bg-slate-50 p-4 rounded-lg border border-slate-200 text-xs mb-4">
+                            <div>
+                                <div class="flex justify-between font-semibold mb-1">
+                                    <span>İçeriden / Manipülatif Haber Algısı ($\Pi_t$):</span>
+                                    <span id="piVal" class="text-amber-600 font-bold">0.30</span>
+                                </div>
+                                <input type="range" id="piInput" min="0.05" max="0.95" step="0.05" value="0.30" class="w-full accent-amber-600 cursor-pointer">
+                            </div>
+                            <div>
+                                <div class="flex justify-between font-semibold mb-1">
+                                    <span>Piyasa Gürültü Varyansı ($\sigma_u$ - Likidite Derinliği):</span>
+                                    <span id="sigmaVal" class="text-blue-600 font-bold">1.50</span>
+                                </div>
+                                <input type="range" id="sigmaInput" min="0.20" max="3.00" step="0.10" value="1.50" class="w-full accent-blue-600 cursor-pointer">
+                            </div>
+                        </div>
+
+                        <!-- Computed Indicators -->
+                        <div class="grid grid-cols-2 gap-3 mb-4 text-center">
+                            <div class="bg-amber-50 p-2 rounded border border-amber-200">
+                                <div class="text-xs text-amber-800 font-medium">Kotasyon Makası ($S_{\text{bid-ask}}$)</div>
+                                <div id="calcSpread" class="text-lg font-extrabold text-amber-700">1.20 TL</div>
+                            </div>
+                            <div class="bg-blue-50 p-2 rounded border border-blue-200">
+                                <div class="text-xs text-blue-800 font-medium">Kyle's Lambda ($\lambda$ - Sığlık)</div>
+                                <div id="calcLambda" class="text-lg font-extrabold text-blue-700">0.33</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chart Container -->
+                    <div class="chart-container">
+                        <canvas id="simulatorChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: 30 YILLIK TARİHSEL FAZLAR VE KÜRESEL ŞOKLAR (1996 - 2026) -->
+        <section id="zaman-cizelgesi" class="scroll-mt-20">
+            <div class="border-l-4 border-amber-500 pl-4 mb-6">
+                <h3 class="text-2xl font-bold text-slate-900">2. 30 Yıllık Tarihsel Fazlar ve Küresel Şoklar (1996 – 2026)</h3>
+                <p class="text-slate-600 text-sm mt-1">
+                    Son 30 yılın finansal krizleri, piyasa içi düzeltmeler olmaktan çıkıp devletlerin jeopolitik dizaynı için tasarlanmış asimetrik muharebelere dönüşmüştür. Dönemleri filtreleyerek inceleyin.
+                </p>
+            </div>
+
+            <!-- Timeline Filter Buttons -->
+            <div class="flex flex-wrap gap-2 mb-6">
+                <button onclick="filterTimeline('all')" class="timeline-btn active px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 text-white transition">Tüm Fazlar (1996-2026)</button>
+                <button onclick="filterTimeline('kur')" class="timeline-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-700 border border-slate-300 hover:bg-slate-100 transition">Kur & Spekülasyon Atakları</button>
+                <button onclick="filterTimeline('borc')" class="timeline-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-700 border border-slate-300 hover:bg-slate-100 transition">Borç & Likidite Krizleri</button>
+                <button onclick="filterTimeline('bilissel')" class="timeline-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-700 border border-slate-300 hover:bg-slate-100 transition">Bilişsel & Jeopolitik Şoklar</button>
+            </div>
+
+            <!-- Timeline Grid / Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="timelineGrid">
+                
+                <!-- Item 1 -->
+                <div class="timeline-card bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition" data-category="kur">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded">1997 – 1998</span>
+                        <span class="text-xs text-slate-400">Faz 1</span>
+                    </div>
+                    <h4 class="font-bold text-slate-900 text-sm mb-1">Asya & Rusya Krizi</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                        Macro Hedge Fonların (LTCM, Quantum) gelişmekte olan piyasaların sabit kur çıpalarına ve zayıf rezervlerine yönelik ilk kitlesel açığa satış taarruzu.
+                    </p>
+                    <span class="inline-block text-[10px] font-medium bg-slate-100 text-slate-700 px-2 py-0.5 rounded">Vektör: Spekülatif Arbitraj</span>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="timeline-card bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition" data-category="kur">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded">2001</span>
+                        <span class="text-xs text-slate-400">Faz 2</span>
+                    </div>
+                    <h4 class="font-bold text-slate-900 text-sm mb-1">TR Bankacılık & Dot-Com Çöküşü</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                        Dot-Com balonu ile birlikte Türkiye'de siyasi bir tartışmanın gecelik faizleri %7500'e taşıması; açık pozisyon zafiyetinin panik dalgasıyla çöküşe dönüşmesi.
+                    </p>
+                    <span class="inline-block text-[10px] font-medium bg-slate-100 text-slate-700 px-2 py-0.5 rounded">Vektör: Histerezis & Panik</span>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="timeline-card bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition" data-category="borc">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">2008</span>
+                        <span class="text-xs text-slate-400">Faz 3</span>
+                    </div>
+                    <h4 class="font-bold text-slate-900 text-sm mb-1">Lehman Brothers & Küresel Finans Krizi</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                        Toksik MBS ve CDO türev araçlarıyla sistemik çöküş. Fed'in sınırsız Parasal Genişleme (QE) dönemini başlatması ve gelişen ülkelere "Sıcak Para" bağımlılığı enjeksiyonu.
+                    </p>
+                    <span class="inline-block text-[10px] font-medium bg-slate-100 text-slate-700 px-2 py-0.5 rounded">Vektör: Türev Mühendisliği</span>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="timeline-card bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition" data-category="borc">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">2012</span>
+                        <span class="text-xs text-slate-400">Faz 4</span>
+                    </div>
+                    <h4 class="font-bold text-slate-900 text-sm mb-1">Euro Bölgesi & Derecelendirme Asimetrisi</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                        S&P, Moody's ve Fitch'in PIIGS ülkelerine yönelik manidar not indirimleri; sovereign tahvil faizlerinin ve CDS primlerinin maliye politikasına müdahale için araçsallaştırılması.
+                    </p>
+                    <span class="inline-block text-[10px] font-medium bg-slate-100 text-slate-700 px-2 py-0.5 rounded">Vektör: Rating Lawfare</span>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="timeline-card bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition" data-category="bilissel">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded">2018</span>
+                        <span class="text-xs text-slate-400">Faz 5</span>
+                    </div>
+                    <h4 class="font-bold text-slate-900 text-sm mb-1">Türkiye Rahip Brunson Şoku</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                        Sosyal medya mesajları ve Londra OTC swap piyasalarından eşzamanlı açığa satış taarruzu. Ulusal paranın doğrudan bir jeopolitik şantaj silahına dönüştürülmesi.
+                    </p>
+                    <span class="inline-block text-[10px] font-medium bg-slate-100 text-slate-700 px-2 py-0.5 rounded">Vektör: Weaponized Interdependence</span>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="timeline-card bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition" data-category="bilissel">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded">2020</span>
+                        <span class="text-xs text-slate-400">Faz 6</span>
+                    </div>
+                    <h4 class="font-bold text-slate-900 text-sm mb-1">Pandemi & Tedarik Zinciri Blokajları</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                        Trilyonlarca dolarlık genişleme ile kalıcı enflasyonist dalga. Çin'in demir cevheri ambargoları ve ABD BIS'in ASML çip hatları üzerinden uyguladığı Chokepoint blokajları.
+                    </p>
+                    <span class="inline-block text-[10px] font-medium bg-slate-100 text-slate-700 px-2 py-0.5 rounded">Vektör: Chokepoint & Ambargo</span>
+                </div>
+
+                <!-- Item 7 -->
+                <div class="timeline-card bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition" data-category="bilissel">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded">2021 – 2023</span>
+                        <span class="text-xs text-slate-400">Faz 7</span>
+                    </div>
+                    <h4 class="font-bold text-slate-900 text-sm mb-1">Enerji Şoku & LDI Emeklilik Krizi</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                        TTF doğalgaz borsasında sentetik haber spekülasyonu. İngiltere'de LDI emeklilik fonlarının teminat kilitlenmesi ve Türkiye'nin KKM Devre Kesicisi müdahalesi.
+                    </p>
+                    <span class="inline-block text-[10px] font-medium bg-slate-100 text-slate-700 px-2 py-0.5 rounded">Vektör: TTF Spekülasyonu & LDI</span>
+                </div>
+
+                <!-- Item 8 -->
+                <div class="timeline-card bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition" data-category="borc">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">2024 – 2026</span>
+                        <span class="text-xs text-slate-400">Faz 8</span>
+                    </div>
+                    <h4 class="font-bold text-slate-900 text-sm mb-1">Yen Carry Trade & Dijital Sifon Fazı</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                        BoJ faiz artırımıyla trilyonlarca dolarlık Yen Carry Trade'in algoritmik çözülmesi. Gelişmekte olan kurlardan sermayenin aniden çekildiği Stagflasyonist rejim.
+                    </p>
+                    <span class="inline-block text-[10px] font-medium bg-slate-100 text-slate-700 px-2 py-0.5 rounded">Vektör: Carry Trade Unwind</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 3: CORE-20 ÜLKE ASİMETRİK HARP VE KIRILGANLIK MATRİSİ -->
+        <section id="core20" class="scroll-mt-20">
+            <div class="border-l-4 border-amber-500 pl-4 mb-6">
+                <h3 class="text-2xl font-bold text-slate-900">3. Core-20 Ülke Asimetrik Harp ve Kırılganlık Matrisi</h3>
+                <p class="text-slate-600 text-sm mt-1">
+                    Uluslararası finansal ve bilişsel altyapı analizleri ışığında Core-20 ülkelerinin maruz kaldığı harp vektörleri ve 2026 risk rejimleri.
+                </p>
+            </div>
+
+            <!-- Visualization & Interactive Controls -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                <!-- Country Risk Score Chart -->
+                <div class="lg:col-span-1 bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h4 class="font-bold text-slate-900 text-sm mb-2">2026 Risk Rejimi Dağılımı</h4>
+                        <p class="text-xs text-slate-500 mb-4">Ülkelerin kırılganlık yüzeylerine göre sıralı risk seviyeleri.</p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="core20Chart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Core-20 Interactive Table -->
+                <div class="lg:col-span-2 bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
+                        <h4 class="font-bold text-slate-900 text-sm">Core-20 Adli Veri Tablosu</h4>
+                        <div class="flex gap-2 w-full sm:w-auto">
+                            <input type="text" id="countrySearch" onkeyup="filterCountryTable()" placeholder="Ülke veya vektör ara..." class="px-3 py-1.5 text-xs border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 w-full sm:w-48">
+                            <select id="regimeFilter" onchange="filterCountryTable()" class="px-3 py-1.5 text-xs border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                <option value="ALL">Tüm Rejimler</option>
+                                <option value="Kriz">Kriz Rejimi</option>
+                                <option value="Sessiz">Sessiz Rejim</option>
+                                <option value="Sakin">Sakin Rejim</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto max-h-[420px] overflow-y-auto border border-slate-200 rounded-lg">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead class="bg-slate-900 text-white sticky top-0">
+                                <tr>
+                                    <th class="p-2.5">Kod</th>
+                                    <th class="p-2.5">Ülke</th>
+                                    <th class="p-2.5">Temel Kırılganlık Yüzeyi</th>
+                                    <th class="p-2.5">Harp Vektörü</th>
+                                    <th class="p-2.5">Savunma Kalkanı</th>
+                                    <th class="p-2.5">2026 Risk Rejimi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="countryTableBody" class="divide-y divide-slate-200">
+                                <!-- JS will populate rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: 5 STRATEJİK VAKA OTOPSİSİ -->
+        <section id="vakalar" class="scroll-mt-20">
+            <div class="border-l-4 border-amber-500 pl-4 mb-6">
+                <h3 class="text-2xl font-bold text-slate-900">4. 5 Stratejik Vaka Otopsisi (Derin Adli İnceleme)</h3>
+                <p class="text-slate-600 text-sm mt-1">
+                    T2SAIM metodolojisi ve Daubert Tier-1 kanıt zinciriyle incelenmiş 5 küresel asimetrik harp operasyonunun detaylı adli dökümü.
+                </p>
+            </div>
+
+            <!-- Case Study Selector Tabs -->
+            <div class="flex flex-wrap border-b border-slate-200 mb-6 gap-2" id="vakaTabs">
+                <button onclick="switchCase(0)" class="vaka-tab active px-4 py-2.5 text-xs font-bold border-b-2 border-amber-600 text-amber-600 transition">Vaka 1: Türkiye (TR)</button>
+                <button onclick="switchCase(1)" class="vaka-tab px-4 py-2.5 text-xs font-bold text-slate-500 hover:text-slate-800 transition">Vaka 2: Brezilya & G. Afrika (BR/ZA)</button>
+                <button onclick="switchCase(2)" class="vaka-tab px-4 py-2.5 text-xs font-bold text-slate-500 hover:text-slate-800 transition">Vaka 3: Hindistan (IND)</button>
+                <button onclick="switchCase(3)" class="vaka-tab px-4 py-2.5 text-xs font-bold text-slate-500 hover:text-slate-800 transition">Vaka 4: Almanya & AB (DE/FR/NL)</button>
+                <button onclick="switchCase(4)" class="vaka-tab px-4 py-2.5 text-xs font-bold text-slate-500 hover:text-slate-800 transition">Vaka 5: Japonya (JP)</button>
+            </div>
+
+            <!-- Dynamic Case Study Content Display -->
+            <div id="vakaContent" class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <!-- Javascript will load detailed content dynamically -->
+            </div>
+        </section>
+
+        <!-- SECTION 5: ÇOK KUTUPLU YENİ SAVUNMA DOKTRİNİ VE DEVRE KESİCİLER -->
+        <section id="savunma" class="scroll-mt-20">
+            <div class="border-l-4 border-amber-500 pl-4 mb-6">
+                <h3 class="text-2xl font-bold text-slate-900">5. Çok Kutuplu Yeni Savunma Doktrini ve Devre Kesiciler</h3>
+                <p class="text-slate-600 text-sm mt-1">
+                    Egemen devletlerin asimetrik saldırılara karşı geliştirdiği 5 katmanlı yeni nesil finansal ve bilişsel koruma kalkanları.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-amber-500 transition">
+                    <div class="text-amber-600 text-2xl mb-2">🛑</div>
+                    <h4 class="font-bold text-slate-900 text-sm mb-2">1. Stoa & Swap Kalkanı</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Türkiye'nin Londra offshore TL likiditesini kısıtlaması, BIST EBDKS devre kesicileri ve G. Kore'nin açığa satışı tamamen yasaklaması.
+                    </p>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-amber-500 transition">
+                    <div class="text-amber-600 text-2xl mb-2">🏛️</div>
+                    <h4 class="font-bold text-slate-900 text-sm mb-2">2. Public Liquidity Backstop</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        İsviçre Federal Konseyi'nin Credit Suisse krizinde çıkardığı emergency PLB garantisi ve BoE'nin Gilt piyasasına acil müdahalesi.
+                    </p>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-amber-500 transition">
+                    <div class="text-amber-600 text-2xl mb-2">🛡️</div>
+                    <h4 class="font-bold text-slate-900 text-sm mb-2">3. Siber & Bilişsel Kalkan</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Kanada OSFI Guideline B-13 siber standartları ve Fransa VIGINUM / İsveç MPF ile dezenformasyon ağlarının anında deşifresi.
+                    </p>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-amber-500 transition">
+                    <div class="text-amber-600 text-2xl mb-2">🌐</div>
+                    <h4 class="font-bold text-slate-900 text-sm mb-2">4. Alternatif Takas & GPFG</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        PBOC ikili swap hatları, CIPS/SPFS mesajlaşma sistemleri ve Norveç Varlık Fonu'nun (GPFG) ESG kriterleri üzerinden uyguladığı stratejik denetim.
+                    </p>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-amber-500 transition">
+                    <div class="text-amber-600 text-2xl mb-2">⚖️</div>
+                    <h4 class="font-bold text-slate-900 text-sm mb-2">5. Karşı-Hukuk Harbi (Anti-Lawfare)</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Endonezya'nın DTÖ Temyiz Organı boşluğunu kullanması ("Boşluğa Temyiz") ve Brezilya Mahkemesi'nin usulsüz DOJ kanıtlarını iptal etmesi.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 6: DAUBERT TIER-1 KANIT TABLOSU -->
+        <section id="kanitlar" class="scroll-mt-20">
+            <div class="border-l-4 border-amber-500 pl-4 mb-6">
+                <h3 class="text-2xl font-bold text-slate-900">6. T2SAIM Doğruluk ve Epistemik Kanıt Tablosu</h3>
+                <p class="text-slate-600 text-sm mt-1">
+                    Veritas Per Se ve Anti-Fabrication protokolü uyarınca, rapordaki tüm bulguların dayandığı resmi otorete ve yargı belgeleri.
+                </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <div class="mb-4">
+                    <input type="text" id="evidenceSearch" onkeyup="filterEvidenceTable()" placeholder="Kanıt, resmi kurum veya dava adı ara..." class="px-3 py-2 text-xs border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 w-full md:w-80">
+                </div>
+
+                <div class="overflow-x-auto border border-slate-200 rounded-lg">
+                    <table class="w-full text-left border-collapse text-xs">
+                        <thead class="bg-slate-900 text-white">
+                            <tr>
+                                <th class="p-3">İddia / Manipülasyon Vakası</th>
+                                <th class="p-3">Birincil Adli Kanıt & Otorite Kaynağı</th>
+                                <th class="p-3">Doğrulama Çıktısı / Adli Özet</th>
+                            </tr>
+                        </thead>
+                        <tbody id="evidenceTableBody" class="divide-y divide-slate-200">
+                            <!-- JS populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <p class="font-bold text-slate-200">T2SAIM Küresel Stratejik ve Adli Denetim Raporu © 1996–2026</p>
+                <p class="text-slate-500 mt-1">Daubert Kanıt Standardı Tier-1 Normlarında Üretilmiştir.</p>
+            </div>
+            <div class="text-right text-slate-500">
+                <p>Veritas Per Se & Anti-Fabrication Protokolü</p>
+                <p>Yalnızca bilgilendirme ve stratejik analiz amaçlıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT APPLICATION LOGIC -->
+    <script>
+        // --- DATA OBJECTS ---
+        const core20Data = [
+            { code: "TR", name: "Türkiye", vuln: "NOH sapmaları, yüksek dış finansman ihtiyacı, dolarizasyon histerezisi", vector: "Londra OTC swap atakları, bot ağlarıyla döviz panik indüksiyonu", shield: "KKM, EBDKS Devre Kesici, BIST Offshore Swap Limitleri", regime: "Kriz", score: 88 },
+            { code: "US", name: "ABD", vuln: "Treasury rollover sarmalı, 34+ trilyon $ borç, siyasi kutuplaşma", vector: "Doppelgänger manipülasyonları, algoritma kaynaklı tahvil flash-crash", shield: "OFAC Yaptırımları, Dolar Likidite Swap Hatları (Fed)", regime: "Sakin", score: 35 },
+            { code: "DE", name: "Almanya", vuln: "Enerji tedarik şokları (Kuzey Akım), sanayi (DAX) hammadde açığı", vector: "TTF gaz borsası fiyat spekülasyonları, Doppelgänger klon medya operasyonları", shield: "KRITIS altyapı yasası, Zeitenwende doktrini, BSI teknik kalkanı", regime: "Kriz", score: 72 },
+            { code: "JP", name: "Japonya", vuln: "Negatif faiz bitişi, devasa iç borç stoku, demografik atalet", vector: "Yen Carry Trade'in algoritmik çözülmesi, tahvil piyasasında likidite boşluğu", shield: "BoJ Yield Curve Control kalıntıları, devasa FX rezervleri", regime: "Kriz", score: 80 },
+            { code: "ZA", name: "Güney Afrika", vuln: "Enerji kesintileri (Eskom), FATF Gri Liste süreçleri", vector: "'Old Gits' FX Karteli üzerinden ZAR spread manipülasyonu", shield: "Rekabet Komisyonu antitröst cezaları, SARB rezerv tahkimatı", regime: "Sessiz", score: 65 },
+            { code: "BR", name: "Brezilya", vuln: "Fortaleza fiber kablo düğümleri, yüksek Selic faiz sarmalı", vector: "Lava Jato ile sanayi devlerine Lawfare ve Petrobras HFT drenajı", shield: "STF Kanıt İptalleri (Lawfare iptali), Pix ödeme sistemi", regime: "Sessiz", score: 58 },
+            { code: "IT", name: "İtalya", vuln: "BTP-Bund faiz spreadi, bankacılık NPL oranları, siyasi kırılganlık", vector: "Kredi derecelendirme kuruluşlarının spread genişletici not indirimleri", shield: "ECB TPI (Transmission Protection Instrument) garantisi", regime: "Sakin", score: 48 },
+            { code: "GRC", name: "Yunanistan", vuln: "Borç çevrim krizi, Troyka kurtarma paketleri bağımlılığı", vector: "Sovereign CDS şantajları, kemer sıkma ve kamu varlığı tasfiyesi", shield: "ESM destek paketleri, AB mali entegrasyonu", regime: "Sakin", score: 42 },
+            { code: "ESP", name: "İspanya", vuln: "İpotekli konut balonu kalıntıları, bölgesel ayrılıkçılık fonlaması", vector: "Ticari gayrimenkul tahvili (CRE) spekülasyonları", shield: "Sareb (Kötü Banka) yapılandırmaları, ECB niceliksel alımları", regime: "Sessiz", score: 52 },
+            { code: "IDN", name: "Endonezya", vuln: "Nikel/emtia ihracat baskıları, cari açık kırılganlığı", vector: "DTÖ/IMF 'Hilirisasi' (hammadde yasağı) kırma operasyonları", shield: "'Boşluğa Temyiz' DTÖ hukuki stratejisi, PBOC Swap hatları", regime: "Sakin", score: 38 },
+            { code: "MEX", name: "Meksika", vuln: "Yargı reformu gerilimleri, USMCA anlaşmazlıkları, Carry Trade hedefi", vector: "Yabancı yatırım grevi fısıltıları, Pezo algoritmik short-selling", shield: "Banxico piyasa müdahaleleri, USMCA ticaret bloğu", regime: "Kriz", score: 75 },
+            { code: "IND", name: "Hindistan", vuln: "Oligopol holding yapıları, yüksek hisse senedi F/K değerlemeleri", vector: "Hindenburg Research türü yapılardan asimetrik açığa satış & itibar suikastı", shield: "SEBI Adli Tebligatları (Show-cause notice) ve ifşalar", regime: "Sessiz", score: 62 },
+            { code: "FRA", name: "Fransa", vuln: "Afrika/Sahel nüfuz kaybı, OAT tahvil arz yığılması", vector: "Portal Kombat ve Doppelgänger klon dezenformasyon ağları", shield: "VIGINUM siber deşifre kalkanı, AMF açığa satış yasakları", regime: "Sessiz", score: 60 },
+            { code: "KOR", name: "G. Kore", vuln: "Chaebol kurumsal borçluluğu, hanehalkı ipotek yükü", vector: "Çip savaşları ihracat kısıtlamaları, KRW sınır ötesi arbitraj baskısı", shield: "KFSB açığa satış (short-selling) mutlak yasakları", regime: "Sessiz", score: 55 },
+            { code: "GBR", name: "İngiltere", vuln: "Emeklilik fonlarının LDI (Kaldıraçlı) teminat yapısı", vector: "Gilt piyasasında margin call likidite donması, Brexit bariyerleri", shield: "Bank of England (BoE) hedefli acil tahvil alımları, GCHQ", regime: "Sessiz", score: 64 },
+            { code: "CAN", name: "Kanada", vuln: "Dev bankalar (Big Six) oligopolü, 5 yıllık ipotek yenilemeleri", vector: "TSX madencilik hisselerine sahte çevre haberiyle açığa satış", shield: "OSFI Guideline B-13 (Siber Risk Yönetim Standardı)", regime: "Sakin", score: 32 },
+            { code: "AUS", name: "Avustralya", vuln: "Çin'e emtia ihracat bağımlılığı, rekor hanehalkı borç rasyosu", vector: "Ticari ambargolar ve demir cevheri kontratlarında yönlü spekülasyon", shield: "RBA Likidite Tesisleri, Dış Pazar Çeşitlendirme Stratejileri", regime: "Sakin", score: 30 },
+            { code: "CHE", name: "İsviçre", vuln: "GSYH'yi aşan banka bilançosu (UBS Too Big to Fail)", vector: "AT1 tahvil silinmesi sonrası manipülasyon ve 'Hukuki Keyfilik' algısı", shield: "PLB (Public Liquidity Backstop) garantisi, SNB ELA tahsisatı", regime: "Sessiz", score: 50 },
+            { code: "NLD", name: "Hollanda", vuln: "ASML litografi tekeli, TTF gaz piyasasının derinlik kırılganlığı", vector: "IP hırsızlığı fısıltıları, TTF vadeli kontratlarda algoritmik manipülasyon", shield: "BIS EAR kısıtlama mekanizmaları, Wet Vifo yatırım kalkanı", regime: "Sessiz", score: 58 },
+            { code: "NOR", name: "Norveç", vuln: "Varlık fonunun (GPFG) 1.6 trilyon $ devasa küresel maruziyeti", vector: "Fosil yakıt (ESG) dayatmaları ile hedeflenmiş portföy tasfiyesi", shield: "GPFG uzun vadeli çeşitlendirmesi, etik komite kuralları", regime: "Sakin", score: 25 }
+        ];
+
+        const caseStudiesData = [
+            {
+                title: "Vaka 1: Türkiye (TR) – 2001 Devalüasyonu, 2018 Kur Taarruzu & KKM Devre Kesicisi",
+                summary: "Türkiye makroekonomisi, bilişsel operasyonların ve sıcak para dalgalarının tarihsel laboratuvarıdır.",
+                details: "2001 krizinde MGK toplantısındaki bir siyasi tartışmanın köpürtülmesiyle gecelik faizler %7500'e fırlamış ve açık döviz pozisyonu olan bankacılık sistemi çökmüştür.<br><br>Ağustos 2018 Rahip Brunson şokunda, ABD diplomatik mesajlarıyla eşzamanlı olarak Londra OTC swap piyasalarından TL'ye yönelik devasa açığa satış pozisyonları açılmıştır. Bot ağlarının yaydığı banka haberleri HFT algoritmalarını tetikleyerek Bid-Ask spreadini kilitlemiştir.<br><br>Aralık 2021'de ise Türkiye, 'Stoa Devre Kesicisi' olarak Kur Korumalı Mevduat (KKM) sistemini devreye sokarak histerik döviz talebini opsiyon garantisiyle durdurmayı başarmıştır."
+            },
+            {
+                title: "Vaka 2: Brezilya (BR) & Güney Afrika (ZA) – Lawfare Tasfiyesi ve FX Kartelleri",
+                summary: "Uluslararası yargı otoritelerinin (DOJ) ve bankacılık kartellerinin iç siyasete ve kurlara müdahalesi.",
+                details: "<strong>Brezilya (Lava Jato):</strong> Yolsuzlukla mücadele adı altında yürütülen operasyonun, Brezilya sanayi devlerini (Odebrecht, Petrobras) küresel rakiplere karşı tasfiye etme amaçlı bir Lawfare olduğu tespit edildi. STF, ABD DOJ ile gizli işbirliğini saptayarak kanıtları iptal etti.<br><br><strong>Güney Afrika (Old Gits Karteli):</strong> Standard Chartered, Barclays ve Citibank dahil 28 banka traderının 'Old Gits' chat odalarında ZAR kotasyonlarını anlaşmalı olarak manipüle ettiği kanıtlandı. Standard Chartered cezayı kabul ederek uzlaştı."
+            },
+            {
+                title: "Vaka 3: Hindistan (IND) – Hindenburg-Adani Raporu ve Asimetrik Açığa Satış",
+                summary: "2023 yılında Adani Group'a yapılan 150 milyar dolarlık piyasa değeri erimesi operasyonunun adli otopsisi.",
+                details: "Hindistan Piyasa Düzenleyicisi SEBI'nin hazırladığı 46 sayfalık 'Show Cause Notice' belgesi, Hindenburg'un raporu yayımlamadan aylar önce taslağı US fonu Kingdon Capital'a sızdırdığını ortaya çıkardı.<br><br>Kingdon, Kotak Mahindra'nın Mauritius merkezli KIOF fonu üzerinden Adani hisselerinde gizli kısa (short) pozisyonlar kurdu. Operasyondan konsorsiyum 22.11 milyon $ kazanırken amaç Hindistan'ın stratejik altyapısını sabotaj etmekti."
+            },
+            {
+                title: "Vaka 4: Almanya & Avrupa (DE/FR/NL) – TTF Gaz Spekülasyonu & Doppelgänger Ağları",
+                summary: "Kıta Avrupası'nda enerji şantajı, klon medya ağları ve yarı iletken teknoloji ambargoları.",
+                details: "<strong>Doppelgänger ve Portal Kombat:</strong> Rusya destekli SDA/Structura ağları; Le Monde ve Der Spiegel gibi prestijli medyanın birebir klonlarını üreterek finansal panik ve banka hücumu haberleri yaydı. Fransız VIGINUM kurumu 193 alan adlı ağı deşifre etti.<br><br><strong>TTF ve ASML:</strong> Hollanda TTF gaz borsasında algoritmik hareketlerle Alman DAX şirketleri maliyet krizine sokuldu. Aynı zamanda ABD BIS, EAR düzenlemeleriyle ASML'nin Çin'e litografi ihracatını engelleyerek çip tedarik hattını yaptırım silahına dönüştürdü."
+            },
+            {
+                title: "Vaka 5: Japonya (JP) – 1997 Yamaichi İflası ve 5 Ağustos 2024 Yen Carry Trade Unwind",
+                summary: "Ucuz Yen borçlanma arbitrajının aniden çözülmesiyle tetiklenen küresel likidite depremi.",
+                details: "1997'de yasadışı 'Tobashi' yöntemiyle zararlarını gizleyen Yamaichi Securities'in batışı şeffaflık zafiyetini gösterdi.<br><br>On yıllar sonra BoJ'un uyguladığı negatif faiz politikası trilyonlarca dolarlık Yen Carry Trade mekanizmasını yarattı. 5 Ağustos 2024'te BoJ'un sürpriz faiz artırımıyla pozisyonlar panik halinde kapatıldı. HFT algoritmalarının satış sarmalıyla Asya ve Latin Amerika kurları ani likidite vakumuna (Dijital Sifon Fazı) sürüklendi."
+            }
+        ];
+
+        const evidenceData = [
+            { case: "Hindistan / Adani Açığa Satış Taarruzu", source: "SEBI Show Cause Notice (46 Sayfa Resmi Tebligat)", output: "Hindenburg, Kingdon Capital ve Kotak Mahindra KIOF fonunun organize kısa pozisyon inşa ettiğinin ispatı." },
+            { case: "Brezilya / Lava Jato Lawfare Tasfiyesi", source: "STF (Brezilya Yüksek Mahkemesi) Kararları", output: "ABD DOJ ile MLAT kural dışı işbirliği tespiti; Odebrecht ceza kanıtlarının imprestable (geçersiz) sayılması." },
+            { case: "Güney Afrika / ZAR Döviz Karteli", source: "Rekabet Komisyonu & NY Mahkeme Kararları", output: "28 bankanın 'Old Gits' chat odası kayıtları; Standard Chartered'ın 42.7M ZAR ve 40M USD ceza ödemeyi kabul etmesi." },
+            { case: "FATF Jeopolitik Liste Baskısı (Gri Liste)", source: "FATF Plenary Bildirgeleri (2022-2026)", output: "Türkiye, BAE, G.Afrika ve Nijerya'nın Gri Liste süreçleri ve stratejik savunma sonrası listeden çıkarılışları." },
+            { case: "Avrupa Bilişsel Dezenformasyon Ağı", source: "SGDSN / VIGINUM Teknik Deşifre Raporları", output: "SDA/Structura kontrolündeki 'Portal Kombat' (193 alan adı) ve 'Doppelgänger' (Storm-1516) ağlarının teknik ifşası." },
+            { case: "Hollanda ASML Teknolojik Ambargosu", source: "US BIS (Bureau of Industry & Security) EAR Kuralları", output: "Fotolitografi cihazlarına getirilen çok taraflı ihracat kısıtlamaları (MATCH Act & Affiliates Rule)." },
+            { case: "İsviçre Kriz Likidite Kalkanı (Credit Suisse)", source: "İsviçre Federal Konseyi Acil Kararnamesi", output: "Banka çöküşünü önlemek için çıkarılan Kamu Likidite Desteği (Public Liquidity Backstop - PLB) mekanizması." },
+            { case: "Kanada Finansal Siber Güvenlik Altyapısı", source: "OSFI Guideline B-13 Raporu", output: "FRFI kurumları için bağlayıcı kılınan siber risk yönetim ve IT altyapı koruma standardı." }
+        ];
+
+        // --- CHART INITIALIZATIONS ---
+        let simulatorChartInstance = null;
+        let core20ChartInstance = null;
+
+        document.addEventListener("DOMContentLoaded", function() {
+            initSimulatorChart();
+            initCore20Chart();
+            populateCountryTable();
+            populateEvidenceTable();
+            switchCase(0); // Load default case study
+        });
+
+        // --- SIMULATOR LOGIC (Glosten-Milgrom & Kyle's Lambda) ---
+        function initSimulatorChart() {
+            const ctx = document.getElementById('simulatorChart').getContext('2d');
+            simulatorChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['T-4 (Normal)', 'T-3 (Söylenti)', 'T-2 (Bot Saldırısı)', 'T-1 (Panik)', 'T0 (Flash Crash)', 'T+1 (Toparlanma)'],
+                    datasets: [
+                        {
+                            label: 'Kotasyon Makası (Bid-Ask Spread)',
+                            data: [0.2, 0.4, 0.8, 1.5, 2.8, 1.2],
+                            borderColor: '#d97706',
+                            backgroundColor: 'rgba(217, 119, 6, 0.1)',
+                            fill: true,
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Kyle\'s Lambda (Sığlık / Etki)',
+                            data: [0.1, 0.2, 0.5, 0.9, 1.8, 0.7],
+                            borderColor: '#2563eb',
+                            borderDash: [5, 5],
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top', labels: { font: { size: 10 } } }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: '#f1f5f9' } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+
+            // Add event listeners to sliders
+            document.getElementById('piInput').addEventListener('input', updateSimulator);
+            document.getElementById('sigmaInput').addEventListener('input', updateSimulator);
+            updateSimulator();
+        }
+
+        function updateSimulator() {
+            const pi = parseFloat(document.getElementById('piInput').value);
+            const sigmaU = parseFloat(document.getElementById('sigmaInput').value);
+
+            document.getElementById('piVal').innerText = pi.toFixed(2);
+            document.getElementById('sigmaVal').innerText = sigmaU.toFixed(2);
+
+            // Mathematical calculation approximations
+            const muDelta = 2.0;
+            const spread = (2 * (pi * muDelta) + 0.1).toFixed(2);
+            const lambda = (1.0 / (2 * sigmaU)).toFixed(2);
+
+            document.getElementById('calcSpread').innerText = `${spread} TL`;
+            document.getElementById('calcLambda').innerText = lambda;
+
+            // Dynamically shift chart dataset
+            if (simulatorChartInstance) {
+                const mult = pi * (2.0 / sigmaU);
+                simulatorChartInstance.data.datasets[0].data = [
+                    (0.2 * mult).toFixed(2),
+                    (0.4 * mult).toFixed(2),
+                    (0.9 * mult).toFixed(2),
+                    (1.8 * mult).toFixed(2),
+                    (3.2 * mult).toFixed(2),
+                    (1.4 * mult).toFixed(2)
+                ];
+                simulatorChartInstance.data.datasets[1].data = [
+                    (0.1 / sigmaU).toFixed(2),
+                    (0.3 / sigmaU).toFixed(2),
+                    (0.7 / sigmaU).toFixed(2),
+                    (1.2 / sigmaU).toFixed(2),
+                    (2.1 / sigmaU).toFixed(2),
+                    (0.9 / sigmaU).toFixed(2)
+                ];
+                simulatorChartInstance.update();
+            }
+        }
+
+        // --- CORE-20 CHART INITIALIZATION ---
+        function initCore20Chart() {
+            const ctx = document.getElementById('core20Chart').getContext('2d');
+            const sortedData = [...core20Data].sort((a,b) => b.score - a.score).slice(0, 8); // Top 8 vulnerable
+            
+            core20ChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: sortedData.map(d => d.name),
+                    datasets: [{
+                        label: '2026 Risk Skor İndeksi (0-100)',
+                        data: sortedData.map(d => d.score),
+                        backgroundColor: sortedData.map(d => d.regime === 'Kriz' ? '#dc2626' : (d.regime === 'Sessiz' ? '#d97706' : '#059669')),
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: { min: 0, max: 100, grid: { color: '#f1f5f9' } },
+                        y: { grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+        // --- TABLE POPULATION & FILTERS ---
+        function populateCountryTable() {
+            const tbody = document.getElementById('countryTableBody');
+            tbody.innerHTML = '';
+            core20Data.forEach(item => {
+                let badgeClass = item.regime === 'Kriz' ? 'bg-red-100 text-red-800' : (item.regime === 'Sessiz' ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800');
+                const row = `
+                    <tr class="hover:bg-slate-50 transition border-b border-slate-100">
+                        <td class="p-2.5 font-bold text-slate-900">${item.code}</td>
+                        <td class="p-2.5 font-semibold text-slate-800">${item.name}</td>
+                        <td class="p-2.5 text-slate-600">${item.vuln}</td>
+                        <td class="p-2.5 text-slate-600">${item.vector}</td>
+                        <td class="p-2.5 text-slate-600">${item.shield}</td>
+                        <td class="p-2.5"><span class="px-2 py-0.5 rounded text-[10px] font-bold ${badgeClass}">${item.regime}</span></td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+
+        function filterCountryTable() {
+            const query = document.getElementById('countrySearch').value.toLowerCase();
+            const regime = document.getElementById('regimeFilter').value;
+            const rows = document.querySelectorAll('#countryTableBody tr');
+
+            rows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                const matchesSearch = text.includes(query);
+                const matchesRegime = regime === 'ALL' || text.includes(regime.toLowerCase());
+                row.style.display = (matchesSearch && matchesRegime) ? '' : 'none';
+            });
+        }
+
+        function populateEvidenceTable() {
+            const tbody = document.getElementById('evidenceTableBody');
+            tbody.innerHTML = '';
+            evidenceData.forEach(item => {
+                const row = `
+                    <tr class="hover:bg-slate-50 transition border-b border-slate-100">
+                        <td class="p-3 font-bold text-slate-900">${item.case}</td>
+                        <td class="p-3 text-amber-700 font-medium">${item.source}</td>
+                        <td class="p-3 text-slate-600">${item.output}</td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+
+        function filterEvidenceTable() {
+            const query = document.getElementById('evidenceSearch').value.toLowerCase();
+            const rows = document.querySelectorAll('#evidenceTableBody tr');
+            rows.forEach(row => {
+                row.style.display = row.innerText.toLowerCase().includes(query) ? '' : 'none';
+            });
+        }
+
+        // --- TIMELINE FILTER ---
+        function filterTimeline(cat) {
+            const cards = document.querySelectorAll('.timeline-card');
+            const btns = document.querySelectorAll('.timeline-btn');
+
+            btns.forEach(btn => {
+                btn.classList.remove('bg-slate-900', 'text-white');
+                btn.classList.add('bg-white', 'text-slate-700');
+            });
+            event.target.classList.remove('bg-white', 'text-slate-700');
+            event.target.classList.add('bg-slate-900', 'text-white');
+
+            cards.forEach(card => {
+                if (cat === 'all' || card.getAttribute('data-category') === cat) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // --- CASE STUDY SWITCHER ---
+        function switchCase(index) {
+            const tabs = document.querySelectorAll('.vaka-tab');
+            tabs.forEach((tab, i) => {
+                if (i === index) {
+                    tab.classList.add('border-b-2', 'border-amber-600', 'text-amber-600');
+                    tab.classList.remove('text-slate-500');
+                } else {
+                    tab.classList.remove('border-b-2', 'border-amber-600', 'text-amber-600');
+                    tab.classList.add('text-slate-500');
+                }
+            });
+
+            const data = caseStudiesData[index];
+            const contentDiv = document.getElementById('vakaContent');
+            contentDiv.innerHTML = `
+                <div class="space-y-4">
+                    <div class="inline-block px-2.5 py-1 bg-amber-50 text-amber-800 text-xs font-bold rounded">Adli Otopsi Raporu #${index + 1}</div>
+                    <h4 class="text-xl font-bold text-slate-900">${data.title}</h4>
+                    <p class="text-xs font-semibold text-slate-700 bg-slate-100 p-3 rounded-lg border-l-4 border-slate-700">${data.summary}</p>
+                    <div class="text-xs text-slate-600 leading-relaxed space-y-2 pt-2">${data.details}</div>
+                </div>
+            `;
+        }
+    </script>
+
+<!-- T2SAIM-ASM-KATEX : montaj sirasinda eklendi (sayfa icerigi degistirilmedi) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script>/* T2SAIM-ASM-KATEX v2 */
+(function () {
+  var DELIMS = [
+    {left: '$$', right: '$$', display: true},
+    {left: '\\[', right: '\\]', display: true},
+    {left: '\\(', right: '\\)', display: false},
+    {left: '$', right: '$', display: false}
+  ];
+  var PH = '\uE000';               // para birimi $ isaretleri icin gecici yer tutucu
+  var obs = null, timer = null;
+  function connect() { if (obs) obs.observe(document.body, {childList: true, subtree: true, characterData: true}); }
+  // $...$ arasi gercek matematik mi, yoksa iki para tutari arasindaki duz yazi mi?
+  function looksMath(c) {
+    if (/[\\^_{}]/.test(c)) return true;           // \komut, ussu, alt indis, suslu parantez
+    if (/^\s*\d/.test(c)) return false;             // rakamla baslar: "$3.90 Milyar ... $"
+    var words = c.trim().split(/\s+/).filter(function (w) { return /[A-Za-zÇĞİÖŞÜçğıöşü]{4,}/.test(w); });
+    if (words.length >= 2) return false;            // duz cumle
+    return true;                                    // M2, NIR, HFI, t, DM(t), MR < MC ...
+  }
+  function textNodes(root) {
+    var out = [], w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        var p = n.parentNode;
+        if (!p || /^(SCRIPT|STYLE|TEXTAREA|NOSCRIPT)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT;
+        if (p.closest && p.closest('.katex')) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) out.push(w.currentNode);
+    return out;
+  }
+  function protect() {
+    textNodes(document.body).forEach(function (n) {
+      var t = n.nodeValue;
+      if (t.indexOf('$') === -1) return;
+      var t2 = t.replace(/\$\$[\s\S]*?\$\$|\$([^$]*)\$/g, function (m, inner) {
+        if (inner === undefined) return m;         // $$...$$ ekran formulu: dokunma
+        return looksMath(inner) ? m : (PH + inner + PH);
+      });
+      if (t2 !== t) n.nodeValue = t2;
+    });
+  }
+  function restore() {
+    textNodes(document.body).forEach(function (n) {
+      if (n.nodeValue.indexOf(PH) !== -1) n.nodeValue = n.nodeValue.split(PH).join('$');
+    });
+  }
+  function render() {
+    if (!window.renderMathInElement) return;
+    if (obs) obs.disconnect();
+    try { protect(); window.renderMathInElement(document.body, {delimiters: DELIMS, throwOnError: false}); } catch (e) { console.warn(e); }
+    try { restore(); } catch (e) {}
+    connect();
+  }
+  function later() { clearTimeout(timer); timer = setTimeout(render, 200); }
+  window.__t2saimKatexRender = render;
+  function load(src, cb) { var s = document.createElement('script'); s.src = src; s.onload = cb; s.onerror = function () { console.warn('KaTeX yuklenemedi: ' + src); }; document.head.appendChild(s); }
+  function start() {
+    load('https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js', function () {
+      load('https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js', function () {
+        obs = new MutationObserver(later);
+        render();
+        document.addEventListener('click', later, true);
+        document.addEventListener('input', later, true);
+      });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
+</body>
+</html>

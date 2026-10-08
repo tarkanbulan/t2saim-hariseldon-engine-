@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T2SAIM - Türkiye Sistemik Analiz & Adli İstihbarat Paneli (1975 - 2055)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Font Family -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f4f8',
+                            100: '#d9e2ec',
+                            500: '#102a43',
+                            800: '#0b1b2b',
+                            900: '#060e18',
+                        },
+                        danger: {
+                            50: '#fff5f5',
+                            500: '#e53e3e',
+                            700: '#c53030',
+                        },
+                        warning: {
+                            50: '#fffbea',
+                            500: '#d69e2e',
+                        },
+                        success: {
+                            50: '#f0fff4',
+                            500: '#38a169',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Chart container constraint rules per prompt specs */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 360px;
+            }
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-amber-200 selection:text-amber-900">
+
+<!-- Chosen Palette: Warm Slate & Off-White Neutral with Crimson, Amber, and Emerald Functional Indicators -->
+<!-- Application Structure Plan:
+     1. Sticky Navigation & Header KPI Summary Bar: Executive overview of the primary 6 system metrics.
+     2. Section 1: TAMH Theoretical Architecture & Interactive Master Formula Simulator (Allows user to play with E, R, W/S, and PISA variables to visualize Δ_Gap in real-time).
+     3. Section 2: 80-Year Historical Data Chart & Comparative Table (1975-2055 timeline analysis with dynamic dataset filtering).
+     4. Section 3: 9 Critical Systemic Dimensions Autopsy (Interactive grid with dynamic detail pane and Budget Friction visualization).
+     5. Section 4: Cognitive Capital Gap (Turkey vs. South Korea 30-Year Generational Lag comparison with PISA/Patent metrics).
+     6. Section 5: Hoffer Sociological Distribution & Fanaticism Simulator (Dynamic HFI index calculation).
+     7. Section 6: OSINT & Samuelson's Revealed Preferences (Digital search behavior heatmap and metric bars).
+     8. Section 7: 2026-2055 Scenario Simulator (Interactive Scenario A, B, and C deep dives with variable outcome projection).
+     9. Section 8: Strategic Remedies & Circuit Breakers (4 Actionable policy cards with measurable target gates).
+     10. Section 9: Daubert Tier-1 Evidence Matrix (Searchable & Filterable forensic evidence table).
+     This architecture converts a heavy forensic paper into an engaging, multi-layered exploratory dashboard. -->
+<!-- Visualization & Content Choices:
+     - Master Formula -> Live Simulator -> Math expression JS runner -> High engagement & understanding of cause-effect.
+     - 80-Year Timeline -> Chart.js Responsive Line/Bar -> Time-series dynamic update -> Visualizes system drift over half a century.
+     - Budget Friction -> Chart.js Bar -> Diyanet vs TÜBİTAK/Ar-Ge -> Highlights resource misallocation instantly.
+     - Cognitive Capital -> Chart.js Grouped Bar -> Turkey vs S. Korea vs OECD -> Sharp visual contrast of PISA and PCT patents.
+     - Hoffer Typology -> Chart.js Doughnut -> 5 Sociological cohorts -> Clear structural demographic breakdown.
+     - OSINT Logs -> Chart.js Horizontal Bar -> Digital panic indicators -> Demonstrates revealed preferences.
+     - Daubert Matrix -> Filterable HTML Table -> Real-time JS filter -> Easy verification of sources. -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+<!-- STICKY HEADER & NAVBAR -->
+<header class="sticky top-0 z-50 bg-slate-900 text-white shadow-xl border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <div class="flex items-center space-x-3">
+                <span class="text-2xl">🏛️</span>
+                <div>
+                    <h1 class="font-extrabold text-base sm:text-lg tracking-tight text-slate-100">T2SAIM ADLİ İSTİHBARAT PANELİ</h1>
+                    <p class="text-xs text-amber-400 font-mono">Veritas Per Se • 80 Yıllık Sistemik Otopsi (1975-2055)</p>
+                </div>
+            </div>
+            <nav class="hidden lg:flex space-x-1 text-xs font-semibold">
+                <a href="#metodoloji" class="px-3 py-2 rounded hover:bg-slate-800 hover:text-amber-400 transition">Metodoloji</a>
+                <a href="#tarihsel" class="px-3 py-2 rounded hover:bg-slate-800 hover:text-amber-400 transition">Zaman Çizelgesi</a>
+                <a href="#boyutlar" class="px-3 py-2 rounded hover:bg-slate-800 hover:text-amber-400 transition">9 Kritik Boyut</a>
+                <a href="#kognitif" class="px-3 py-2 rounded hover:bg-slate-800 hover:text-amber-400 transition">Kognitif Sermaye</a>
+                <a href="#hoffer" class="px-3 py-2 rounded hover:bg-slate-800 hover:text-amber-400 transition">Hoffer HFI</a>
+                <a href="#senaryolar" class="px-3 py-2 rounded hover:bg-slate-800 hover:text-amber-400 transition">Senaryolar</a>
+                <a href="#kanitlar" class="px-3 py-2 rounded text-amber-300 hover:bg-amber-900/50 transition">Daubert Kanıtlar</a>
+            </nav>
+            <div class="flex items-center space-x-2">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-900/80 text-red-200 border border-red-700 animate-pulse">
+                    ⚠️ CRITICAL: Δ_Gap 6.81x
+                </span>
+            </div>
+        </div>
+    </div>
+    <!-- MOBILE NAV SCROLL -->
+    <div class="lg:hidden bg-slate-950 border-t border-slate-800 px-4 py-2 overflow-x-auto whitespace-nowrap text-xs flex space-x-4">
+        <a href="#metodoloji" class="text-slate-300 hover:text-amber-400">Metodoloji</a>
+        <a href="#tarihsel" class="text-slate-300 hover:text-amber-400">Zaman Çizelgesi</a>
+        <a href="#boyutlar" class="text-slate-300 hover:text-amber-400">9 Kritik Boyut</a>
+        <a href="#kognitif" class="text-slate-300 hover:text-amber-400">Kognitif</a>
+        <a href="#hoffer" class="text-slate-300 hover:text-amber-400">Hoffer HFI</a>
+        <a href="#senaryolar" class="text-slate-300 hover:text-amber-400">Senaryolar</a>
+        <a href="#kanitlar" class="text-amber-400 font-bold">Daubert Kanıtlar</a>
+    </div>
+</header>
+
+<!-- EXECUTIVE KPI SUMMARY BAR -->
+<section class="bg-slate-800 border-b border-slate-700 text-slate-100 py-4 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+            <div class="bg-slate-900/80 p-3 rounded-lg border border-red-500/30">
+                <div class="text-xs text-slate-400 font-medium">Epistemik Köpük (Δ_Gap)</div>
+                <div class="text-xl font-bold font-mono text-red-400">6.81x</div>
+                <div class="text-[10px] text-red-300">Eşik: 5.0x (Akut Çöküş)</div>
+            </div>
+            <div class="bg-slate-900/80 p-3 rounded-lg border border-amber-500/30">
+                <div class="text-xs text-slate-400 font-medium">Hoffer Fanatizm (HFI)</div>
+                <div class="text-xl font-bold font-mono text-amber-400">6.54x</div>
+                <div class="text-[10px] text-amber-300">Sosyolojik Risk: Çok Yüksek</div>
+            </div>
+            <div class="bg-slate-900/80 p-3 rounded-lg border border-red-500/30">
+                <div class="text-xs text-slate-400 font-medium">Koalisyon (W/S Oranı)</div>
+                <div class="text-xl font-bold font-mono text-red-400">0.11</div>
+                <div class="text-[10px] text-slate-400">2005: 0.48 (Aşırı Daralma)</div>
+            </div>
+            <div class="bg-slate-900/80 p-3 rounded-lg border border-amber-500/30">
+                <div class="text-xs text-slate-400 font-medium">Fiziksel EROEI</div>
+                <div class="text-xl font-bold font-mono text-amber-400">8.4 : 1</div>
+                <div class="text-[10px] text-red-300">Medeniyet Eşiği: 10.0:1</div>
+            </div>
+            <div class="bg-slate-900/80 p-3 rounded-lg border border-slate-700">
+                <div class="text-xs text-slate-400 font-medium">PISA L5-6 Kritik Akıl</div>
+                <div class="text-xl font-bold font-mono text-sky-400">%4.2</div>
+                <div class="text-[10px] text-slate-400">G. Kore: %23.1 | OECD: %15</div>
+            </div>
+            <div class="bg-slate-900/80 p-3 rounded-lg border border-slate-700">
+                <div class="text-xs text-slate-400 font-medium">Gelecek Beklentisi (Z)</div>
+                <div class="text-xl font-bold font-mono text-slate-300">27.2 / 100</div>
+                <div class="text-[10px] text-red-400">Kaçış Modu Hakim</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MAIN CONTENT WRAPPER -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+    <!-- HERO INTRO SECTION -->
+    <section class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200">
+        <div class="max-w-4xl">
+            <span class="px-3 py-1 bg-amber-100 text-amber-800 text-xs font-semibold rounded-full uppercase tracking-wider">
+                Daubert Tier-1 Adli Standart Raporu
+            </span>
+            <h2 class="mt-3 text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                Türkiye Sistemik Çöküş ve Kognitif İflas Anatomisi (1975–2055)
+            </h2>
+            <p class="mt-4 text-base text-slate-600 leading-relaxed">
+                Sistemik krizler anlık konjonktürel dalgalanmaların değil; uzun vadeli kurumsal erozyonun, termodinamik taşıma kapasitesinin aşılmasının ve kognitif ihmalin yığılımlı bir sonucudur. Bu adli platform, T2SAIM - EWS Büyük Jenerik Metodolojisi kapsamında 80 yıllık sosyo-ekonomik, psikolojik ve kurumsal verileri incelemektedir. Aşağıdaki bölümler aracılığıyla verileri, matematiksel modelleri ve gelecek simülasyonlarını etkileşimli olarak keşfedebilirsiniz.
+            </p>
+        </div>
+    </section>
+
+    <!-- SECTION 1: METODOLOJİK MİMARİ & DİNAMİK FORMÜL HESAPLAYICI -->
+    <section id="metodoloji" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+        <div>
+            <div class="flex items-center space-x-2 text-amber-600 font-bold text-sm tracking-wider uppercase">
+                <span>📐 Bölüm 1</span>
+                <span>•</span>
+                <span>Teorik Temeller & Matematiksel Model</span>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-900 mt-1">EWS Metodolojik Mimarisi ve Master Formül</h3>
+            <p class="text-slate-600 text-sm mt-2 leading-relaxed">
+                Bu bölüm, Türkiye'nin kırılmasını açıklayan 5 katmanlı teorik omurgayı ve üretilen siyasal illüzyonlar ile ülkenin fiziksel taşıma kapasitesi arasındaki gerilimi hesaplayan <strong>Epistemik Köpük Makası (Δ_Gap)</strong> formülünü sunar. Aşağıdaki simülatörde değişkenleri değiştirerek köpük oranını canlı olarak test edebilirsiniz.
+            </p>
+        </div>
+
+        <!-- 5 TEORİK KATMAN GRID -->
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 hover:border-amber-400 transition">
+                <div class="text-xs font-mono font-semibold text-amber-600">Katman 1</div>
+                <h4 class="font-bold text-sm text-slate-900 mt-1">Acemoğlu & Robinson</h4>
+                <p class="text-xs text-slate-600 mt-2">Kapsayıcı vs Sömürücü kurumlar. Siyasi Coase teoreminin iflası ve kurumsal kayma.</p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 hover:border-amber-400 transition">
+                <div class="text-xs font-mono font-semibold text-amber-600">Katman 2</div>
+                <h4 class="font-bold text-sm text-slate-900 mt-1">De Mesquita (Selektörat)</h4>
+                <p class="text-xs text-slate-600 mt-2">W/S rasyosu daraldıkça kamu malı üretimi sıfırlanır, rant ve özel mal transferi başlar.</p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 hover:border-amber-400 transition">
+                <div class="text-xs font-mono font-semibold text-amber-600">Katman 3</div>
+                <h4 class="font-bold text-sm text-slate-900 mt-1">Eric Hoffer (HFI)</h4>
+                <p class="text-xs text-slate-600 mt-2">Rasyonel iddia bitince Amigdala siyaseti ve "Günah Keçisi" üreten kesin inançlılık yükselir.</p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 hover:border-amber-400 transition">
+                <div class="text-xs font-mono font-semibold text-amber-600">Katman 4</div>
+                <h4 class="font-bold text-sm text-slate-900 mt-1">Paul Samuelson & OSINT</h4>
+                <p class="text-xs text-slate-600 mt-2">Açığa vurulan tercihler: Anketler yalan söyler; Google arama hacimleri ve kaçış logları gerçeği verir.</p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 hover:border-amber-400 transition">
+                <div class="text-xs font-mono font-semibold text-amber-600">Katman 5</div>
+                <h4 class="font-bold text-sm text-slate-900 mt-1">Georgescu-Roegen</h4>
+                <p class="text-xs text-slate-600 mt-2">EROEI & Termodinamik Negentropi. Medeniyet sürdürülebilirliği için EROEI > 10:1 olmalıdır.</p>
+            </div>
+        </div>
+
+        <!-- MASTER FORMULA CALCULATOR CARD -->
+        <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-lg border border-slate-800">
+            <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-800 pb-4 mb-6 gap-4">
+                <div>
+                    <span class="text-xs font-mono text-amber-400 uppercase tracking-widest">🧮 Canlı Simülatör</span>
+                    <h4 class="text-xl font-bold text-slate-100">Epistemik Köpük Makası (Δ_Gap) Hesaplayıcı</h4>
+                </div>
+                <div class="bg-slate-800 px-4 py-2 rounded-lg border border-slate-700 font-mono text-xs">
+                    Δ_Gap = [Siyasal İddia (E)] / [ EROEI (R) × Koalisyon (W/S) × PISA L5-6 (K) ]
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <!-- CONTROLS -->
+                <div class="space-y-4 text-xs">
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <label class="font-semibold text-slate-300">Siyasal İddia & Sanal Beklenti Fiyatlaması (E):</label>
+                            <span id="valE" class="font-mono text-amber-400">96.0</span>
+                        </div>
+                        <input type="range" id="sliderE" min="10" max="100" value="96" class="w-full accent-amber-500">
+                        <span class="text-[10px] text-slate-400">İktidarın yaydığı propaganda, beka söylemi ve sanal illüzyon büyüklüğü.</span>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <label class="font-semibold text-slate-300">Fiziksel EROEI Oranı (R):</label>
+                            <span id="valR" class="font-mono text-amber-400">8.4</span>
+                        </div>
+                        <input type="range" id="sliderR" min="4" max="20" step="0.1" value="8.4" class="w-full accent-sky-500">
+                        <span class="text-[10px] text-slate-400">Enerji yatırımının geri dönüşü. (Medeniyet barajı: 10.0)</span>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <label class="font-semibold text-slate-300">Kazanan Koalisyon Oranı (W/S):</label>
+                            <span id="valW" class="font-mono text-amber-400">0.11</span>
+                        </div>
+                        <input type="range" id="sliderW" min="0.05" max="0.60" step="0.01" value="0.11" class="w-full accent-emerald-500">
+                        <span class="text-[10px] text-slate-400">Toplumda rant aktarılan dar çekirdek destekçi grubun oransal büyüklüğü.</span>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <label class="font-semibold text-slate-300">PISA Seviye 5-6 Kritik Akıl Payı (% K):</label>
+                            <span id="valK" class="font-mono text-amber-400">4.2%</span>
+                        </div>
+                        <input type="range" id="sliderK" min="1.0" max="20.0" step="0.1" value="4.2" class="w-full accent-purple-500">
+                        <span class="text-[10px] text-slate-400">Soyut problem çözebilen nitelikli insan sermayesi oranı.</span>
+                    </div>
+                </div>
+
+                <!-- DYNAMIC DISPLAY -->
+                <div class="bg-slate-950 p-6 rounded-xl border border-slate-800 text-center space-y-4">
+                    <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Hesaplanan Epistemik Makas Score</div>
+                    <div id="gapResultDisplay" class="text-5xl font-extrabold font-mono text-red-500 tracking-tight">
+                        6.81x
+                    </div>
+                    <div id="gapStatusBadge" class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-red-900/60 text-red-200 border border-red-700">
+                        AKUT SİSTEMİK ÇÖKÜŞ & KOPUŞ BÖLGESİ
+                    </div>
+                    <p id="gapExplanation" class="text-xs text-slate-300 leading-relaxed font-sans">
+                        Üretilen sanal vaatler, ülkenin fiziki üretim, kurumsal kapasite ve kognitif akıl gücünü <strong>6.81 kat</strong> aşmıştır. Sistem matematiksel olarak sürdürülemez aşamadadır.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: 80 YILLIK KARŞILAŞTIRMALI VERİ TABLOSU & ZAMAN ÇİZELGESİ GRAFİĞİ -->
+    <section id="tarihsel" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+                <div class="flex items-center space-x-2 text-amber-600 font-bold text-sm tracking-wider uppercase">
+                    <span>📊 Bölüm 2</span>
+                    <span>•</span>
+                    <span>Tarihsel İzdüşüm (1975 - 2055)</span>
+                </div>
+                <h3 class="text-2xl font-bold text-slate-900 mt-1">80 Yıllık Karşılaştırmalı Sistem Sürüklenmesi</h3>
+                <p class="text-slate-600 text-sm mt-1">
+                    Kuşak gecikmesi (generational lag) yasası gereği bugünün kurumsal kararları 30 yıl sonrasını dikte eder.
+                </p>
+            </div>
+        </div>
+
+        <!-- TIMELINE CHART CONTAINER -->
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <div class="flex justify-between items-center mb-4 px-2">
+                <span class="text-xs font-bold text-slate-700">Epistemik Köpük (Δ_Gap) vs Beklenti Endeksi (Z) Trendi</span>
+                <span class="text-[11px] font-mono text-slate-500">1975 - 2055 (Projeksiyonlar dahil)</span>
+            </div>
+            <div class="chart-container">
+                <canvas id="historicalChart"></canvas>
+            </div>
+        </div>
+
+        <!-- HISTORICAL DATA TABLE -->
+        <div class="overflow-x-auto">
+            <table class="w-full text-xs text-left text-slate-600 border-collapse">
+                <thead class="text-[11px] uppercase bg-slate-100 text-slate-700 border-b border-slate-200 font-mono">
+                    <tr>
+                        <th class="py-3 px-3">Dönem / Yıl</th>
+                        <th class="py-3 px-3">Rejim & Yapı</th>
+                        <th class="py-3 px-3">W/S Oranı</th>
+                        <th class="py-3 px-3">EROEI</th>
+                        <th class="py-3 px-3">PISA L5-6 / PZKİ</th>
+                        <th class="py-3 px-3">Hoffer HFI</th>
+                        <th class="py-3 px-3">Δ_Gap (Köpük)</th>
+                        <th class="py-3 px-3">Beklenti (Z)</th>
+                        <th class="py-3 px-3">Adli Durum</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 font-mono">
+                    <tr class="hover:bg-slate-50">
+                        <td class="py-2.5 px-3 font-bold text-slate-900">1975</td>
+                        <td class="py-2.5 px-3 font-sans">İthal İkameci Sanayileşme</td>
+                        <td class="py-2.5 px-3">0.38</td>
+                        <td class="py-2.5 px-3">18.2 : 1</td>
+                        <td class="py-2.5 px-3">%1.8 / 32.0</td>
+                        <td class="py-2.5 px-3">0.82x</td>
+                        <td class="py-2.5 px-3 font-bold text-emerald-600">0.67x</td>
+                        <td class="py-2.5 px-3">54.0</td>
+                        <td class="py-2.5 px-3 font-sans text-emerald-700">Düşük Sürtünme</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50">
+                        <td class="py-2.5 px-3 font-bold text-slate-900">1990</td>
+                        <td class="py-2.5 px-3 font-sans">Finansal Serbestleşme</td>
+                        <td class="py-2.5 px-3">0.32</td>
+                        <td class="py-2.5 px-3">14.5 : 1</td>
+                        <td class="py-2.5 px-3">%2.1 / 29.5</td>
+                        <td class="py-2.5 px-3">1.15x</td>
+                        <td class="py-2.5 px-3 font-bold text-slate-700">0.94x</td>
+                        <td class="py-2.5 px-3">48.5</td>
+                        <td class="py-2.5 px-3 font-sans text-slate-700">Yapısal Gerilim</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50 bg-emerald-50/30">
+                        <td class="py-2.5 px-3 font-bold text-slate-900">2005</td>
+                        <td class="py-2.5 px-3 font-sans">AB Uyumu & Güçlü Kurumsal Çıpa</td>
+                        <td class="py-2.5 px-3 font-bold text-emerald-600">0.48</td>
+                        <td class="py-2.5 px-3">12.1 : 1</td>
+                        <td class="py-2.5 px-3">%2.4 / 34.2</td>
+                        <td class="py-2.5 px-3">1.05x</td>
+                        <td class="py-2.5 px-3 font-bold text-emerald-600">1.12x</td>
+                        <td class="py-2.5 px-3 font-bold text-emerald-600">68.4</td>
+                        <td class="py-2.5 px-3 font-sans text-emerald-800">Geçici Refah İllüzyonu</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50">
+                        <td class="py-2.5 px-3 font-bold text-slate-900">2015</td>
+                        <td class="py-2.5 px-3 font-sans">Sömürücü Kurumlara Geçiş</td>
+                        <td class="py-2.5 px-3">0.24</td>
+                        <td class="py-2.5 px-3">10.2 : 1</td>
+                        <td class="py-2.5 px-3">%2.8 / 28.6</td>
+                        <td class="py-2.5 px-3">1.48x</td>
+                        <td class="py-2.5 px-3 font-bold text-amber-600">2.15x</td>
+                        <td class="py-2.5 px-3">46.0</td>
+                        <td class="py-2.5 px-3 font-sans text-amber-700">Kritik Eşik Aşımı</td>
+                    </tr>
+                    <tr class="bg-red-50 font-bold border-l-4 border-red-600">
+                        <td class="py-2.5 px-3 text-red-900">2026</td>
+                        <td class="py-2.5 px-3 font-sans text-red-900">Hiper-Sömürücü Rejim & Amigdala Siyaseti</td>
+                        <td class="py-2.5 px-3 text-red-700">0.11</td>
+                        <td class="py-2.5 px-3 text-red-700">8.4 : 1</td>
+                        <td class="py-2.5 px-3 text-red-700">%4.2 / 24.8</td>
+                        <td class="py-2.5 px-3 text-red-700">6.54x</td>
+                        <td class="py-2.5 px-3 text-red-700 font-extrabold text-sm">6.81x</td>
+                        <td class="py-2.5 px-3 text-red-700">27.2</td>
+                        <td class="py-2.5 px-3 font-sans text-red-800">AKUT ÇÖKÜŞ & KOPUŞ</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50 text-slate-500">
+                        <td class="py-2.5 px-3 font-bold">2035 (Sen A)</td>
+                        <td class="py-2.5 px-3 font-sans">Kaotik Tasfiye & Temerrüt</td>
+                        <td class="py-2.5 px-3">0.06</td>
+                        <td class="py-2.5 px-3">6.8 : 1</td>
+                        <td class="py-2.5 px-3">%3.0 / 18.5</td>
+                        <td class="py-2.5 px-3">9.20x</td>
+                        <td class="py-2.5 px-3 font-bold text-red-600">11.40x</td>
+                        <td class="py-2.5 px-3">14.0</td>
+                        <td class="py-2.5 px-3 font-sans">Sistemik İflas</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50 text-slate-500">
+                        <td class="py-2.5 px-3 font-bold">2035 (Sen B)</td>
+                        <td class="py-2.5 px-3 font-sans">Latin Amerika Tipi Kronik Durgunluk</td>
+                        <td class="py-2.5 px-3">0.15</td>
+                        <td class="py-2.5 px-3">7.9 : 1</td>
+                        <td class="py-2.5 px-3">%4.5 / 23.0</td>
+                        <td class="py-2.5 px-3">5.10x</td>
+                        <td class="py-2.5 px-3 font-bold text-amber-600">5.60x</td>
+                        <td class="py-2.5 px-3">31.0</td>
+                        <td class="py-2.5 px-3 font-sans">Kısmi Adaptasyon</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50 text-slate-500">
+                        <td class="py-2.5 px-3 font-bold">2035 (Sen C)</td>
+                        <td class="py-2.5 px-3 font-sans">Radikal Pragmatik Restorasyon</td>
+                        <td class="py-2.5 px-3">0.42</td>
+                        <td class="py-2.5 px-3">10.5 : 1</td>
+                        <td class="py-2.5 px-3">%7.8 / 46.0</td>
+                        <td class="py-2.5 px-3">1.80x</td>
+                        <td class="py-2.5 px-3 font-bold text-emerald-600">1.45x</td>
+                        <td class="py-2.5 px-3">62.0</td>
+                        <td class="py-2.5 px-3 font-sans">Rasyonel Rönesans</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- SECTION 3: 9 KRİTİK BOYUT DERİN OTOPSİSİ -->
+    <section id="boyutlar" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+        <div>
+            <div class="flex items-center space-x-2 text-amber-600 font-bold text-sm tracking-wider uppercase">
+                <span>🔬 Bölüm 3</span>
+                <span>•</span>
+                <span>Adli Sistemik Analiz</span>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-900 mt-1">9 Kritik Boyutun Derin Sözeli ve Otopsisi</h3>
+            <p class="text-slate-600 text-sm mt-1">
+                Türkiye'nin devlet mekanizmasındaki çözülmeyi kanıtlayan 9 ana boyut. Kartlara tıklayarak detaylı adli açıklamaları inceleyebilirsiniz.
+            </p>
+        </div>
+
+        <!-- 9 DIMENSIONS INTERACTIVE GRID -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- CARD 1 -->
+            <div onclick="selectDimension(1)" id="dimCard1" class="p-4 rounded-xl border-2 border-amber-500 bg-amber-50/40 cursor-pointer hover:shadow-md transition">
+                <div class="flex justify-between items-start">
+                    <span class="text-xs font-mono font-bold text-amber-700">3.1</span>
+                    <span class="text-xs px-2 py-0.5 bg-red-100 text-red-700 rounded font-bold">Kritik</span>
+                </div>
+                <h4 class="font-bold text-sm text-slate-900 mt-2">Epistemik Köpük Makası (Δ_Gap)</h4>
+                <p class="text-xs text-slate-600 mt-1 line-clamp-2">Sanal vaatler ile fiziksel üretim kapasitesi arasındaki devasa kopuş (6.81x).</p>
+            </div>
+
+            <!-- CARD 2 -->
+            <div onclick="selectDimension(2)" id="dimCard2" class="p-4 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer hover:border-amber-400 hover:shadow-md transition">
+                <div class="flex justify-between items-start">
+                    <span class="text-xs font-mono font-bold text-slate-500">3.2</span>
+                    <span class="text-xs px-2 py-0.5 bg-amber-100 text-amber-700 rounded font-bold">Fiziksel Eşik</span>
+                </div>
+                <h4 class="font-bold text-sm text-slate-900 mt-2">Termodinamik İflas & EROEI</h4>
+                <p class="text-xs text-slate-600 mt-1 line-clamp-2">8.4:1 EROEI oranı ve %74.2 enerji dışa bağımlılığı ile negentropi üretememe hali.</p>
+            </div>
+
+            <!-- CARD 3 -->
+            <div onclick="selectDimension(3)" id="dimCard3" class="p-4 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer hover:border-amber-400 hover:shadow-md transition">
+                <div class="flex justify-between items-start">
+                    <span class="text-xs font-mono font-bold text-slate-500">3.3</span>
+                    <span class="text-xs px-2 py-0.5 bg-red-100 text-red-700 rounded font-bold">Φ = 1.47x</span>
+                </div>
+                <h4 class="font-bold text-sm text-slate-900 mt-2">Bütçe Sürtünmesi (Φ_Bütçe)</h4>
+                <p class="text-xs text-slate-600 mt-1 line-clamp-2">Diyanet bütçesinin (3.90B USD) TÜBİTAK ve Üniversite Ar-Ge toplamını (2.65B USD) ezmesi.</p>
+            </div>
+
+            <!-- CARD 4 -->
+            <div onclick="selectDimension(4)" id="dimCard4" class="p-4 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer hover:border-amber-400 hover:shadow-md transition">
+                <div class="flex justify-between items-start">
+                    <span class="text-xs font-mono font-bold text-slate-500">3.4</span>
+                    <span class="text-xs px-2 py-0.5 bg-amber-100 text-amber-700 rounded font-bold">PISA %4.2</span>
+                </div>
+                <h4 class="font-bold text-sm text-slate-900 mt-2">Kognitif Sermaye Makası</h4>
+                <p class="text-xs text-slate-600 mt-1 line-clamp-2">PISA Seviye 5-6 elit akıl havuzunun %4.2'de kilitlenmesi ve fason ekonomi tuzağı.</p>
+            </div>
+
+            <!-- CARD 5 -->
+            <div onclick="selectDimension(5)" id="dimCard5" class="p-4 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer hover:border-amber-400 hover:shadow-md transition">
+                <div class="flex justify-between items-start">
+                    <span class="text-xs font-mono font-bold text-slate-500">3.5</span>
+                    <span class="text-xs px-2 py-0.5 bg-red-100 text-red-700 rounded font-bold">W/S = 0.11</span>
+                </div>
+                <h4 class="font-bold text-sm text-slate-900 mt-2">Selektörat & Liyakat Tasfiyesi</h4>
+                <p class="text-xs text-slate-600 mt-1 line-clamp-2">Dar koalisyon nedeniyle kamu malları yerine özel rant ve mülakat kayırmacılığı.</p>
+            </div>
+
+            <!-- CARD 6 -->
+            <div onclick="selectDimension(6)" id="dimCard6" class="p-4 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer hover:border-amber-400 hover:shadow-md transition">
+                <div class="flex justify-between items-start">
+                    <span class="text-xs font-mono font-bold text-slate-500">3.6</span>
+                    <span class="text-xs px-2 py-0.5 bg-red-100 text-red-700 rounded font-bold">HFI = 6.54x</span>
+                </div>
+                <h4 class="font-bold text-sm text-slate-900 mt-2">Hoffer Fanatizm Endeksi</h4>
+                <p class="text-xs text-slate-600 mt-1 line-clamp-2">Yeni Yoksullar (%38.5) ve Önü Tıkanmış Muhterisler ile patlamaya hazır sosyoloji.</p>
+            </div>
+
+            <!-- CARD 7 -->
+            <div onclick="selectDimension(7)" id="dimCard7" class="p-4 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer hover:border-amber-400 hover:shadow-md transition">
+                <div class="flex justify-between items-start">
+                    <span class="text-xs font-mono font-bold text-slate-500">3.7</span>
+                    <span class="text-xs px-2 py-0.5 bg-slate-200 text-slate-700 rounded font-bold">OSINT Log</span>
+                </div>
+                <h4 class="font-bold text-sm text-slate-900 mt-2">Açığa Vurulan Tercihler</h4>
+                <p class="text-xs text-slate-600 mt-1 line-clamp-2">İltica (95/100) ve Konkordato (92/100) dijital izleriyle kanıtlanan kitlesel panik.</p>
+            </div>
+
+            <!-- CARD 8 -->
+            <div onclick="selectDimension(8)" id="dimCard8" class="p-4 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer hover:border-amber-400 hover:shadow-md transition">
+                <div class="flex justify-between items-start">
+                    <span class="text-xs font-mono font-bold text-slate-500">3.8</span>
+                    <span class="text-xs px-2 py-0.5 bg-slate-200 text-slate-700 rounded font-bold">Güven %12.4</span>
+                </div>
+                <h4 class="font-bold text-sm text-slate-900 mt-2">İnsan İnterlandı & Sosyal Güven</h4>
+                <p class="text-xs text-slate-600 mt-1 line-clamp-2">Fragile States Index (84.0) ve çöken toplumsal güven ile sermaye kaçışı.</p>
+            </div>
+
+            <!-- CARD 9 -->
+            <div onclick="selectDimension(9)" id="dimCard9" class="p-4 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer hover:border-amber-400 hover:shadow-md transition">
+                <div class="flex justify-between items-start">
+                    <span class="text-xs font-mono font-bold text-slate-500">3.9</span>
+                    <span class="text-xs px-2 py-0.5 bg-red-100 text-red-700 rounded font-bold">Entropi Şoku</span>
+                </div>
+                <h4 class="font-bold text-sm text-slate-900 mt-2">Toplumsal Negentropi vs Entropi</h4>
+                <p class="text-xs text-slate-600 mt-1 line-clamp-2">Sistemin katma değer yerine sürekli sürtünme ve israf üretmesi hali.</p>
+            </div>
+        </div>
+
+        <!-- DYNAMIC DETAIL DISPLAY PANE -->
+        <div id="dimensionDetailPane" class="bg-slate-900 text-white p-6 rounded-2xl border border-slate-800 space-y-4">
+            <!-- JS content dynamically inserted here -->
+        </div>
+
+        <!-- BUDGET FRICTION VISUALIZATION INSET -->
+        <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 mt-6 space-y-4">
+            <h4 class="font-bold text-slate-900 text-base">Boyut 3.3 Özel Analiz: Bütçe Sürtünmesi Grafiği (USD Milyar)</h4>
+            <p class="text-xs text-slate-600">
+                SBB Bütçe verileri uyarınca Diyanet İşleri Bütçesi ile TÜBİTAK + Üniversiteler BAP Fonları karşılaştırması. Bütçe Sürtünmesi Φ = 1.47x (>1.0 Kurumsal Felç Eşiğidir).
+            </p>
+            <div class="chart-container">
+                <canvas id="budgetChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: KOGNİTİF SERMAYE MAKASI (TÜRKİYE VS GÜNEY KORE) -->
+    <section id="kognitif" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+        <div>
+            <div class="flex items-center space-x-2 text-amber-600 font-bold text-sm tracking-wider uppercase">
+                <span>🧬 Bölüm 4</span>
+                <span>•</span>
+                <span>Kognitif Sermaye & İnsan Kaynağı</span>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-900 mt-1">Türkiye vs. Güney Kore: 30 Yıllık Kuşak Gecikmesi</h3>
+            <p class="text-slate-600 text-sm mt-1">
+                1980'lerde benzer ekonomik şartlara sahip iki ülkenin eğitimsel ve teknolojik çıktı ayrışması.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <!-- CHART CONTAINER -->
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <div class="text-xs font-bold text-slate-700 mb-3 px-2">Kognitif & Teknoloji Göstergeleri Karşılaştırması</div>
+                <div class="chart-container">
+                    <canvas id="cognitiveChart"></canvas>
+                </div>
+            </div>
+
+            <!-- EXPLANATION & METRICS CARD -->
+            <div class="space-y-4 text-xs">
+                <div class="p-4 bg-red-50 rounded-xl border border-red-200">
+                    <div class="font-bold text-red-900 text-sm mb-1">Türkiye: PISA L5-6 Tuzağı (%4.2)</div>
+                    <p class="text-slate-700 leading-relaxed">
+                        Türkiye'de 15 yaşındaki gençlerin sadece %4.2'si karmaşık, soyut problemleri çözme yeteneğine (Seviye 5-6) sahiptir. Fonksiyonel cehalet (Seviye 1 ve altı) %40.5'tir. Bu nedenle WIPO PCT uluslararası patent tescili yılda sadece ~2,240 adettir.
+                    </p>
+                </div>
+
+                <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-200">
+                    <div class="font-bold text-emerald-900 text-sm mb-1">Güney Kore: Liyakat & Bilim Devrimi (%23.1)</div>
+                    <p class="text-slate-700 leading-relaxed">
+                        30 yıllık kuşak planlamasıyla Güney Kore, PISA Seviye 5-6 kritik akıl payını %23.1'e çıkarmış, yıllık WIPO uluslararası patent sayısını 22,000'in üzerine taşımıştır. Yüksek teknoloji ihracat payı %30'a yaklaşmıştır.
+                    </p>
+                </div>
+
+                <div class="p-4 bg-slate-900 text-slate-200 rounded-xl">
+                    <div class="font-bold text-amber-400 text-sm mb-1">Sistemik Çıkarım: Orta Zekâ Tuzağı</div>
+                    <p class="text-slate-300 leading-relaxed">
+                        İhracatta yüksek teknolojinin payı 25 yıldır %3.8 - %5.1 arasında sıkışmıştır. Türkiye sanayisi düşük katma değerli fason üretime mahkumdur; sorun finansal değil, pedagojik ve biyolojik kognitif sermaye iflasıdır.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: HOFFER FANATİZM ENDEKSİ (HFI) & SOSYOLOJİK DAĞILIM -->
+    <section id="hoffer" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+        <div>
+            <div class="flex items-center space-x-2 text-amber-600 font-bold text-sm tracking-wider uppercase">
+                <span>🔥 Bölüm 5</span>
+                <span>•</span>
+                <span>Kitle Psikolojisi & Fanatizm</span>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-900 mt-1">Eric Hoffer Tipolojisi ve HFI Simülatörü</h3>
+            <p class="text-slate-600 text-sm mt-1">
+                Ahlaki iddia tükendiğinde iktidarlar amigdala siyasetine sığınır. Aşağıda toplumun sosyolojik grupları ve HFI fanatizm hesabı yer almaktadır.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <!-- DONUT CHART CONTAINER -->
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <div class="text-xs font-bold text-slate-700 mb-3 px-2">Türk Toplumu Sosyolojik Cohort Dağılımı (2026)</div>
+                <div class="chart-container">
+                    <canvas id="hofferChart"></canvas>
+                </div>
+            </div>
+
+            <!-- HFI INTERACTIVE CALCULATOR -->
+            <div class="bg-slate-900 text-white p-6 rounded-2xl border border-slate-800 space-y-4 text-xs">
+                <div class="border-b border-slate-800 pb-2">
+                    <span class="text-amber-400 font-mono font-bold">HFI = [ (Yeni Yoksullar + Disillusioned) / Üretici Sınıf ] × exp(Amigdala Yükü)</span>
+                    <h4 class="text-base font-bold text-slate-100 mt-1">Fanatizm Riski Hesaplayıcı</h4>
+                </div>
+
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span>Yeni Yoksullar Payı (%):</span>
+                        <span id="valNewPoor" class="font-mono text-amber-400">38.5%</span>
+                    </div>
+                    <input type="range" id="sliderNewPoor" min="10" max="60" step="0.5" value="38.5" class="w-full accent-amber-500">
+                    <span class="text-[10px] text-slate-400">Yakın zamanda refah kaybeden, öfkeli kitle (Fanatizmin ana yakıtı).</span>
+                </div>
+
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span>Amigdala Yükü / Korku Siyaseti (A_LOAD):</span>
+                        <span id="valAload" class="font-mono text-red-400">1.80</span>
+                    </div>
+                    <input type="range" id="sliderAload" min="0.1" max="2.5" step="0.05" value="1.80" class="w-full accent-red-500">
+                    <span class="text-[10px] text-slate-400">Dış güçler, hainler, amigdala linç söyleminin yoğunluğu.</span>
+                </div>
+
+                <div class="p-4 bg-slate-950 rounded-xl border border-slate-800 flex justify-between items-center">
+                    <div>
+                        <div class="text-[10px] text-slate-400 uppercase">Hesaplanan Hoffer HFI Index</div>
+                        <div id="hfiDisplay" class="text-3xl font-extrabold font-mono text-amber-400">6.54x</div>
+                    </div>
+                    <div id="hfiBadge" class="px-3 py-1 bg-red-900/80 text-red-200 border border-red-700 rounded-full font-bold">
+                        KRİTİK FANATİZM ALARMI (Eşik: 5.0x)
+                    </div>
+                </div>
+                <p class="text-[11px] text-slate-400 leading-relaxed">
+                    HFI = 6.54x verisi; toplumda rasyonel çözüm arayan her 1 kişiye karşılık, hayal kırıklığına uğramış ve mimetik linç dalgalarına hazır 6.5 kişinin bulunduğunu kanıtlar.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: OSINT & SAMUELSON AÇIĞA VURULAN TERCİHLER -->
+    <section id="osint" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+        <div>
+            <div class="flex items-center space-x-2 text-amber-600 font-bold text-sm tracking-wider uppercase">
+                <span>🌐 Bölüm 6</span>
+                <span>•</span>
+                <span>Açığa Vurulan Tercihler & Dijital İzler</span>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-900 mt-1">OSINT Logları ve Amigdala Panik Sinyalleri</h3>
+            <p class="text-slate-600 text-sm mt-1">
+                Samuelson ilkesi: Anketlerdeki ideolojik beyanlar değil, klavye başındaki gerçek aksiyonlar gerçeği verir.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <!-- OSINT HORIZONTAL BAR CHART -->
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <div class="text-xs font-bold text-slate-700 mb-3 px-2">2026 Google Trends & Arama Ağı Yoğunluk İndeksi (0-100)</div>
+                <div class="chart-container">
+                    <canvas id="osintChart"></canvas>
+                </div>
+            </div>
+
+            <!-- TEXT ANALYSIS -->
+            <div class="space-y-3 text-xs">
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                    <span class="font-bold text-slate-900">🛫 Kaçış Aramaları (95/100):</span>
+                    <p class="text-slate-600 mt-1">"İltica", "Schengen vizesi" ve "Yurt dışı yazılımcı iş ilanları" aramaları tarihi rekor kırarak gençlerin fiili kaçış modunu doğrulamıştır.</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                    <span class="font-bold text-slate-900">📉 Finansal Panik Aramaları (92/100):</span>
+                    <p class="text-slate-600 mt-1">"İcra", "Tefeci" ve "Konkordato" aramalarındaki patlama, hanehalkının borç sarmalı içinde kilitlendiğini göstermektedir.</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                    <span class="font-bold text-slate-900">🧠 Nöro-Stres Aramaları (95+/100):</span>
+                    <p class="text-slate-600 mt-1">"Antidepresan" ve "Panik atak" aramaları biyolojik kortizol yükünün ve toplumsal cinnet eşiğinin kanıtıdır.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: 2026-2055 ÜÇ GELECEK SENARYOSU SİMÜLATÖRÜ -->
+    <section id="senaryolar" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+        <div>
+            <div class="flex items-center space-x-2 text-amber-600 font-bold text-sm tracking-wider uppercase">
+                <span>🔮 Bölüm 7</span>
+                <span>•</span>
+                <span>Gelecek Simülasyonları</span>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-900 mt-1">2026–2055 Üç Gelecek Senaryosu</h3>
+            <p class="text-slate-600 text-sm mt-1">
+                Bugünkü eğitim ve kurumsal tercihler 30 yıllık faza girmiştir. Aşağıdaki sekmelerden senaryoları karşılaştırabilirsiniz.
+            </p>
+        </div>
+
+        <!-- SCENARIO SWITCHER BUTTONS -->
+        <div class="flex flex-wrap gap-2 border-b border-slate-200 pb-4">
+            <button onclick="switchScenario('A')" id="btnSenA" class="px-4 py-2 rounded-xl text-xs font-bold bg-red-900 text-white shadow-sm border border-red-700 transition">
+                🔴 Senaryo A: Kaotik Tasfiye (%40 Olasılık)
+            </button>
+            <button onclick="switchScenario('B')" id="btnSenB" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-300 transition">
+                🟡 Senaryo B: Latin Amerika Tipi Durgunluk (%45 Olasılık)
+            </button>
+            <button onclick="switchScenario('C')" id="btnSenC" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-300 transition">
+                🟢 Senaryo C: Radikal Rönesans (%15 Olasılık)
+            </button>
+        </div>
+
+        <!-- SCENARIO CONTENT DISPLAY -->
+        <div id="scenarioDisplayPane" class="bg-slate-900 text-white p-6 rounded-2xl border border-slate-800 space-y-6">
+            <!-- Dynamically populated by JS -->
+        </div>
+    </section>
+
+    <!-- SECTION 8: STRATEJİK KURTULUŞ REÇETESİ & DEVRE KESİCİLER -->
+    <section id="recete" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+        <div>
+            <div class="flex items-center space-x-2 text-amber-600 font-bold text-sm tracking-wider uppercase">
+                <span>🛡️ Bölüm 8</span>
+                <span>•</span>
+                <span>Stratejik Müdahale</span>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-900 mt-1">T2SAIM Stratejik Kurtuluş Reçetesi & Devre Kesiciler</h3>
+            <p class="text-slate-600 text-sm mt-1">
+                Sorun kurumsal ve kognitiftir; parasal manipülasyonlar çözmez. Sistemik iflastan çıkış için matematiksel zorunluluklar:
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="p-5 bg-slate-50 rounded-xl border-l-4 border-emerald-500 border-slate-200 space-y-2">
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-slate-900 text-sm">1. Kapsayıcı Kurumlar Devrimi</span>
+                    <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded font-mono text-xs font-bold">W/S > 0.40</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Siyasi iktidarın dar rant gruplarına dayanmasını engellemek. Kamu İhale Kanunu istisnalarını kaldırmak, yargı ve Merkez Bankası bağımsızlığını tam anayasal güvenceye almak.
+                </p>
+            </div>
+
+            <div class="p-5 bg-slate-50 rounded-xl border-l-4 border-sky-500 border-slate-200 space-y-2">
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-slate-900 text-sm">2. Epistemik Hijyen & Bütçe Filtresi</span>
+                    <span class="px-2 py-0.5 bg-sky-100 text-sky-800 rounded font-mono text-xs font-bold">Φ_Bütçe < 0.20</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Rant, siyasal inanç mühendisliği ve bürokrasiye giden kaynakları kesmek. İdeolojik bütçelerin TÜBİTAK ve Yapay Zekâ Ar-Ge fonlarının maksimum beşte birine indirilmesi.
+                </p>
+            </div>
+
+            <div class="p-5 bg-slate-50 rounded-xl border-l-4 border-purple-500 border-slate-200 space-y-2">
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-slate-900 text-sm">3. Kognitif Seferberlik (30 Yıllık Plan)</span>
+                    <span class="px-2 py-0.5 bg-purple-100 text-purple-800 rounded font-mono text-xs font-bold">PISA L5-6 > %15</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Ezberci pedagojiyi yok edip Sokratik sorgulama, analitik matematik, felsefe ve kodlama müfredatına geçmek. Liyakatsiz mülakat sistemini lağvederek beyin göçünü tersine çevirmek.
+                </p>
+            </div>
+
+            <div class="p-5 bg-slate-50 rounded-xl border-l-4 border-amber-500 border-slate-200 space-y-2">
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-slate-900 text-sm">4. Termodinamik Negentropi Hamlesi</span>
+                    <span class="px-2 py-0.5 bg-amber-100 text-amber-800 rounded font-mono text-xs font-bold">EROEI > 12:1</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    %74.2'lik dışa bağımlılığı kırmak için nükleer reaktörler ve mikro-grid yenilenebilir sistemler inşa etmek. Karmaşık medeniyetin ihtiyaç duyduğu net enerji fazlasını yaratmak.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 9: DAUBERT TIER-1 EVIDENTIARY MATRIX -->
+    <section id="kanitlar" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+                <div class="flex items-center space-x-2 text-amber-600 font-bold text-sm tracking-wider uppercase">
+                    <span>⚖️ Bölüm 9</span>
+                    <span>•</span>
+                    <span>Adli Doğrulama Matrisi</span>
+                </div>
+                <h3 class="text-2xl font-bold text-slate-900 mt-1">Daubert Tier-1 Doğruluk ve Epistemik Kanıt Tablosu</h3>
+                <p class="text-slate-600 text-sm mt-1">
+                    Raporda kullanılan tüm veriler bağımsız uluslararası kurumlar ve resmî devlet veritabanlarından doğrulanmıştır.
+                </p>
+            </div>
+
+            <!-- TABLE SEARCH & FILTER -->
+            <div class="flex items-center space-x-2">
+                <input type="text" id="daubertSearch" onkeyup="filterDaubertTable()" placeholder="Kanıt veya metrik ara..." class="px-3 py-2 border border-slate-300 rounded-lg text-xs w-48 sm:w-64 focus:ring-2 focus:ring-amber-500 outline-none">
+            </div>
+        </div>
+
+        <!-- DAUBERT TABLE -->
+        <div class="overflow-x-auto">
+            <table id="daubertTable" class="w-full text-xs text-left text-slate-600 border-collapse">
+                <thead class="text-[11px] uppercase bg-slate-900 text-slate-100 border-b border-slate-800 font-mono">
+                    <tr>
+                        <th class="py-3 px-3">Analiz Edilen Boyut / Gösterge</th>
+                        <th class="py-3 px-3">Fiziksel & Ampirik Kanıt Var Mı?</th>
+                        <th class="py-3 px-3">Model Çıkarımı & Metodoloji</th>
+                        <th class="py-3 px-3">Adli Doğrulama & Kaynak Notu</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 font-sans">
+                    <tr class="hover:bg-slate-50">
+                        <td class="py-3 px-3 font-bold text-slate-900">Bütçe Sürtünmesi & Rant Oranı (Φ)</td>
+                        <td class="py-3 px-3 font-semibold text-emerald-700 bg-emerald-50/50">KESİN KANIT: SBB Bütçe Kanunları (1980-2026), TÜİK Ar-Ge</td>
+                        <td class="py-3 px-3">Varsayım yok. Resmî bütçe dökümleri.</td>
+                        <td class="py-3 px-3">Diyanet (3.90B USD) vs TÜBİTAK/Ar-Ge (2.65B USD) verilerinden Φ=1.47x hesaplanmıştır.</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50">
+                        <td class="py-3 px-3 font-bold text-slate-900">Kognitif Çöküş (PISA L5-6)</td>
+                        <td class="py-3 px-3 font-semibold text-emerald-700 bg-emerald-50/50">KESİN KANIT: OECD PISA Uluslararası Sınav Mikro-verileri</td>
+                        <td class="py-3 px-3">Varsayım yok. Biyolojik / Zihinsel çıktı.</td>
+                        <td class="py-3 px-3">G. Kore %23.1 iken Türkiye'nin L5-6 elit akıl oranı %4.2 bandında tescillidir.</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50">
+                        <td class="py-3 px-3 font-bold text-slate-900">W/S Koalisyon Daralması</td>
+                        <td class="py-3 px-3 font-semibold text-emerald-700 bg-emerald-50/50">KESİN KANIT: WJP Hukukun Üstünlüğü, SBB Kamu İhaleleri</td>
+                        <td class="py-3 px-3">Acemoğlu / De Mesquita: Sömürücü kuruma kayış.</td>
+                        <td class="py-3 px-3">Mülkiyet hakları güvensizliği ve istisnai ihalelerdeki rant temerküzü kanıtlanmıştır.</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50">
+                        <td class="py-3 px-3 font-bold text-slate-900">Termodinamik (EROEI & Enerji)</td>
+                        <td class="py-3 px-3 font-semibold text-emerald-700 bg-emerald-50/50">KESİN KANIT: IEA World Energy Outlook, ETKB Denge Tabloları</td>
+                        <td class="py-3 px-3">Georgescu-Roegen Fiziği: Enerji geri dönüşü.</td>
+                        <td class="py-3 px-3">%74.2 dışa bağımlılık ve 8.4:1 EROEI medeniyet taşıma kapasitesi altındadır.</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50">
+                        <td class="py-3 px-3 font-bold text-slate-900">Açığa Vurulan Tercihler (Z)</td>
+                        <td class="py-3 px-3 font-semibold text-emerald-700 bg-emerald-50/50">KESİN KANIT: Google Trends Logları, BKM, İflas Sicil</td>
+                        <td class="py-3 px-3">Samuelson & OSINT: Gizlenen aksiyonlar.</td>
+                        <td class="py-3 px-3">İltica (95), Konkordato (92) ve Kortizol (95+) aramalarıyla kitle paniği doğrulanmıştır.</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50">
+                        <td class="py-3 px-3 font-bold text-slate-900">Hoffer Fanatizm Endeksi (HFI)</td>
+                        <td class="py-3 px-3 font-semibold text-amber-700 bg-amber-50/50">MODEL GİRDİSİ KANITLI: TÜİK Gelir Dağılımı Verileri</td>
+                        <td class="py-3 px-3">Eric Hoffer kitle tipolojisi yüzdelere dökülmüştür.</td>
+                        <td class="py-3 px-3">Yeni Yoksulların %38.5'e sıçraması ile kitle radikalleşme alarmı (5.0+ eşiği) geçilmiştir.</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50">
+                        <td class="py-3 px-3 font-bold text-slate-900">Epistemik Makas (Δ_Gap = 6.81x)</td>
+                        <td class="py-3 px-3 font-semibold text-purple-700 bg-purple-50/50">SENTETİK İNDEKS: Metodolojik Model Çıktısı</td>
+                        <td class="py-3 px-3">T2SAIM EWS PROJEKSİYONU: Sanal vaat / Fiziksel güç.</td>
+                        <td class="py-3 px-3">6.81x puanı, sistemik kriz ve akut kurumsal iflas bölgesinde olduğumuzu ispatlar.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 text-xs">
+    <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
+        <p class="font-mono text-slate-300">🏛️ T2SAIM – EWS Büyük Jenerik Metodolojisi • Veritas Per Se</p>
+        <p class="text-slate-500">Daubert Tier-1 Adli Kanıt Standardı ile Sentezlenmiştir. Sadece Bilimsel & Adli Analiz İçindir.</p>
+    </div>
+</footer>
+
+<!-- JAVASCRIPT LOGIC -->
+<script>
+    // --- DATA STORES & INITIALIZATIONS ---
+    const dimensionsData = {
+        1: {
+            title: "3.1. Epistemik Köpük Makası (Δ_Gap) Çöküşü",
+            badge: "Akut Kopuş",
+            badgeColor: "bg-red-900 text-red-200 border-red-700",
+            body: "2000'lerin başında kurulan kapsayıcı ekonomik çıpalar TFP'yi artırarak sanal vaatler ile ekonomik gerçekliğin uyumlu seyretmesini sağlamıştır (2005 Δ_Gap = 1.12x). Lakin 2018 sonrası Cumhurbaşkanlığı Hükümet Sistemi'nin mülkiyet güvenliğini ve liyakati tasfiye etmesiyle fiziksel üretim kapasitesi (R) serbest düşüşe geçmiş, iktidarın ürettiği beka ve lider kültü (E) 96.0 puana şişirilmiştir. Sonuç: 6.81x makası, rasyonel politikalarla kapatılamayacak bir kognitif iflastır."
+        },
+        2: {
+            title: "3.2. Termodinamik İflas: EROEI ve Entropik Sürtünme",
+            badge: "Fiziksel Eşik Altı",
+            badgeColor: "bg-amber-900 text-amber-200 border-amber-700",
+            body: "Georgescu-Roegen ve Hall modelleri karmaşık medeniyet eşiğinin 10:1 EROEI oranında yattığını kanıtlar. Türkiye'nin güncel EROEI oranı 8.4:1'e düşmüş, enerji dışa bağımlılığı %74.2'de çakılmıştır. Enerji ithalatına ödenen milyarlar, üniversitelerin ve sanayinin bilim üretmesini fiziki düzeyde imkânsız kılmakta; israf 'entropik sürtünme' yaratarak sistemi tüketmektedir."
+        },
+        3: {
+            title: "3.3. Bütçe Sürtünmesi (Φ) ve Samuelson PPF Bozulması",
+            badge: "Φ = 1.47x (Kurumsal Felç)",
+            badgeColor: "bg-red-900 text-red-200 border-red-700",
+            body: "SBB bütçe kanunlarına göre 2026 merkezi bütçesinde Diyanet İşleri Başkanlığı'nın payı 3.90 Milyar USD iken, TÜBİTAK, Sanayi teşvikleri ve tüm üniversitelerin BAP projelerinin toplam bütçesi ancak 2.65 Milyar USD'dir. İnanç ve rant kurumlarının bilimden %47 daha fazla kaynak soğurması (Φ = 1.47x), bilinçli bir 'Kurumsal Felç' tercihidir. Samuelson PPF modelinde hanehalkı bütçesinin %82'sini gıdaya ayırmak zorunda kalmıştır."
+        },
+        4: {
+            title: "3.4. Kognitif Sermaye Makası: PISA & Patent Uçurumu",
+            badge: "PISA L5-6: %4.2",
+            badgeColor: "bg-sky-900 text-sky-200 border-sky-700",
+            body: "OECD PISA verilerine göre Türkiye'nin Seviye 5 ve 6 'Kritik Akıl' havuzu ısrarla %4.2 bandına sıkışırken, Güney Kore bu oranı %23.1'e taşımıştır. Türkiye'de 'fonksiyonel cehalet' havuzu %40.5'tir. Bu durum WIPO PCT uluslararası patent tescilinde Güney Kore'nin 22,000 patentine karşı Türkiye'nin 2,240 patentte kalmasına neden olmaktadır. Yüksek teknoloji ihracatının payı 25 yıldır %3.8-%5.1 arasına kilitlidir."
+        },
+        5: {
+            title: "3.5. Selektörat Kuramı: W/S Oranının Erimesi",
+            badge: "W/S = 0.11",
+            badgeColor: "bg-red-900 text-red-200 border-red-700",
+            body: "Cumhurbaşkanlığı Hükümet Sistemi ile iktidarın koalisyon tabanı (W/S) 0.11 düzeyine daralmıştır. Bir liderin bekası dar bir seçici elitin onayına kaldığında kamu malları (hukuk, eğitim) yerine özel rantlar dağıtılır. Kamu İhale Kanunundaki 190'ı aşkın istisna ve mülakatlardaki partizanlık, De Mesquita modelinde lider hayatta kalması için 'rasyonel' olan stratejilerdir."
+        },
+        6: {
+            title: "3.6. Eric Hoffer Tipolojisi ve Fanatizm Endeksi",
+            badge: "HFI = 6.54x",
+            badgeColor: "bg-amber-900 text-amber-200 border-amber-700",
+            body: "Ahlaki iddiasını kaybeden iktidar toplumu dogmatik düzleme çeker. Hoffer tipolojisine göre nüfusta Yeni Yoksullar %38.5'e sıçramış, Önü Tıkanmış Muhterisler %25.5, Keskin İnançlılar %22.0 seviyesindedir. HFI endeksi 6.54x seviyesine tırmanarak toplumda uzlaşma arayan 1 kişiye karşılık öfke dolu 6.5 kişinin bulunduğunu belgeler."
+        },
+        7: {
+            title: "3.7. OSINT Sinyalleri & Açığa Vurulan Tercihler",
+            badge: "Beklenti Z: 27.2",
+            badgeColor: "bg-slate-800 text-slate-200 border-slate-700",
+            body: "Paul Samuelson'ın ilkesi gereği Google Trends logları toplumun gizlenen amigdala paniklerini yansıtır. Gençlerin %68'inin kaçış aradığını belgeleyen 'İltica/Schengen' aramaları 95/100, finansal çöküşü belgeleyen 'İcra/Konkordato' 92/100, biyolojik çöküşü belgeleyen 'Antidepresan' 95+ nedensellik skoru vermektedir. Toplumsal Gelecek Beklentisi (Z) 27.2'ye çökmüştür."
+        },
+        8: {
+            title: "3.8. İnsan İnterlandı ve Sosyal Güven Kalkanı",
+            badge: "FSI: 84.0",
+            badgeColor: "bg-slate-800 text-slate-200 border-slate-700",
+            body: "Acemoğlu modelinde sosyal güven işlem maliyetlerini düşüren omurgadır. Türkiye'de toplumsal güven %12.4'e düşmüş, Fragile States Index 84.0 kırılganlık puanına ulaşmıştır. Kurumsal erozyon yerli sermayeyi yatırımdan men ederek varlıkların yurt dışına kaçmasına neden olmaktadır."
+        },
+        9: {
+            title: "3.9. Toplumsal Negentropi vs Entropik Sürtünme",
+            badge: "Net Entropi Artışı",
+            badgeColor: "bg-red-900 text-red-200 border-red-700",
+            body: "Eğitim sisteminin katma değer üretememesi nedeniyle sistem negentropi (zenginlik) yaratamamaktadır. Bunun yerine nepotizm, yanlış ihale tahsisleri ve liyakatsizlik 'entropik sürtünme' yaratarak ülkenin mevcut sermaye ve enerji kapasitesini hızla öğütmektedir."
+        }
+    };
+
+    const scenarioData = {
+        'A': {
+            title: "🔴 Senaryo A: Kaotik Tasfiye ve Kognitif İflas (Olasılık: %40)",
+            body: "Sömürücü kurumların ve mülakat sisteminin aynen sürmesi, ideolojik bütçelerin Ar-Ge'yi ezmeye devam etmesi durumu. Beyin göçü hızlanır, PISA L5-6 oranı <%2.0'ye geriler. W/S rasyosu 0.05'e çöker. Uluslararası patent üretimi sıfırlanır, yüksek teknoloji ihracatı %1.9'a düşer. Δ_Gap köpüğü 11.4x seviyesine fırlayarak dış borç temerrüdünü ve kaotik üçüncü dünya şartlarını getirir. 2055 kişi başı gelir: $4,500."
+        },
+        'B': {
+            title: "🟡 Senaryo B: Latin Amerika Tipi Kronik Durgunluk (Olasılık: %45)",
+            body: "Sistemin patlamasını önlemek üzere Merkez Bankası gibi kurumlara kısmî bağımsızlık verilmesi ancak W/S rasyosunun (0.15) kökten çözülmemesi. PISA L5-6 oranı %4.5 platoda kalır. İkili bir toplum yapısı (Dual Economy) oluşur: Küçük bir azınlık teknoloji üretirken devasa kitle asgari ücret tuzağında kalır. Enflasyon %30-50 bandında yapışkanlaşır. Δ_Gap ≈ 5.6x etrafında donar. 2055 kişi başı gelir: $9,000 - $11,000."
+        },
+        'C': {
+            title: "🟢 Senaryo C: Radikal Rasyonel Rönesans (Olasılık: %15)",
+            body: "Acemoğlu'nun Kapsayıcı Kurumlarına tavizsiz dönüş. Yargı bağımsızlığı, mülakatların kaldırılması ve koalisyonun topluma yayılması (W/S > 0.40). Ar-Ge fonlarının din bütçelerine oranı 3.50x seviyesine çıkartılır. Sokratik ve analitik müfredat ile PISA L5-6 oranı %15.0 eşiğini aşar. WIPO patent üretimi yıllık 11,500 adede fırlar. EROEI 14:1 seviyesine çıkar, Δ_Gap 1.45x'e iner. 2055 kişi başı gelir: $32,000."
+        }
+    };
+
+    // --- CHART INSTANCES ---
+    let historicalChart, budgetChart, cognitiveChart, hofferChart, osintChart;
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Init UI Components
+        selectDimension(1);
+        switchScenario('A');
+        setupFormulaCalculator();
+        setupHfiCalculator();
+
+        // Render All Charts
+        renderHistoricalChart();
+        renderBudgetChart();
+        renderCognitiveChart();
+        renderHofferChart();
+        renderOsintChart();
+    });
+
+    // --- FORMULA SIMULATOR LOGIC ---
+    function setupFormulaCalculator() {
+        const sliderE = document.getElementById('sliderE');
+        const sliderR = document.getElementById('sliderR');
+        const sliderW = document.getElementById('sliderW');
+        const sliderK = document.getElementById('sliderK');
+
+        function update() {
+            const E = parseFloat(sliderE.value);
+            const R = parseFloat(sliderR.value);
+            const W = parseFloat(sliderW.value);
+            const K = parseFloat(sliderK.value);
+
+            document.getElementById('valE').innerText = E.toFixed(1);
+            document.getElementById('valR').innerText = R.toFixed(1);
+            document.getElementById('valW').innerText = W.toFixed(2);
+            document.getElementById('valK').innerText = K.toFixed(1) + '%';
+
+            // Δ_Gap = E / (R * W * (K/100))
+            const denominator = Math.max(R * W * (K / 100), 0.0001); // epsilon: prevents division by zero
+            const gap = E / (denominator * 10); // Scaled for normalization index
+            const displayVal = gap.toFixed(2) + 'x';
+
+            const displayElem = document.getElementById('gapResultDisplay');
+            const badgeElem = document.getElementById('gapStatusBadge');
+            const expElem = document.getElementById('gapExplanation');
+
+            displayElem.innerText = displayVal;
+
+            if (gap <= 1.5) {
+                displayElem.className = "text-5xl font-extrabold font-mono text-emerald-400 tracking-tight";
+                badgeElem.className = "inline-block px-3 py-1 rounded-full text-xs font-bold bg-emerald-900/60 text-emerald-200 border border-emerald-700";
+                badgeElem.innerText = "RASYONEL SÜRDÜRÜLEBİLİR BÖLGE";
+                expElem.innerHTML = "Fiziksel gerçeklik ve kognitif kapasite siyasi vaatleri karşılamaktadır. Sistem dengededir.";
+            } else if (gap <= 3.0) {
+                displayElem.className = "text-5xl font-extrabold font-mono text-amber-400 tracking-tight";
+                badgeElem.className = "inline-block px-3 py-1 rounded-full text-xs font-bold bg-amber-900/60 text-amber-200 border border-amber-700";
+                badgeElem.innerText = "YAPISAL GERİLİM & POPÜLİST AŞINMA";
+                expElem.innerHTML = "Sanal vaatler fiziki kapasitenin önündedir. Enflasyonel ve kurumsal bozulma riski artmaktadır.";
+            } else {
+                displayElem.className = "text-5xl font-extrabold font-mono text-red-500 tracking-tight";
+                badgeElem.className = "inline-block px-3 py-1 rounded-full text-xs font-bold bg-red-900/60 text-red-200 border border-red-700";
+                badgeElem.innerText = "AKUT SİSTEMİK ÇÖKÜŞ & KOPUŞ BÖLGESİ";
+                expElem.innerHTML = `Üretilen sanal vaatler, ülkenin fiziki üretim, kurumsal kapasite ve kognitif akıl gücünü <strong>${displayVal}</strong> aşmıştır. Sistem kaotik tasfiye eşiğindedir.`;
+            }
+        }
+
+        sliderE.addEventListener('input', update);
+        sliderR.addEventListener('input', update);
+        sliderW.addEventListener('input', update);
+        sliderK.addEventListener('input', update);
+        update();
+    }
+
+    // --- HOFFER SIMULATOR LOGIC ---
+    function setupHfiCalculator() {
+        const sliderNewPoor = document.getElementById('sliderNewPoor');
+        const sliderAload = document.getElementById('sliderAload');
+
+        function updateHfi() {
+            const newPoor = parseFloat(sliderNewPoor.value);
+            const aLoad = parseFloat(sliderAload.value);
+
+            document.getElementById('valNewPoor').innerText = newPoor.toFixed(1) + '%';
+            document.getElementById('valAload').innerText = aLoad.toFixed(2);
+
+            // HFI = (NewPoor + 25.5 disillusion) / 12.0 core * exp(aLoad - 1)
+            const ratio = (newPoor + 25.5) / 12.0;
+            const hfi = ratio * Math.exp(aLoad - 1.2);
+            const displayVal = hfi.toFixed(2) + 'x';
+
+            const hfiElem = document.getElementById('hfiDisplay');
+            const badgeElem = document.getElementById('hfiBadge');
+
+            hfiElem.innerText = displayVal;
+
+            if (hfi >= 5.0) {
+                badgeElem.className = "px-3 py-1 bg-red-900/80 text-red-200 border border-red-700 rounded-full font-bold";
+                badgeElem.innerText = "KRİTİK FANATİZM ALARMI (Eşik: 5.0x)";
+            } else if (hfi >= 2.0) {
+                badgeElem.className = "px-3 py-1 bg-amber-900/80 text-amber-200 border border-amber-700 rounded-full font-bold";
+                badgeElem.innerText = "YÜKSEK FANATİZM RİSKİ";
+            } else {
+                badgeElem.className = "px-3 py-1 bg-emerald-900/80 text-emerald-200 border border-emerald-700 rounded-full font-bold";
+                badgeElem.innerText = "DÜŞÜK FANATİZM / RASYONEL DENGELER";
+            }
+        }
+
+        sliderNewPoor.addEventListener('input', updateHfi);
+        sliderAload.addEventListener('input', updateHfi);
+        updateHfi();
+    }
+
+    // --- INTERACTIVE DIMENSION SELECTION ---
+    function selectDimension(id) {
+        for (let i = 1; i <= 9; i++) {
+            const card = document.getElementById(`dimCard${i}`);
+            if (card) {
+                if (i === id) {
+                    card.className = "p-4 rounded-xl border-2 border-amber-500 bg-amber-50/40 cursor-pointer shadow-md transition";
+                } else {
+                    card.className = "p-4 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer hover:border-amber-400 hover:shadow-md transition";
+                }
+            }
+        }
+
+        const data = dimensionsData[id];
+        const pane = document.getElementById('dimensionDetailPane');
+        pane.innerHTML = `
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <h4 class="text-lg font-bold text-slate-100">${data.title}</h4>
+                <span class="px-2.5 py-1 rounded text-xs font-bold border ${data.badgeColor}">${data.badge}</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed font-sans mt-3">
+                ${data.body}
+            </p>
+        `;
+    }
+
+    // --- SCENARIO SWITCHER ---
+    function switchScenario(scenKey) {
+        ['A', 'B', 'C'].forEach(k => {
+            const btn = document.getElementById(`btnSen${k}`);
+            if (k === scenKey) {
+                btn.className = "px-4 py-2 rounded-xl text-xs font-bold bg-amber-500 text-slate-950 shadow-sm border border-amber-400 transition";
+            } else {
+                btn.className = "px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-300 transition";
+            }
+        });
+
+        const data = scenarioData[scenKey];
+        const pane = document.getElementById('scenarioDisplayPane');
+        pane.innerHTML = `
+            <div class="border-b border-slate-800 pb-3">
+                <h4 class="text-xl font-bold text-amber-400">${data.title}</h4>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed font-sans">
+                ${data.body}
+            </p>
+        `;
+    }
+
+    // --- SEARCH IN DAUBERT TABLE ---
+    function filterDaubertTable() {
+        const input = document.getElementById("daubertSearch");
+        const filter = input.value.toLocaleLowerCase('tr-TR').trim();
+        const table = document.getElementById("daubertTable");
+        const tr = table.getElementsByTagName("tr");
+
+        for (let i = 1; i < tr.length; i++) {
+            let txtValue = (tr[i].textContent || tr[i].innerText).toLocaleLowerCase('tr-TR');
+            if (txtValue.indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+
+    // --- CHART RENDERING FUNCTIONS (CHART.JS) ---
+
+    // 1. HISTORICAL TREND CHART
+    function renderHistoricalChart() {
+        if (typeof historicalChart !== "undefined" && historicalChart) historicalChart.destroy();
+        const ctx = document.getElementById('historicalChart').getContext('2d');
+        historicalChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1975', '1990', '2005', '2015', '2026', '2035 (Sen A)', '2035 (Sen B)', '2035 (Sen C)'],
+                datasets: [
+                    {
+                        label: 'Epistemik Köpük (Δ_Gap)',
+                        data: [0.67, 0.94, 1.12, 2.15, 6.81, 11.40, 5.60, 1.45],
+                        borderColor: '#ef4444',
+                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Gelecek Beklenti Endeksi (Z)',
+                        data: [54.0, 48.5, 68.4, 46.0, 27.2, 14.0, 31.0, 62.0],
+                        borderColor: '#0284c7',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Hoffer Fanatizm Endeksi (HFI)',
+                        data: [0.82, 1.15, 1.05, 1.48, 6.54, 9.20, 5.10, 1.80],
+                        borderColor: '#f59e0b',
+                        borderWidth: 2,
+                        tension: 0.3
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top', labels: { boxWidth: 12, font: { size: 10 } } },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.raw;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: { ticks: { font: { size: 10 } } },
+                    y: { ticks: { font: { size: 10 } } }
+                }
+            }
+        });
+    }
+
+    // 2. BUDGET FRICTION CHART
+    function renderBudgetChart() {
+        if (typeof budgetChart !== "undefined" && budgetChart) budgetChart.destroy();
+        const ctx = document.getElementById('budgetChart').getContext('2d');
+        budgetChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Diyanet İşleri Başkanlığı', 'TÜBİTAK + Üniversiteler BAP Toplamı'],
+                datasets: [{
+                    label: '2026 Bütçe Ödeneği (Milyar USD)',
+                    data: [3.90, 2.65],
+                    backgroundColor: ['#ef4444', '#10b981'],
+                    borderRadius: 8,
+                    barThickness: 40
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.raw + ' Milyar USD';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: { beginAtZero: true, ticks: { font: { size: 10 } } },
+                    x: { ticks: { font: { size: 10 } } }
+                }
+            }
+        });
+    }
+
+    // 3. COGNITIVE COMPARISON CHART
+    function renderCognitiveChart() {
+        if (typeof cognitiveChart !== "undefined" && cognitiveChart) cognitiveChart.destroy();
+        const ctx = document.getElementById('cognitiveChart').getContext('2d');
+        cognitiveChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['PISA L5-6 Elit Akıl (%)', 'PCT Patent (x1,000)', 'Yüksek Tek. İhracat Payı (%)'],
+                datasets: [
+                    {
+                        label: 'Türkiye',
+                        data: [4.2, 2.24, 3.8],
+                        backgroundColor: '#ef4444',
+                        borderRadius: 6
+                    },
+                    {
+                        label: 'Güney Kore',
+                        data: [23.1, 22.0, 28.5],
+                        backgroundColor: '#10b981',
+                        borderRadius: 6
+                    },
+                    {
+                        label: 'OECD Ortalaması',
+                        data: [15.0, 10.5, 16.2],
+                        backgroundColor: '#64748b',
+                        borderRadius: 6
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top', labels: { boxWidth: 12, font: { size: 10 } } }
+                },
+                scales: {
+                    y: { beginAtZero: true, ticks: { font: { size: 10 } } },
+                    x: { ticks: { font: { size: 10 } } }
+                }
+            }
+        });
+    }
+
+    // 4. HOFFER SOCIOLOGICAL CHART
+    function renderHofferChart() {
+        if (typeof hofferChart !== "undefined" && hofferChart) hofferChart.destroy();
+        const ctx = document.getElementById('hofferChart').getContext('2d');
+        hofferChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: [
+                    'Yeni Yoksullar (%38.5)',
+                    'Diplomalı Muhterisler (%25.5)',
+                    'Keskin İnançlılar (%22.0)',
+                    'Uyumsuzlar / Marjinaller (%14.5)',
+                    'Özerk-Sokratik Akıl (%12.0)'
+                ],
+                datasets: [{
+                    data: [38.5, 25.5, 22.0, 14.5, 12.0],
+                    backgroundColor: [
+                        '#ef4444',
+                        '#f59e0b',
+                        '#8b5cf6',
+                        '#64748b',
+                        '#10b981'
+                    ],
+                    borderWidth: 2,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'right', labels: { boxWidth: 10, font: { size: 9 } } }
+                }
+            }
+        });
+    }
+
+    // 5. OSINT CHART
+    function renderOsintChart() {
+        if (typeof osintChart !== "undefined" && osintChart) osintChart.destroy();
+        const ctx = document.getElementById('osintChart').getContext('2d');
+        osintChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    'İltica & Schengen Aramaları',
+                    'Antidepresan & Nöro-Stres',
+                    'İcra & Konkordato',
+                    'Gelecek Beklenti Skoru (Z)'
+                ],
+                datasets: [{
+                    label: 'OSINT Log Arama Şiddeti (0-100)',
+                    data: [95, 95, 92, 27.2],
+                    backgroundColor: ['#ef4444', '#ef4444', '#f59e0b', '#3b82f6'],
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    x: { min: 0, max: 100, ticks: { font: { size: 10 } } },
+                    y: { ticks: { font: { size: 10 } } }
+                }
+            }
+        });
+    }
+</script>
+
+<!-- T2SAIM-ASM-KATEX : montaj sirasinda eklendi (sayfa icerigi degistirilmedi) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script>/* T2SAIM-ASM-KATEX v2 */
+(function () {
+  var DELIMS = [
+    {left: '$$', right: '$$', display: true},
+    {left: '\\[', right: '\\]', display: true},
+    {left: '\\(', right: '\\)', display: false},
+    {left: '$', right: '$', display: false}
+  ];
+  var PH = '\uE000';               // para birimi $ isaretleri icin gecici yer tutucu
+  var obs = null, timer = null;
+  function connect() { if (obs) obs.observe(document.body, {childList: true, subtree: true, characterData: true}); }
+  // $...$ arasi gercek matematik mi, yoksa iki para tutari arasindaki duz yazi mi?
+  function looksMath(c) {
+    if (/[\\^_{}]/.test(c)) return true;           // \komut, ussu, alt indis, suslu parantez
+    if (/^\s*\d/.test(c)) return false;             // rakamla baslar: "$3.90 Milyar ... $"
+    var words = c.trim().split(/\s+/).filter(function (w) { return /[A-Za-zÇĞİÖŞÜçğıöşü]{4,}/.test(w); });
+    if (words.length >= 2) return false;            // duz cumle
+    return true;                                    // M2, NIR, HFI, t, DM(t), MR < MC ...
+  }
+  function textNodes(root) {
+    var out = [], w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        var p = n.parentNode;
+        if (!p || /^(SCRIPT|STYLE|TEXTAREA|NOSCRIPT)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT;
+        if (p.closest && p.closest('.katex')) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) out.push(w.currentNode);
+    return out;
+  }
+  function protect() {
+    textNodes(document.body).forEach(function (n) {
+      var t = n.nodeValue;
+      if (t.indexOf('$') === -1) return;
+      var t2 = t.replace(/\$\$[\s\S]*?\$\$|\$([^$]*)\$/g, function (m, inner) {
+        if (inner === undefined) return m;         // $$...$$ ekran formulu: dokunma
+        return looksMath(inner) ? m : (PH + inner + PH);
+      });
+      if (t2 !== t) n.nodeValue = t2;
+    });
+  }
+  function restore() {
+    textNodes(document.body).forEach(function (n) {
+      if (n.nodeValue.indexOf(PH) !== -1) n.nodeValue = n.nodeValue.split(PH).join('$');
+    });
+  }
+  function render() {
+    if (!window.renderMathInElement) return;
+    if (obs) obs.disconnect();
+    try { protect(); window.renderMathInElement(document.body, {delimiters: DELIMS, throwOnError: false}); } catch (e) { console.warn(e); }
+    try { restore(); } catch (e) {}
+    connect();
+  }
+  function later() { clearTimeout(timer); timer = setTimeout(render, 200); }
+  window.__t2saimKatexRender = render;
+  function load(src, cb) { var s = document.createElement('script'); s.src = src; s.onload = cb; s.onerror = function () { console.warn('KaTeX yuklenemedi: ' + src); }; document.head.appendChild(s); }
+  function start() {
+    load('https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js', function () {
+      load('https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js', function () {
+        obs = new MutationObserver(later);
+        render();
+        document.addEventListener('click', later, true);
+        document.addEventListener('input', later, true);
+      });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
+</body>
+</html>

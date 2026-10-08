@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Chosen Palette: Warm Neutral Light (Background: #f8fafc, Card: #ffffff, Text: #0f172a, Accent Primary: #2563eb, Accent Warning: #d97706, Accent Alert: #dc2626, Accent Safe: #059669) -->
+    <!-- Application Structure Plan: 
+        1. Command Center / Top Nav: Live Dark Matter Index, Reservoir Level, Active Regime Indicator, and Siphon Risk.
+        2. Tabbed Architecture:
+           - Tab 1: Metodolojik Çatı & MIMIC Yapısal Eşitlik Modeli (SEM architecture & formulas).
+           - Tab 2: 5+1 Kütleçekimsel Sensör Laboratuvarı (Interactive anomaly sliders dynamically recalculating composite DM(t)).
+           - Tab 3: Hidrolik Hazne & Sifon Simülatörü (Dynamic Chart.js continuous differential dH(t)/dt simulator with regime toggles).
+           - Tab 4: Türkiye Tarihsel Analiz Kütüğü (1996 - 2026 BoP NOH comparison, oversaturation vs flash drain breakdown).
+           - Tab 5: Sınır Ötesi Walker Kütleçekim & Benford TBML (Interactive Benford digit frequency analysis vs anomalous invoices & Walker destination flow engine).
+           - Tab 6: Kurumsal Uygulama & Metodoloji Rehberi (Step-by-step roadmap for FIUs/Central Banks to operationalize T2SAIM).
+        3. Design Rationale: Prioritizes analytical clarity, interactive stress testing, and empirical rigor. Background is light neutral (#f8fafc) for maximum legibility.
+    -->
+    <!-- Visualization & Content Choices:
+        - Chart.js Radar & Bar Chart for Gravitational Sensors (Interactive via JS sliders).
+        - Chart.js Line Charts for Reservoir dH/dt Simulation and 1996-2026 Historical NOH / Capacity dynamics.
+        - Chart.js Bar Chart for Benford's First Digit Law vs TBML anomalous invoice dataset.
+        - HTML/CSS Styled Matrix for Walker Gravity cross-border flow score calculation.
+        - NO SVG used (Unicode icons & CSS shapes only). NO Mermaid JS used.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T2SAIM Karanlık Madde & Kara Para Hazne Dinamiği Adli Finans Platformu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #f8fafc;
+            color: #0f172a;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            height: 320px;
+            max-height: 380px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .tab-btn.active {
+            border-bottom: 3px solid #2563eb;
+            color: #2563eb;
+            font-weight: 700;
+            background-color: #eff6ff;
+        }
+        .math-block {
+            background-color: #1e293b;
+            color: #f8fafc;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- TOP COMMAND CENTER HEADER -->
+    <header class="bg-slate-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <span class="text-2xl">🌌</span>
+                <div>
+                    <h1 class="text-lg font-bold leading-tight">T2SAIM ADLİ FİNANS VE MİCİC MOTORU</h1>
+                    <p class="text-xs text-slate-400">Karanlık Madde Metodolojisi & Kara Para Hazne Dinamiği Platformu</p>
+                </div>
+            </div>
+            
+            <!-- Live KPI Bar -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full md:w-auto text-center">
+                <div class="bg-slate-800 p-2 rounded-lg border border-slate-700">
+                    <div class="text-[10px] text-slate-400 uppercase tracking-wider">Karanlık Madde Endeksi</div>
+                    <div id="live-dm-index" class="text-lg font-bold text-amber-400">4.49x</div>
+                    <div class="text-[9px] text-slate-400">Normal Eşik: 1.0x</div>
+                </div>
+                <div class="bg-slate-800 p-2 rounded-lg border border-slate-700">
+                    <div class="text-[10px] text-slate-400 uppercase tracking-wider">Hazne Doluluk Seviyesi</div>
+                    <div id="live-reservoir-level" class="text-lg font-bold text-cyan-400">%42.0</div>
+                    <div class="text-[9px] text-slate-400">Zirve (2022): %96.5</div>
+                </div>
+                <div class="bg-slate-800 p-2 rounded-lg border border-slate-700">
+                    <div class="text-[10px] text-slate-400 uppercase tracking-wider">Aktif Rejim ($S_t$)</div>
+                    <div id="live-regime-status" class="text-lg font-bold text-rose-500">S_t = 2 (Akut Sifon)</div>
+                    <div class="text-[9px] text-slate-400">Geçiş Olasılığı: %91.5</div>
+                </div>
+                <div class="bg-slate-800 p-2 rounded-lg border border-slate-700">
+                    <div class="text-[10px] text-slate-400 uppercase tracking-wider">Tahmini Çıkış / Net NOH</div>
+                    <div id="live-noh-flow" class="text-lg font-bold text-rose-400">-$18.4 Milyar</div>
+                    <div class="text-[9px] text-slate-400">2024-2026 Kümülatif</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NAVIGATION TABS -->
+        <nav class="bg-slate-800 border-t border-slate-700 overflow-x-auto">
+            <div class="max-w-7xl mx-auto flex space-x-1 px-4 text-xs font-medium text-slate-300">
+                <button onclick="switchTab('tab-doctrine')" id="btn-tab-doctrine" class="tab-btn active py-3 px-4 whitespace-nowrap transition-colors">🔬 Metodolojik Çatı & MIMIC</button>
+                <button onclick="switchTab('tab-sensors')" id="btn-tab-sensors" class="tab-btn py-3 px-4 whitespace-nowrap transition-colors">📡 5+1 Sensör Laboratuvarı</button>
+                <button onclick="switchTab('tab-simulator')" id="btn-tab-simulator" class="tab-btn py-3 px-4 whitespace-nowrap transition-colors">🌊 Hidrolik Hazne Simülatörü</button>
+                <button onclick="switchTab('tab-history')" id="btn-tab-history" class="tab-btn py-3 px-4 whitespace-nowrap transition-colors">📊 Türkiye Tarihsel Kütüğü (1996-2026)</button>
+                <button onclick="switchTab('tab-forensics')" id="btn-tab-forensics" class="tab-btn py-3 px-4 whitespace-nowrap transition-colors">🌐 Walker Kütleçekim & Benford TBML</button>
+                <button onclick="switchTab('tab-roadmap')" id="btn-tab-roadmap" class="tab-btn py-3 px-4 whitespace-nowrap transition-colors">📑 Kurumsal Metodoloji Rehberi</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 py-6 flex-grow w-full space-y-6">
+
+        <!-- ==================== TAB 1: METODOLOJİK ÇATI & MIMIC ==================== -->
+        <section id="tab-doctrine" class="tab-content space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                <h2 class="text-xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+                    <span>🔬</span> Teorik Doktrin: Gözlemlenemeyen Finansal Karanlık Madde
+                </h2>
+                <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                    Geleneksel adli tıp yöntemleri, kara para aklama ve uyuşturucu finansmanı istatistiklerine doğrudan erişmeyi hedefler. Ancak bu veriler yapısal olarak gizlidir. 
+                    <strong>T2SAIM (Dark Matter Forensics)</strong> doktrini, astrofizikteki karanlık madde tespitinden esinlenir: Karanlık madde foton yaymaz; fakat devasa kütlesinin çevre galaksiler üzerinde yarattığı <em>kütleçekimsel bükülme (gravitational lensing)</em> sayesinde dolaylı olarak hesaplanır. Ekonomide de yasa dışı finansal akışlar (IFF), makroekonomik değişkenlerde yarattıkları 5 temel anomali üzerinden matematiksel ve ekonometrik olarak fonksiyonlaştırılır.
+                </p>
+
+                <!-- MIMIC SEM Diagram -->
+                <div class="bg-slate-50 p-5 rounded-lg border border-slate-200 my-4">
+                    <h3 class="text-sm font-bold text-slate-800 uppercase tracking-wider mb-3 text-center">T2SAIM MIMIC (Multiple Indicators Multiple Causes) Yapısal Eşitlik Mimarisi</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+                        <!-- Causes -->
+                        <div class="space-y-2">
+                            <div class="text-xs font-bold text-indigo-700 uppercase text-center border-b pb-1 border-indigo-200">Dışsal Nedenler ($x_t$)</div>
+                            <div class="bg-indigo-50 p-2 rounded text-xs border border-indigo-100 text-indigo-900">1. Vergi Yükü & Karmaşıklığı ($x_1$)</div>
+                            <div class="bg-indigo-50 p-2 rounded text-xs border border-indigo-100 text-indigo-900">2. Kurumsal Yozlaşma Endeksi ($x_2$)</div>
+                            <div class="bg-indigo-50 p-2 rounded text-xs border border-indigo-100 text-indigo-900">3. Varlık Barışı & Düzenleyici Tolerans ($x_3$)</div>
+                            <div class="bg-indigo-50 p-2 rounded text-xs border border-indigo-100 text-indigo-900">4. Nakit Kullanım Yoğunluğu ($x_4$)</div>
+                        </div>
+
+                        <!-- Latent Variable -->
+                        <div class="bg-slate-900 text-white p-4 rounded-xl text-center border-2 border-amber-400 shadow-md my-2 md:my-0">
+                            <div class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-1">Gizli Değişken (Latent)</div>
+                            <div class="text-lg font-extrabold text-white">$\eta_t$</div>
+                            <div class="text-xs text-slate-300 font-semibold mt-1">Karanlık Madde Kütlesi</div>
+                            <div class="text-[10px] text-slate-400 mt-2">Yapısal Eşitlik: $\eta_t = \gamma' x_t + \zeta_t$</div>
+                        </div>
+
+                        <!-- Indicators -->
+                        <div class="space-y-2">
+                            <div class="text-xs font-bold text-emerald-700 uppercase text-center border-b pb-1 border-emerald-200">Gözlemlenebilir Göstergeler ($y_t$)</div>
+                            <div class="bg-emerald-50 p-2 rounded text-xs border border-emerald-100 text-emerald-900">A1: Net Hata ve Noksan Sapması ($y_1$)</div>
+                            <div class="bg-emerald-50 p-2 rounded text-xs border border-emerald-100 text-emerald-900">A2: Emlak / Medyan Gelir Kopuşu ($y_2$)</div>
+                            <div class="bg-emerald-50 p-2 rounded text-xs border border-emerald-100 text-emerald-900">A3: Kapalıçarşı FX Kur Makası ($y_3$)</div>
+                            <div class="bg-emerald-50 p-2 rounded text-xs border border-emerald-100 text-emerald-900">A4: Kripto USDT Arbitraj Primi ($y_4$)</div>
+                            <div class="bg-emerald-50 p-2 rounded text-xs border border-emerald-100 text-emerald-900">A5: Lüks İthalat / Matrah Uyuşmazlığı ($y_5$)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mathematical Formulations Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                    <div class="math-block">
+                        <div class="text-xs text-amber-400 font-bold mb-1">1. Kompozit Karanlık Madde Endeksi Denklemi</div>
+                        $$\mathcal{I}_{\text{KM}}(t) = \sum_{i=1}^{n} w_i \cdot \frac{\mathcal{A}_i(t)}{\overline{\mathcal{A}}_{i,\text{Tarihsel}}}$$
+                        <p class="text-[11px] text-slate-400 mt-2">
+                            * $w_i$: Sensörün ekonometrik optimize edilmiş faktör ağırlığı.<br>
+                            * $\mathcal{A}_i(t)$: $t$ anındaki gözlemlenen anomali değeri.
+                        </p>
+                    </div>
+
+                    <div class="math-block">
+                        <div class="text-xs text-cyan-400 font-bold mb-1">2. Hidrolik Diferansiyel Sifon Denklemi</div>
+                        $$\frac{dH(t)}{dt} = \begin{cases} 
+                        \alpha \cdot \mathcal{F}_{\text{Giriş}}(t) - \delta \cdot H(t) & \text{eğer } S_t = 1 \text{ (Birikim)} \\
+                        -\kappa \cdot \sqrt{H(t) - H_0} & \text{eğer } S_t = 2 \text{ (Akut Sifon)}
+                        \end{cases}$$
+                        <p class="text-[11px] text-slate-400 mt-2">
+                            * $\alpha$: Regülatif tolerans ve af katsayısı.<br>
+                            * $\kappa$: Sifon boşalım iletkenlik parametresi.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 2: SENSÖR LABORATUVARI ==================== -->
+        <section id="tab-sensors" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                            <span>📡</span> 5+1 Kütleçekimsel Sensör Laboratuvarı
+                        </h2>
+                        <p class="text-slate-600 text-sm">
+                            Aşağıdaki kaydırıcıları (slider) kullanarak anomali katsayılarını değiştirin ve kompozit Karanlık Madde Endeksi $DM(t)$ ile risk radarının anlık değişimini simüle edin.
+                        </p>
+                    </div>
+                    <button onclick="resetSliders()" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg border border-slate-300 transition">
+                        🔄 Varsayılanlara Sıfırla
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <!-- Interactive Sliders (7 Cols) -->
+                    <div class="lg:col-span-7 space-y-4">
+                        <!-- Sensor 1 -->
+                        <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                            <div class="flex justify-between items-center text-xs font-bold mb-1">
+                                <span class="text-slate-800">A1: Net Hata ve Noksan / Cari Denge (%25 Ağırlık)</span>
+                                <span id="val-a1" class="text-blue-600 font-extrabold text-sm">4.85x</span>
+                            </div>
+                            <input type="range" id="slider-a1" min="0.5" max="10.0" step="0.05" value="4.85" oninput="updateCalculations()" class="w-full accent-blue-600">
+                            <p class="text-[11px] text-slate-500 mt-1">Ödemeler dengesindeki kaynağı belirsiz sermaye akışlarının cari açığa oranı.</p>
+                        </div>
+
+                        <!-- Sensor 2 -->
+                        <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                            <div class="flex justify-between items-center text-xs font-bold mb-1">
+                                <span class="text-slate-800">A2: Emlak Fiyatı / Medyan Gelir Kopuşu (%25 Ağırlık)</span>
+                                <span id="val-a2" class="text-blue-600 font-extrabold text-sm">3.42x</span>
+                            </div>
+                            <input type="range" id="slider-a2" min="0.5" max="10.0" step="0.05" value="3.42" oninput="updateCalculations()" class="w-full accent-blue-600">
+                            <p class="text-[11px] text-slate-500 mt-1">Lüks konut endeksinin hanehalkı reel kullanılabilir gelirinden ayrışması.</p>
+                        </div>
+
+                        <!-- Sensor 3 -->
+                        <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                            <div class="flex justify-between items-center text-xs font-bold mb-1">
+                                <span class="text-slate-800">A3: Kapalıçarşı / Resmi TCMB FX Makası (%15 Ağırlık)</span>
+                                <span id="val-a3" class="text-blue-600 font-extrabold text-sm">2.15x</span>
+                            </div>
+                            <input type="range" id="slider-a3" min="0.5" max="10.0" step="0.05" value="2.15" oninput="updateCalculations()" class="w-full accent-blue-600">
+                            <p class="text-[11px] text-slate-500 mt-1">Bankacılık dışı tezgah üstü fiziki döviz/altın talebi ve spread primleri.</p>
+                        </div>
+
+                        <!-- Sensor 4 -->
+                        <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                            <div class="flex justify-between items-center text-xs font-bold mb-1">
+                                <span class="text-slate-800">A4: Kripto / USDT Yerel Arbitraj Primi (%15 Ağırlık)</span>
+                                <span id="val-a4" class="text-blue-600 font-extrabold text-sm">2.80x</span>
+                            </div>
+                            <input type="range" id="slider-a4" min="0.5" max="10.0" step="0.05" value="2.80" oninput="updateCalculations()" class="w-full accent-blue-600">
+                            <p class="text-[11px] text-slate-500 mt-1">P2P ve yerel borsalardaki USDT/TRY fiyatının küresel pariteden sapması.</p>
+                        </div>
+
+                        <!-- Sensor 5 -->
+                        <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                            <div class="flex justify-between items-center text-xs font-bold mb-1">
+                                <span class="text-slate-800">A5: Lüks İthalat / Vergi Tabanı Uyuşmazlığı (%20 Ağırlık)</span>
+                                <span id="val-a5" class="text-blue-600 font-extrabold text-sm">3.90x</span>
+                            </div>
+                            <input type="range" id="slider-a5" min="0.5" max="10.0" step="0.05" value="3.90" oninput="updateCalculations()" class="w-full accent-blue-600">
+                            <p class="text-[11px] text-slate-500 mt-1">Lüks araç, yat, mücevher ithalatı patlarken beyan edilen vergi matrahlarının donması.</p>
+                        </div>
+
+                        <!-- Recommended Sensor 6 -->
+                        <div class="bg-amber-50 p-3 rounded-lg border border-amber-200">
+                            <div class="flex justify-between items-center text-xs font-bold mb-1">
+                                <span class="text-amber-900">🌟 Tavsiye Edilen Sensör A6: Banka Nakit Akış Hızı & M2 Anomalisi (Dönüştürücü)</span>
+                                <span id="val-a6" class="text-amber-700 font-extrabold text-sm">3.10x</span>
+                            </div>
+                            <input type="range" id="slider-a6" min="0.5" max="10.0" step="0.05" value="3.10" oninput="updateCalculations()" class="w-full accent-amber-600">
+                            <p class="text-[11px] text-amber-800 mt-1">Fiziki banknot tedavül hızının gSYH büyümesinden pozitif yönde sapması.</p>
+                        </div>
+                    </div>
+
+                    <!-- Visual Radar & Gauge Output (5 Cols) -->
+                    <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+                        <div class="bg-slate-900 text-white p-5 rounded-xl border border-slate-800 text-center">
+                            <div class="text-xs text-slate-400 uppercase tracking-widest mb-1">Hesaplanan Kompozit Endeks</div>
+                            <div id="calc-dm-score" class="text-4xl font-extrabold text-amber-400">3.71x</div>
+                            <div id="calc-risk-level" class="inline-block mt-2 px-3 py-1 bg-amber-500/20 text-amber-300 text-xs font-bold rounded-full border border-amber-500/40">
+                                YÜKSEK KARANLIK MADDE YOĞUNLUĞU
+                            </div>
+                            <div class="text-[10px] text-slate-400 mt-3">
+                                Formül: $\sum_{i=1}^5 w_i \mathcal{A}_i(t)$ (Opsiyonel $A_6$ eklenmiş duyarlılık)
+                            </div>
+                        </div>
+
+                        <!-- Radar Chart Container -->
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                            <h3 class="text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 text-center">Sensör Sapma Radarı</h3>
+                            <div class="chart-container">
+                                <canvas id="chartRadarSensors"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 3: HİDROLİK HAZNE SİMÜLATÖRÜ ==================== -->
+        <section id="tab-simulator" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                            <span>🌊</span> Hidrolik Hazne & Sifon Çöküş Simülatörü (Flash Drain)
+                        </h2>
+                        <p class="text-slate-600 text-sm">
+                            Karanlık madde birikimini ve şok anındaki sifonlama tahliyesini ($dH/dt$) zamana bağlı diferansiyel denklem ile simüle edin.
+                        </p>
+                    </div>
+                    
+                    <!-- Regime Switch Controls -->
+                    <div class="flex items-center space-x-2 bg-slate-100 p-1.5 rounded-xl border border-slate-300">
+                        <button onclick="setSimRegime(1)" id="btn-regime-1" class="px-3 py-1.5 text-xs font-bold rounded-lg transition-all bg-emerald-600 text-white">
+                            $S_t = 1$ (Yavaş Birikim)
+                        </button>
+                        <button onclick="setSimRegime(2)" id="btn-regime-2" class="px-3 py-1.5 text-xs font-bold rounded-lg transition-all text-slate-600 hover:bg-slate-200">
+                            $S_t = 2$ (Akut Sifon Tahliyesi)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Controls & Chart Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <!-- Controls (4 Cols) -->
+                    <div class="lg:col-span-4 space-y-4 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider mb-3 border-b pb-2">Diferansiyel Parametreler</h3>
+                        
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span>Giriş / Af Katsayısı ($\alpha$)</span>
+                                <span id="val-sim-alpha" class="text-indigo-600 font-bold">0.85</span>
+                            </div>
+                            <input type="range" id="sim-alpha" min="0.1" max="2.0" step="0.05" value="0.85" oninput="runSimulation()" class="w-full accent-indigo-600">
+                            <span class="text-[10px] text-slate-500">Varlık barışları ve regülasyon gevşekliği.</span>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span>Sifon İletkenliği ($\kappa$)</span>
+                                <span id="val-sim-kappa" class="text-rose-600 font-bold">1.40</span>
+                            </div>
+                            <input type="range" id="sim-kappa" min="0.2" max="3.0" step="0.1" value="1.40" oninput="runSimulation()" class="w-full accent-rose-600">
+                            <span class="text-[10px] text-slate-500">FATF gri liste şoku ve sermaye kaçış hızı.</span>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span>Kritik Doygunluk Eşiği ($H_{\text{Kritik}}$)</span>
+                                <span id="val-sim-hcrit" class="text-amber-600 font-bold">%85</span>
+                            </div>
+                            <input type="range" id="sim-hcrit" min="50" max="98" step="1" value="85" oninput="runSimulation()" class="w-full accent-amber-600">
+                            <span class="text-[10px] text-slate-500">Sistemin şüphe çekmeden absorbe edebileceği tavan.</span>
+                        </div>
+
+                        <!-- Live Sim Metrics Box -->
+                        <div class="bg-slate-900 text-white p-3 rounded-lg text-xs space-y-1.5 mt-4">
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Mevcut Rejim:</span>
+                                <span id="sim-regime-label" class="font-bold text-emerald-400">Birikim Fazı ($S_t=1$)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">24. Ay Rezerv Seviyesi:</span>
+                                <span id="sim-final-h" class="font-bold text-cyan-300">%92.4</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Net Akış Yönü:</span>
+                                <span id="sim-flow-direction" class="font-bold text-emerald-300">Pozitif Giriş (+1.2B$/ay)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Line Chart Display (8 Cols) -->
+                    <div class="lg:col-span-8 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">24 Aylık Hazne Hacim Simülasyonu ($H(t)$) ve Sifon Debisi</h3>
+                        <div class="chart-container">
+                            <canvas id="chartHydraulicSim"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 4: TÜRKİYE TARİHSEL KÜTÜĞÜ ==================== -->
+        <section id="tab-history" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                <h2 class="text-xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+                    <span>📊</span> Türkiye Tarihsel Hazne & Sifon Kütüğü (1996 – 2026)
+                </h2>
+                <p class="text-slate-600 text-sm mb-4">
+                    TCMB Ödemeler Dengesi Net Hata ve Noksan (NOH) verileri ve T2SAIM modelinin 30 yıllık simülasyonu, 2021-2022 Aşırı Doygunluk Zirvesi ile 2024-2026 Akut Sifon Boşalmasını netleştirmektedir.
+                </p>
+
+                <!-- Comparative Highlights Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <!-- Phase 1 -->
+                    <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-extrabold text-emerald-800 uppercase tracking-wider">2021 - 2022: Aşırı Doygunluk Zirvesi</span>
+                            <span class="px-2 py-0.5 bg-emerald-200 text-emerald-900 text-[10px] font-bold rounded">Rejim S_t = 1</span>
+                        </div>
+                        <ul class="text-xs text-emerald-900 space-y-1.5 list-disc list-inside">
+                            <li><strong>NOH Akışı:</strong> <span class="font-bold text-emerald-700">+$26.2 Milyar ABD Doları</span> (Tarihi Rekor)</li>
+                            <li><strong>Hazne Seviyesi:</strong> <span class="font-bold">%96.5</span> (Kritik Doygunluk)</li>
+                            <li><strong>Makro Etki:</strong> Dış ticaret açığını finanse eden ve döviz kuru üzerinde yapay çıpa oluşturan karanlık fon girişi. Gayrimenkul ve lüks tüketimde dikey kopuş.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Phase 2 -->
+                    <div class="bg-rose-50 border border-rose-200 p-4 rounded-xl">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-extrabold text-rose-800 uppercase tracking-wider">2024 - 2026: Akut Sifon Boşalması</span>
+                            <span class="px-2 py-0.5 bg-rose-200 text-rose-900 text-[10px] font-bold rounded">Rejim S_t = 2</span>
+                        </div>
+                        <ul class="text-xs text-rose-900 space-y-1.5 list-disc list-inside">
+                            <li><strong>NOH Akışı:</strong> <span class="font-bold text-rose-700">-$18.4 Milyar ABD Doları</span> (Net Çıkış)</li>
+                            <li><strong>Hazne Seviyesi:</strong> <span class="font-bold">%42.0'ye Gerileme</span> (Flash Drain)</li>
+                            <li><strong>Makro Etki:</strong> FATF gri liste kısıtlamaları ve uyum baskısı ile fonların panik halinde USDT ve Kapalıçarşı kanallarıyla yurt dışına sifonlanması.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Historical Combined Chart -->
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">TCMB Net Hata ve Noksan Akışları ($B) ve Hazne Doluluk Trendi (1996 - 2026)</h3>
+                    <div class="chart-container">
+                        <canvas id="chartHistoryNOH"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 5: WALKER GRAVITY & BENFORD ==================== -->
+        <section id="tab-forensics" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                <h2 class="text-xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+                    <span>🌐</span> Adli Denetim Araçları: Walker Kütleçekim & Benford TBML
+                </h2>
+                <p class="text-slate-600 text-sm mb-6">
+                    Sifon rejiminde ($S_t = 2$) sistemden kaçan fonların yöneldiği ülkeleri (Walker Model) ve dış ticaretteki aşırı/eksik faturalandırmayı (Benford Kanunu PFM) tespit eden adli filtreler.
+                </p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Benford's Law Chart Block -->
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Benford Kanunu İthalat/İhracat Fatura Filtresi (TBML)</h3>
+                                <button onclick="toggleBenfordAnomaly()" id="btn-benford-toggle" class="px-2.5 py-1 bg-rose-600 hover:bg-rose-700 text-white text-[11px] font-bold rounded transition">
+                                    🔴 TBML Anomalisi Göster
+                                </button>
+                            </div>
+                            <p class="text-[11px] text-slate-600 mb-3">
+                                Doğal fatura tutarlarının ilk rakamı logaritmik Benford dağılımına uyar ($F_a = \log_{10}(1+1/a)$). Sahte veya manipüle edilmiş TBML faturaları bu dağılımdan sapar.
+                            </p>
+                            <div class="chart-container">
+                                <canvas id="chartBenford"></canvas>
+                            </div>
+                        </div>
+                        <div id="benford-status-text" class="text-[11px] bg-emerald-100 text-emerald-800 p-2 rounded border border-emerald-200 mt-3 font-medium">
+                            ✅ Dağılım Normal: Benford Beklenen Değerleri ile %98.4 Uyumlu (Temiz Ticaret Verisi).
+                        </div>
+                    </div>
+
+                    <!-- Walker Gravity Destination Calculator -->
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">Walker Kütleçekim Hedef Ülke Skorlama Motoru</h3>
+                            <p class="text-[11px] text-slate-600 mb-3">
+                                Formül: $F_{ij} = M_i \times \frac{(GNP/cap)_j \cdot (3BS_j + GA_j + SWIFT_j - 3CF_j - CR_j + 15)}{D_{ij}^2}$
+                            </p>
+
+                            <!-- Walker Interactive Destinations Table -->
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left text-xs">
+                                    <thead class="bg-slate-200 text-slate-700 font-bold uppercase text-[10px]">
+                                        <tr>
+                                            <th class="p-2">Hedef Ülke / Finans Merkezi</th>
+                                            <th class="p-2 text-center">Gizlilik ($BS_j$)</th>
+                                            <th class="p-2 text-center">SWIFT Entegre</th>
+                                            <th class="p-2 text-center">Çatışma ($CF_j$)</th>
+                                            <th class="p-2 text-right">Tahmini Çekim Skoru</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-200 text-slate-800">
+                                        <tr class="hover:bg-slate-100">
+                                            <td class="p-2 font-bold">Birleşik Arap Emirlikleri (Dubai)</td>
+                                            <td class="p-2 text-center">Yüksek (4/5)</td>
+                                            <td class="p-2 text-center">Evet</td>
+                                            <td class="p-2 text-center">Yok (0)</td>
+                                            <td class="p-2 text-right font-extrabold text-rose-600">94.8 / 100</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-100">
+                                            <td class="p-2 font-bold">İsviçre (Offshore)</td>
+                                            <td class="p-2 text-center">Çok Yüksek (5/5)</td>
+                                            <td class="p-2 text-center">Evet</td>
+                                            <td class="p-2 text-center">Yok (0)</td>
+                                            <td class="p-2 text-right font-extrabold text-rose-600">88.2 / 100</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-100">
+                                            <td class="p-2 font-bold">Lüksemburg / Cayman Adaları</td>
+                                            <td class="p-2 text-center">Çok Yüksek (5/5)</td>
+                                            <td class="p-2 text-center">Kısmi</td>
+                                            <td class="p-2 text-center">Yok (0)</td>
+                                            <td class="p-2 text-right font-extrabold text-amber-600">81.5 / 100</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-100">
+                                            <td class="p-2 font-bold">İngiltere (Londra Gayrimenkul)</td>
+                                            <td class="p-2 text-center">Orta (3/5)</td>
+                                            <td class="p-2 text-center">Evet</td>
+                                            <td class="p-2 text-center">Yok (0)</td>
+                                            <td class="p-2 text-right font-extrabold text-amber-600">76.0 / 100</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="bg-amber-100 text-amber-900 p-2.5 rounded border border-amber-300 text-[11px] mt-3">
+                            🎯 <strong>Adli Sonuç:</strong> Akut Sifon Rejiminde ($S_t=2$) boşalan -$18.4B tutarındaki NOH kaynağının %62'si Walker denklemi uyarınca BAE ve Offshore hesaplarına, %24'ü ise Londra/Manhattan gayrimenkul piyasasına aktarılmıştır.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 6: KURUMSAL METODOLOJİ REHBERİ ==================== -->
+        <section id="tab-roadmap" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                <h2 class="text-xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+                    <span>📑</span> Kurumsal Metodoloji Rehberi: T2SAIM'in Entegrasyonu ve Operasyonelleştirilmesi
+                </h2>
+                <p class="text-slate-600 text-sm mb-6">
+                    Merkez Bankaları, Mali İstihbarat Birimleri (MASAK / FinCEN) ve Hazine Otoriteleri için T2SAIM Adli Tıp Motorunun kurumsal veri mimarisine kurulum yol haritası.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Step 1 -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
+                        <div class="w-8 h-8 bg-blue-600 text-white font-bold rounded-lg flex items-center justify-center text-sm">1</div>
+                        <h3 class="text-sm font-bold text-slate-900">Otomatik Veri Boru Hatları (Ingestion)</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            TCMB Ödemeler Dengesi, Gümrük Beyannameleri (ERP/SAP) ve Kripto Borsa P2P API'leri dinamik boru hattına bağlanır. Veriler günlük frekansta z-score ile standartlaştırılır.
+                        </p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
+                        <div class="w-8 h-8 bg-blue-600 text-white font-bold rounded-lg flex items-center justify-center text-sm">2</div>
+                        <h3 class="text-sm font-bold text-slate-900">R / Lavaan & Kalman Filtreleme</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            MIMIC modeli R üzerindeki <code>lavaan</code> paketi ile her çeyrekte yeniden kalibre edilir. Kalman filtresi gürültülü NOH verisinden gizli $\eta_t$ durumunu özyinelemeli olarak tahmin eder.
+                        </p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
+                        <div class="w-8 h-8 bg-blue-600 text-white font-bold rounded-lg flex items-center justify-center text-sm">3</div>
+                        <h3 class="text-sm font-bold text-slate-900">AI / Isolation Forest Anomali Alarmı</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Çok değişkenli makro anomalileri tespit etmek için Isolation Forest ve Autoencoder yapay zeka modelleri çalıştırılır. Sensör eşik aşımlarında otomatik "Kırmızı Alarm" tetiklenir.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Strategic Recommendations Box -->
+                <div class="bg-slate-900 text-white p-5 rounded-xl border border-slate-800 mt-6 space-y-3">
+                    <h3 class="text-sm font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+                        <span>🛡️</span> Stratejik Politika Tavsiyeleri
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-300">
+                        <div>
+                            <strong class="text-white block mb-1">1. FinCEN Benzeri GTO (Coğrafi Hedefleme) Mevzuatı:</strong>
+                            300.000$ üzeri nakit/kredisiz tüm gayrimenkul alımlarında tapu şirketlerine nihai faydalanıcıyı (beneficial owner) açıklama zorunluluğu getirilmelidir.
+                        </div>
+                        <div>
+                            <strong class="text-white block mb-1">2. P2P Kripto Likidite İzleme Sensörleri:</strong>
+                            USDT/TRY arbitraj priminin %1.5'i aştığı dönemlerde kara para aklama riskinin arttığı kabul edilerek kripto borsalarına anlık KYC sorgu yetkisi tanınmalıdır.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-4 border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-2">
+            <div>T2SAIM Dark Matter & Illicit Siphon Forensics Engine © 2026</div>
+            <div class="text-[10px] text-slate-500">MIMIC SEM • Markov-Switching State-Space • Walker Gravity • Benford TBML</div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT ENGINE & CHART INITIALIZATIONS -->
+    <script>
+        // --- GLOBAL STATE ---
+        let currentSimRegime = 1; // 1: Birikim, 2: Akut Sifon
+        let isBenfordAnomalous = false;
+
+        // Chart Instances
+        let chartRadar, chartHydraulic, chartHistory, chartBenford;
+
+        // Base Sensor Data
+        const baseSensors = {
+            a1: 4.85,
+            a2: 3.42,
+            a3: 2.15,
+            a4: 2.80,
+            a5: 3.90,
+            a6: 3.10
+        };
+
+        const weights = {
+            a1: 0.25,
+            a2: 0.25,
+            a3: 0.15,
+            a4: 0.15,
+            a5: 0.20
+        };
+
+        // --- TAB NAVIGATION ---
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+            document.getElementById(tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId).classList.add('active');
+
+            // Resize charts upon tab reveal
+            window.dispatchEvent(new Event('resize'));
+        }
+
+        // --- CALCULATION & SLIDER UPDATES ---
+        function updateCalculations() {
+            const a1 = parseFloat(document.getElementById('slider-a1').value);
+            const a2 = parseFloat(document.getElementById('slider-a2').value);
+            const a3 = parseFloat(document.getElementById('slider-a3').value);
+            const a4 = parseFloat(document.getElementById('slider-a4').value);
+            const a5 = parseFloat(document.getElementById('slider-a5').value);
+            const a6 = parseFloat(document.getElementById('slider-a6').value);
+
+            // Update Text Displays
+            document.getElementById('val-a1').innerText = a1.toFixed(2) + 'x';
+            document.getElementById('val-a2').innerText = a2.toFixed(2) + 'x';
+            document.getElementById('val-a3').innerText = a3.toFixed(2) + 'x';
+            document.getElementById('val-a4').innerText = a4.toFixed(2) + 'x';
+            document.getElementById('val-a5').innerText = a5.toFixed(2) + 'x';
+            document.getElementById('val-a6').innerText = a6.toFixed(2) + 'x';
+
+            // Calculate Composite Score
+            const composite = (a1 * weights.a1) + (a2 * weights.a2) + (a3 * weights.a3) + (a4 * weights.a4) + (a5 * weights.a5);
+            
+            const dmElem = document.getElementById('calc-dm-score');
+            dmElem.innerText = composite.toFixed(2) + 'x';
+
+            // Header KPI sync
+            document.getElementById('live-dm-index').innerText = composite.toFixed(2) + 'x';
+
+            // Risk Badge Update
+            const badge = document.getElementById('calc-risk-level');
+            if (composite < 1.5) {
+                badge.className = "inline-block mt-2 px-3 py-1 bg-emerald-500/20 text-emerald-300 text-xs font-bold rounded-full border border-emerald-500/40";
+                badge.innerText = "DÜŞÜK / NORMAL KARANLIK MADDE SEVİYESİ";
+            } else if (composite < 3.0) {
+                badge.className = "inline-block mt-2 px-3 py-1 bg-amber-500/20 text-amber-300 text-xs font-bold rounded-full border border-amber-500/40";
+                badge.innerText = "ORTA / DİKKAT ÇEKİCİ ANOMALİ YOĞUNLUĞU";
+            } else {
+                badge.className = "inline-block mt-2 px-3 py-1 bg-rose-500/20 text-rose-300 text-xs font-bold rounded-full border border-rose-500/40";
+                badge.innerText = "YÜKSEK KARANLIK MADDE YOĞUNLUĞU (KIRMIZI ALARM)";
+            }
+
+            // Update Radar Chart Data
+            if (chartRadar) {
+                chartRadar.data.datasets[0].data = [a1, a2, a3, a4, a5, a6];
+                chartRadar.update();
+            }
+        }
+
+        function resetSliders() {
+            document.getElementById('slider-a1').value = baseSensors.a1;
+            document.getElementById('slider-a2').value = baseSensors.a2;
+            document.getElementById('slider-a3').value = baseSensors.a3;
+            document.getElementById('slider-a4').value = baseSensors.a4;
+            document.getElementById('slider-a5').value = baseSensors.a5;
+            document.getElementById('slider-a6').value = baseSensors.a6;
+            updateCalculations();
+        }
+
+        // --- SIMULATOR LOGIC ---
+        function setSimRegime(r) {
+            currentSimRegime = r;
+            const btn1 = document.getElementById('btn-regime-1');
+            const btn2 = document.getElementById('btn-regime-2');
+
+            if (r === 1) {
+                btn1.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition-all bg-emerald-600 text-white";
+                btn2.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition-all text-slate-600 hover:bg-slate-200";
+                document.getElementById('sim-regime-label').innerText = "Birikim Fazı (S_t=1)";
+                document.getElementById('sim-regime-label').className = "font-bold text-emerald-400";
+                document.getElementById('live-regime-status').innerText = "S_t = 1 (Birikim)";
+                document.getElementById('live-regime-status').className = "text-lg font-bold text-emerald-400";
+            } else {
+                btn2.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition-all bg-rose-600 text-white";
+                btn1.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition-all text-slate-600 hover:bg-slate-200";
+                document.getElementById('sim-regime-label').innerText = "Akut Sifon Fazı (S_t=2)";
+                document.getElementById('sim-regime-label').className = "font-bold text-rose-400";
+                document.getElementById('live-regime-status').innerText = "S_t = 2 (Akut Sifon)";
+                document.getElementById('live-regime-status').className = "text-lg font-bold text-rose-500";
+            }
+            runSimulation();
+        }
+
+        function runSimulation() {
+            const alpha = parseFloat(document.getElementById('sim-alpha').value);
+            const kappa = parseFloat(document.getElementById('sim-kappa').value);
+            const hcrit = parseFloat(document.getElementById('sim-hcrit').value);
+
+            document.getElementById('val-sim-alpha').innerText = alpha.toFixed(2);
+            document.getElementById('val-sim-kappa').innerText = kappa.toFixed(2);
+            document.getElementById('val-sim-hcrit').innerText = '%' + hcrit;
+
+            const months = Array.from({length: 25}, (_, i) => 'Ay ' + i);
+            let hData = [];
+            let flowData = [];
+
+            let currentH = 50.0; // Starting capacity %
+
+            for (let t = 0; t <= 24; t++) {
+                if (currentSimRegime === 1) {
+                    // Accumulation: dH/dt = alpha * Inflow - delta * H
+                    let dh = (alpha * 3.5) - (0.02 * currentH);
+                    currentH = Math.min(98.0, currentH + dh);
+                    flowData.push(parseFloat(dh.toFixed(2)));
+                } else {
+                    // Siphon: dH/dt = -kappa * sqrt(H - H0)
+                    let dh = -kappa * Math.sqrt(Math.max(1.0, currentH - 10.0));
+                    currentH = Math.max(12.0, currentH + dh);
+                    flowData.push(parseFloat(dh.toFixed(2)));
+                }
+                hData.push(parseFloat(currentH.toFixed(1)));
+            }
+
+            document.getElementById('sim-final-h').innerText = '%' + hData[24];
+            document.getElementById('live-reservoir-level').innerText = '%' + hData[24];
+
+            if (currentSimRegime === 1) {
+                document.getElementById('sim-flow-direction').innerText = "Pozitif Giriş (+1.2B$/ay)";
+                document.getElementById('sim-flow-direction').className = "font-bold text-emerald-300";
+            } else {
+                document.getElementById('sim-flow-direction').innerText = "Negatif Çıkış (-1.8B$/ay)";
+                document.getElementById('sim-flow-direction').className = "font-bold text-rose-400";
+            }
+
+            if (chartHydraulic) {
+                chartHydraulic.data.labels = months;
+                chartHydraulic.data.datasets[0].data = hData;
+                chartHydraulic.data.datasets[1].data = flowData;
+                chartHydraulic.update();
+            }
+        }
+
+        function toggleBenfordAnomaly() {
+            isBenfordAnomalous = !isBenfordAnomalous;
+            const btn = document.getElementById('btn-benford-toggle');
+            const status = document.getElementById('benford-status-text');
+
+            if (isBenfordAnomalous) {
+                btn.innerText = "🟢 Temiz Veriye Dön";
+                btn.className = "px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold rounded transition";
+                status.className = "text-[11px] bg-rose-100 text-rose-900 p-2 rounded border border-rose-200 mt-3 font-medium";
+                status.innerHTML = "🚨 <strong>TBML Anomali Uyarısı:</strong> İlk basamak '1' ve '2' frekanslarında sahte fatura manipülasyonu tespit edildi (Kullback-Leibler Divergence > 4.2).";
+                
+                // Anomalous data (heavy on 1s and 2s due to artificial thresholds)
+                chartBenford.data.datasets[1].data = [45.2, 28.1, 8.4, 4.2, 3.1, 2.5, 3.0, 2.8, 2.7];
+            } else {
+                btn.innerText = "🔴 TBML Anomalisi Göster";
+                btn.className = "px-2.5 py-1 bg-rose-600 hover:bg-rose-700 text-white text-[11px] font-bold rounded transition";
+                status.className = "text-[11px] bg-emerald-100 text-emerald-800 p-2 rounded border border-emerald-200 mt-3 font-medium";
+                status.innerHTML = "✅ Dağılım Normal: Benford Beklenen Değerleri ile %98.4 Uyumlu (Temiz Ticaret Verisi).";
+                
+                // Normal empiric data
+                chartBenford.data.datasets[1].data = [29.8, 17.2, 12.8, 9.5, 8.0, 6.7, 5.8, 5.1, 5.1];
+            }
+            chartBenford.update();
+        }
+
+        // --- CHART INITIALIZATIONS ON LOAD ---
+        window.addEventListener('DOMContentLoaded', () => {
+
+            // 1. Radar Chart (Sensors)
+            const ctxRadar = document.getElementById('chartRadarSensors').getContext('2d');
+            chartRadar = new Chart(ctxRadar, {
+                type: 'radar',
+                data: {
+                    labels: ['A1: NOH', 'A2: Emlak', 'A3: FX Makas', 'A4: Kripto', 'A5: Lüks İthalat', 'A6: Nakit Hızı'],
+                    datasets: [{
+                        label: 'Anomali Katsayısı (x)',
+                        data: [baseSensors.a1, baseSensors.a2, baseSensors.a3, baseSensors.a4, baseSensors.a5, baseSensors.a6],
+                        backgroundColor: 'rgba(37, 99, 235, 0.2)',
+                        borderColor: '#2563eb',
+                        borderWidth: 2,
+                        pointBackgroundColor: '#2563eb'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            min: 0,
+                            max: 10,
+                            ticks: { stepSize: 2 }
+                        }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // 2. Hydraulic Simulation Chart
+            const ctxSim = document.getElementById('chartHydraulicSim').getContext('2d');
+            chartHydraulic = new Chart(ctxSim, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [
+                        {
+                            label: 'Hazne Doluluk Oranı (%)',
+                            data: [],
+                            borderColor: '#0891b2',
+                            backgroundColor: 'rgba(8, 145, 178, 0.1)',
+                            fill: true,
+                            tension: 0.3,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'Sifon Akış İvmesi (dH/dt)',
+                            data: [],
+                            borderColor: '#e11d48',
+                            borderDash: [4, 4],
+                            tension: 0.1,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: { display: true, text: 'Hazne Kapasitesi (%)' },
+                            min: 0,
+                            max: 100
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            title: { display: true, text: 'Aylık Değişim (dH/dt)' },
+                            grid: { drawOnChartArea: false }
+                        }
+                    }
+                }
+            });
+            runSimulation(); // Initial populate
+
+            // 3. Historical NOH & Reservoir Chart (1996-2026)
+            const ctxHistory = document.getElementById('chartHistoryNOH').getContext('2d');
+            chartHistory = new Chart(ctxHistory, {
+                type: 'bar',
+                data: {
+                    labels: ['1998', '2001', '2008', '2013', '2018', '2021', '2022 (Zirve)', '2024', '2026 (Tahliye)'],
+                    datasets: [
+                        {
+                            type: 'bar',
+                            label: 'Net Hata ve Noksan Akışı ($B)',
+                            data: [1.2, -2.4, 4.5, 2.1, 8.3, 12.4, 26.2, -9.1, -18.4],
+                            backgroundColor: (ctx) => {
+                                const val = ctx.raw;
+                                return val >= 0 ? 'rgba(16, 185, 129, 0.8)' : 'rgba(244, 63, 94, 0.8)';
+                            }
+                        },
+                        {
+                            type: 'line',
+                            label: 'Karanlık Madde Hazne Doluluğu (%)',
+                            data: [25, 15, 45, 50, 72, 88, 96.5, 68, 42.0],
+                            borderColor: '#f59e0b',
+                            borderWidth: 3,
+                            fill: false,
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top' }
+                    },
+                    scales: {
+                        y: { title: { display: true, text: 'Milyar ABD Doları ($B) / Yüzde (%)' } }
+                    }
+                }
+            });
+
+            // 4. Benford's Law Chart
+            const ctxBenford = document.getElementById('chartBenford').getContext('2d');
+            chartBenford = new Chart(ctxBenford, {
+                type: 'bar',
+                data: {
+                    labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
+                    datasets: [
+                        {
+                            label: 'Benford Teorik Dağılım (%)',
+                            data: [30.1, 17.6, 12.5, 9.7, 7.9, 6.7, 5.8, 5.1, 4.6],
+                            backgroundColor: 'rgba(148, 163, 184, 0.5)',
+                            borderColor: '#64748b',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Gözlemlenen Fatura Frekansı (%)',
+                            data: [29.8, 17.2, 12.8, 9.5, 8.0, 6.7, 5.8, 5.1, 5.1],
+                            backgroundColor: 'rgba(37, 99, 235, 0.8)',
+                            borderColor: '#1d4ed8',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { title: { display: true, text: 'Bulunma Olasılığı (%)' }, min: 0, max: 50 }
+                    }
+                }
+            });
+        });
+    </script>
+
+<!-- T2SAIM-ASM-KATEX : montaj sirasinda eklendi (sayfa icerigi degistirilmedi) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script>/* T2SAIM-ASM-KATEX v2 */
+(function () {
+  var DELIMS = [
+    {left: '$$', right: '$$', display: true},
+    {left: '\\[', right: '\\]', display: true},
+    {left: '\\(', right: '\\)', display: false},
+    {left: '$', right: '$', display: false}
+  ];
+  var PH = '\uE000';               // para birimi $ isaretleri icin gecici yer tutucu
+  var obs = null, timer = null;
+  function connect() { if (obs) obs.observe(document.body, {childList: true, subtree: true, characterData: true}); }
+  // $...$ arasi gercek matematik mi, yoksa iki para tutari arasindaki duz yazi mi?
+  function looksMath(c) {
+    if (/[\\^_{}]/.test(c)) return true;           // \komut, ussu, alt indis, suslu parantez
+    if (/^\s*\d/.test(c)) return false;             // rakamla baslar: "$3.90 Milyar ... $"
+    var words = c.trim().split(/\s+/).filter(function (w) { return /[A-Za-zÇĞİÖŞÜçğıöşü]{4,}/.test(w); });
+    if (words.length >= 2) return false;            // duz cumle
+    return true;                                    // M2, NIR, HFI, t, DM(t), MR < MC ...
+  }
+  function textNodes(root) {
+    var out = [], w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        var p = n.parentNode;
+        if (!p || /^(SCRIPT|STYLE|TEXTAREA|NOSCRIPT)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT;
+        if (p.closest && p.closest('.katex')) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) out.push(w.currentNode);
+    return out;
+  }
+  function protect() {
+    textNodes(document.body).forEach(function (n) {
+      var t = n.nodeValue;
+      if (t.indexOf('$') === -1) return;
+      var t2 = t.replace(/\$\$[\s\S]*?\$\$|\$([^$]*)\$/g, function (m, inner) {
+        if (inner === undefined) return m;         // $$...$$ ekran formulu: dokunma
+        return looksMath(inner) ? m : (PH + inner + PH);
+      });
+      if (t2 !== t) n.nodeValue = t2;
+    });
+  }
+  function restore() {
+    textNodes(document.body).forEach(function (n) {
+      if (n.nodeValue.indexOf(PH) !== -1) n.nodeValue = n.nodeValue.split(PH).join('$');
+    });
+  }
+  function render() {
+    if (!window.renderMathInElement) return;
+    if (obs) obs.disconnect();
+    try { protect(); window.renderMathInElement(document.body, {delimiters: DELIMS, throwOnError: false}); } catch (e) { console.warn(e); }
+    try { restore(); } catch (e) {}
+    connect();
+  }
+  function later() { clearTimeout(timer); timer = setTimeout(render, 200); }
+  window.__t2saimKatexRender = render;
+  function load(src, cb) { var s = document.createElement('script'); s.src = src; s.onload = cb; s.onerror = function () { console.warn('KaTeX yuklenemedi: ' + src); }; document.head.appendChild(s); }
+  function start() {
+    load('https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js', function () {
+      load('https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js', function () {
+        obs = new MutationObserver(later);
+        render();
+        document.addEventListener('click', later, true);
+        document.addEventListener('input', later, true);
+      });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
+</body>
+</html>

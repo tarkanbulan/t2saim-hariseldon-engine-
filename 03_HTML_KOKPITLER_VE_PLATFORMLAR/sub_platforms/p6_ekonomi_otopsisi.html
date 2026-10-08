@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T2SAIM DOSYA NO: 2026-TR-OMEGA | Türkiye Ekonomisi Adli Otopsi Paneli</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fbf7f5',
+                            100: '#f6ede8',
+                            200: '#edd8ce',
+                            500: '#c25e38',
+                            700: '#8c3315',
+                            900: '#3a1306',
+                        },
+                        sand: {
+                            50: '#faf9f6',
+                            100: '#f3f1ea',
+                            200: '#e5e1d3',
+                            800: '#3d3a33',
+                            900: '#23211d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Embedded Chart Container Styles for strict height & width control -->
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            height: 300px;
+            max-height: 380px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 340px;
+            }
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<!-- Chosen Palette: Warm Cream (Background: #faf9f6), Deep Slate/Charcoal text, Tactical Crimson/Amber for Risk Accents, Indigo for Econo-physics metrics -->
+<!-- Application Structure Plan:
+     1. Top Forensic Control Header: Real-time critical macro status, doctrine summary, and section navigation.
+     2. Section 1: Econo-Biological Mathematical Laboratory (Interactive equations slider & live diagnostic engine).
+     3. Section 2: 30-Year Chronological Forensic Timeline (1996–2026: Phases 1 to 8 dynamic visualizer & time-series chart).
+     4. Section 3: Battiston DebtRank Network Contagion & 2026 Concordat Cascade (Visual grid of central nodes and supplier spillover logic).
+     5. Section 4: Mimetic Desire & Scapegoating Inventory Matrix (Interactive cards showing catharsis rituals and system error cover-ups).
+     6. Section 5: 5-Layer Circuit Breaker Manifesto & Daubert Tier-1 Evidence Table (Searchable/filterable forensic verification matrix).
+     Rationale: Designed as an intelligence dashboard to transform abstract econophysics and neuro-biology theory into tangible, interactive diagnostic tools.
+-->
+<!-- Visualization & Content Choices:
+     - Soddy Gap / PFC / AM Multiplier: Interactive Sliders + Dynamic Computed Gauge Metrics (HTML/CSS + Vanilla JS).
+     - Timeline Analysis: Dual-axis Line Chart (Chart.js Canvas) + Interactive Phase Selector Cards.
+     - DebtRank Cascade: HTML/CSS Grid with interactive focus dynamic detail modal + Bar Chart (Chart.js Canvas).
+     - Daubert Evidence Matrix: Filterable Data Table (Vanilla JS Search & Filter).
+     - Confirming NO SVG used. NO Mermaid JS used.
+-->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+<body class="bg-sand-50 text-sand-900 font-sans antialiased min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
+
+    <!-- TOP HEADER / FORENSIC BANNER -->
+    <header class="bg-sand-900 text-sand-100 border-b border-stone-800 sticky top-0 z-50 backdrop-blur-md bg-opacity-95">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                <div class="flex items-center space-x-3">
+                    <span class="bg-red-700 text-white text-xs font-mono font-bold px-2 py-1 rounded tracking-wider uppercase">T2SAIM ADLİ DOSYA</span>
+                    <div>
+                        <h1 class="text-base sm:text-lg font-bold font-mono tracking-tight text-stone-100 flex items-center gap-2">
+                            <span>NO: 2026-TR-OMEGA</span>
+                            <span class="text-xs text-stone-400 font-normal hidden sm:inline">| 30 YILLIK TÜRKİYE EKONOMİSİ OTOPSİSİ</span>
+                        </h1>
+                        <p class="text-xs text-stone-400">Doktrin: Termodinamik Ekonofizik & Nöro-Finans • Mühür: <span class="text-amber-400 italic">VERITAS PER SE</span></p>
+                    </div>
+                </div>
+                
+                <!-- Quick Metric Bar -->
+                <div class="flex items-center gap-2 sm:gap-4 text-xs font-mono bg-sand-800/80 p-2 rounded-lg border border-stone-700 overflow-x-auto">
+                    <div class="px-2 border-r border-stone-700 shrink-0">
+                        <span class="text-stone-400 block text-[10px]">VERİ TESCİL</span>
+                        <span class="text-emerald-400 font-semibold">1996–2026</span>
+                    </div>
+                    <div class="px-2 border-r border-stone-700 shrink-0">
+                        <span class="text-stone-400 block text-[10px]">2026 NPL (TAKİP)</span>
+                        <span class="text-red-400 font-semibold">887.8 Milyar TL</span>
+                    </div>
+                    <div class="px-2 border-r border-stone-700 shrink-0">
+                        <span class="text-stone-400 block text-[10px]">2025/26 KONKORDATO</span>
+                        <span class="text-amber-400 font-semibold">9,890+ Firma</span>
+                    </div>
+                    <div class="px-2 shrink-0">
+                        <span class="text-stone-400 block text-[10px]">DAUBERT KANIT</span>
+                        <span class="text-blue-400 font-semibold">TIER-1 ONAYLI</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NAVIGATION TABS -->
+            <nav class="flex items-center space-x-1 sm:space-x-4 mt-3 pt-2 border-t border-stone-800 text-xs font-medium overflow-x-auto custom-scrollbar">
+                <button onclick="scrollToSection('sec-lab')" class="text-stone-300 hover:text-amber-400 px-3 py-1 rounded hover:bg-stone-800 transition whitespace-nowrap">1. Ekonofizik & Nöro-Laboratuvar</button>
+                <button onclick="scrollToSection('sec-timeline')" class="text-stone-300 hover:text-amber-400 px-3 py-1 rounded hover:bg-stone-800 transition whitespace-nowrap">2. 30 Yıllık Faz Analizi (1996-2026)</button>
+                <button onclick="scrollToSection('sec-debtrank')" class="text-stone-300 hover:text-amber-400 px-3 py-1 rounded hover:bg-stone-800 transition whitespace-nowrap">3. DebtRank & Ağ Bulaşması</button>
+                <button onclick="scrollToSection('sec-mimetic')" class="text-stone-300 hover:text-amber-400 px-3 py-1 rounded hover:bg-stone-800 transition whitespace-nowrap">4. Mimetik Arzu & Günah Keçisi</button>
+                <button onclick="scrollToSection('sec-manifesto')" class="text-stone-300 hover:text-amber-400 px-3 py-1 rounded hover:bg-stone-800 transition whitespace-nowrap">5. Devre Kesici & Kanıt Matrisi</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+        <!-- INTRODUCTORY SUMMARY BOX -->
+        <section class="bg-white rounded-xl p-6 shadow-sm border border-stone-200">
+            <div class="flex flex-col lg:flex-row gap-6 items-start justify-between">
+                <div class="space-y-3 max-w-3xl">
+                    <div class="inline-flex items-center gap-2 text-xs font-mono font-semibold text-brand-700 bg-brand-50 px-2.5 py-1 rounded-full">
+                        <span>🏛️ YÖNETİCİ ÖZETİ</span>
+                        <span>•</span>
+                        <span>T2SAIM MASTER ENGINE OTOPSİSİ</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-stone-900 tracking-tight">Türkiye Ekonomisinin 30 Yıllık Yapısal Kırılma ve Çöküş Anatomisi</h2>
+                    <p class="text-stone-600 text-sm leading-relaxed">
+                        Geleneksel iktisat modelleri krizleri sadece faiz ve kur sapmaları olarak okur. Bu etkileşimli adli rapor; 1996–2026 yılları arasındaki Türkiye ekonomisini <strong>Frederick Soddy'nin termodinamik borç yasasından</strong>, <strong>John Coates'un hormon/amigdala kilitlenmesine</strong>, <strong>René Girard'ın mimetik günah keçisi ritüellerinden</strong> ve <strong>Battiston DebtRank kaskad ağ çöküşüne</strong> kadar 5 ana bilimsel sütun üzerinden canlı olarak analiz etmenizi sağlar.
+                    </p>
+                </div>
+                <div class="bg-sand-100 p-4 rounded-lg border border-sand-200 w-full lg:w-80 shrink-0 space-y-2 text-xs">
+                    <div class="font-bold text-stone-800 border-b border-sand-300 pb-1">🔍 Nasıl Etkileşime Girilir?</div>
+                    <ul class="space-y-1.5 text-stone-600">
+                        <li class="flex items-start gap-1.5"><span>•</span> <span><strong>Denklem Laboratuvarı:</strong> Kaydırıcıları (slider) değiştirerek kriz riskini canlı simüle edin.</span></li>
+                        <li class="flex items-start gap-1.5"><span>•</span> <span><strong>Faz Zaman Tüneli:</strong> 8 dönemsel faza tıklayarak hormon ve borç yapısını inceleyin.</span></li>
+                        <li class="flex items-start gap-1.5"><span>•</span> <span><strong>DebtRank Ağ Modeli:</strong> Sektör düğümlerine tıklayıp kaskad çöküşü simüle edin.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 1: EKONOFİZİKSEL VE NÖRO-BİYOLOJİK LAB -->
+        <section id="sec-lab" class="bg-white rounded-xl p-6 shadow-sm border border-stone-200 space-y-6">
+            <div class="border-b border-stone-200 pb-4">
+                <div class="flex items-center justify-between flex-wrap gap-2">
+                    <div>
+                        <span class="text-xs font-mono font-bold text-indigo-600 uppercase tracking-wider">BÖLÜM 1</span>
+                        <h3 class="text-xl font-bold text-stone-900">Ekonofiziksel & Nöro-Biyolojik Matematiksel Laboratuvar</h3>
+                    </div>
+                    <span class="text-xs font-mono bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full border border-indigo-200">Canlı Simülatör & Denklem Motoru</span>
+                </div>
+                <p class="text-stone-600 text-sm mt-2">
+                    Bu bölüm, raporun 1. Bölümünde tanımlanan 5 temel denklemi canlı olarak simüle eder. Aşağıdaki makro parametreleri değiştirerek piyasa aktörlerinin beyinlerindeki rasyonel kontrol kapasitesini ($PFC_{ctrl}$), Soddy termodinamik açığını ($S_{gap}$) ve kurumsal çürüme çarpanını ($AM$) anlık hesaplayabilirsiniz.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- CONTROLS & SLIDERS (5 Cols) -->
+                <div class="lg:col-span-5 bg-sand-50 p-5 rounded-xl border border-sand-200 space-y-5">
+                    <h4 class="font-bold text-sm text-stone-800 font-mono flex items-center gap-2">
+                        <span>⚙️ SIMÜLASYON PARAMETRELERİ</span>
+                    </h4>
+
+                    <!-- Slider 1: M2 Money Supply -->
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between text-xs font-mono">
+                            <label for="input-m2" class="text-stone-700 font-medium">Sanal Para Arzı (M2 / Trilyon TL):</label>
+                            <span id="val-m2" class="font-bold text-stone-900">14.5 TL</span>
+                        </div>
+                        <input id="input-m2" type="range" min="1" max="30" step="0.5" value="14.5" oninput="updateLab()" class="w-full accent-indigo-600 bg-stone-200 h-2 rounded-lg cursor-pointer">
+                        <p class="text-[11px] text-stone-500">Sistemdeki karşılıksız basılan sanal alacak yükünü temsil eder.</p>
+                    </div>
+
+                    <!-- Slider 2: Net International Reserves -->
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between text-xs font-mono">
+                            <label for="input-nir" class="text-stone-700 font-medium">Net Uluslararası Rezerv (NIR / Milyar $):</label>
+                            <span id="val-nir" class="font-bold text-stone-900">-40.0 $</span>
+                        </div>
+                        <input id="input-nir" type="range" min="-60" max="100" step="5" value="-40" oninput="updateLab()" class="w-full accent-indigo-600 bg-stone-200 h-2 rounded-lg cursor-pointer">
+                        <p class="text-[11px] text-stone-500">Fiziksel termodinamik çapa. Negatif değerler yüksek sistemik riski ifade eder.</p>
+                    </div>
+
+                    <!-- Slider 3: Amygdala Threat Load -->
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between text-xs font-mono">
+                            <label for="input-aload" class="text-stone-700 font-medium">Amigdala Stres Yükü ($A_{LOAD}$ / Kortizol):</label>
+                            <span id="val-aload" class="font-bold text-stone-900">0.85</span>
+                        </div>
+                        <input id="input-aload" type="range" min="0.1" max="1.0" step="0.05" value="0.85" oninput="updateLab()" class="w-full accent-indigo-600 bg-stone-200 h-2 rounded-lg cursor-pointer">
+                        <p class="text-[11px] text-stone-500">Akut kur ve faiz şoklarında piyasa yapıcıların panik ve donma seviyesi.</p>
+                    </div>
+
+                    <!-- Slider 4: Democratic Erosion Index -->
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between text-xs font-mono">
+                            <label for="input-dei" class="text-stone-700 font-medium">Demokratik Erozyon Endeksi (DEI):</label>
+                            <span id="val-dei" class="font-bold text-stone-900">0.72</span>
+                        </div>
+                        <input id="input-dei" type="range" min="0.1" max="1.0" step="0.02" value="0.72" oninput="updateLab()" class="w-full accent-indigo-600 bg-stone-200 h-2 rounded-lg cursor-pointer">
+                        <p class="text-[11px] text-stone-500">DEI ≥ 0.60 olduğunda Asimetrik Kurumsal Çürüme Çarpanı ($AM = 1.15$) devreye girer.</p>
+                    </div>
+
+                    <!-- Slider 5: Ponzi Index (PI) -->
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between text-xs font-mono">
+                            <label for="input-pi" class="text-stone-700 font-medium">Minsky Ponzi Finansman Endeksi (PI):</label>
+                            <span id="val-pi" class="font-bold text-stone-900">1.25</span>
+                        </div>
+                        <input id="input-pi" type="range" min="0.2" max="2.0" step="0.05" value="1.25" oninput="updateLab()" class="w-full accent-indigo-600 bg-stone-200 h-2 rounded-lg cursor-pointer">
+                        <p class="text-[11px] text-stone-500">PI &lt; 0.5 (Hedge), 0.5-1.0 (Spekülatif), &gt; 1.0 (Terminal Ponzi - Borç ancak borçla ödenir).</p>
+                    </div>
+                </div>
+
+                <!-- DIAGNOSTIC RESULTS & GAUGES (7 Cols) -->
+                <div class="lg:col-span-7 flex flex-col justify-between space-y-6">
+                    <!-- Live Metric Cards -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        <div class="bg-stone-900 text-white p-3.5 rounded-xl border border-stone-800 space-y-1">
+                            <span class="text-[10px] font-mono text-stone-400 block">1. SODDY AÇIĞI (S_gap)</span>
+                            <span id="calc-sgap" class="text-xl font-bold font-mono text-amber-400">0.36</span>
+                            <span class="text-[10px] text-stone-400 block">Sanal/Fiziksel Kopuş</span>
+                        </div>
+                        <div class="bg-stone-900 text-white p-3.5 rounded-xl border border-stone-800 space-y-1">
+                            <span class="text-[10px] font-mono text-stone-400 block">2. PFC RASYONALİTE</span>
+                            <span id="calc-pfc" class="text-xl font-bold font-mono text-red-400">0.12</span>
+                            <span class="text-[10px] text-stone-400 block">Limbik Bypass / Donma</span>
+                        </div>
+                        <div class="bg-stone-900 text-white p-3.5 rounded-xl border border-stone-800 space-y-1">
+                            <span class="text-[10px] font-mono text-stone-400 block">3. ÇÜRÜME ÇARPANI (AM)</span>
+                            <span id="calc-am" class="text-xl font-bold font-mono text-amber-400">1.15x</span>
+                            <span class="text-[10px] text-stone-400 block">CDS Asimetrik Cezası</span>
+                        </div>
+                    </div>
+
+                    <!-- Computed Analysis Box -->
+                    <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-4 text-xs space-y-2">
+                        <div class="flex items-center justify-between font-bold text-indigo-900 font-mono">
+                            <span>🧠 NÖRO-FİNANSAL TEŞHİS MOTORU</span>
+                            <span id="lab-status-badge" class="px-2 py-0.5 rounded text-[10px] bg-red-600 text-white uppercase">CRITICAL SYSTEM FAILURE</span>
+                        </div>
+                        <p id="lab-analysis-text" class="text-indigo-950 leading-relaxed">
+                            Simüle edilen mevcut parametrelerde Amigdala baskısı ($A_{LOAD}$) tavan yapmış, rasyonel karar alma mekanizması ($PFC_{ctrl}$) felç olmuştur. Bireyler panik halinde defansif varlıklara hücum etmekte ve fiyat keşfi imkansızlaşmaktadır.
+                        </p>
+                    </div>
+
+                    <!-- Dynamic Radar Chart Container -->
+                    <div class="bg-sand-50 p-4 rounded-xl border border-sand-200 space-y-2">
+                        <span class="text-xs font-mono font-bold text-stone-700 block">SİSTEMİK RİSK BİLEŞENLERİ KARSILAŞTIRMA GRAFİĞİ</span>
+                        <div class="chart-container">
+                            <canvas id="chartDiagnostic"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: 30-YEAR CHRONOLOGICAL FAZ ANALYSIS (1996-2026) -->
+        <section id="sec-timeline" class="bg-white rounded-xl p-6 shadow-sm border border-stone-200 space-y-6">
+            <div class="border-b border-stone-200 pb-4">
+                <div class="flex items-center justify-between flex-wrap gap-2">
+                    <div>
+                        <span class="text-xs font-mono font-bold text-brand-700 uppercase tracking-wider">BÖLÜM 2</span>
+                        <h3 class="text-xl font-bold text-stone-900">30 Yıllık Dönemsel Adli Otopsi (1996–2026: Faz 1'den Faz 8'e)</h3>
+                    </div>
+                    <span class="text-xs font-mono bg-brand-50 text-brand-700 px-3 py-1 rounded-full border border-brand-200">Minsky & Coates Biyolojik Evreleri</span>
+                </div>
+                <p class="text-stone-600 text-sm mt-2">
+                    Aşağıdaki faz butonlarına veya zaman serisi grafiğine tıklayarak Türkiye'nin 30 yıllık makro-finansal kırılma dönemlerini detaylıca inceleyebilirsiniz. Her faz; Minsky finansman türü, Coates hormon durumu, Soddy termodinamik açığı ve Girard mimetik günah keçisi katmanlarıyla çözümlenmiştir.
+                </p>
+            </div>
+
+            <!-- TIME SERIES CHART -->
+            <div class="bg-sand-50 p-4 rounded-xl border border-sand-200 space-y-2">
+                <div class="flex justify-between items-center text-xs font-mono">
+                    <span class="font-bold text-stone-800">1996–2026 MAKRO-FINANSAL TREND VE SİSTEMİK KRİZ SEVİYELERİ</span>
+                    <span class="text-stone-500">Grafikteki Noktalara Tıklayarak Fazı Değiştirin</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="chartTimeline"></canvas>
+                </div>
+            </div>
+
+            <!-- PHASE SELECTOR BUTTONS -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2">
+                <button onclick="selectPhase(1)" id="btn-phase-1" class="phase-btn p-2.5 text-left rounded-lg border text-xs font-mono transition bg-brand-700 text-white border-brand-800">
+                    <span class="block text-[10px] opacity-75">1996–1999</span>
+                    <span class="font-bold block truncate">FAZ 1: Ponzi Ağı</span>
+                </button>
+                <button onclick="selectPhase(2)" id="btn-phase-2" class="phase-btn p-2.5 text-left rounded-lg border text-xs font-mono transition bg-sand-100 text-stone-700 border-sand-300 hover:bg-sand-200">
+                    <span class="block text-[10px] text-stone-500">2000–2001</span>
+                    <span class="font-bold block truncate">FAZ 2: Katastrof</span>
+                </button>
+                <button onclick="selectPhase(3)" id="btn-phase-3" class="phase-btn p-2.5 text-left rounded-lg border text-xs font-mono transition bg-sand-100 text-stone-700 border-sand-300 hover:bg-sand-200">
+                    <span class="block text-[10px] text-stone-500">2002–2007</span>
+                    <span class="font-bold block truncate">FAZ 3: Testosteron</span>
+                </button>
+                <button onclick="selectPhase(4)" id="btn-phase-4" class="phase-btn p-2.5 text-left rounded-lg border text-xs font-mono transition bg-sand-100 text-stone-700 border-sand-300 hover:bg-sand-200">
+                    <span class="block text-[10px] text-stone-500">2008–2013</span>
+                    <span class="font-bold block truncate">FAZ 4: Kredi Çılgınlığı</span>
+                </button>
+                <button onclick="selectPhase(5)" id="btn-phase-5" class="phase-btn p-2.5 text-left rounded-lg border text-xs font-mono transition bg-sand-100 text-stone-700 border-sand-300 hover:bg-sand-200">
+                    <span class="block text-[10px] text-stone-500">2014–2017</span>
+                    <span class="font-bold block truncate">FAZ 5: KGF Sıkıntısı</span>
+                </button>
+                <button onclick="selectPhase(6)" id="btn-phase-6" class="phase-btn p-2.5 text-left rounded-lg border text-xs font-mono transition bg-sand-100 text-stone-700 border-sand-300 hover:bg-sand-200">
+                    <span class="block text-[10px] text-stone-500">2018–2020</span>
+                    <span class="font-bold block truncate">FAZ 6: Aktif Rasyosu</span>
+                </button>
+                <button onclick="selectPhase(7)" id="btn-phase-7" class="phase-btn p-2.5 text-left rounded-lg border text-xs font-mono transition bg-sand-100 text-stone-700 border-sand-300 hover:bg-sand-200">
+                    <span class="block text-[10px] text-stone-500">2021–2023</span>
+                    <span class="font-bold block truncate">FAZ 7: KKM Deneyi</span>
+                </button>
+                <button onclick="selectPhase(8)" id="btn-phase-8" class="phase-btn p-2.5 text-left rounded-lg border text-xs font-mono transition bg-sand-100 text-stone-700 border-sand-300 hover:bg-sand-200">
+                    <span class="block text-[10px] text-stone-500">2024–2026</span>
+                    <span class="font-bold block truncate">FAZ 8: Borç Duvarı</span>
+                </button>
+            </div>
+
+            <!-- DETAILED PHASE DISPLAY CARD -->
+            <div id="phase-detail-card" class="bg-sand-900 text-sand-100 rounded-xl p-6 space-y-6">
+                <!-- Dynamic Content Population via JS -->
+            </div>
+        </section>
+
+        <!-- SECTION 3: DEBTRANK SYSTEMIC RISK & NETWORK CONTAGION (2024-2026) -->
+        <section id="sec-debtrank" class="bg-white rounded-xl p-6 shadow-sm border border-stone-200 space-y-6">
+            <div class="border-b border-stone-200 pb-4">
+                <div class="flex items-center justify-between flex-wrap gap-2">
+                    <div>
+                        <span class="text-xs font-mono font-bold text-red-600 uppercase tracking-wider">BÖLÜM 3</span>
+                        <h3 class="text-xl font-bold text-stone-900">Battiston DebtRank ($R_i$) & 2026 "Stratejik Borç Duvarı" Kaskad Modeli</h3>
+                    </div>
+                    <span class="text-xs font-mono bg-red-50 text-red-700 px-3 py-1 rounded-full border border-red-200">Ağ Perkolasyonu & B2B Bulaşma</span>
+                </div>
+                <p class="text-stone-600 text-sm mt-2">
+                    2024-2026 döneminde uygulanan ortodoks sıkılaşma, Ponzi finansmanına alışmış şirketleri bir "Stratejik Borç Duvarı"na çarptırmıştır. Sistemik kaskad çöküş; merkezdeki dev düğümlerin (İnşaat ve Tekstil) batışının alt tedarikçilere (KOBİ'lere) toksik borç aktarmasıyla gerçekleşmiştir.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- SECTOR CASCADE VISUALIZER GRID (7 Cols) -->
+                <div class="lg:col-span-7 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h4 class="font-bold text-sm text-stone-800 font-mono">SEKTÖREL MERKEZİLİK VE İFLAS DÜĞÜMLERİ (2026)</h4>
+                        <span class="text-xs text-stone-500">Düğümlere Tıklayarak Bulaşmayı İnceleyin</span>
+                    </div>
+
+                    <!-- Interactive Nodes Grid -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        <!-- Node 1: Construction -->
+                        <div onclick="inspectDebtNode('construction')" class="p-4 rounded-xl border-2 border-red-600 bg-red-50 hover:bg-red-100 cursor-pointer transition space-y-2">
+                            <div class="flex items-center justify-between text-xs font-mono text-red-800">
+                                <span class="font-bold">MERKEZİ DÜĞÜM 1</span>
+                                <span class="bg-red-600 text-white text-[10px] px-1.5 py-0.5 rounded">R_i = MAX</span>
+                            </div>
+                            <h5 class="font-bold text-stone-900 text-base">İnşaat Sektörü</h5>
+                            <div class="text-xs space-y-1 text-stone-700 font-mono">
+                                <div class="flex justify-between"><span>Konkordato:</span> <strong class="text-red-700">564 Firma</strong></div>
+                                <div class="flex justify-between"><span>Bulaşma Riski:</span> <strong>Kritik Yüksek</strong></div>
+                            </div>
+                        </div>
+
+                        <!-- Node 2: Textile -->
+                        <div onclick="inspectDebtNode('textile')" class="p-4 rounded-xl border-2 border-red-600 bg-red-50 hover:bg-red-100 cursor-pointer transition space-y-2">
+                            <div class="flex items-center justify-between text-xs font-mono text-red-800">
+                                <span class="font-bold">MERKEZİ DÜĞÜM 2</span>
+                                <span class="bg-red-600 text-white text-[10px] px-1.5 py-0.5 rounded">R_i = YÜKSEK</span>
+                            </div>
+                            <h5 class="font-bold text-stone-900 text-base">Tekstil & Hazır Giyim</h5>
+                            <div class="text-xs space-y-1 text-stone-700 font-mono">
+                                <div class="flex justify-between"><span>Konkordato:</span> <strong class="text-red-700">419 Firma</strong></div>
+                                <div class="flex justify-between"><span>İstihdam Şoku:</span> <strong>Sistemik</strong></div>
+                            </div>
+                        </div>
+
+                        <!-- Node 3: Metal Industry -->
+                        <div onclick="inspectDebtNode('metal')" class="p-4 rounded-xl border border-amber-300 bg-amber-50/50 hover:bg-amber-100/50 cursor-pointer transition space-y-2">
+                            <div class="flex items-center justify-between text-xs font-mono text-amber-800">
+                                <span class="font-bold">UYDU DÜĞÜM 1</span>
+                                <span class="text-[10px]">Tedarikçi</span>
+                            </div>
+                            <h5 class="font-bold text-stone-900 text-sm">Metal Ürün İmalatı</h5>
+                            <div class="text-xs space-y-1 text-stone-700 font-mono">
+                                <div class="flex justify-between"><span>Konkordato:</span> <strong>166 Firma</strong></div>
+                                <div class="flex justify-between"><span>Toksik Şok:</span> <strong>İnşaat Bağlantılı</strong></div>
+                            </div>
+                        </div>
+
+                        <!-- Node 4: Food Industry -->
+                        <div onclick="inspectDebtNode('food')" class="p-4 rounded-xl border border-amber-300 bg-amber-50/50 hover:bg-amber-100/50 cursor-pointer transition space-y-2">
+                            <div class="flex items-center justify-between text-xs font-mono text-amber-800">
+                                <span class="font-bold">UYDU DÜĞÜM 2</span>
+                                <span class="text-[10px]">Perakende/Tedarik</span>
+                            </div>
+                            <h5 class="font-bold text-stone-900 text-sm">Gıda Sanayi</h5>
+                            <div class="text-xs space-y-1 text-stone-700 font-mono">
+                                <div class="flex justify-between"><span>Konkordato:</span> <strong>139 Firma</strong></div>
+                                <div class="flex justify-between"><span>Sıkışma:</span> <strong>Marj Daralması</strong></div>
+                            </div>
+                        </div>
+
+                        <!-- Node 5: Furniture -->
+                        <div onclick="inspectDebtNode('furniture')" class="p-4 rounded-xl border border-amber-300 bg-amber-50/50 hover:bg-amber-100/50 cursor-pointer transition space-y-2">
+                            <div class="flex items-center justify-between text-xs font-mono text-amber-800">
+                                <span class="font-bold">UYDU DÜĞÜM 3</span>
+                                <span class="text-[10px]">Tüketim</span>
+                            </div>
+                            <h5 class="font-bold text-stone-900 text-sm">Mobilya & Dekorasyon</h5>
+                            <div class="text-xs space-y-1 text-stone-700 font-mono">
+                                <div class="flex justify-between"><span>Konkordato:</span> <strong>126 Firma</strong></div>
+                                <div class="flex justify-between"><span>Bulaşma:</span> <strong>İnşaat Kaskadı</strong></div>
+                            </div>
+                        </div>
+
+                        <!-- Node 6: Logistics -->
+                        <div onclick="inspectDebtNode('logistics')" class="p-4 rounded-xl border border-amber-300 bg-amber-50/50 hover:bg-amber-100/50 cursor-pointer transition space-y-2">
+                            <div class="flex items-center justify-between text-xs font-mono text-amber-800">
+                                <span class="font-bold">UYDU DÜĞÜM 4</span>
+                                <span class="text-[10px]">Altyapı</span>
+                            </div>
+                            <h5 class="font-bold text-stone-900 text-sm">Nakliye & Lojistik</h5>
+                            <div class="text-xs space-y-1 text-stone-700 font-mono">
+                                <div class="flex justify-between"><span>Konkordato:</span> <strong>94 Firma</strong></div>
+                                <div class="flex justify-between"><span>Akaryakıt/Kredi:</span> <strong>Kilitlenme</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concordat Trend Mini Bar Chart -->
+                    <div class="bg-sand-50 p-4 rounded-xl border border-sand-200 space-y-2">
+                        <span class="text-xs font-mono font-bold text-stone-800 block">YILLARA GÖRE KONKORDATO VE İFLAS TASDİK YIKIMI</span>
+                        <div class="chart-container">
+                            <canvas id="chartConcordat"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NODE INSPECTOR DISPLAY (5 Cols) -->
+                <div class="lg:col-span-5 bg-sand-900 text-sand-100 p-5 rounded-xl space-y-5 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between border-b border-stone-800 pb-3">
+                            <span class="text-xs font-mono text-amber-400 font-bold">🔍 DEBTRANK OTOPSİ PANİK MODÜLÜ</span>
+                            <span id="node-badge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-red-700 text-white">İNCELENEN DÜĞÜM</span>
+                        </div>
+
+                        <div id="node-details" class="space-y-3">
+                            <h4 id="node-title" class="text-xl font-bold text-white">İnşaat Sektörü (Ana Yüklenici Düğümü)</h4>
+                            <p id="node-desc" class="text-xs text-stone-300 leading-relaxed">
+                                İnşaat sektörü, Türkiye ekonomisinde kaldıraç oranı en yüksek ve B2B matrisinde en geniş çapraz borç bağımlılığına ($W_{ij}$) sahip düğümdür. 2026'nın ilk 7 ayında 564 inşaat firmasının konkordato ilan etmesi; çimento, demir-çelik, mobilya ve nakliye sektörlerine toksik iflas dalgası yaymıştır.
+                            </p>
+                            
+                            <div class="bg-stone-800 p-3 rounded-lg space-y-2 border border-stone-700 text-xs font-mono">
+                                <div class="flex justify-between text-stone-300">
+                                    <span>2026 Konkordato Payı:</span>
+                                    <span id="node-share" class="text-amber-400 font-bold">%16.0 (En Yüksek)</span>
+                                </div>
+                                <div class="flex justify-between text-stone-300">
+                                    <span>Takipteki Alacak (NPL) Etkisi:</span>
+                                    <span id="node-npl" class="text-red-400 font-bold">%81.4 Yıllık Artış</span>
+                                </div>
+                                <div class="flex justify-between text-stone-300">
+                                    <span>Tasdik Edilme Oranı:</span>
+                                    <span id="node-approval" class="text-red-400 font-bold">%2.0 (Sert İflas)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Network Explanation -->
+                    <div class="bg-stone-800/80 p-3.5 rounded-lg border border-stone-700 text-[11px] text-stone-400 space-y-1">
+                        <span class="font-bold text-stone-200 font-mono block">📌 DebtRank Algoritması ($R_i = \sum W_{ij} \cdot v_j$):</span>
+                        <p>
+                            Battiston et al. tarafından geliştirilen bu model, tekil bilanço büyüklüğünü değil; bir firmanın batması halinde kaç tedarikçiyi zincirleme olarak yok edeceğini ölçer.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: MIMETIC DESIRE & SCAPEGOATING INVENTORY MATRIX -->
+        <section id="sec-mimetic" class="bg-white rounded-xl p-6 shadow-sm border border-stone-200 space-y-6">
+            <div class="border-b border-stone-200 pb-4">
+                <div class="flex items-center justify-between flex-wrap gap-2">
+                    <div>
+                        <span class="text-xs font-mono font-bold text-amber-700 uppercase tracking-wider">BÖLÜM 4</span>
+                        <h3 class="text-xl font-bold text-stone-900">René Girard Mimetik Arzu & "Günah Keçisi" (Scapegoat) Adli Envanteri</h3>
+                    </div>
+                    <span class="text-xs font-mono bg-amber-50 text-amber-800 px-3 py-1 rounded-full border border-amber-200">Sosyolojik & Psikolojik Arınma Ritüelleri</span>
+                </div>
+                <p class="text-stone-600 text-sm mt-2">
+                    Geleneksel iktisadın açıklayamadığı "herkesin aynı anda dövize veya gayrimenkule hücum etmesi" olgusu René Girard'ın Mimetik Teorisi ile açıklanır. Balonlar patladığında sistemik suç ortadan kaldırılmak için iktidar ve kitleler tarafından ritüelistik "Günah Keçileri" üretilir.
+                </p>
+            </div>
+
+            <!-- SCAPEGOAT CARDS GRID -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1: 2001 Crisis -->
+                <div class="bg-sand-50 border border-sand-300 rounded-xl p-5 space-y-4 hover:shadow-md transition">
+                    <div class="flex items-center justify-between border-b border-sand-300 pb-2">
+                        <span class="font-mono text-xs font-bold text-brand-700">2001 KRİZİ RİTÜELİ</span>
+                        <span class="text-[10px] font-mono bg-sand-200 text-stone-800 px-2 py-0.5 rounded">Katarsis 1</span>
+                    </div>
+                    <div>
+                        <span class="text-xs text-stone-500 font-mono block">Mimetik Hedef / Günah Keçisi:</span>
+                        <h4 class="font-bold text-stone-900 text-base">A.N. Sezer & Demirbank</h4>
+                    </div>
+                    <div class="space-y-2 text-xs text-stone-700">
+                        <div class="bg-white p-2.5 rounded border border-sand-200">
+                            <span class="font-bold text-stone-800 block mb-1">Dışsallaştırılan Gerçek Sistemik Hata:</span>
+                            Kamu Ponzi ağı, Hazine'nin aşırı iç borçlanması ve bankacılık sektörünün devasa döviz açık pozisyonları.
+                        </div>
+                        <div class="bg-white p-2.5 rounded border border-sand-200">
+                            <span class="font-bold text-stone-800 block mb-1">Ritüelistik Tasfiye Sonucu:</span>
+                            Anayasa kitapçığı fırlatılması krizin tek sebebi ilan edildi; Demirbank kurban edilerek sahte bir arınma sağlandı.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: 2014-2018 Crises -->
+                <div class="bg-sand-50 border border-sand-300 rounded-xl p-5 space-y-4 hover:shadow-md transition">
+                    <div class="flex items-center justify-between border-b border-sand-300 pb-2">
+                        <span class="font-mono text-xs font-bold text-brand-700">2014–2018 DÖNEMİ</span>
+                        <span class="text-[10px] font-mono bg-sand-200 text-stone-800 px-2 py-0.5 rounded">Katarsis 2</span>
+                    </div>
+                    <div>
+                        <span class="text-xs text-stone-500 font-mono block">Mimetik Hedef / Günah Keçisi:</span>
+                        <h4 class="font-bold text-stone-900 text-base">"Faiz Lobisi" & "Dış Güçler"</h4>
+                    </div>
+                    <div class="space-y-2 text-xs text-stone-700">
+                        <div class="bg-white p-2.5 rounded border border-sand-200">
+                            <span class="font-bold text-stone-800 block mb-1">Dışsallaştırılan Gerçek Sistemik Hata:</span>
+                            250 Milyar TL KGF genişlemesi, spekülatif inşaat/gayrimenkul kredileri ve bozulan cari denge ($PI \ge 1.0$).
+                        </div>
+                        <div class="bg-white p-2.5 rounded border border-sand-200">
+                            <span class="font-bold text-stone-800 block mb-1">Ritüelistik Tasfiye Sonucu:</span>
+                            Kurlar yükseldikçe ekonomik anomaliler dış mihraklara bağlanarak halkın amigdala stresi politik konsolidasyona dönüştürüldü.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: 2021-2023 Heterodox Experiment -->
+                <div class="bg-sand-50 border border-sand-300 rounded-xl p-5 space-y-4 hover:shadow-md transition">
+                    <div class="flex items-center justify-between border-b border-sand-300 pb-2">
+                        <span class="font-mono text-xs font-bold text-brand-700">2021–2023 HETERODOKS ŞOK</span>
+                        <span class="text-[10px] font-mono bg-sand-200 text-stone-800 px-2 py-0.5 rounded">Katarsis 3</span>
+                    </div>
+                    <div>
+                        <span class="text-xs text-stone-500 font-mono block">Mimetik Hedef / Günah Keçisi:</span>
+                        <h4 class="font-bold text-stone-900 text-base">"Fırsatçı Marketler" & "Tedarikçiler"</h4>
+                    </div>
+                    <div class="space-y-2 text-xs text-stone-700">
+                        <div class="bg-white p-2.5 rounded border border-sand-200">
+                            <span class="font-bold text-stone-800 block mb-1">Dışsallaştırılan Gerçek Sistemik Hata:</span>
+                            Eksi reel faizle $M2$ arzının patlatılması, KKM'nin 60 milyar dolarlık termodinamik faturası ve %85 enflasyon.
+                        </div>
+                        <div class="bg-white p-2.5 rounded border border-sand-200">
+                            <span class="font-bold text-stone-800 block mb-1">Ritüelistik Tasfiye Sonucu:</span>
+                            Zabıta baskınları ve perakendecilerin cezalandırılması üzerinden iktidar sorumluluktan kaçarak toplumsal öfkeyi soğutmaya çalıştı.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: 5-LAYER CIRCUIT BREAKER MANIFESTO & DAUBERT EVIDENCE TABLE -->
+        <section id="sec-manifesto" class="bg-white rounded-xl p-6 shadow-sm border border-stone-200 space-y-8">
+            <div class="border-b border-stone-200 pb-4">
+                <div class="flex items-center justify-between flex-wrap gap-2">
+                    <div>
+                        <span class="text-xs font-mono font-bold text-emerald-700 uppercase tracking-wider">BÖLÜM 5 & 6</span>
+                        <h3 class="text-xl font-bold text-stone-900">5 Katmanlı Devre Kesici Manifesto & Daubert Tier-1 Kanıt Tablosu</h3>
+                    </div>
+                    <span class="text-xs font-mono bg-emerald-50 text-emerald-800 px-3 py-1 rounded-full border border-emerald-200">Yeniden İnşa Protokolü & Adli Doğrulama</span>
+                </div>
+                <p class="text-stone-600 text-sm mt-2">
+                    Bu bölüm, 30 yıllık kriz kısır döngüsünü kıracak 5 katmanlı otonom devre kesici protokolünü ve raporda kullanılan bilimsel/ampirik verilerin Daubert Tier-1 adli kanıt standartlarındaki doğrulama matrisini içerir.
+                </p>
+            </div>
+
+            <!-- 5-LAYER PROTOCOL ACCORDION/TABS -->
+            <div class="space-y-3">
+                <h4 class="font-bold text-sm text-stone-800 font-mono">🏛️ TÜRKİYE İÇİN 5 KATMANLI DEVRE KESİCİ REFORM PROTOKOLÜ</h4>
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-3">
+                    <div class="bg-sand-50 p-4 rounded-xl border border-sand-300 space-y-2 text-xs">
+                        <span class="font-mono font-bold text-emerald-700 block text-[11px]">KATMAN 1: SODDY KALKANI</span>
+                        <h5 class="font-bold text-stone-900">Termodinamik Çıpa</h5>
+                        <p class="text-stone-600">TCMB'nin karşılıksız para basma yetkisi, Net Uluslararası Rezervlere ($NIR$) ve reel üretime matematiksel olarak kilitlenmelidir.</p>
+                    </div>
+                    <div class="bg-sand-50 p-4 rounded-xl border border-sand-300 space-y-2 text-xs">
+                        <span class="font-mono font-bold text-emerald-700 block text-[11px]">KATMAN 2: INSTITUTIONAL FIX</span>
+                        <h5 class="font-bold text-stone-900">DEI Erozyon Freni</h5>
+                        <p class="text-stone-600">BDDK/TCMB regülasyonları sadeleştirilmeli, yargı bağımsızlığı sağlanarak Kurumsal Çürüme Çarpanı ($AM$) sıfırlanmalıdır.</p>
+                    </div>
+                    <div class="bg-sand-50 p-4 rounded-xl border border-sand-300 space-y-2 text-xs">
+                        <span class="font-mono font-bold text-emerald-700 block text-[11px]">KATMAN 3: COATES DEVRESİ</span>
+                        <h5 class="font-bold text-stone-900">Endokrin Freni</h5>
+                        <p class="text-stone-600">Kredi büyümesi GSYH trendini %20 aştığında (Testosteron coşkusu), otonom makroihtiyati frenler insan müdahalesiz çalışmalıdır.</p>
+                    </div>
+                    <div class="bg-sand-50 p-4 rounded-xl border border-sand-300 space-y-2 text-xs">
+                        <span class="font-mono font-bold text-emerald-700 block text-[11px]">KATMAN 4: DEBTRANK TAMPONU</span>
+                        <h5 class="font-bold text-stone-900">Ağ İzolasyonu</h5>
+                        <p class="text-stone-600">İnşaat ve Tekstil gibi merkezi düğümlerdeki konkordatoların KOBİ'lere bulaşmasını önleyecek şeffaf mikro-likidite hatları kurulmalıdır.</p>
+                    </div>
+                    <div class="bg-sand-50 p-4 rounded-xl border border-sand-300 space-y-2 text-xs">
+                        <span class="font-mono font-bold text-emerald-700 block text-[11px]">KATMAN 5: GIRARDIAN STOA</span>
+                        <h5 class="font-bold text-stone-900">Söylem Yasağı</h5>
+                        <p class="text-stone-600">"Faiz lobisi, dış güçler" gibi amigdala paniği tetikleyen mimetik günah keçisi söylemleri kanunen engellenmelidir.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAUBERT TIER-1 EVIDENCE MATRIX TABLE -->
+            <div class="space-y-4 pt-4 border-t border-stone-200">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div>
+                        <h4 class="font-bold text-sm text-stone-800 font-mono">📋 DAUBERT TIER-1 ADLİ DOĞRULUK VE KANIT TABLOSU</h4>
+                        <p class="text-xs text-stone-500">Teorik modeller ile Türkiye makroekonomik verilerinin adli eşleşme matrisi.</p>
+                    </div>
+                    <!-- Search Input for Table -->
+                    <input id="evidence-search" type="text" onkeyup="filterEvidenceTable()" placeholder="Kanıt veya Model Ara..." class="text-xs font-mono px-3 py-1.5 border border-stone-300 rounded-lg w-full sm:w-64 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                </div>
+
+                <div class="overflow-x-auto custom-scrollbar border border-stone-200 rounded-xl">
+                    <table class="w-full text-left border-collapse text-xs">
+                        <thead>
+                            <tr class="bg-sand-900 text-sand-100 font-mono">
+                                <th class="p-3 border-b border-stone-800">Kuramsal Model</th>
+                                <th class="p-3 border-b border-stone-800">Türkiye Piyasası Somut Kanıtı / Adli Bulgusu</th>
+                                <th class="p-3 border-b border-stone-800">Doğrulanmış Kaynak</th>
+                                <th class="p-3 border-b border-stone-800 text-center">Daubert Statüsü</th>
+                            </tr>
+                        </thead>
+                        <tbody id="evidence-table-body" class="divide-y divide-stone-200 text-stone-700 bg-white">
+                            <!-- Populated via Vanilla JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-sand-900 text-sand-400 border-t border-stone-800 py-6 text-xs font-mono">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-3">
+            <div>
+                <span class="text-stone-200 font-bold">T2SAIM MASTER ENGINE v2026.8</span> • Adli Otopsi Raporu
+            </div>
+            <div class="text-stone-500 text-[11px]">
+                Mühür: VERITAS PER SE (Yalnızca Hakikat) • Bilgilendirme Amaçlıdır.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC ENGINE -->
+    <script>
+        // Global Data Store
+        const phasesData = [
+            {
+                id: 1,
+                years: "1996–1999",
+                title: "FAZ 1: Kamu Ponzi Ağı ve Mimetik Gecikme",
+                minsky: "Terminal Ponzi Finansmanı",
+                hormone: "Kronik Yüksek Kortizol (Amigdala Tavan)",
+                soddy: "S_gap = M2 / NIR Yıldan Yıla Logaritmik Kopuş",
+                scapegoat: "Gecelik Repo & Döviz Mimesisi (Sürü Psikolojisi)",
+                acemoglu: "Robust Yet Fragile / Unstable Satisficing",
+                summary: "5 Nisan 1994 sonrası zayıf koalisyonlar, 1998 Asya/Rusya bulaşması ve 1999 Marmara Depremi. Hazine, bütçe açıklarını astronomik faizli iç borçla finanse etmiş, kamu maliyesi tam bir Ponzi tüneline girmiştir.",
+                metrics: { cds: 650, infl: 85, res: 18, ponzi: 1.2 }
+            },
+            {
+                id: 2,
+                years: "2000–2001",
+                title: "FAZ 2: Ani Faz Geçişi (Cusp Katastrofu) ve Arınma Ritüeli",
+                minsky: "Minsky Çöküşü (Minsky Moment)",
+                hormone: "Limbik Bypass & Tam Donma (Freeze State)",
+                soddy: "Rezervlerin Sıfırlanması & Devalüasyon Şoku",
+                scapegoat: "A.N. Sezer 'Anayasa Kitapçığı' & Demirbank Tasfiyesi",
+                acemoglu: "Zorunlu Kapsayıcı Kurumsal İnşa (TCMB, BDDK)",
+                summary: "IMF destekli sabit kur çıpasının çöküşü. 19 Şubat 2001 devalüasyonu ile gecelik faizler %7500'e fırladı. Biyolojik donma yaşandı; likidite tamamen buharlaştı.",
+                metrics: { cds: 900, infl: 68, res: 16, ponzi: 1.4 }
+            },
+            {
+                id: 3,
+                years: "2002–2007",
+                title: "FAZ 3: Biyolojik Coşku (Euphoria) ve Testosteron Zehirlenmesi",
+                minsky: "Hedge Finansmanından Spekülatife Geçiş",
+                hormone: "Kazanan Etkisi (Winner Effect) & Dopamin Patlaması",
+                soddy: "Dış Kaynak/Sıcak Para ile Geçici Denge",
+                scapegoat: "Gerek Duyulmadı (Sistemik Coşku Evresi)",
+                acemoglu: "DEI < 0.60 (Kurumsal Güven ve Düşük CDS)",
+                summary: "Güçlü Ekonomiye Geçiş Programı, AB üyelik süreci ve Greenspan likidite bolluğu. Enflasyon tek haneye indi, TL'den 6 sıfır atıldı. Aşırı özgüvenle (Hubris) borçlanma hevesi tetiklendi.",
+                metrics: { cds: 180, infl: 8.5, res: 75, ponzi: 0.4 }
+            },
+            {
+                id: 4,
+                years: "2008–2013",
+                title: "FAZ 4: Kredi Çılgınlığı (Mania) ve 'Taper Tantrum' Kırılması",
+                minsky: "Spekülatif Finansman Zirvesi",
+                hormone: "Testosteron Doygunluğu & Market Apex",
+                soddy: "115 Milyar $ Brüt Rezerv İllüzyonu",
+                scapegoat: "Gayrimenkul/İnşaat Zenginliği Mimesisi",
+                acemoglu: "Siyasi Rehavet ve Kurumsal Erozyon Tohumları",
+                summary: "Fed QE politikaları ile Türkiye'ye ucuz sermaye aktı. Şirketler döviz cinsi borçlandı, cari açık %9.6'ya ulaştı. Mayıs 2013 Fed 'Taper Tantrum' ilanı ile ekoloji yön değiştirdi.",
+                metrics: { cds: 220, infl: 7.4, res: 115, ponzi: 0.8 }
+            },
+            {
+                id: 5,
+                years: "2014–2017",
+                title: "FAZ 5: Sıkıntı (Distress), KGF Ponzi'si ve Kurumsal Erozyon",
+                minsky: "Ponzi Finansmanına Hızlı Kayış",
+                hormone: "Kronik Stres & HPA Ekseni Tetiklenmesi",
+                soddy: "Karşılıksız Kredi Pompalaması ile Rezerv Aşınması",
+                scapegoat: "'Faiz Lobisi' ve 'Dış Güçler' Söylemi",
+                acemoglu: "DEI ≥ 0.60 (Asimetrik Çürüme Çarpanı AM = 1.15)",
+                summary: "Ocak 2014 gece yarısı faiz artırımı. 15 Temmuz şoku sonrası 250 milyar TL KGF kredisi sürüldü. Zombi şirketler yaşatılmak istenirken sistemic Ponzi kilitlenmesi başladı.",
+                metrics: { cds: 320, infl: 11.9, res: 85, ponzi: 1.1 }
+            },
+            {
+                id: 6,
+                years: "2018–2020",
+                title: "FAZ 6: Kur Şoku, Aktif Rasyosu ve Kurumsal Kırılma",
+                minsky: "Derin Ponzi ve İrrasyonel Regülasyon Tuzağı",
+                hormone: "Sistemik Panik ve Yerleşik Defans Sezgisi",
+                soddy: "TCMB Net Rezervlerinin Derin Negatife İnmesi",
+                scapegoat: "'Fırsatçı Marketler' ve 'Stokçular'",
+                acemoglu: "Tainter Azalan Marjinal Getiri Tuzağı",
+                summary: "2018 Brunson krizinde Londra swap faizleri %1000'e çıktı. 2020'de BDDK 'Aktif Rasyosu' zorlamasıyla bankalar devlet tahviline ve krediye zorlandı; net rezervler -40 milyar dolara indi.",
+                metrics: { cds: 550, infl: 14.6, res: -40, ponzi: 1.3 }
+            },
+            {
+                id: 7,
+                years: "2021–2023",
+                title: "FAZ 7: Heterodoks Deney, KKM Stoa Kesicisi ve Hiperenflasyon",
+                minsky: "Terminal Ponzi ve Sistemik Kilitlenme",
+                hormone: "A_LOAD Tavan & Kitlesel Biyo-Panik",
+                soddy: "60 Milyar $ KKM Faturası ve Karşılıksız Para",
+                scapegoat: "Tedarik Zincirleri & Perakende Sektörü",
+                acemoglu: "CDS 908 bp ile Dünya Rekoru (Temmuz 2022)",
+                summary: "'Faiz sebep, enflasyon neticedir' deneyi ile enflasyon %85'e tırmandı. KKM ile 140+ milyar dolar birikti. TCMB ve Hazine'ye 60 milyar dolarlık devasa karşılıksız basım maliyeti bindi.",
+                metrics: { cds: 908, infl: 85.5, res: -60, ponzi: 1.5 }
+            },
+            {
+                id: 8,
+                years: "2024–2026",
+                title: "FAZ 8: Ortodoks Sıkılaşma, Stagflasyon ve 'Stratejik Borç Duvarı'",
+                minsky: "Borç-Deflasyonu ve Tasfiye (Debt-Deflation)",
+                hormone: "Reel Sektör Kortizol Felci & Güç Kaybı",
+                soddy: "Rezerv Toparlanması (61.9 Milyar $) / Reel Maliyet",
+                scapegoat: "Göçmenler / Sığınmacı Mimetik Hedefi",
+                acemoglu: "Battiston DebtRank ($R_i$) Kaskad İflas Dalgası",
+                summary: "Politika faizinin %50'ye çıkmasıyla Ponzi şirketleri borç duvarına çarptı. 2025'te 6.361, 2026 ilk 7 ayında 3.529 konkordato. Tasdik oranı %2'ye düştü; NPL 887.8 Milyar TL'ye fırladı.",
+                metrics: { cds: 235, infl: 38.0, res: 61.9, ponzi: 1.1 }
+            }
+        ];
+
+        const evidenceData = [
+            { theory: "Minsky Ponzi Finansmanı (Faz 5-6)", proof: "BDDK Aktif Rasyosu zorlaması ve 250 Milyar TL KGF kredi pompalaması.", source: "BDDK Mevzuat / TCMB", status: "VERIFIED" },
+            { theory: "Soddy Termodinamik Kopuş (M2/NIR)", proof: "TCMB Swap hariç net rezervlerin -60 Milyar USD seviyesine inmesi ve KKM'nin 60 Milyar USD'lık faturası.", source: "TCMB EVDS Verileri", status: "VERIFIED" },
+            { theory: "Coates Kortizol / Amigdala Kilitlenmesi", proof: "KKM panik alımları; yabancı sermaye çıkışı; 2025 konkordato tasdik oranının %2'ye çökmesi.", source: "BDDK / Hazine Raporları", status: "VERIFIED" },
+            { theory: "Battiston DebtRank Ağ Bulaşması (R_i)", proof: "2025'te 6.361, 2026'da 3.529 konkordato. İnşaat (564) ve Tekstil (419) merkezli NPL'nin %81.4 artması.", source: "Bloomberg, BDDK NPL", status: "VERIFIED" },
+            { theory: "Girard Mimetik Arzu & Günah Keçisi", proof: "KKM üzerinden yürütülen 60 Milyar USD maliyetli arbitraj; 2022'de 26.2 Milyar USD Net Hata/Noksan rekoru.", source: "TCMB Ödemeler Dengesi", status: "VERIFIED" },
+            { theory: "Tainter-Acemoğlu Asimetrik Çarpan (AM)", proof: "Türkiye 5-Yıllık CDS priminin Temmuz 2022'de 908 bp ile tarihi rekor kırması.", source: "WGB CDS Veri Tabanı", status: "VERIFIED" }
+        ];
+
+        const debtNodeDetails = {
+            construction: {
+                title: "İnşaat Sektörü (Ana Yüklenici Düğümü)",
+                desc: "İnşaat sektörü, Türkiye ekonomisinde kaldıraç oranı en yüksek ve B2B matrisinde en geniş çapraz borç bağımlılığına (W_ij) sahip düğümdür. 2026'da 564 inşaat firmasının konkordato ilan etmesi; çimento, demir-çelik, mobilya ve lojistiğe toksik borç yaymıştır.",
+                share: "%16.0 (564 Firma)",
+                npl: "%81.4 Yıllık Artış",
+                approval: "%2.0 (Mass Default)"
+            },
+            textile: {
+                title: "Tekstil & Hazır Giyim (Merkezi İhracat Düğümü)",
+                desc: "Yüksek işgücü maliyeti ve baskılanan kur politikası nedeniyle marjı sıfırlanan tekstil sektörü, 2026'da 419 konkordato ile 2. büyük yıkım merkezidir. İplik ve kumaş tedarikçilerine B2B ödeme kilitlenmesi bulaştırmıştır.",
+                share: "%11.8 (419 Firma)",
+                npl: "%84.7 KOBİ NPL Sıçraması",
+                approval: "%1.8 (Tasfiye)",
+            },
+            metal: {
+                title: "Metal Ürün İmalatı (Tedarikçi Uydu Düğüm)",
+                desc: "İnşaat ve otomotiv sektörlerinin ödemeleri durdurması nedeniyle tahsilat yapamayan 166 metal imalat firması iflas girdabına çekilmiştir. Borç kaskadının 2. halkasıdır.",
+                share: "%4.7 (166 Firma)",
+                npl: "%76.2 Takip Artışı",
+                approval: "%3.1 (Reddetme)",
+            },
+            food: {
+                title: "Gıda Sanayi (Perakende/Tarım Düğümü)",
+                desc: "Enflasyonist maliyet şoku ve harcama daralması ile 139 gıda firması konkordatoya sığınmıştır. Marketlerin uzun vadeli vadeli çek ödemeleri zinciri kırmıştır.",
+                share: "%3.9 (139 Firma)",
+                npl: "%68.0 NPL Artışı",
+                approval: "%4.0 (Zoraki Yapılandırma)",
+            },
+            furniture: {
+                title: "Mobilya & Dekorasyon (Konut Kaskadı)",
+                desc: "Konut satışlarının durması ve inşaat sektörünün duraklamasıyla doğrudan bağlantılı 126 mobilya üreticisi batan inşaat devlerinin senetleriyle kilitlenmiştir.",
+                share: "%3.5 (126 Firma)",
+                npl: "%79.5 Artış",
+                approval: "%2.2 (İflas)",
+            },
+            logistics: {
+                title: "Nakliye & Lojistik (Altyapı Akış Düğümü)",
+                desc: "Akaryakıt maliyetleri ve filolardaki döviz cinsi leasing borçları nedeniyle 94 lojistik firması faaliyetini durdurmuştur.",
+                share: "%2.7 (94 Firma)",
+                npl: "%71.3 Artış",
+                approval: "%3.5 (Tasfiye)",
+            }
+        };
+
+        // Chart Instances
+        let chartDiagnosticInstance = null;
+        let chartTimelineInstance = null;
+        let chartConcordatInstance = null;
+
+        // Document Ready Initialization
+        document.addEventListener("DOMContentLoaded", () => {
+            initDiagnosticChart();
+            initTimelineChart();
+            initConcordatChart();
+            updateLab();
+            selectPhase(1);
+            populateEvidenceTable(evidenceData);
+        });
+
+        // Smooth Scroll Navigation Helper
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if(el) {
+                const yOffset = -80; 
+                const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({top: y, behavior: 'smooth'});
+            }
+        }
+
+        // 1. LAB SIMULATOR LOGIC
+        function updateLab() {
+            const m2 = parseFloat(document.getElementById('input-m2').value);
+            const nir = parseFloat(document.getElementById('input-nir').value);
+            const aload = parseFloat(document.getElementById('input-aload').value);
+            const dei = parseFloat(document.getElementById('input-dei').value);
+            const pi = parseFloat(document.getElementById('input-pi').value);
+
+            // UI Label Updates
+            document.getElementById('val-m2').innerText = m2.toFixed(1) + " Trilyon TL";
+            document.getElementById('val-nir').innerText = nir.toFixed(1) + " Milyar $";
+            document.getElementById('val-aload').innerText = aload.toFixed(2);
+            document.getElementById('val-dei').innerText = dei.toFixed(2);
+            document.getElementById('val-pi').innerText = pi.toFixed(2);
+
+            // Equations Calculation
+            // Soddy Gap: S_gap = M2 / (NIR > 0 ? NIR : 10) -> normalize for gauge
+            const sgap = nir <= 0 ? (m2 * 2.5).toFixed(2) + " (ÇAPA İMHASI)" : (m2 / Math.max(nir + 1, 0.1)).toFixed(2);
+            
+            // PFC Control: PFC_ctrl = 0.85 / (1 + exp(5.0464 * (A_load * 1.20 - theta_panic)))
+            const theta_panic = 0.5;
+            const exponent = 5.0464 * (aload * 1.20 - theta_panic);
+            const pfc = (0.85 / (1 + Math.exp(exponent))).toFixed(2);
+
+            // AM Multiplier: AM = 1.00 + 0.15 * I(DEI >= 0.60)
+            const am = dei >= 0.60 ? 1.15 : 1.00;
+
+            // DOM Updates
+            document.getElementById('calc-sgap').innerText = sgap;
+            document.getElementById('calc-pfc').innerText = pfc;
+            document.getElementById('calc-am').innerText = am.toFixed(2) + "x";
+
+            // Analysis Text & Status
+            const badge = document.getElementById('lab-status-badge');
+            const analysis = document.getElementById('lab-analysis-text');
+
+            if (pfc < 0.25 || sgap > 2.0 || pi > 1.1) {
+                badge.className = "px-2 py-0.5 rounded text-[10px] bg-red-600 text-white uppercase font-mono font-bold";
+                badge.innerText = "KRİTİK SİSTEMİK KRİZ / LİMBİK BYPASS";
+                analysis.innerHTML = `Amigdala yükü ($A_{LOAD}=${aload}$) tavan yaptığı için prefrontal korteks rasyonelliği ($PFC_{ctrl}=${pfc}$) felç olmuş durumda. Bireyler panik halinde dövize/gayrimenkule hücum ediyor. Minsky Ponzi endeksi ($PI=${pi}$) ve Soddy açığı ($S_{gap}=${sgap}$) sistemin kendi kendini tasfiye edeceğini gösteriyor.`;
+            } else if (pfc < 0.50 || pi >= 0.8) {
+                badge.className = "px-2 py-0.5 rounded text-[10px] bg-amber-600 text-white uppercase font-mono font-bold";
+                badge.innerText = "YÜKSEK SIKIŞMA / SPEKÜLATİF EVRE";
+                analysis.innerHTML = `Piyasa rasyonelliği ($PFC_{ctrl}=${pfc}$) zayıflıyor. Borç servisi ancak yeni borçlanma ile sürdürülebiliyor. DEI katsayısı ($DEI=${dei}$) nedeniyle CDS asimetrik ceza çarpanı ($AM=${am.toFixed(2)}$) devrede.`;
+            } else {
+                badge.className = "px-2 py-0.5 rounded text-[10px] bg-emerald-600 text-white uppercase font-mono font-bold";
+                badge.innerText = "STABİL / HEDGE FİNANSMAN EVRESİ";
+                analysis.innerHTML = `Sistemik risk dengeli. Prefrontal korteks kontrolü ($PFC_{ctrl}=${pfc}$) yüksek, rasyonel değerleme aktif. Soddy termodinamik açığı tolere edilebilir sınırlarda.`;
+            }
+
+            // Update Diagnostic Chart
+            if (chartDiagnosticInstance) {
+                chartDiagnosticInstance.data.datasets[0].data = [
+                    Math.min(sgap * 20, 100),
+                    (1 - pfc) * 100,
+                    (am - 1.0) * 666,
+                    Math.min(pi * 50, 100),
+                    aload * 100
+                ];
+                chartDiagnosticInstance.update();
+            }
+        }
+
+        function initDiagnosticChart() {
+        if (typeof chartDiagnosticInstance !== "undefined" && chartDiagnosticInstance) chartDiagnosticInstance.destroy();
+            const ctx = document.getElementById('chartDiagnostic').getContext('2d');
+            chartDiagnosticInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Soddy Açığı', 'Limbik Felç (1-PFC)', 'Kurumsal Çürüme', 'Ponzi Endeksi', 'Amigdala Yükü'],
+                    datasets: [{
+                        label: 'Risk Katsayısı (%)',
+                        data: [60, 85, 100, 75, 85],
+                        backgroundColor: [
+                            'rgba(180, 83, 9, 0.7)',
+                            'rgba(225, 29, 72, 0.8)',
+                            'rgba(120, 53, 15, 0.7)',
+                            'rgba(190, 18, 60, 0.8)',
+                            'rgba(99, 102, 241, 0.7)'
+                        ],
+                        borderWidth: 0,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: (ctx) => ` Gösterge Şiddeti: %${ctx.raw.toFixed(1)}`
+                            }
+                        }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, max: 100, ticks: { font: { size: 10 } } },
+                        x: { ticks: { font: { size: 10 } } }
+                    }
+                }
+            });
+        }
+
+        // 2. TIMELINE CHART & PHASE SELECTOR LOGIC
+        function initTimelineChart() {
+        if (chartTimelineInstance) chartTimelineInstance.destroy();
+            const ctx = document.getElementById('chartTimeline').getContext('2d');
+            chartTimelineInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['1996-99 (Faz 1)', '2000-01 (Faz 2)', '2002-07 (Faz 3)', '2008-13 (Faz 4)', '2014-17 (Faz 5)', '2018-20 (Faz 6)', '2021-23 (Faz 7)', '2024-26 (Faz 8)'],
+                    datasets: [
+                        {
+                            label: 'Türkiye 5Y CDS (bp)',
+                            data: [650, 900, 180, 220, 320, 550, 908, 235],
+                            borderColor: '#e11d48',
+                            backgroundColor: 'rgba(225, 29, 72, 0.1)',
+                            borderWidth: 2,
+                            tension: 0.3,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'TCMB Net Rezerv ($Milyar)',
+                            data: [18, 16, 75, 115, 85, -40, -60, 61.9],
+                            borderColor: '#0284c7',
+                            backgroundColor: 'transparent',
+                            borderWidth: 2,
+                            borderDash: [4, 4],
+                            tension: 0.3,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    onClick: (evt, activeElements) => {
+                        if (activeElements.length > 0) {
+                            const index = activeElements[0].index;
+                            selectPhase(index + 1);
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'top', labels: { font: { size: 11 } } },
+                        tooltip: { mode: 'index', intersect: false }
+                    },
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: { display: true, text: 'CDS (bp)', font: { size: 10 } },
+                            ticks: { font: { size: 10 } }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            grid: { drawOnChartArea: false },
+                            title: { display: true, text: 'Net Rezerv ($Milyar)', font: { size: 10 } },
+                            ticks: { font: { size: 10 } }
+                        },
+                        x: { ticks: { font: { size: 10 } } }
+                    }
+                }
+            });
+        }
+
+        function selectPhase(phaseId) {
+            const phase = phasesData.find(p => p.id === phaseId);
+            if (!phase) return;
+
+            // Button styling updates
+            document.querySelectorAll('.phase-btn').forEach((btn, idx) => {
+                if (idx + 1 === phaseId) {
+                    btn.className = "phase-btn p-2.5 text-left rounded-lg border text-xs font-mono transition bg-brand-700 text-white border-brand-800 shadow-sm";
+                } else {
+                    btn.className = "phase-btn p-2.5 text-left rounded-lg border text-xs font-mono transition bg-sand-100 text-stone-700 border-sand-300 hover:bg-sand-200";
+                }
+            });
+
+            // Populate Detail Card
+            const card = document.getElementById('phase-detail-card');
+            card.innerHTML = `
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-stone-800 pb-4">
+                    <div>
+                        <span class="text-xs font-mono text-amber-400 font-bold block">${phase.years} FAZ ADLİ İNCELEMESİ</span>
+                        <h4 class="text-xl font-bold text-white">${phase.title}</h4>
+                    </div>
+                    <div class="flex gap-3 text-xs font-mono">
+                        <div class="bg-stone-800 px-3 py-1.5 rounded border border-stone-700">
+                            <span class="text-stone-400 block text-[10px]">CDS ZİRVE</span>
+                            <span class="text-red-400 font-bold">${phase.metrics.cds} bp</span>
+                        </div>
+                        <div class="bg-stone-800 px-3 py-1.5 rounded border border-stone-700">
+                            <span class="text-stone-400 block text-[10px]">ENFLASYON</span>
+                            <span class="text-amber-400 font-bold">%${phase.metrics.infl}</span>
+                        </div>
+                        <div class="bg-stone-800 px-3 py-1.5 rounded border border-stone-700">
+                            <span class="text-stone-400 block text-[10px]">NET REZERV</span>
+                            <span class="text-sky-400 font-bold">${phase.metrics.res} $Milyar</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-xs text-stone-300 leading-relaxed font-sans">
+                    ${phase.summary}
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs font-mono pt-2">
+                    <div class="bg-stone-800/80 p-3 rounded-lg border border-stone-700">
+                        <span class="text-amber-400 font-bold block mb-1">1. MINSKY FİNANSMANİ</span>
+                        <p class="text-stone-300 font-sans text-[11px]">${phase.minsky}</p>
+                    </div>
+                    <div class="bg-stone-800/80 p-3 rounded-lg border border-stone-700">
+                        <span class="text-red-400 font-bold block mb-1">2. COATES ENDOKRİNOLOJİSİ</span>
+                        <p class="text-stone-300 font-sans text-[11px]">${phase.hormone}</p>
+                    </div>
+                    <div class="bg-stone-800/80 p-3 rounded-lg border border-stone-700">
+                        <span class="text-sky-400 font-bold block mb-1">3. SODDY TERMODİNAMİĞİ</span>
+                        <p class="text-stone-300 font-sans text-[11px]">${phase.soddy}</p>
+                    </div>
+                    <div class="bg-stone-800/80 p-3 rounded-lg border border-stone-700">
+                        <span class="text-emerald-400 font-bold block mb-1">4. GIRARD GÜNAH KEÇİSİ</span>
+                        <p class="text-stone-300 font-sans text-[11px]">${phase.scapegoat}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 3. DEBTRANK & CONCORDAT CHART LOGIC
+        function initConcordatChart() {
+        if (chartConcordatInstance) chartConcordatInstance.destroy();
+            const ctx = document.getElementById('chartConcordat').getContext('2d');
+            chartConcordatInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['2024 Tam Yıl', '2025 Tam Yıl', '2026 İlk 7 Ay'],
+                    datasets: [
+                        {
+                            label: 'Konkordato Başvurusu',
+                            data: [3497, 6361, 3529],
+                            backgroundColor: 'rgba(239, 68, 68, 0.8)',
+                        },
+                        {
+                            label: 'Kapanan Esnaf / İflas',
+                            data: [95000, 120423, 75000],
+                            backgroundColor: 'rgba(245, 158, 11, 0.6)',
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top', labels: { font: { size: 10 } } },
+                        tooltip: { mode: 'index', intersect: false }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, ticks: { font: { size: 10 } } },
+                        x: { ticks: { font: { size: 10 } } }
+                    }
+                }
+            });
+        }
+
+        function inspectDebtNode(nodeKey) {
+            const data = debtNodeDetails[nodeKey];
+            if (!data) return;
+
+            document.getElementById('node-title').innerText = data.title;
+            document.getElementById('node-desc').innerText = data.desc;
+            document.getElementById('node-share').innerText = data.share;
+            document.getElementById('node-npl').innerText = data.npl;
+            document.getElementById('node-approval').innerText = data.approval;
+        }
+
+        // 4. DAUBERT EVIDENCE TABLE SEARCH/FILTER
+        function populateEvidenceTable(items) {
+            const tbody = document.getElementById('evidence-table-body');
+            tbody.innerHTML = '';
+            items.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-sand-50 transition";
+                tr.innerHTML = `
+                    <td class="p-3 font-mono font-bold text-stone-900">${item.theory}</td>
+                    <td class="p-3 leading-relaxed">${item.proof}</td>
+                    <td class="p-3 font-mono text-stone-600">${item.source}</td>
+                    <td class="p-3 text-center">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
+                            [${item.status}]
+                        </span>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function filterEvidenceTable() {
+            const query = document.getElementById('evidence-search').value.toLowerCase();
+            const filtered = evidenceData.filter(item => 
+                item.theory.toLowerCase().includes(query) ||
+                item.proof.toLowerCase().includes(query) ||
+                item.source.toLowerCase().includes(query)
+            );
+            populateEvidenceTable(filtered);
+        }
+    </script>
+
+<!-- T2SAIM-ASM-KATEX : montaj sirasinda eklendi (sayfa icerigi degistirilmedi) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script>/* T2SAIM-ASM-KATEX v2 */
+(function () {
+  var DELIMS = [
+    {left: '$$', right: '$$', display: true},
+    {left: '\\[', right: '\\]', display: true},
+    {left: '\\(', right: '\\)', display: false},
+    {left: '$', right: '$', display: false}
+  ];
+  var PH = '\uE000';               // para birimi $ isaretleri icin gecici yer tutucu
+  var obs = null, timer = null;
+  function connect() { if (obs) obs.observe(document.body, {childList: true, subtree: true, characterData: true}); }
+  // $...$ arasi gercek matematik mi, yoksa iki para tutari arasindaki duz yazi mi?
+  function looksMath(c) {
+    if (/[\\^_{}]/.test(c)) return true;           // \komut, ussu, alt indis, suslu parantez
+    if (/^\s*\d/.test(c)) return false;             // rakamla baslar: "$3.90 Milyar ... $"
+    var words = c.trim().split(/\s+/).filter(function (w) { return /[A-Za-zÇĞİÖŞÜçğıöşü]{4,}/.test(w); });
+    if (words.length >= 2) return false;            // duz cumle
+    return true;                                    // M2, NIR, HFI, t, DM(t), MR < MC ...
+  }
+  function textNodes(root) {
+    var out = [], w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        var p = n.parentNode;
+        if (!p || /^(SCRIPT|STYLE|TEXTAREA|NOSCRIPT)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT;
+        if (p.closest && p.closest('.katex')) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) out.push(w.currentNode);
+    return out;
+  }
+  function protect() {
+    textNodes(document.body).forEach(function (n) {
+      var t = n.nodeValue;
+      if (t.indexOf('$') === -1) return;
+      var t2 = t.replace(/\$\$[\s\S]*?\$\$|\$([^$]*)\$/g, function (m, inner) {
+        if (inner === undefined) return m;         // $$...$$ ekran formulu: dokunma
+        return looksMath(inner) ? m : (PH + inner + PH);
+      });
+      if (t2 !== t) n.nodeValue = t2;
+    });
+  }
+  function restore() {
+    textNodes(document.body).forEach(function (n) {
+      if (n.nodeValue.indexOf(PH) !== -1) n.nodeValue = n.nodeValue.split(PH).join('$');
+    });
+  }
+  function render() {
+    if (!window.renderMathInElement) return;
+    if (obs) obs.disconnect();
+    try { protect(); window.renderMathInElement(document.body, {delimiters: DELIMS, throwOnError: false}); } catch (e) { console.warn(e); }
+    try { restore(); } catch (e) {}
+    connect();
+  }
+  function later() { clearTimeout(timer); timer = setTimeout(render, 200); }
+  window.__t2saimKatexRender = render;
+  function load(src, cb) { var s = document.createElement('script'); s.src = src; s.onload = cb; s.onerror = function () { console.warn('KaTeX yuklenemedi: ' + src); }; document.head.appendChild(s); }
+  function start() {
+    load('https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js', function () {
+      load('https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js', function () {
+        obs = new MutationObserver(later);
+        render();
+        document.addEventListener('click', later, true);
+        document.addEventListener('input', later, true);
+      });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="tr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T2SAIM MASTER BÜYÜK BİRLEŞİK ERKEN UYARI SİSTEMİ & ADLİ KRİZ GÖZLEMEVİ (1975–2055)</title>
+    
+    <!-- Fixed Production CDNs -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@0.344.0/dist/umd/lucide.min.js"></script>
+    
+    <style>
+        :root {
+            --bg-dark: #080c14;
+            --card-dark: #0f172a;
+            --border-dark: #1e293b;
+            --accent-cyan: #38bdf8;
+            --accent-gold: #f59e0b;
+        }
+        body {
+            background-color: var(--bg-dark);
+            color: #f8fafc;
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Master Navigation Bar */
+        .master-nav {
+            background: #080c14;
+            border-bottom: 1px solid #1e293b;
+            flex-shrink: 0;
+        }
+        
+        .master-tab-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 18px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #94a3b8;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            cursor: pointer;
+            background: transparent;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+        }
+        .master-tab-btn:hover {
+            color: #e2e8f0;
+            background: rgba(30, 41, 59, 0.4);
+        }
+        .master-tab-btn.active {
+            color: #38bdf8;
+            border-bottom-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.08);
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+        }
+        
+        .tab-viewport {
+            flex: 1;
+            width: 100%;
+            height: calc(100vh - 122px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .platform-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: none;
+            background: #080c14;
+        }
+        .platform-frame.active {
+            display: block;
+        }
+        
+        #hub-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            overflow-y: auto;
+            background: #080c14;
+            padding: 24px;
+        }
+        #hub-container.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-[#080c14] text-slate-100 antialiased">
+
+    <!-- MASTER EXECUTIVE HEADER -->
+    <header class="border-b border-slate-800 bg-[#0b111e] px-6 py-3 shadow-xl flex-shrink-0">
+        <div class="max-w-[1920px] mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-600 via-blue-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 ring-1 ring-white/20">
+                    <i data-lucide="shield-alert" class="w-5 h-5 text-white"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-0.2 rounded text-[10px] font-black uppercase tracking-wider bg-cyan-500/20 text-cyan-400 border border-cyan-500/40">MASTER EWS v3.0</span>
+                        <span class="px-2 py-0.2 rounded text-[10px] font-black uppercase tracking-wider bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">VERITAS PER SE</span>
+                        <span class="px-2 py-0.2 rounded text-[10px] font-black uppercase tracking-wider bg-amber-500/20 text-amber-400 border border-amber-500/40">SIFIR SENTETİK VERİ</span>
+                    </div>
+                    <h1 class="text-lg md:text-xl font-black tracking-tight text-white">
+                        T2SAIM MASTER BÜYÜK BİRLEŞİK ERKEN UYARI SİSTEMİ & ADLİ KRİZ GÖZLEMEVİ (1975–2055)
+                    </h1>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <div class="text-right hidden sm:block">
+                    <div class="text-xs text-slate-400 font-mono">Telif: Tarkan Bulan & DZV Dostları</div>
+                    <div class="text-[11px] text-cyan-400 font-mono">Core-20 Panel: 29.938 Gözlem | 35 Model Epizodu | 9.145 Daubert Bulgusu</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MASTER NAVIGATION TABS (EXACT DATA-PILLAR ATTRIBUTES) -->
+    <nav class="master-nav overflow-x-auto shadow-md">
+        <div class="max-w-[1920px] mx-auto flex items-center px-4">
+            <button class="master-tab-btn active" data-pillar="p1" onclick="switchMasterPillar('p1')">
+                <i data-lucide="layers" class="w-4 h-4 text-cyan-400"></i>
+                <span>I. BİRLEŞİK EWS & TERMODİNAMİK</span>
+            </button>
+            <button class="master-tab-btn" data-pillar="p2" onclick="switchMasterPillar('p2')">
+                <i data-lucide="swords" class="w-4 h-4 text-amber-400"></i>
+                <span>II. KÜRESEL FİNANSAL HARP</span>
+            </button>
+            <button class="master-tab-btn" data-pillar="p3" onclick="switchMasterPillar('p3')">
+                <i data-lucide="activity" class="w-4 h-4 text-emerald-400"></i>
+                <span>III. MASTER GÖZLEMEVİ (1994-2026)</span>
+            </button>
+            <button class="master-tab-btn" data-pillar="p4" onclick="switchMasterPillar('p4')">
+                <i data-lucide="trending-up" class="w-4 h-4 text-purple-400"></i>
+                <span>IV. SİSTEMİK ANALİZ (1975-2055)</span>
+            </button>
+            <button class="master-tab-btn" data-pillar="p5" onclick="switchMasterPillar('p5')">
+                <i data-lucide="droplets" class="w-4 h-4 text-blue-400"></i>
+                <span>V. KARANLIK MADDE & KARA PARA</span>
+            </button>
+            <button class="master-tab-btn" data-pillar="p6" onclick="switchMasterPillar('p6')">
+                <i data-lucide="alert-triangle" class="w-4 h-4 text-rose-400"></i>
+                <span>VI. 2026-TR-OMEGA ADLİ OTOPSİ</span>
+            </button>
+            <button class="master-tab-btn" data-pillar="p7" onclick="switchMasterPillar('p7')">
+                <i data-lucide="scroll-text" class="w-4 h-4 text-orange-400"></i>
+                <span>VII. 80 YILLIK ADLİ RAPOR (1975-2055)</span>
+            </button>
+            <button class="master-tab-btn" data-pillar="p8" onclick="switchMasterPillar('p8')">
+                <i data-lucide="globe-2" class="w-4 h-4 text-teal-400"></i>
+                <span>VIII. EGEMEN RİSK (CORE-20)</span>
+            </button>
+            <button class="master-tab-btn" data-pillar="p9" onclick="switchMasterPillar('p9')">
+                <i data-lucide="compass" class="w-4 h-4 text-rose-400"></i>
+                <span>IX. CORE-20 KOKPİT & TERMODİNAMİK ATLAS</span>
+            </button>
+            <button class="master-tab-btn" data-pillar="hub" onclick="switchMasterPillar('hub')">
+                <i data-lucide="database" class="w-4 h-4 text-yellow-400"></i>
+                <span>💾 CORE-20 VERİ AMBARI</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MASTER TAB VIEWPORT -->
+    <div class="tab-viewport">
+        <!-- Pillar 1 Frame -->
+        <iframe id="frame-p1" src="sub_platforms/p1_birlesik_ews.html" class="platform-frame active" title="Pillar 1"></iframe>
+        <!-- Pillar 2 Frame -->
+        <iframe id="frame-p2" src="sub_platforms/p2_kuresel_harp.html" class="platform-frame" title="Pillar 2"></iframe>
+        <!-- Pillar 3 Frame -->
+        <iframe id="frame-p3" src="sub_platforms/p3_master_gozlemevi.html" class="platform-frame" title="Pillar 3"></iframe>
+        <!-- Pillar 4 Frame -->
+        <iframe id="frame-p4" src="sub_platforms/p4_sistemik_analiz.html" class="platform-frame" title="Pillar 4"></iframe>
+        <!-- Pillar 5 Frame -->
+        <iframe id="frame-p5" src="sub_platforms/p5_karanlik_madde.html" class="platform-frame" title="Pillar 5"></iframe>
+        <!-- Pillar 6 Frame -->
+        <iframe id="frame-p6" src="sub_platforms/p6_ekonomi_otopsisi.html" class="platform-frame" title="Pillar 6"></iframe>
+        
+        <!-- Pillar 7 Frame -->
+        <iframe id="frame-p7" src="sub_platforms/p7_adli_rapor_80yil.html" class="platform-frame" title="Pillar 7"></iframe>
+        <!-- Pillar 8 Frame -->
+        <iframe id="frame-p8" src="sub_platforms/p8_egemen_risk_core20.html" class="platform-frame" title="Pillar 8"></iframe>
+        <!-- Pillar 9 Frame -->
+        <iframe id="frame-p9" src="sub_platforms/p9_core20_kokpit.html" class="platform-frame" title="Pillar 9"></iframe>
+        <!-- Pillar Hub Container -->
+        <div id="hub-container">
+            <div class="max-w-[1700px] mx-auto bg-[#0f172a] border border-slate-800 rounded-2xl p-8 shadow-2xl space-y-8">
+                
+                <!-- Hub Header & Dedicated Download Cards -->
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-slate-800">
+                    <div>
+                        <div class="flex items-center gap-3">
+                            <span class="px-3 py-1 bg-yellow-500/20 text-yellow-400 text-xs font-bold rounded-lg border border-yellow-500/30">LAKEHOUSE GOLD & SILVER</span>
+                            <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-bold rounded-lg border border-emerald-500/30">ADLİ KANIT ZİNCİRİ (DAUBERT STANDARDI)</span>
+                        </div>
+                        <h2 class="text-2xl md:text-3xl font-black text-white mt-3">Core-20 Kanonik Veri Ambarı</h2>
+                    </div>
+                </div>
+
+                <!-- Country Observations Coverage Summary Table -->
+                <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-6">
+                    <h3 class="text-lg font-bold text-white flex items-center gap-2 mb-4">
+                        <i data-lucide="globe" class="w-5 h-5 text-cyan-400"></i>
+                        <span>Core-20 Ülke Bazında Gözlem Kapsama Kütüğü (Silver Layer)</span>
+                    </h3>
+                    <div class="overflow-x-auto rounded-lg border border-slate-800">
+                        <table class="w-full text-left border-collapse text-xs font-mono">
+                            <thead>
+                                <tr class="bg-slate-900 text-slate-400 font-bold border-b border-slate-800 uppercase">
+                                    <th class="p-2.5">Ülke (ISO3)</th>
+                                    <th class="p-2.5 text-right">Toplam Gözlem</th>
+                                    <th class="p-2.5">Zaman Penceresi</th>
+                                    <th class="p-2.5 text-center">Benzersiz Metrik</th>
+                                    <th class="p-2.5">Doğrulanan Kaynaklar</th>
+                                    <th class="p-2.5 text-center">Bitemporal Kalite</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800 text-slate-300">
+                                <tr class="hover:bg-slate-800/30">
+                                    <td class="p-2.5 font-bold text-cyan-400">AUS</td>
+                                    <td class="p-2.5 text-right font-semibold text-white">1,553</td>
+                                    <td class="p-2.5 text-slate-400">1996-01-01 → 2026-08-31</td>
+                                    <td class="p-2.5 text-center">12</td>
+                                    <td class="p-2.5 text-slate-400">IMF_IFS, WORLDBANK_WDI, ILO_STAT, IMF_BOP, world_bank_wdi</td>
+                                    <td class="p-2.5 text-center"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">POINT-IN-TIME</span></td>
+                                </tr><tr class="hover:bg-slate-800/30">
+                                    <td class="p-2.5 font-bold text-cyan-400">BRA</td>
+                                    <td class="p-2.5 text-right font-semibold text-white">1,895</td>
+                                    <td class="p-2.5 text-slate-400">1996-01-01 → 2026-08-31</td>
+                                    <td class="p-2.5 text-center">13</td>
+                                    <td class="p-2.5 text-slate-400">IMF_IFS, WORLDBANK_WDI, ILO_STAT, IMF_BOP, WB_QEDS, world_bank_wdi</td>
+                                    <td class="p-2.5 text-center"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">POINT-IN-TIME</span></td>
+                                </tr><tr class="hover:bg-slate-800/30">
+                                    <td class="p-2.5 font-bold text-cyan-400">CAN</td>
+                                    <td class="p-2.5 text-right font-semibold text-white">1,896</td>
+                                    <td class="p-2.5 text-slate-400">1996-01-01 → 2026-08-31</td>
+                                    <td class="p-2.5 text-center">12</td>
+                                    <td class="p-2.5 text-slate-400">IMF_IFS, WORLDBANK_WDI, ILO_STAT, IMF_BOP, world_bank_wdi</td>
+                                    <td class="p-2.5 text-center"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">POINT-IN-TIME</span></td>
+                                </tr><tr class="hover:bg-slate-800/30">
+                                    <td class="p-2.5 font-bold text-cyan-400">CHE</td>
+                                    <td class="p-2.5 text-right font-semibold text-white">1,899</td>
+                                    <td class="p-2.5 text-slate-400">1996-01-01 → 2026-08-31</td>
+                                    <td class="p-2.5 text-center">13</td>
+                                    <td class="p-2.5 text-slate-400">IMF_IFS, WORLDBANK_WDI, ILO_STAT, IMF_BOP, world_bank_wdi</td>
+                                    <td class="p-2.5 text-center"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">POINT-IN-TIME</span></td>
+                                </tr><tr class="hover:bg-slate-800/30">
+                                    <td class="p-2.5 font-bold text-cyan-400">DEU</td>
+                                    <td class="p-2.5 text-right font-semibold text-white">1,194</td>
+                                    <td class="p-2.5 text-slate-400">1996-01-01 → 2026-08-31</td>
+                                    <td class="p-2.5 text-center">12</td>
+                                    <td class="p-2.5 text-slate-400">IMF_IFS, WORLDBANK_WDI, ILO_STAT, IMF_BOP, world_bank_wdi</td>
+                                    <td class="p-2.5 text-center"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">POINT-IN-TIME</span></td>
+                                </tr><tr class="hover:bg-slate-800/30">
+                                    <td class="p-2.5 font-bold text-cyan-400">ESP</td>
+                                    <td class="p-2.5 text-right font-semibold text-white">1,235</td>
+                                    <td class="p-2.5 text-slate-400">1996-01-01 → 2026-08-31</td>
+                                    <td class="p-2.5 text-center">13</td>
+                                    <td class="p-2.5 text-slate-400">IMF_IFS, WORLDBANK_WDI, ILO_STAT, IMF_BOP, world_bank_wdi</td>
+                                    <td class="p-2.5 text-center"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">POINT-IN-TIME</span></td>
+                                </tr><tr class="hover:bg-slate-800/30">
+                                    <td class="p-2.5 font-bold text-cyan-400">FRA</td>
+                                    <td class="p-2.5 text-right font-semibold text-white">1,192</td>
+                                    <td class="p-2.5 text-slate-400">1996-01-01 → 2026-08-31</td>
+                                    <td class="p-2.5 text-center">12</td>
+                                    <td class="p-2.5 text-slate-400">IMF_IFS, WORLDBANK_WDI, ILO_STAT, IMF_BOP, world_bank_wdi</td>
+                                    <td class="p-2.5 text-center"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">POINT-IN-TIME</span></td>
+                                </tr><tr class="hover:bg-slate-800/30">
+                                    <td class="p-2.5 font-bold text-cyan-400">GBR</td>
+                                    <td class="p-2.5 text-right font-semibold text-white">1,895</td>
+                                    <td class="p-2.5 text-slate-400">1996-01-01 → 2026-08-31</td>
+                                    <td class="p-2.5 text-center">13</td>
+                                    <td class="p-2.5 text-slate-400">IMF_IFS, WORLDBANK_WDI, ILO_STAT, IMF_BOP, world_bank_wdi</td>
+                                    <td class="p-2.5 text-center"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">POINT-IN-TIME</span></td>
+                                </tr><tr class="hover:bg-slate-800/30">
+                                    <td class="p-2.5 font-bold text-cyan-400">IDN</td>
+                                    <td class="p-2.5 text-right font-semibold text-white">1,769</td>
+                                    <td class="p-2.5 text-slate-400">1996-01-01 → 2026-08-31</td>
+                                    <td class="p-2.5 text-center">14</td>
+                                    <td class="p-2.5 text-slate-400">IMF_IFS, WORLDBANK_WDI, ILO_STAT, IMF_BOP, WB_QEDS, world_bank_wdi</td>
+                                    <td class="p-2.5 text-center"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">POINT-IN-TIME</span></td>
+                                </tr><tr class="hover:bg-slate-800/30">
+                                    <td class="p-2.5 font-bold text-cyan-400">IND</td>
+                                    <td class="p-2.5 text-right font-semibold text-white">1,726</td>
+                                    <td class="p-2.5 text-slate-400">1996-01-01 → 2026-08-31</td>
+                                    <td class="p-2.5 text-center">13</td>
+                                    <td class="p-2.5 text-slate-400">IMF_IFS, WORLDBANK_WDI, ILO_STAT, IMF_BOP, WB_QEDS, world_bank_wdi</td>
+                                    <td class="p-2.5 text-center"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">POINT-IN-TIME</span></td>
+                                </tr><tr class="hover:bg-slate-800/30">
+                                    <td class="p-2.5 font-bold text-cyan-400">ITA</td>
+                                    <td class="p-2.5 text-right font-semibold text-white">1,207</td>
+                                    <td class="p-2.5 text-slate-400">1996-01-01 → 2026-08-31</td>
+                                    <td class="p-2.5 text-center">12</td>
+                                    <td class="p-2.5 text-slate-400">IMF_IFS, WORLDBANK_WDI, ILO_STAT, IMF_BOP, world_bank_wdi</td>
+                                    <td class="p-2.5 text-center"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">POINT-IN-TIME</span></td>
+                                </tr><tr class="hover:bg-slate-800/30">
+                                    <td class="p-2.5 font-bold text-cyan-400">JPN</td>
+                                    <td class="p-2.5 text-right font-semibold text-white">1,859</td>
+                                    <td class="p-2.5 text-slate-400">1996-01-01 → 2026-08-31</td>
+                                    <td class="p-2.5 text-center">11</td>
+                                    <td class="p-2.5 text-slate-400">IMF_IFS, WORLDBANK_WDI, ILO_STAT, IMF_BOP, world_bank_wdi</td>
+                                    <td class="p-2.5 text-center"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">POINT-IN-TIME</span></td>
+                                </tr><tr class="hover:bg-slate-800/30">
+                                    <td class="p-2.5 font-bold text-cyan-400">KOR</td>
+                                    <td class="p-2.5 text-right font-semibold text-white">1,762</td>
+                                    <td class="p-2.5 text-slate-400">1996-01-01 → 2026-08-31</td>
+                                    <td class="p-2.5 text-center">12</td>
+                                    <td class="p-2.5 text-slate-400">IMF_IFS, WORLDBANK_WDI, ILO_STAT, IMF_BOP, world_bank_wdi</td>
+                                    <td class="p-2.5 text-center"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">POINT-IN-TIME</span></td>
+                                </tr><tr class="hover:bg-slate-800/30">
+                                    <td class="p-2.5 font-bold text-cyan-400">MEX</td>
+                                    <td class="p-2.5 text-right font-semibold text-white">1,916</td>
+                                    <td class="p-2.5 text-slate-400">1996-01-01 → 2026-08-31</td>
+                                    <td class="p-2.5 text-center">14</td>
+                                    <td class="p-2.5 text-slate-400">IMF_IFS, WORLDBANK_WDI, ILO_STAT, IMF_BOP, WB_QEDS, world_bank_wdi</td>
+                                    <td class="p-2.5 text-center"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">POINT-IN-TIME</span></td>
+                                </tr><tr class="hover:bg-slate-800/30">
+                                    <td class="p-2.5 font-bold text-cyan-400">NLD</td>
+                                    <td class="p-2.5 text-right font-semibold text-white">1,206</td>
+                                    <td class="p-2.5 text-slate-400">1996-01-01 → 2026-08-31</td>
+                                    <td class="p-2.5 text-center">12</td>
+                                    <td class="p-2.5 text-slate-400">IMF_IFS, WORLDBANK_WDI, ILO_STAT, IMF_BOP, world_bank_wdi</td>
+                                    <td class="p-2.5 text-center"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">POINT-IN-TIME</span></td>
+                                </tr><tr class="hover:bg-slate-800/30">
+                                    <td class="p-2.5 font-bold text-cyan-400">SAU</td>
+                                    <td class="p-2.5 text-right font-semibold text-white">1,522</td>
+                                    <td class="p-2.5 text-slate-400">1996-01-01 → 2026-08-31</td>
+                                    <td class="p-2.5 text-center">10</td>
+                                    <td class="p-2.5 text-slate-400">IMF_IFS, WORLDBANK_WDI, ILO_STAT, IMF_BOP, world_bank_wdi</td>
+                                    <td class="p-2.5 text-center"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">POINT-IN-TIME</span></td>
+                                </tr><tr class="hover:bg-slate-800/30">
+                                    <td class="p-2.5 font-bold text-cyan-400">TUR</td>
+                                    <td class="p-2.5 text-right font-semibold text-white">2,338</td>
+                                    <td class="p-2.5 text-slate-400">1996-01-01 → 2026-08-31</td>
+                                    <td class="p-2.5 text-center">13</td>
+                                    <td class="p-2.5 text-slate-400">IMF_IFS, TCMB_EVDS3, WORLDBANK_WDI, ILO_STAT, IMF_BOP, WB_QEDS, world_bank_wdi</td>
+                                    <td class="p-2.5 text-center"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">POINT-IN-TIME</span></td>
+                                </tr><tr class="hover:bg-slate-800/30">
+                                    <td class="p-2.5 font-bold text-cyan-400">USA</td>
+                                    <td class="p-2.5 text-right font-semibold text-white">1,874</td>
+                                    <td class="p-2.5 text-slate-400">1996-01-01 → 2026-08-31</td>
+                                    <td class="p-2.5 text-center">12</td>
+                                    <td class="p-2.5 text-slate-400">IMF_IFS, WORLDBANK_WDI, ILO_STAT, IMF_BOP, world_bank_wdi</td>
+                                    <td class="p-2.5 text-center"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">POINT-IN-TIME</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Live Filter & 35 Model Episodes Table -->
+                <div>
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-4">
+                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                            <i data-lucide="table" class="w-5 h-5 text-amber-400"></i>
+                            <span>35 Doğrulanmış Model Kriz Epizodu (Gold Layer)</span>
+                        </h3>
+                        <div class="flex items-center gap-3">
+                            <input type="text" id="hubSearchInput" onkeyup="filterHubTable()" placeholder="Ülke (ISO3), Epizot, Mekanizma ara..." class="px-4 py-1.5 bg-slate-900 border border-slate-700 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 w-64">
+                            <select id="hubSeverityFilter" onchange="filterHubTable()" class="px-4 py-1.5 bg-slate-900 border border-slate-700 rounded-lg text-xs text-white focus:outline-none focus:border-cyan-500">
+                                <option value="ALL">Tüm Şiddet Seviyeleri</option>
+                                <option value="EXTREME">EXTREME</option>
+                                <option value="ACUTE">ACUTE</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto rounded-xl border border-slate-800">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="bg-slate-900/80 text-slate-400 font-bold border-b border-slate-800 uppercase tracking-wider">
+                                    <th class="p-3">Ülke</th>
+                                    <th class="p-3">Epizot Kodu</th>
+                                    <th class="p-3">Şiddet</th>
+                                    <th class="p-3">Başlangıç</th>
+                                    <th class="p-3">Zirve Tarihi</th>
+                                    <th class="p-3">Çözülme</th>
+                                    <th class="p-3">Süre</th>
+                                    <th class="p-3">Tetiklenen Mekanizma</th>
+                                    <th class="p-3 text-right">Zirve Skoru</th>
+                                    <th class="p-3 text-center">Durum</th>
+                                </tr>
+                            </thead>
+                            <tbody id="hubEpisodesTableBody" class="divide-y divide-slate-800 font-mono">
+                                <!-- Populated dynamically by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        const HUB_EPISODES_DATA = [{"episode_id": "AUS-FX-2007-001", "country_iso3": "AUS", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2007-09-30", "detection_date": "2007-09-30", "peak_date": "2007-10-31", "resolution_date": "2008-02-29", "duration_days": 152, "observation_periods": 7, "severity": "EXTREME", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 4.25062696011493, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "AUS-FX-2008-002", "country_iso3": "AUS", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2008-09-30", "detection_date": "2008-09-30", "peak_date": "2008-10-31", "resolution_date": "2008-11-30", "duration_days": 61, "observation_periods": 3, "severity": "EXTREME", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 5.550820671503707, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "AUS-FX-2020-003", "country_iso3": "AUS", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2020-05-31", "detection_date": "2020-05-31", "peak_date": "2020-05-31", "resolution_date": "2020-07-31", "duration_days": 61, "observation_periods": 3, "severity": "ACUTE", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 2.7985883618045113, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "BRA-FX-2020-001", "country_iso3": "BRA", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2020-03-31", "detection_date": "2020-03-31", "peak_date": "2020-06-30", "resolution_date": "2020-07-31", "duration_days": 122, "observation_periods": 5, "severity": "EXTREME", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 4.027765043919861, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "BRA-FX-2024-002", "country_iso3": "BRA", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2024-12-31", "detection_date": "2024-12-31", "peak_date": "2025-02-28", "resolution_date": "2025-04-30", "duration_days": 120, "observation_periods": 6, "severity": "ACUTE", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 2.930776566506688, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "CAN-FX-2003-001", "country_iso3": "CAN", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2003-08-31", "detection_date": "2003-08-31", "peak_date": "2003-08-31", "resolution_date": "2003-09-30", "duration_days": 30, "observation_periods": 2, "severity": "ACUTE", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 3.426043414147101, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "CAN-FX-2004-002", "country_iso3": "CAN", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2004-12-31", "detection_date": "2004-12-31", "peak_date": "2004-12-31", "resolution_date": "2005-03-31", "duration_days": 90, "observation_periods": 5, "severity": "ACUTE", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 2.62286800182166, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "CHE-FX-2005-001", "country_iso3": "CHE", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2005-04-30", "detection_date": "2005-04-30", "peak_date": "2005-06-30", "resolution_date": "2005-08-31", "duration_days": 123, "observation_periods": 4, "severity": "ACUTE", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 3.3497608077298895, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "CHE-FX-2011-002", "country_iso3": "CHE", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2011-11-30", "detection_date": "2011-11-30", "peak_date": "2011-11-30", "resolution_date": "2012-01-31", "duration_days": 62, "observation_periods": 4, "severity": "EXTREME", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 4.129632809310328, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "CHE-FX-2022-003", "country_iso3": "CHE", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2022-05-31", "detection_date": "2022-05-31", "peak_date": "2022-06-30", "resolution_date": "2023-01-01", "duration_days": 215, "observation_periods": 8, "severity": "ACUTE", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 3.1920210194124916, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "GBR-FX-2008-001", "country_iso3": "GBR", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2008-09-30", "detection_date": "2008-09-30", "peak_date": "2008-11-30", "resolution_date": "2009-03-31", "duration_days": 182, "observation_periods": 8, "severity": "EXTREME", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 7.780141360097506, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "GBR-FX-2016-002", "country_iso3": "GBR", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2016-10-31", "detection_date": "2016-10-31", "peak_date": "2016-11-30", "resolution_date": "2017-03-31", "duration_days": 151, "observation_periods": 7, "severity": "EXTREME", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 3.6333173651737107, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "IDN-FX-2011-001", "country_iso3": "IDN", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2011-11-30", "detection_date": "2011-11-30", "peak_date": "2011-11-30", "resolution_date": "2012-01-31", "duration_days": 62, "observation_periods": 4, "severity": "ACUTE", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 2.642453929707081, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "IDN-FX-2013-002", "country_iso3": "IDN", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2013-08-31", "detection_date": "2013-08-31", "peak_date": "2013-09-30", "resolution_date": "2013-10-31", "duration_days": 61, "observation_periods": 3, "severity": "ACUTE", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 3.3089102802780115, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "IDN-FX-2020-003", "country_iso3": "IDN", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2020-03-31", "detection_date": "2020-03-31", "peak_date": "2020-05-31", "resolution_date": "2020-05-31", "duration_days": 61, "observation_periods": 3, "severity": "EXTREME", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 6.212960321552703, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "IND-FX-2013-001", "country_iso3": "IND", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2013-08-31", "detection_date": "2013-08-31", "peak_date": "2013-08-31", "resolution_date": "2013-09-30", "duration_days": 30, "observation_periods": 2, "severity": "ACUTE", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 2.7759863360552406, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "IND-CORP-2020-002", "country_iso3": "IND", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2020-01-01", "detection_date": "2020-01-01", "peak_date": "2020-01-31", "resolution_date": "2020-03-31", "duration_days": 90, "observation_periods": 4, "severity": "EXTREME", "confidence": "model_derived_from_verified_observations", "mechanisms": "CORPORATE_CASHFLOW_STRESS", "max_active_mechanisms": 1, "peak_score": 4.303395039627444, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "IND-CORP-2020-003", "country_iso3": "IND", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2020-12-31", "detection_date": "2020-12-31", "peak_date": "2020-12-31", "resolution_date": "2021-01-01", "duration_days": 1, "observation_periods": 2, "severity": "EXTREME", "confidence": "model_derived_from_verified_observations", "mechanisms": "CORPORATE_CASHFLOW_STRESS", "max_active_mechanisms": 1, "peak_score": 5.579337913858063, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "IND-FX-2026-004", "country_iso3": "IND", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2026-05-31", "detection_date": "2026-05-31", "peak_date": "2026-05-31", "resolution_date": "2026-07-31", "duration_days": 61, "observation_periods": 3, "severity": "ACUTE", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 2.543528341776014, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "JPN-FX-2008-001", "country_iso3": "JPN", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2008-10-31", "detection_date": "2008-10-31", "peak_date": "2008-10-31", "resolution_date": "2009-01-01", "duration_days": 62, "observation_periods": 4, "severity": "ACUTE", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 2.5988809606051015, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "JPN-FX-2016-002", "country_iso3": "JPN", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2016-12-31", "detection_date": "2016-12-31", "peak_date": "2017-02-28", "resolution_date": "2017-03-31", "duration_days": 90, "observation_periods": 5, "severity": "EXTREME", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 3.7481295786627546, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "JPN-FX-2022-003", "country_iso3": "JPN", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2022-04-30", "detection_date": "2022-04-30", "peak_date": "2022-11-30", "resolution_date": "2023-02-28", "duration_days": 304, "observation_periods": 12, "severity": "EXTREME", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 4.962397655654312, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "JPN-FX-2024-004", "country_iso3": "JPN", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2024-08-31", "detection_date": "2024-08-31", "peak_date": "2024-08-31", "resolution_date": "2024-09-30", "duration_days": 30, "observation_periods": 2, "severity": "ACUTE", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 3.2285259445095953, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "KOR-FX-2008-001", "country_iso3": "KOR", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2008-05-31", "detection_date": "2008-05-31", "peak_date": "2008-12-31", "resolution_date": "2009-04-30", "duration_days": 334, "observation_periods": 13, "severity": "EXTREME", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 10.612230740015374, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "KOR-FX-2022-002", "country_iso3": "KOR", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2022-06-30", "detection_date": "2022-06-30", "peak_date": "2022-11-30", "resolution_date": "2023-02-28", "duration_days": 243, "observation_periods": 10, "severity": "EXTREME", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 4.980436410667409, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "MEX-FX-2008-001", "country_iso3": "MEX", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2008-10-31", "detection_date": "2008-10-31", "peak_date": "2008-10-31", "resolution_date": "2009-08-31", "duration_days": 304, "observation_periods": 12, "severity": "EXTREME", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 8.920927650039758, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "MEX-FX-2015-002", "country_iso3": "MEX", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2015-10-31", "detection_date": "2015-10-31", "peak_date": "2015-10-31", "resolution_date": "2016-01-31", "duration_days": 92, "observation_periods": 5, "severity": "ACUTE", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 3.045768011513711, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "SAU-CORP-2020-001", "country_iso3": "SAU", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2020-12-31", "detection_date": "2020-12-31", "peak_date": "2020-12-31", "resolution_date": "2021-02-28", "duration_days": 59, "observation_periods": 4, "severity": "EXTREME", "confidence": "model_derived_from_verified_observations", "mechanisms": "CORPORATE_CASHFLOW_STRESS", "max_active_mechanisms": 1, "peak_score": 3.6356157651880388, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "TUR-FX-1998-001", "country_iso3": "TUR", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "1998-11-30", "detection_date": "1998-11-30", "peak_date": "1998-11-30", "resolution_date": "1999-01-01", "duration_days": 32, "observation_periods": 3, "severity": "EXTREME", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 4.356730089164124, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "TUR-FX-2001-002", "country_iso3": "TUR", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2001-02-28", "detection_date": "2001-02-28", "peak_date": "2001-05-31", "resolution_date": "2001-06-30", "duration_days": 122, "observation_periods": 5, "severity": "EXTREME", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 17.201156002983627, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "TUR-FX-2008-003", "country_iso3": "TUR", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2008-10-31", "detection_date": "2008-10-31", "peak_date": "2008-12-31", "resolution_date": "2009-03-31", "duration_days": 151, "observation_periods": 7, "severity": "EXTREME", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 4.397507038227605, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "TUR-FX-2017-004", "country_iso3": "TUR", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2017-01-31", "detection_date": "2017-01-31", "peak_date": "2017-01-31", "resolution_date": "2017-04-30", "duration_days": 89, "observation_periods": 4, "severity": "ACUTE", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 2.9338423438095336, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "TUR-FX-2018-005", "country_iso3": "TUR", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2018-08-31", "detection_date": "2018-08-31", "peak_date": "2018-10-31", "resolution_date": "2019-01-01", "duration_days": 123, "observation_periods": 6, "severity": "EXTREME", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 6.451807867194722, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "TUR-FX-2020-006", "country_iso3": "TUR", "episode_type": "persistent_mechanism_stress", "candidate_status": "PERSISTENT_MECHANISM_STRESS", "economic_start_date": "2020-04-30", "detection_date": "2020-04-30", "peak_date": "2020-06-30", "resolution_date": "2020-07-31", "duration_days": 92, "observation_periods": 4, "severity": "ACUTE", "confidence": "model_derived_from_verified_observations", "mechanisms": "FX_DEBT_VULNERABILITY", "max_active_mechanisms": 1, "peak_score": 2.9559143107291583, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}, {"episode_id": "TUR-CORP-2021-007", "country_iso3": "TUR", "episode_type": "multi_mechanism_crisis", "candidate_status": "CRISIS_CANDIDATE", "economic_start_date": "2021-12-31", "detection_date": "2021-12-31", "peak_date": "2022-01-31", "resolution_date": "2022-04-30", "duration_days": 120, "observation_periods": 6, "severity": "EXTREME", "confidence": "model_derived_from_verified_observations", "mechanisms": "CORPORATE_CASHFLOW_STRESS|FX_DEBT_VULNERABILITY", "max_active_mechanisms": 2, "peak_score": 5.560876683287669, "external_corroboration_status": "NOT_YET_LINKED", "red_team_status": "AUDITED"}];
+
+        function switchMasterPillar(pillarId) {
+            // Deactivate all buttons
+            document.querySelectorAll('.master-tab-btn').forEach(b => b.classList.remove('active'));
+            // Hide all frames & hub
+            document.querySelectorAll('.platform-frame').forEach(f => f.classList.remove('active'));
+            document.getElementById('hub-container').classList.remove('active');
+            
+            // Activate button using exact data-pillar attribute
+            const targetBtn = document.querySelector('.master-tab-btn[data-pillar="' + pillarId + '"]');
+            if (targetBtn) targetBtn.classList.add('active');
+            
+            if (pillarId === 'hub') {
+                document.getElementById('hub-container').classList.add('active');
+                renderHubEpisodesTable(HUB_EPISODES_DATA);
+            } else {
+                const targetFrame = document.getElementById('frame-' + pillarId);
+                if (targetFrame) {
+                    targetFrame.classList.add('active');
+                    // Dispatch resize event inside frame so Chart.js recalculates dimensions
+                    try {
+                        if (targetFrame.contentWindow) {
+                            targetFrame.contentWindow.dispatchEvent(new Event('resize'));
+                        }
+                    } catch(e) {}
+                }
+            }
+        }
+
+        function renderHubEpisodesTable(data) {
+            const tbody = document.getElementById('hubEpisodesTableBody');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+            
+            if (!data || data.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="10" class="p-6 text-center text-slate-500">Veri bulunamadı.</td></tr>';
+                return;
+            }
+            
+            data.forEach(ep => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-800/40 transition-colors';
+                
+                const sevBadge = ep.severity === 'EXTREME' 
+                    ? '<span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-400 border border-rose-500/30 font-bold">EXTREME</span>'
+                    : '<span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30 font-bold">ACUTE</span>';
+                
+                const startStr = String(ep.economic_start_date || '').slice(0, 10);
+                const peakStr = String(ep.peak_date || '').slice(0, 10);
+                const resStr = String(ep.resolution_date || '').slice(0, 10);
+                const scoreVal = typeof ep.peak_score === 'number' ? ep.peak_score.toFixed(2) : ep.peak_score;
+                
+                tr.innerHTML = `
+                    <td class="p-3 font-bold text-cyan-400">${ep.country_iso3}</td>
+                    <td class="p-3 text-slate-300 font-semibold">${ep.episode_id}</td>
+                    <td class="p-3">${sevBadge}</td>
+                    <td class="p-3 text-slate-400">${startStr}</td>
+                    <td class="p-3 text-amber-400 font-semibold">${peakStr}</td>
+                    <td class="p-3 text-slate-400">${resStr}</td>
+                    <td class="p-3 text-slate-300">${ep.duration_days} gün</td>
+                    <td class="p-3 text-slate-300">${ep.mechanisms || '-'}</td>
+                    <td class="p-3 text-right text-cyan-300 font-bold">${scoreVal}</td>
+                    <td class="p-3 text-center"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">AUDITED</span></td>
+                `;
+                tbody.appendChild(tr);
+            });
+            
+            if (window.lucide && typeof lucide.createIcons === 'function') {
+                lucide.createIcons();
+            }
+        }
+
+        function filterHubTable() {
+            const search = (document.getElementById('hubSearchInput')?.value || '').toUpperCase();
+            const sev = document.getElementById('hubSeverityFilter')?.value || 'ALL';
+            
+            const filtered = HUB_EPISODES_DATA.filter(ep => {
+                const matchSearch = String(ep.country_iso3).includes(search) || 
+                                    String(ep.episode_id).toUpperCase().includes(search) || 
+                                    String(ep.mechanisms).toUpperCase().includes(search);
+                const matchSev = (sev === 'ALL') || (ep.severity === sev);
+                return matchSearch && matchSev;
+            });
+            
+            renderHubEpisodesTable(filtered);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide && typeof lucide.createIcons === 'function') {
+                lucide.createIcons();
+            }
+            renderHubEpisodesTable(HUB_EPISODES_DATA);
+        });
+    </script>
+</body>
+</html>
