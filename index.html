@@ -2351,7 +2351,7 @@
         // =====================================================================
         // T2SAIM SENTINEL SECURITY, WAITING ROOM & DECOY HONEYPOT ENGINE
         // =====================================================================
-        const KAPTAN_MASTER_KEYS = ["TARCO-DZV-PARTNERS", "Tarco-Dzv-Partners", "tarco-dzv-partners", "TARCO-PRIME", "KAPTAN2026", "SELDON2026", "VERITAS"];
+        const KAPTAN_MASTER_KEYS = ["TARCO-DZV-PARTNERS", "Tarco-Dzv-Partners", "tarco-dzv-partners", "COM QUEM?", "COM QUEM", "COMQUEM", "TARCO-PRIME", "KAPTAN2026", "SELDON2026", "VERITAS"];
 
         function getStoredUsers() {
             let users = localStorage.getItem("t2saim_registered_users");
@@ -3273,9 +3273,12 @@ function scrambleSecretSignals() {
                         Root şifresini girerek bekleme odasındaki tüm başvuruları yönetebilir veya doğrudan sisteme girebilirsiniz.
                     </div>
                 </div>
-                <div class="space-y-1">
-                    <label class="text-xs font-bold text-purple-300 uppercase font-mono">Master Root Anahtarı</label>
-                    <input type="password" id="admin-master-key" placeholder="Tarco-Dzv-Partners" class="w-full bg-slate-950 border border-purple-700/60 rounded-lg px-3.5 py-2.5 text-sm text-purple-200 focus:outline-none focus:border-purple-400 font-mono tracking-widest">
+                <div class="space-y-1.5">
+                    <div class="flex justify-between items-center">
+                        <label class="text-xs font-bold text-purple-300 uppercase font-mono">Master Root Anahtarı</label>
+                        <span class="text-[10px] text-purple-400/90 font-mono italic">Hatırlatma: Com quem?</span>
+                    </div>
+                    <input type="password" id="admin-master-key" placeholder="Com quem?" onkeydown="if(event.key==='Enter') handleKaptanLoginSubmit()" class="w-full bg-slate-950 border border-purple-700/60 rounded-lg px-3.5 py-2.5 text-sm text-purple-200 focus:outline-none focus:border-purple-400 font-mono tracking-widest placeholder:text-purple-400/50">
                 </div>
                 <div id="admin-error-msg" class="hidden text-xs text-rose-400 bg-rose-950/40 p-2.5 rounded border border-rose-800/40 flex items-center gap-2">
                     <i class="fa-solid fa-circle-exclamation"></i>
